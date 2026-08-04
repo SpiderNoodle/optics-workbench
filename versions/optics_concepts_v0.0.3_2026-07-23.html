@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>车载镜头光学</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 30px 18px 70px;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f4f7fb; color: #1a2233; line-height: 1.6;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  h1 { font-size: 23px; font-weight: 700; margin: 0 0 4px; }
+  .sub { color: #5b6678; font-size: 14px; margin-bottom: 20px; }
+  .catbar { display: flex; gap: 8px; margin-bottom: 12px; }
+  .cat { padding: 9px 22px; border: 1px solid #d4dce6; background: #fff; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 700; color: #5b6678; transition: .15s; }
+  .cat.active { background: #1a2233; color: #fff; border-color: #1a2233; }
+  .step { border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; background: #fff; }
+  .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .step-no { width: 26px; height: 26px; border-radius: 50%; background: #2563eb; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .step-name { font-size: 15px; font-weight: 700; color: #1a2233; }
+  .step-en { font-size: 11px; color: #9aa6b5; }
+  .step-body { font-size: 13px; color: #5b6678; line-height: 1.75; }
+  .step-body .item { margin: 3px 0; }
+  .step-body b { color: #1a2233; }
+  .gate-mark { display: inline-block; background: #eef4ff; color: #2563eb; border-radius: 5px; padding: 1px 7px; font-size: 11px; font-weight: 600; margin-right: 5px; }
+  .tabs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tab {
+    padding: 8px 11px; border: 1px solid #d4dce6; background: #fff;
+    border-radius: 9px; cursor: pointer; font-size: 13px; font-weight: 600;
+    color: #5b6678; text-align: center; transition: .15s; line-height: 1.2;
+  }
+  .tab .en { display: block; font-size: 10px; font-weight: 400; color: #9aa6b5; margin-top: 2px; }
+  .tab.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .tab.active .en { color: #cfe0ff; }
+  .panel { display: none; background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; }
+  .panel.show { display: block; }
+  /* 释义：每个模块开篇先给一句清晰的定义 */
+  .define {
+    font-size: 13.5px; color: #1a2233; background: #eef4ff;
+    border: 1px solid #d3e2ff; border-left: 4px solid #2563eb;
+    border-radius: 8px; padding: 10px 12px; margin-bottom: 12px;
+  }
+  .define b { color: #1a3a66; }
+  .tagline { font-size: 14px; color: #2563eb; font-weight: 600; margin: 0 0 12px; }
+  canvas { display: block; background: #fbfcfe; border: 1px solid #eef2f7; border-radius: 8px; width: 100%; }
+  .ctrl { margin: 14px 0 4px; }
+  .ctrl label { font-size: 13px; color: #5b6678; display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .ctrl label b { color: #1a2233; font-weight: 700; }
+  input[type=range] { width: 100%; accent-color: #2563eb; }
+  .row2 { display: flex; gap: 14px; flex-wrap: wrap; }
+  .row2 > div { flex: 1; min-width: 240px; }
+  .cap { font-size: 12px; color: #9aa6b5; text-align: center; margin-top: 6px; }
+  .readout { background: #f0f6ff; border: 1px solid #d6e6ff; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #1a3a66; margin-top: 12px; }
+  .note { font-size: 13px; color: #5b6678; margin-top: 13px; padding-left: 12px; border-left: 3px solid #cfe0ff; }
+  .note b { color: #1a2233; }
+
+  /* 工艺流程图样式 */
+  .flow-title { font-size: 14px; font-weight: 700; color: #1a2233; margin: 4px 0 10px; }
+  .flow-svg { width: 100%; height: auto; display: block; }
+  .gate { background: #fff7ed; border: 1px solid #fed7aa; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 12px 14px; margin-top: 16px; font-size: 13px; color: #5b6678; }
+  .gate b { color: #1a2233; }
+  .gate .k { color: #b45309; font-weight: 700; }
+  .src { font-size: 12px; color: #9aa6b5; margin-top: 14px; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
+  .src b { color: #5b6678; }
+  .ver { margin-top: 18px; font-size: 12px; color: #9aa6b5; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>车载镜头光学</h1>
+  <div class="sub">分 <b>光学</b>、<b>信赖性</b>、<b>工艺</b> 三大部分：光学 12 个交互模块先讲清每个概念（<b>先看释义，再拖动滑块</b>实时观察）；信赖性讲清热补偿 / 杂光 / 鬼像这些实车环境下的退化机制；工艺依据 <b>FCT-PFD.pdf</b>，逐道工序说明指标如何在量产中被验证。所有指标对照产品 Main Specification（spec sheet）。</div>
+
+  <div class="catbar">
+    <div class="cat active" id="cat-optics" onclick="showCat('optics')">光学</div>
+    <div class="cat" id="cat-reliability" onclick="showCat('reliability')">信赖性</div>
+    <div class="cat" id="cat-process" onclick="showCat('process')">工艺</div>
+  </div>
+  <div class="tabs" id="subtabs-optics">
+    <div class="tab active" id="tab-mtf" onclick="showTab('mtf')">MTF<span class="en">调制传递</span></div>
+    <div class="tab" id="tab-dof" onclick="showTab('dof')">DOF<span class="en">景深</span></div>
+    <div class="tab" id="tab-efl" onclick="showTab('efl')">EFL<span class="en">有效焦距</span></div>
+    <div class="tab" id="tab-ffl" onclick="showTab('ffl')">FFL<span class="en">法兰焦距</span></div>
+    <div class="tab" id="tab-fno" onclick="showTab('fno')">FNO<span class="en">光圈/F 数</span></div>
+    <div class="tab" id="tab-fov" onclick="showTab('fov')">FOV<span class="en">视场角</span></div>
+    <div class="tab" id="tab-cra" onclick="showTab('cra')">CRA<span class="en">主光线角</span></div>
+    <div class="tab" id="tab-cut" onclick="showTab('cut')">UV/IR CUT<span class="en">双截止滤光片</span></div>
+    <div class="tab" id="tab-fc" onclick="showTab('fc')">场曲<span class="en">像面弯曲</span></div>
+    <div class="tab" id="tab-dist" onclick="showTab('dist')">畸变<span class="en">桶/枕形</span></div>
+    <div class="tab" id="tab-ca" onclick="showTab('ca')">色差<span class="en">彩色镶边</span></div>
+    <div class="tab" id="tab-vig" onclick="showTab('vig')">渐晕<span class="en">边角发暗</span></div>
+  </div>
+  <div class="tabs" id="subtabs-reliability" style="display:none;">
+    <div class="tab" id="tab-thcomp" onclick="showTab('thcomp')">热补偿<span class="en">温度补偿</span></div>
+    <div class="tab" id="tab-stray" onclick="showTab('stray')">杂光<span class="en">杂散光</span></div>
+    <div class="tab" id="tab-ghost" onclick="showTab('ghost')">鬼像<span class="en">重影</span></div>
+  </div>
+
+  <!-- MTF -->
+  <div class="panel show" id="panel-mtf">
+    <div class="define"><b>释义：</b>MTF（Modulation Transfer Function，调制传递函数）衡量光学系统<b>还原图像对比度的能力</b>——数值越高，越能保留细密细节。它是镜头"清晰度"的量化指标，直接决定远处车牌、条码能否被看清。</div>
+    <p class="tagline">MTF = 镜头还能留住多少"黑白对比"，越细的细节越容易丢</p>
+    <div class="row2">
+      <div><canvas id="mtfA" width="300" height="120"></canvas><div class="cap">真实车牌（无损）</div></div>
+      <div><canvas id="mtfB" width="300" height="120"></canvas><div class="cap">这台镜头拍出来</div></div>
+    </div>
+    <div class="ctrl">
+      <label>镜头锐度（高频 MTF 水平）<b><span id="mtfQv">70</span>%</b></label>
+      <input type="range" id="mtfQ" min="0" max="100" value="70" step="1" oninput="renderMTF()">
+    </div>
+    <canvas id="mtfCurve" width="620" height="140" style="margin-top:6px;"></canvas>
+    <div class="cap">MTF 曲线：横轴=细节粗细（lp/mm），纵轴=还剩多少对比度</div>
+    <div class="readout" id="mtfR"></div>
+    <div class="note">类比：镜头像一套<b>音响的频率响应</b>。低音（大块特征）轻松过关，高音（细密条纹）会被削掉。MTF 就是"光学系统的频率响应曲线"——曲线掉得越狠，越怕细节。车载镜头要在远处把车牌读清楚，拼的就是<b>高频段 MTF 还不能趴下</b>。拖一下"镜头锐度"，看大字还能认、细条码怎么先糊掉。</div>
+  </div>
+
+  <!-- DOF -->
+  <div class="panel" id="panel-dof">
+    <div class="define"><b>释义：</b>DOF（Depth of Field，景深）是对焦平面<b>前后仍能保持可接受的清晰成像的纵深范围</b>。景深越大，远近物体越能同框清晰；它随光圈缩小而增大，随焦距、拍摄距离变化。</div>
+    <p class="tagline">DOF = 对焦平面前后，还有多大一片是清楚的</p>
+    <canvas id="dofC" width="620" height="250"></canvas>
+    <div class="ctrl">
+      <label>光圈 F 数（越小=瞳孔越大=景深越浅）<b>F <span id="dofFv">4.0</span></b></label>
+      <input type="range" id="dofF" min="1.4" max="16" value="4" step="0.2" oninput="renderDOF()">
+    </div>
+    <div class="readout" id="dofR"></div>
+    <div class="note">类比：光圈像<b>瞳孔</b>。瞳孔放大（小 F 数），只有正对焦那一点清楚，前后全虚——背景虚化就这么来的；瞳孔缩小（大 F 数），前后一大片都清楚。前视摄像头要"远近都看清"，常用小光圈、大景深。</div>
+  </div>
+
+  <!-- FNO（F 数） -->
+  <div class="panel" id="panel-fno">
+    <div class="define"><b>释义：</b>FNO（F-number / F 数）是<b>焦距 / 入瞳直径</b>，衡量镜头"通光能力"——F 越小表示光圈越大、进光越多，但景深越浅、衍射也更严重。F 数同时挂在 DOF、MTF、杂光、信噪比上，是成像系统最基础的一档"音量旋钮"。</div>
+    <p class="tagline">FNO = 镜头光圈档位，决定进光量、景深、衍射极限的"三合一旋钮"</p>
+    <canvas id="fnoC" width="620" height="200"></canvas>
+    <div class="ctrl">
+      <label>光圈 F 数<b>F <span id="fnoFv">1.8</span></b></label>
+      <input type="range" id="fnoF" min="1.4" max="16" value="1.8" step="0.1" oninput="renderFNO()">
+    </div>
+    <div class="ctrl">
+      <label>工作波长 λ（影响衍射极限）<b><span id="fnoWv">550</span> nm</b></label>
+      <input type="range" id="fnoW" min="430" max="680" value="550" step="10" oninput="renderFNO()">
+    </div>
+    <div class="readout" id="fnoR"></div>
+    <div class="note">产品 spec：<b>F.NO = 1.8 ±5%</b>（光圈偏大会牺牲边角 MTF，偏小则进光强、夜视好，但 DOF 变浅）。镜头有个"甜蜜点" F：再大（F 数偏小），衍射开始抬不了头；再小（F 数偏大），进光不够、传感器要拉高增益。F1.8 正是车载前视在<b>"夜视 + 大景深"</b>之间的折衷。</div>
+  </div>
+
+  <!-- FOV（视场角） -->
+  <div class="panel" id="panel-fov">
+    <div class="define"><b>释义：</b>FOV（Field of View，视场角）是镜头<b>能看到的角度范围</b>，分 HFOV（水平）/ VFOV（垂直）/ DFOV（对角线），三者由 EFL 与传感器尺寸共同决定：<b>FOV = 2·arctan(传感器尺寸/(2·EFL))</b>。FOV 决定这台镜头是"看远"还是"看广"。</div>
+    <p class="tagline">FOV = 镜头能看到多宽，分水平 / 垂直 / 对角线三档</p>
+    <canvas id="fovC" width="620" height="240"></canvas>
+    <div class="ctrl">
+      <label>有效焦距 EFL<b><span id="fovFv">4.67</span> mm</b></label>
+      <input type="range" id="fovF" min="2" max="15" value="4.67" step="0.1" oninput="renderFOV()">
+    </div>
+    <div class="ctrl">
+      <label>传感器规格<b><span id="fovSv">1/1.8"</span></b></label>
+      <input type="range" id="fovS" min="0" max="3" value="2" step="1" oninput="renderFOV()">
+    </div>
+    <div class="readout" id="fovR"></div>
+    <div class="note">产品 spec：<b>HFOV 100.5°±1.5° / VFOV 55.9°±1° / DFOV 116°±1.5°</b>（前视广角镜头）。FOV 一大，畸变、渐晕、边缘像质就难做，镜头要把畸变压到 -38.5% 内、把 RE-ILL 抬到 ≥79%，正是为了撑住这个"宽视角"；想看远，EFL 必须拉长、FOV 必然变窄——前视/环视/后视的差异就由 FOV 决定。</div>
+  </div>
+
+  <!-- CRA（主光线角度） -->
+  <div class="panel" id="panel-cra">
+    <div class="define"><b>释义：</b>CRA（Chief Ray Angle，主光线角度）是从像点出发、连接出瞳中心的光线与<b>传感器法线</b>的夹角——视场越大，CRA 越大。传感器的微透镜（microlens）有最大接受 CRA，超过就会<b>光串到邻像素、色彩偏移、边角发暗</b>，所以镜头的 CRA 必须"塞进"sensor 的 CRA budget。</div>
+    <p class="tagline">CRA = 像点处主光线与传感器法线的夹角，决定 sensor 微透镜收不收得住</p>
+    <canvas id="craC" width="620" height="220"></canvas>
+    <div class="ctrl">
+      <label>视场角（半角）<b><span id="craFv">50</span>°</b></label>
+      <input type="range" id="craF" min="0" max="58" value="50" step="1" oninput="renderCRA()">
+    </div>
+    <div class="ctrl">
+      <label>传感器微透镜最大接受 CRA<b><span id="craMv">20</span>°</b></label>
+      <input type="range" id="craM" min="10" max="30" value="20" step="0.5" oninput="renderCRA()">
+    </div>
+    <div class="readout" id="craR"></div>
+    <div class="note">产品 spec：<b>CRA = 19.6°±1.5° @HFOV</b>。当 HFOV 达到 100°，边缘像点的 CRA 已逼近 sensor 的接受极限，sensor 厂商若提供 microlens tilt 或光线"弯折"能力，镜头和 sensor 才能匹配；否则就会出现边角发暗、彩边、噪点。设计时 CRA 是镜头与 sensor 厂之间的"接缝协议"。</div>
+  </div>
+
+  <!-- UV/IR CUT（双截止滤光片） -->
+  <div class="panel" id="panel-cut">
+    <div class="define"><b>释义：</b>UV/IR CUT（双截止滤光片）是镜头最后一枚关键光学元件——<b>同时</b>截止紫外（&lt;430nm）与红外（&gt;680nm），只让可见光 430~680nm 通过。人眼看不见的红外，CMOS 会把它当亮度叠加到 RGB 上，导致色彩偏粉、对比失真；少了它，色彩还原基本失守。</div>
+    <p class="tagline">UV/IR CUT = 把不可见光挡在门外，只让可见光进 sensor，色彩才不会"串味"</p>
+    <canvas id="cutC" width="620" height="220"></canvas>
+    <div class="ctrl">
+      <label>UV 截止波长（±10nm）<b><span id="cutUv">430</span> nm</b></label>
+      <input type="range" id="cutU" min="400" max="470" value="430" step="1" oninput="renderCUT()">
+    </div>
+    <div class="ctrl">
+      <label>IR 截止波长（±10nm）<b><span id="cutIv">680</span> nm</b></label>
+      <input type="range" id="cutI" min="620" max="720" value="680" step="1" oninput="renderCUT()">
+    </div>
+    <div class="readout" id="cutR"></div>
+    <div class="note">产品 spec：<b>UV/IR CUT = 430nm±10nm / 680nm±10nm</b>。光谱曲线不是"一刀切"——UV/IR 段衰减要陡，可见光段要透得平，否则色温、对比都会偏。装配时这枚滤片是贴 sensor 的那一片，盖上后镜头才算真正"完整"——少它，色彩不还原；错位，sensor 直接坏点。</div>
+  </div>
+
+  <!-- EFL -->
+  <div class="panel" id="panel-efl">
+    <div class="define"><b>释义：</b>EFL（Effective Focal Length，有效焦距）是镜头将无限远平行光汇聚到焦点的<b>等效距离</b>，决定视角大小与放大倍率：EFL 越小视角越广（左右都收得进画面），越大越远摄（把远处目标拉得越大）。</div>
+    <p class="tagline">EFL = 镜头的"望远镜倍率"，直接决定能看到多宽、多远</p>
+    <canvas id="eflC" width="620" height="250"></canvas>
+    <div class="ctrl">
+      <label>有效焦距 EFL<b><span id="eflFv">6.0</span> mm</b></label>
+      <input type="range" id="eflF" min="2" max="15" value="6" step="0.5" oninput="renderEFL()">
+    </div>
+    <div class="readout" id="eflR"></div>
+    <div class="note">类比：EFL 是镜头的<b>变焦档位</b>。数值小=广角，左右都能收进画面（环视/盲区监测爱用）；数值大=长焦，把远处车子拉得很近很大（前视看远、认车牌爱用）。EFL 越大，视角越窄、远处目标越大。</div>
+  </div>
+
+  <!-- FFL -->
+  <div class="panel" id="panel-ffl">
+    <div class="define"><b>释义：</b>FFL（Flange Focal Length，法兰焦距）是镜头卡口基准面到传感器成像平面的<b>机械距离</b>，是机身定死的规格（如 C 卡口 17.5mm、CS 卡口 12.5mm）。它决定"无限远能否合焦"——差 0.x mm 都会废掉远焦档。</div>
+    <p class="tagline">FFL = 机身里"镜头卡口到传感器"的固定距离，相当于传感器该坐的座位深度</p>
+    <canvas id="fflC" width="620" height="260"></canvas>
+    <div class="ctrl">
+      <label>传感器位置（相对法兰的距离）<b><span id="fflFv">20.0</span> mm</b></label>
+      <input type="range" id="fflF" min="8" max="32" value="20" step="0.5" oninput="renderFFL()">
+    </div>
+    <div class="readout" id="fflR"></div>
+    <div class="note">
+      <b>是什么：</b>FFL 是镜头卡口基准面到传感器平面的机械距离，是机身定死的规格（例如工业 C 卡口 17.5mm、CS 卡口 12.5mm，车载模组也各有标定值）。镜头是按这个深度设计的。<br>
+      <b>为什么重要：</b>来自无限远的平行光，经过镜头后必须恰好汇聚在传感器上才能"无限远清晰对焦"。座位刚好（绿）→ 汇聚成一点；坐歪了（红）→ 光在传感器上还是一团 → 无限远永远对不上焦。<br>
+      <b>和调焦环的关系：</b>你拧调焦环，是让镜片组前后移动、改变汇聚点，用来补偿<b>近处</b>物体的对焦；但只要 FFL 本身不对，无限远这一档就废了。所以换镜头/模组，FFL 必须严丝合缝（差 0.x mm 都不行）。
+    </div>
+  </div>
+
+  <!-- 场曲 -->
+  <div class="panel" id="panel-fc">
+    <div class="define"><b>释义：</b>场曲（Field Curvature）指理想像面本应是平面，但实际镜头形成的<b>清晰像面常呈弯曲（碗状）</b>。平面传感器只能与碗壁相切于某一圈，因此中心清楚时边缘虚、边缘清楚时中心虚，无法整幅同时清晰。</div>
+    <p class="tagline">场曲 = 真实镜头形成的"像面"是弯的（像碗），平面传感器只能蹭到其中一圈清楚</p>
+    <canvas id="fcC" width="620" height="280"></canvas>
+    <div class="ctrl">
+      <label>场曲强度<b><span id="fcKv">60</span></b></label>
+      <input type="range" id="fcK" min="0" max="100" value="60" step="1" oninput="renderFC()">
+    </div>
+    <div class="ctrl">
+      <label>对焦位置（沿光轴挪传感器）<b><span id="fcFv">0</span></b></label>
+      <input type="range" id="fcF" min="-30" max="30" value="0" step="1" oninput="renderFC()">
+    </div>
+    <div class="readout" id="fcR"></div>
+    <div class="note">类比：清晰像其实形成在<b>一只浅碗的内壁上</b>。而传感器是平板，只能和碗壁相切于某一圈——中心清楚时边缘虚，边缘清楚时中心虚，怎么对焦都救不回整幅。这就是<b>场曲（Field Curvature）</b>。广角镜头（车载环视常用）场曲更明显，所以画面四角常偏软；设计师加"场曲校正镜组 / 平场镜"把它压平。</div>
+  </div>
+
+  <!-- 畸变 -->
+  <div class="panel" id="panel-dist">
+    <div class="define"><b>释义：</b>畸变（Distortion）是镜头对<b>不同视场的放大率不一致</b>，使直线变弯：中心放大更多呈桶形、边缘放大更多呈枕形。它<b>不损失清晰度</b>，只是像素移位，可由 ISP 用标定参数校正。</div>
+    <p class="tagline">畸变 = 镜头把直线拍弯：桶形（向外鼓）或枕形（向内凹），但像素没丢、只是移位</p>
+    <canvas id="distC" width="620" height="300"></canvas>
+    <div class="ctrl">
+      <label>畸变量<b><span id="distKv">+50</span>（正=桶形 / 负=枕形）</b></label>
+      <input type="range" id="distK" min="-100" max="100" value="50" step="1" oninput="renderDist()">
+    </div>
+    <div class="readout" id="distR"></div>
+    <div class="note">注意畸变<b>不改变清晰度</b>，只是把图像像橡皮一样拉伸：中心放大得多→桶形（鱼眼/广角常见）；边缘放大得多→枕形（长焦/变焦端常见）。车载广角镜头多带桶形畸变，但没关系——<b>ISP 里用标定参数就能把它"掰直"</b>，所以你看到的最终画面是方的。</div>
+  </div>
+
+  <!-- 色差 -->
+  <div class="panel" id="panel-ca">
+    <div class="define"><b>释义：</b>色差（Chromatic Aberration）源于<b>不同波长的光折射率不同</b>，无法汇聚于同一点：蓝光的像比红光的像更靠近镜头（轴向色差），或放大倍率不同（倍率色差）。结果就是亮暗边缘镶上一圈红/蓝彩边。</div>
+    <p class="tagline">色差 = 玻璃对红/绿/蓝折弯程度不同，白边会镶上红蓝彩边</p>
+    <canvas id="caC" width="620" height="260"></canvas>
+    <div class="ctrl">
+      <label>色差强度<b><span id="caKv">60</span></b></label>
+      <input type="range" id="caK" min="0" max="100" value="60" step="1" oninput="renderCA()">
+    </div>
+    <div class="readout" id="caR"></div>
+    <div class="note">原理：同一块玻璃，<b>蓝光的折射率比红光大</b>，所以蓝像比红像更靠近镜头（轴向色差），或放大倍率不同（倍率色差）。结果就是亮暗边缘镶上一圈红/蓝。车牌的白边会泛彩边，机器读起来更费劲。修法：用<b>低色散玻璃（ED）、胶合消色差双片</b>把几条色光对齐。</div>
+  </div>
+
+  <!-- 渐晕 -->
+  <div class="panel" id="panel-vig">
+    <div class="define"><b>释义：</b>渐晕（Vignetting）是<b>画面边缘相对中心亮度衰减</b>的现象。成因有二：几何上斜射光按 cos⁴θ 定律衰减（视角越大衰越多），机械上镜筒/镜片边缘也会遮挡部分斜光。它用 <b>RE-ILL（相对照度 = 边角照度 / 中心照度 × 100%）</b> 量化，spec 给的是边缘像高处的最低值。</div>
+    <p class="tagline">渐晕 = 画面四角比中心暗，越广角的镜头越明显，用 RE-ILL 量化</p>
+    <canvas id="vigC" width="620" height="260"></canvas>
+    <div class="ctrl">
+      <label>渐晕强度<b><span id="vigKv">60</span></b></label>
+      <input type="range" id="vigK" min="0" max="100" value="60" step="1" oninput="renderVig()">
+    </div>
+    <div class="readout" id="vigR"></div>
+    <div class="note">成因有两层：几何上斜射光按 <b>cos⁴θ 定律</b>衰减（视角越大衰越多），机械上镜筒/镜片边缘也会挡掉部分斜光。车载广角前视/环视镜头四角容易偏暗，ISP 要做<b>亮度均一化（shading correction）</b>把边角提亮，否则边角一放大增益就噪点暴涨。spec 要求 <b>RE-ILL ≥ 79% ±5% @HFOV</b>，即 HFOV 边缘像点的照度不得低于中心的 79%——这条线是镜头与 ISP 之间的"分账协议"。</div>
+  </div>
+
+  <!-- 信赖性：热补偿 -->
+  <div class="panel" id="panel-thcomp">
+    <div class="define"><b>释义：</b>热补偿（Thermal Compensation）指镜头 / 模组在 <b>-40℃~105℃ 的车载温区</b>内，通过 <b>材料选择（CTE）+ 机械结构（浮动组 / 形状记忆合金）+ ISP 算法</b> 三层叠加，主动抵消镜片热胀冷缩引起的像面偏移。它要同时满足：<b>4 个温区合规</b>（-40 / -20 / 25 / 85℃）、<b>残余偏移 ≤ DOF</b>、<b>MTF 不掉档</b>。</div>
+    <p class="tagline">热补偿 = CTE × 温变 × EFL 算出来的温漂，靠结构+算法压回 DOF 内</p>
+
+    <canvas id="thcCurve" width="620" height="300"></canvas>
+    <div class="cap" style="text-align:left;color:#5b6678;margin-top:-6px;">横轴 = 温度（℃），纵轴 = 焦点偏移（µm）；<span style="color:#16a34a">绿带</span>=DOF 容差、<span style="color:#94a3b8">灰带</span>=4 个温区背景、<span style="color:#dc2626">红线</span>=无补偿漂移、<span style="color:#16a34a">绿线</span>=补偿后</div>
+
+    <canvas id="thcC" width="620" height="130" style="margin-top:12px;"></canvas>
+    <div class="cap" style="text-align:left;color:#5b6678;margin-top:-6px;">当前温度下，焦点在 sensor 平面上的位置（中间带 = DOF，<span style="color:#16a34a">绿=在带内清晰</span>，<span style="color:#dc2626">红=跑焦</span>）</div>
+
+    <div class="row2" style="margin-top:10px;">
+      <div>
+        <div class="ctrl">
+          <label>① 工作温度<b><span id="thcTv">25</span> ℃</b></label>
+          <input type="range" id="thcT" min="-40" max="105" value="25" step="1" oninput="renderThcomp()">
+        </div>
+        <div class="ctrl">
+          <label>② 镜头组 CTE（线膨胀系数）<b><span id="thcCTEv">12</span> ppm/℃</b></label>
+          <input type="range" id="thcCTE" min="0" max="3" value="3" step="1" oninput="renderThcomp()">
+        </div>
+      </div>
+      <div>
+        <div class="ctrl">
+          <label>③ 补偿结构刚度（浮动组 / 记忆合金）<b><span id="thcKv">50</span>%</b></label>
+          <input type="range" id="thcK" min="0" max="100" value="50" step="1" oninput="renderThcomp()">
+        </div>
+        <div class="ctrl">
+          <label>④ ISP 算法补偿强度<b><span id="thcAv">50</span>%</b></label>
+          <input type="range" id="thcA" min="0" max="100" value="50" step="1" oninput="renderThcomp()">
+        </div>
+      </div>
+    </div>
+    <div class="ctrl">
+      <label>⑤ 焦距档（决定 DOF 容差）<b><span id="thcFv">远焦</span>（DOF ±<span id="thcDofV">7</span>µm）</b></label>
+      <input type="range" id="thcF" min="0" max="2" value="0" step="1" oninput="renderThcomp()">
+    </div>
+
+    <div class="readout" id="thcR"></div>
+    <div id="thcZones" style="margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12px;"></div>
+    <div class="note">算法：<b>原始温漂 = CTE × ΔT × EFL × 标度</b>（EFL=4.67mm）→ <b>残余 = 原始 × (1 - 结构补偿) × (1 - 算法补偿×0.5)</b>。当残余落在 DOF 带内，中心 / 边缘 MTF 才不降档。<b>4 个温区（-40 / -20 / 25 / 85℃）必须全绿</b>才是真正过规格——只测 25℃ 的 lab 数据是骗自己。<br>类比：镜头像一把会热胀冷缩的尺子。CTE 是尺子的"脾气"（塑料脾气大、玻璃脾气小），结构补偿是"可伸缩的尺芯"（自动跟着温变微调），算法补偿是"事后对答案"（ISP 拿 MTF 反馈再对焦）。三层叠加，温漂被一压再压。</div>
+  </div>
+
+  <!-- 信赖性：杂光 -->
+  <div class="panel" id="panel-stray">
+    <div class="define"><b>释义：</b>杂光 / 杂散光（Stray Light）指非成像光线（强光源、路面反光、镜筒内壁散射）经多次反射 / 散射后进入像面，形成<b>均匀亮雾（veiling glare）</b>，整体抬高黑电平、压低对比度，把暗部细节淹没。</div>
+    <p class="tagline">杂光 = 强光的"溢光"糊住整幅，对比度被整体拉低</p>
+    <canvas id="strayCv" width="620" height="260"></canvas>
+    <div class="ctrl">
+      <label>强光源亮度 / 逆光强度<b><span id="straySv">45</span>%</b></label>
+      <input type="range" id="strayS" min="0" max="100" value="45" step="1" oninput="renderStray()">
+    </div>
+    <div class="readout" id="strayR"></div>
+    <div class="note">类比：夜里对面车灯 / 路灯的强光，有一部分并不走"正路"成像，而是被镜筒内壁、镜片边缘反复弹射，像往镜头里灌了一层牛奶——整幅蒙上灰白雾，<b>暗处的行人、标线被淹没</b>。杂光比是衡量这层"雾"有多厚的指标（见工艺里 VGI&lt;2.0% 的关卡）。修法：镜筒内染黑消光、加遮光片（flare stop）、用低反射镀膜。</div>
+  </div>
+
+  <!-- 信赖性：鬼像 -->
+  <div class="panel" id="panel-ghost">
+    <div class="define"><b>释义：</b>鬼像（Ghosting）是杂光的一种<b>点源形态</b>：强光源（太阳、尾灯）在镜片间发生 1~2 次内部反射，在像面形成与主像<b>错位、柔化的亮斑 / 光环</b>。它出现在相对光源的固定位置，随光源亮度与角度变化。</div>
+    <p class="tagline">鬼像 = 强光源在镜片间"照镜子"，在画面里留下错位亮斑</p>
+    <canvas id="ghostCv" width="620" height="260"></canvas>
+    <div class="ctrl">
+      <label>强光源亮度<b><span id="ghostPv">50</span>%</b></label>
+      <input type="range" id="ghostP" min="0" max="100" value="50" step="1" oninput="renderGhost()">
+    </div>
+    <div class="readout" id="ghostR"></div>
+    <div class="note">类比：把镜头想成几片玻璃叠在一起。正前方的太阳，除了正常成像，还会在相邻两片镜片之间"反弹一次"，在画面的另一个位置印出一个<b>模糊的太阳副本</b>——这就是鬼像。它不像均匀杂光那样糊整幅，而是"点"状亮斑，常出现在逆光行车、看夕阳时。修法和杂光相通：压低镜片表面反射率（镀多层增透膜）、优化镜片间距与曲率，让内部反射几乎不发生。</div>
+  </div>
+
+  <!-- 工艺（新增，静态图解，非互动卡片） -->
+  <div class="panel" id="panel-process">
+    <div class="define"><b>释义：</b>工艺（制造工艺流程）是把光学设计变成<b>可量产镜头</b>的工序序列——从「来料检验」到「自动组装、点胶锁付、可靠性老化」，再到「MTF / 杂光 / 偏心等光学检验」，最后「真空包装出货」。它保证每一个镜头都达到设计约定的光学指标（前面光学部分讲的概念，正是这里被逐道"打卡"的对象）。</div>
+
+    <div class="flow-title">FCT 车载镜头制造工艺流程（依据 FCT-PFD.pdf · PFD-SF816BJ-01）</div>
+    <svg class="flow-svg" viewBox="0 0 720 712" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="车载镜头制造工艺流程图">
+      <defs>
+        <marker id="ah" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#94a3b8"></path>
+        </marker>
+      </defs>
+      <!-- 输入 -->
+      <rect x="250" y="6" width="220" height="34" rx="17" fill="#eef4ff" stroke="#2563eb"></rect>
+      <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#1a3a66">输入：镜片 / 镜筒 / 隔圈等来料</text>
+
+      <!-- 8 个阶段 -->
+      <!-- 阶段1 -->
+      <g>
+        <rect x="20" y="56" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
+        <circle cx="44" cy="87" r="13" fill="#2563eb"></circle>
+        <text x="44" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
+        <text x="68" y="82" font-size="15" font-weight="700" fill="#1a2233">来料检验</text>
+        <text x="68" y="101" font-size="11" fill="#9aa6b5">Incoming Inspection</text>
+        <text x="250" y="91" font-size="12.5" fill="#5b6678">来料接收 · 来料报检 · 零部件入库/发料 · 物料接收</text>
+      </g>
+      <line x1="360" y1="118" x2="360" y2="134" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段2 -->
+      <g>
+        <rect x="20" y="136" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
+        <circle cx="44" cy="167" r="13" fill="#2563eb"></circle>
+        <text x="44" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
+        <text x="68" y="162" font-size="15" font-weight="700" fill="#1a2233">镜筒加工</text>
+        <text x="68" y="181" font-size="11" fill="#9aa6b5">Barrel Machining</text>
+        <text x="250" y="171" font-size="12.5" fill="#5b6678">镜筒打标 · 镜筒吹拭 · 摆盘/取料 · 集尘</text>
+      </g>
+      <line x1="360" y1="198" x2="360" y2="214" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段3 -->
+      <g>
+        <rect x="20" y="216" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
+        <circle cx="44" cy="247" r="13" fill="#2563eb"></circle>
+        <text x="44" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
+        <text x="68" y="242" font-size="15" font-weight="700" fill="#1a2233">自动组装</text>
+        <text x="68" y="261" font-size="11" fill="#9aa6b5">Automatic Assembly</text>
+        <text x="250" y="251" font-size="12.5" fill="#5b6678">自动组装 · 部品排料 · 外压圈锁付 · IR 组立点胶曝光</text>
+      </g>
+      <line x1="360" y1="278" x2="360" y2="294" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段4 -->
+      <g>
+        <rect x="20" y="296" width="680" height="62" rx="12" fill="#f0f9ff" stroke="#93c5fd"></rect>
+        <circle cx="44" cy="327" r="13" fill="#0ea5e9"></circle>
+        <text x="44" y="332" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
+        <text x="68" y="322" font-size="15" font-weight="700" fill="#0c4a6e">过程光学检验</text>
+        <text x="68" y="341" font-size="11" fill="#9aa6b5">In-process Optical Check</text>
+        <text x="250" y="331" font-size="12.5" fill="#5b6678">自动内尘检查 · 一道 MTF 检查（逆光路设备）</text>
+      </g>
+      <line x1="360" y1="358" x2="360" y2="374" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段5 -->
+      <g>
+        <rect x="20" y="376" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
+        <circle cx="44" cy="407" r="13" fill="#2563eb"></circle>
+        <text x="44" y="412" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
+        <text x="68" y="402" font-size="15" font-weight="700" fill="#1a2233">可靠性预处理</text>
+        <text x="68" y="421" font-size="11" fill="#9aa6b5">Reliability</text>
+        <text x="250" y="411" font-size="12.5" fill="#5b6678">温度预处理（老化箱）· 高温烘烤（烘箱）· 老化 16H×2 循环</text>
+      </g>
+      <line x1="360" y1="438" x2="360" y2="454" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段6 -->
+      <g>
+        <rect x="20" y="456" width="680" height="62" rx="12" fill="#f0f9ff" stroke="#93c5fd"></rect>
+        <circle cx="44" cy="487" r="13" fill="#0ea5e9"></circle>
+        <text x="44" y="492" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">6</text>
+        <text x="68" y="482" font-size="15" font-weight="700" fill="#0c4a6e">二道 MTF 检查</text>
+        <text x="68" y="501" font-size="11" fill="#9aa6b5">2nd MTF Inspection · PRO10 设备</text>
+        <text x="250" y="491" font-size="12.5" fill="#5b6678">老化后复测 MTF / 场曲 / 畸变 / DOF</text>
+      </g>
+      <line x1="360" y1="518" x2="360" y2="534" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段7 -->
+      <g>
+        <rect x="20" y="536" width="680" height="62" rx="12" fill="#f0f9ff" stroke="#93c5fd"></rect>
+        <circle cx="44" cy="567" r="13" fill="#0ea5e9"></circle>
+        <text x="44" y="572" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">7</text>
+        <text x="68" y="562" font-size="15" font-weight="700" fill="#0c4a6e">最终检验</text>
+        <text x="68" y="581" font-size="11" fill="#9aa6b5">Final Inspection</text>
+        <text x="250" y="571" font-size="12.5" fill="#5b6678">干冰清洗 · VGI 检查 · 杂光检查 · 偏心检查 · 二道外观</text>
+      </g>
+      <line x1="360" y1="598" x2="360" y2="614" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <!-- 阶段8 -->
+      <g>
+        <rect x="20" y="616" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
+        <circle cx="44" cy="647" r="13" fill="#2563eb"></circle>
+        <text x="44" y="652" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">8</text>
+        <text x="68" y="642" font-size="15" font-weight="700" fill="#1a2233">包装出货</text>
+        <text x="68" y="661" font-size="11" fill="#9aa6b5">Packaging &amp; Shipment</text>
+        <text x="250" y="651" font-size="12.5" fill="#5b6678">真空包装 · 成品包装 · 完工检验 · 出货入库</text>
+      </g>
+      <!-- 输出 -->
+      <line x1="360" y1="678" x2="360" y2="690" stroke="#94a3b8" stroke-width="2" marker-end="url(#ah)"></line>
+      <rect x="250" y="690" width="220" height="14" rx="7" fill="#16a34a"></rect>
+      <text x="360" y="701" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">输出：合格车载镜头</text>
+    </svg>
+
+    <div class="flow-title" style="margin-top:18px;">逐道工序详解</div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">1</span>
+        <span class="step-name">来料检验</span>
+        <span class="step-en">Incoming Inspection · JY010–JY050</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>工序：</b>来料接收 → 来料报检 → 零部件入库 → 零部件发料 → 物料接收。</div>
+        <div class="item"><b>核对内容：</b>镜片（外径 14 / 11.8 -0.01/-0.002；中厚 胶合件 4.68、镜片四 3.78、镜片五 0.9；矢高 镜片七 S1 0.902、镜片六 S2 0.698；镀膜反射率 R(max)≤0.3~0.5% @420–680nm、≤1.0% @410–690nm）、镜筒（材质 ADC12、ROHS；亚光发黑层 5–15μm、1000h UV 不变色、60°光泽≤2GU；镭雕+铬酸盐钝化、电阻≤5Ω、孔隙率≤2.5%）、隔圈（拦光口径 φ8.1±0.03、中厚 0.579±0.005）。</div>
+        <div class="item"><b>为什么关键：</b>来料是后续所有光学指标的"地基"——尺寸或镀膜不达标，后面组装再好也救不回 MTF。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">2</span>
+        <span class="step-name">镜筒加工</span>
+        <span class="step-en">Barrel Machining · FZ010–FZ050</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>工序：</b>镜筒打标（追溯码） → 镜筒吹拭（除尘） → 摆盘 / 取料 → 集尘。</div>
+        <div class="item"><b>设备：</b>摆盘机、集尘器。</div>
+        <div class="item"><b>内容：</b>镜筒清洁、激光打标建立追溯、除尘，确保组装前镜筒无尘无污。</div>
+        <div class="item"><b>为什么关键：</b>镜筒洁净度直接影响组装后的内尘与杂散光（见 <b>渐晕 / 杂光</b>）。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">3</span>
+        <span class="step-name">自动组装</span>
+        <span class="step-en">Automatic Assembly · ZZ010–ZZ090</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>工序：</b>部品排料 → 外压圈锁付（锁付机） → IR 组立点胶曝光（一体机） → 外压圈点胶曝光（单工站） → 自动内尘检查（内尘设备） → 一道 MTF 检查（逆光路设备） → 吸塑包材喷淋清洗。</div>
+        <div class="item"><b>设备：</b>组装机、外压圈锁付机、IR 组立点胶一体机、外压圈点胶单工站、自动内尘设备。</div>
+        <div class="item"><b>内容：</b>按设计次序将镜片、隔圈、IR 滤色片装入镜筒并点胶锁付固定，形成完整镜头。</div>
+        <div class="item"><b>为什么关键：</b>组装顺序 / 点胶量 / 锁付力矩决定镜片间隔与偏心，是 <b>MTF、场曲、畸变、偏心</b> 的源头。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">4</span>
+        <span class="step-name">过程光学检验 · 一道 MTF</span>
+        <span class="step-en">In-process Optical Check · 逆光路设备</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>内容：</b>组装后立即用逆光路法测一道 MTF，并与内尘检查联动。</div>
+        <div class="item"><b>验证：</b><span class="gate-mark">MTF</span> 119lp/mm：0°≥0.50 / 4.5°≥0.45 / 8.6°≥0.38 / 12°≥0.35；<span class="gate-mark">DOF</span> ≥10µm。</div>
+        <div class="item"><b>为什么关键：</b>第一道光学体检，组装偏倚在此暴露，不合格直接返工 / 隔离。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">5</span>
+        <span class="step-name">可靠性预处理</span>
+        <span class="step-en">Reliability · ZZ100–ZZ120</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>工序：</b>温度预处理（老化箱） → 高温烘烤（烘箱） → 老化（两循环共 16H）。</div>
+        <div class="item"><b>老化温区：</b>25℃→-43℃(30min) → 恒 -43℃(240min) → 升 95℃(30min) → 恒 95℃(120min) → 降 -43℃(30min) → 回 25℃(30min)，共 2 循环 16H。</div>
+        <div class="item"><b>为什么关键：</b>模拟车载极端冷热冲击，把虚焊 / 应力松动逼出来，确保镜头在考验后光学指标仍稳。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">6</span>
+        <span class="step-name">二道 MTF 检查</span>
+        <span class="step-en">2nd MTF Inspection · PRO10</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>设备：</b>PRO10。</div>
+        <div class="item"><b>内容：</b>老化后复测 MTF / 场曲 / 畸变 / DOF，确认可靠性考验后指标不退化。</div>
+        <div class="item"><b>验证：</b><span class="gate-mark">MTF</span> 同前；<span class="gate-mark">场曲</span> 4.5°/8.6°/12° ≤±10µm；<span class="gate-mark">像面倾斜</span> ≤0.25°；<span class="gate-mark">畸变</span> (-2.7±1)% @DFOV；<span class="gate-mark">DOF</span> ≥10µm。</div>
+        <div class="item"><b>为什么关键：</b>老化后的"终检预演"，把温度应力引入的指标漂移挡在门外。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">7</span>
+        <span class="step-name">最终检验</span>
+        <span class="step-en">Final Inspection · BZ010–BZ030 / CC010</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>工序：</b>干冰清洗（干冰设备） → VGI 检查（VGI 设备） → 杂光检查（自动杂光设备） → 偏心检查（自动偏心设备） → 二道外观检查。</div>
+        <div class="item"><b>验证：</b><span class="gate-mark">VGI</span> (ISO18844) &lt;2.0%；<span class="gate-mark">杂光</span> 对比杂光封样判定（与 <b>渐晕 / 杂光</b> 相关）；<span class="gate-mark">偏心</span> ≤0.3°；二道外观：表面与缺陷封样对比。</div>
+        <div class="item"><b>为什么关键：</b>出厂前最后一道全员体检，把 <b>MTF / 场曲 / 畸变 / 偏心 / 杂光 / VGI</b> 一次性收口。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="step-no">8</span>
+        <span class="step-name">包装出货</span>
+        <span class="step-en">Packaging &amp; Shipment · ZZ090 / WG010 / QJ010</span>
+      </div>
+      <div class="step-body">
+        <div class="item"><b>工序：</b>真空包装（真空包装机） → 成品包装 → 完工检验 → 产品出货（成品接收入库）。</div>
+        <div class="item"><b>内容：</b>镜头满足客户端接口要求后，真空防潮包装、完工检验、入库出货。</div>
+        <div class="item"><b>为什么关键：</b>封箱前确认"镜头满足客户端接口要求"，交付即放行。</div>
+      </div>
+    </div>
+
+    <div class="gate">
+      <div style="font-weight:700;color:#b45309;margin-bottom:6px;">质量关口对照——这些光学概念如何被验证</div>
+      <div><span class="k">一道 / 二道 MTF 检查</span> → 验证 <b>MTF</b>（119 lp/mm：0°≥0.50 / 4.5°≥0.45 / 8.6°≥0.38 / 12°≥0.35）、<b>场曲</b>（4.5°/8.6°/12° ≤±10µm）、<b>畸变</b>（(-2.7±1)% @DFOV）、<b>DOF</b>（≥10µm）。</div>
+      <div style="margin-top:6px;"><span class="k">杂光检查</span> → 控制杂散光 / 鬼影（与<b>渐晕</b>、杂光相关），VGI（ISO18844）<b>&lt;2.0%</b>。</div>
+      <div style="margin-top:6px;"><span class="k">偏心检查</span> → 偏心 <b>≤0.3°</b>；<span class="k">二道外观 / VGI</span> → 表面与眩光达标。</div>
+      <div style="margin-top:8px;color:#5b6678;">设计指标正是在每一道工序里被"打卡"。工艺，就是把抽象的光学概念变成可量产、可检验的实物。</div>
+    </div>
+
+    <div class="src">参考：<b>FCT-PFD.pdf</b> · Process Flow Diagram 过程流程图（编号 PFD-SF816BJ-01，产品 SF816BJ / 客户 Magna）。关键产品特性含 MTF 119lp/mm、场曲 ≤±10µm、畸变 (-2.7±1)%、偏心 ≤0.3°、VGI&lt;2.0% 等（KPC / SC/S / SC/F / PSC / KCC 见原图特性标识）。</div>
+  </div>
+
+  <div class="ver">版本 v0.0.3 · 2026-07-23 · 历史版本与变更见 CHANGELOG.md</div>
+</div>
+
+<script>
+const C = { ink:'#1a2233', sub:'#5b6678', blue:'#2563eb', cyan:'#0ea5e9',
+  warn:'#f59e0b', green:'#16a34a', red:'#dc2626', line:'#cbd5e1', road:'#cdd8e4' };
+
+function setup(id, w, h){
+  const c = document.getElementById(id);
+  const dpr = window.devicePixelRatio || 1;
+  c.width = w * dpr; c.height = h * dpr;
+  const x = c.getContext('2d');
+  x.setTransform(dpr,0,0,dpr,0,0);
+  x.clearRect(0,0,w,h);
+  return {x,w,h};
+}
+let currentCat = 'optics';
+const lastTab = { optics:'mtf', reliability:'thcomp' };
+const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
+  fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
+  fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
+  thcomp:renderThcomp, stray:renderStray, ghost:renderGhost };
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('show');
+  document.getElementById('tab-'+id).classList.add('active');
+  lastTab[currentCat] = id;
+  (renderMap[id]||function(){})();
+}
+function showCat(cat){
+  currentCat = cat;
+  ['optics','reliability','process'].forEach(c=>{
+    document.getElementById('cat-'+c).classList.toggle('active', c===cat);
+  });
+  document.getElementById('subtabs-optics').style.display = (cat==='optics') ? 'flex' : 'none';
+  document.getElementById('subtabs-reliability').style.display = (cat==='reliability') ? 'flex' : 'none';
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  if(cat==='process'){
+    document.getElementById('panel-process').classList.add('show');
+  } else {
+    const id = lastTab[cat];
+    document.getElementById('panel-'+id).classList.add('show');
+    document.getElementById('tab-'+id).classList.add('active');
+    (renderMap[id]||function(){})();
+  }
+}
+
+// ---------- MTF ----------
+function drawPlate(g, x, y, w, h, blur){
+  g.save();
+  if(blur>0.05) g.filter = 'blur('+blur+'px)';
+  g.fillStyle = '#0b3d91';
+  g.beginPath(); g.roundRect(x,y,w,h,8); g.fill();
+  g.strokeStyle = '#fff'; g.lineWidth = 3;
+  g.beginPath(); g.roundRect(x+5,y+5,w-10,h-10,5); g.stroke();
+  g.fillStyle = '#fff'; g.textBaseline = 'middle'; g.textAlign = 'left';
+  g.font = 'bold '+Math.round(h*0.40)+'px sans-serif';
+  g.fillText('沪A', x+w*0.10, y+h*0.5);
+  g.font = 'bold '+Math.round(h*0.50)+'px sans-serif';
+  g.fillText('8K29', x+w*0.40, y+h*0.5);
+  g.fillStyle = '#fff';
+  const bx = x+w*0.80, bw = w*0.14;
+  for(let i=0;i<14;i++){ if(i%2===0) g.fillRect(bx + i*(bw/14), y+h*0.30, bw/14, h*0.40); }
+  g.restore();
+}
+function renderMTF(){
+  const s = +document.getElementById('mtfQ').value;
+  document.getElementById('mtfQv').textContent = s;
+  let a = setup('mtfA', 300, 120);
+  drawPlate(a.x, 10, 8, 280, 104, 0.2);
+  let b = setup('mtfB', 300, 120);
+  drawPlate(b.x, 10, 8, 280, 104, 0.3 + (1-s/100)*5.5);
+  let cv = setup('mtfCurve', 620, 140);
+  const x = cv.x, w = cv.w, h = cv.h;
+  x.strokeStyle = C.line; x.lineWidth = 1;
+  x.beginPath(); x.moveTo(34,8); x.lineTo(34,h-22); x.lineTo(w-8,h-22); x.stroke();
+  const mtf = f => (s/100)*Math.exp(-Math.pow(f/70,1.3));
+  x.beginPath();
+  for(let fv=0; fv<=200; fv+=2){
+    const px = 34 + fv/200*(w-44);
+    const py = (h-22) - mtf(fv)*(h-34);
+    fv===0 ? x.moveTo(px,py) : x.lineTo(px,py);
+  }
+  x.strokeStyle = C.blue; x.lineWidth = 2.5; x.stroke();
+  const mark = (f, col, lab) => {
+    const px = 34 + f/200*(w-44), py = (h-22) - mtf(f)*(h-34);
+    x.fillStyle = col; x.beginPath(); x.arc(px,py,4,0,7); x.fill();
+    x.fillStyle = C.sub; x.font = '10px sans-serif'; x.fillText(lab, px-14, py-8);
+  };
+  mark(25, C.green, '车牌字');
+  mark(120, C.red, '条码');
+  x.fillStyle = C.sub; x.font = '11px sans-serif';
+  x.fillText('空间频率 lp/mm →', w-120, h-7);
+  x.save(); x.translate(12,72); x.rotate(-Math.PI/2); x.fillText('对比度', 0,0); x.restore();
+  const mChar = mtf(25), mBar = mtf(120);
+  document.getElementById('mtfR').innerHTML =
+    '镜头锐度 <b>'+s+'%</b>：车牌大字 MTF≈'+Math.round(mChar*100)+'% <b>'+(mChar>0.3?'可读':'已糊')+'</b>；' +
+    '细条码 MTF≈'+Math.round(mBar*100)+'% <b>'+(mBar>0.3?'清晰':'已丢失')+'</b>。' +
+    (s<40 ? ' 镜头太肉，远距离车牌直接废。' : '');
+}
+
+// ---------- DOF ----------
+function car(x, cx, cy, wcar, color, blur, label){
+  x.save(); x.filter = 'blur('+blur+'px)';
+  x.fillStyle = color;
+  x.beginPath(); x.roundRect(cx-wcar/2, cy-wcar*0.55, wcar, wcar*0.7, 6); x.fill();
+  x.fillRect(cx-wcar*0.3, cy-wcar*0.85, wcar*0.6, wcar*0.35);
+  x.restore();
+  x.fillStyle = C.ink; x.font = '11px sans-serif';
+  x.fillText(label, cx-16, cy+wcar*0.7+14);
+}
+function renderDOF(){
+  const F = +document.getElementById('dofF').value;
+  document.getElementById('dofFv').textContent = F.toFixed(1);
+  const {x,w,h} = setup('dofC', 620, 250);
+  x.fillStyle = '#eaf1f8'; x.fillRect(0,0,w,h);
+  x.fillStyle = C.road; x.fillRect(0, h*0.6, w, h*0.4);
+  x.strokeStyle = '#b9c6d4'; x.lineWidth = 1;
+  for(let i=0;i<6;i++){ const gx=i*w/6; x.beginPath(); x.moveTo(gx,h*0.6); x.lineTo(gx-20,h); x.stroke(); }
+  const focusX = 320;
+  const blurAt = d => Math.min(16, 0.16*Math.pow(16/F,2)*Math.abs(d-focusX)/140);
+  car(x, 150, 155, 56, '#7f77dd', blurAt(150), '近处·树');
+  car(x, 320, 155, 60, '#185fa5', blurAt(320), '对焦·车');
+  car(x, 470, 155, 50, '#0f6e56', blurAt(470), '远处·车');
+  x.strokeStyle = C.green; x.setLineDash([5,4]); x.lineWidth = 1.5;
+  x.beginPath(); x.moveTo(focusX, 30); x.lineTo(focusX, h-10); x.stroke();
+  x.setLineDash([]);
+  x.fillStyle = C.green; x.font = '11px sans-serif'; x.fillText('对焦平面', focusX-26, 24);
+  const t = F<2.5 ? '很浅（背景大片虚化）' : (F>9 ? '很深（前后都清楚）' : '中等');
+  document.getElementById('dofR').innerHTML = '光圈 <b>F '+F.toFixed(1)+'</b> → 景深 <b>'+t+'</b>。' +
+    (F<2.5 ? ' 只有对焦的车清楚，远近都虚。' : (F>9 ? ' 近处树和远处车都还清楚。' : ''));
+}
+
+// ---------- EFL ----------
+function renderEFL(){
+  const efl = +document.getElementById('eflF').value;
+  document.getElementById('eflFv').textContent = efl.toFixed(1);
+  const {x,w,h} = setup('eflC', 620, 250);
+  const camX = 40, camY = h/2, half = 2;
+  const theta = Math.atan(half/efl);
+  x.fillStyle = 'rgba(14,165,233,0.16)';
+  x.beginPath(); x.moveTo(camX, camY);
+  x.lineTo(w, camY - Math.tan(theta)*(w-camX));
+  x.lineTo(w, camY + Math.tan(theta)*(w-camX));
+  x.closePath(); x.fill();
+  x.fillStyle = C.ink; x.fillRect(camX-12, camY-14, 18, 28);
+  x.fillStyle = C.cyan; x.beginPath(); x.arc(camX+6, camY, 6, 0, 7); x.fill();
+  const app = Math.max(10, 150/efl);
+  const cx = 540, cy = camY;
+  x.fillStyle = '#185fa5';
+  x.beginPath(); x.roundRect(cx-app/2, cy-app*0.55, app, app*0.7, 5); x.fill();
+  x.fillRect(cx-app*0.3, cy-app*0.85, app*0.6, app*0.35);
+  x.fillStyle = C.sub; x.font = '11px sans-serif'; x.fillText('远处同一辆车', cx-34, cy+app*0.7+16);
+  const fov = (2*theta*180/Math.PI).toFixed(0);
+  document.getElementById('eflR').innerHTML = 'EFL <b>'+efl.toFixed(1)+' mm</b> → 视角约 <b>'+fov+'°</b>，远处车看起来约 <b>'+Math.round(app)+' px</b>。' +
+    (efl<=4 ? ' 广角，左右都收得进画面。' : (efl>=10 ? ' 长焦，远处被拉得很近。' : ''));
+}
+
+// ---------- FFL ----------
+function renderFFL(){
+  const ffl = +document.getElementById('fflF').value;
+  document.getElementById('fflFv').textContent = ffl.toFixed(1);
+  const {x,w,h} = setup('fflC', 620, 260);
+  const xF = 150, midY = h/2, correct = 20, Px = xF + correct, xS = xF + ffl;
+  const rays = [-46,-23,0,23,46];
+  x.fillStyle = C.cyan; x.font = '11px sans-serif'; x.fillText('平行光 = 来自无限远', 20, 22);
+  x.strokeStyle = C.cyan; x.lineWidth = 1.5;
+  rays.forEach(dy=>{
+    const y0 = midY+dy;
+    x.beginPath(); x.moveTo(20,y0); x.lineTo(xF,y0); x.stroke();
+    x.beginPath(); x.moveTo(xF,y0); x.lineTo(Px,midY); x.stroke();
+  });
+  x.fillStyle = 'rgba(37,99,235,0.22)';
+  x.beginPath(); x.ellipse(xF, midY, 7, 52, 0, 0, 7); x.fill();
+  x.strokeStyle = C.blue; x.lineWidth = 1.5; x.stroke();
+  x.strokeStyle = C.ink; x.lineWidth = 4;
+  x.beginPath(); x.moveTo(xF, midY-58); x.lineTo(xF, midY+58); x.stroke();
+  x.lineWidth = 1; x.fillStyle = C.ink; x.font = '11px sans-serif';
+  x.fillText('镜头卡口(法兰)', xF-42, midY+76);
+  const off = Math.abs(xS-Px);
+  const ok = off < 1.2;
+  x.fillStyle = ok ? C.green : C.red;
+  x.fillRect(xS-3, midY-58, 6, 116);
+  const r = Math.max(2, Math.min(30, off*1.0));
+  x.fillStyle = ok ? 'rgba(22,163,74,0.5)' : 'rgba(220,38,38,0.45)';
+  x.beginPath(); x.arc(xS, midY, r, 0, 7); x.fill();
+  x.fillStyle = C.sub; x.font = '11px sans-serif'; x.fillText('传感器', xS-20, midY-64);
+  x.strokeStyle = '#9aa6b5'; x.setLineDash([3,3]);
+  x.beginPath(); x.moveTo(Px, midY-58); x.lineTo(Px, midY+58); x.stroke();
+  x.setLineDash([]); x.fillStyle = C.sub; x.fillText('理想汇聚点', Px-34, midY+76);
+  document.getElementById('fflR').innerHTML = ok
+    ? '座位刚好（偏差 <1.2 mm）→ <b style="color:#16a34a">无限远清晰对焦</b>。'
+    : '传感器坐歪了 <b>'+off.toFixed(1)+' mm</b> → 光在传感器上还是一团，<b style="color:#dc2626">无限远对不上焦</b>（调焦环只能救近处，救不了无限远）。';
+}
+
+// ---------- 场曲 ----------
+function renderFC(){
+  const curv = +document.getElementById('fcK').value;
+  const focus = +document.getElementById('fcF').value;
+  document.getElementById('fcKv').textContent = curv;
+  document.getElementById('fcFv').textContent = focus;
+  const {x,w,h} = setup('fcC', 620, 280);
+  const midY = h/2, sensorX0 = 380, sensorX = sensorX0 + focus, k = curv/100*0.0011;
+  x.fillStyle = 'rgba(37,99,235,0.25)';
+  x.beginPath(); x.ellipse(50, midY, 8, 70, 0, 0, 7); x.fill();
+  x.strokeStyle = C.blue; x.lineWidth = 1.5; x.stroke();
+  x.fillStyle = C.ink; x.font = '11px sans-serif'; x.fillText('镜头', 40, midY-82);
+  x.strokeStyle = C.warn; x.lineWidth = 2.5;
+  x.beginPath();
+  for(let gy=20; gy<=h-20; gy+=4){ const dy=gy-midY; const xi=sensorX0 - k*dy*dy; gy===20?x.moveTo(xi,gy):x.lineTo(xi,gy); }
+  x.stroke();
+  x.fillStyle = C.warn; x.fillText('理想像面(弯曲)', 250, 20);
+  x.strokeStyle = curv<5 ? C.green : C.red; x.lineWidth = 4;
+  x.beginPath(); x.moveTo(sensorX,30); x.lineTo(sensorX,h-30); x.stroke();
+  x.fillStyle = C.ink; x.fillText('传感器(平面)', sensorX-32, h-12);
+  for(let gy=42; gy<=h-42; gy+=14){
+    const dy=gy-midY, xi=sensorX0 - k*dy*dy;
+    const defo = Math.abs(xi - sensorX);
+    const r = Math.min(16, defo*0.9 + 0.5);
+    x.fillStyle = 'rgba(220,38,38,0.45)';
+    x.beginPath(); x.arc(sensorX, gy, r, 0,7); x.fill();
+    x.fillStyle = 'rgba(37,99,235,0.75)';
+    x.beginPath(); x.arc(sensorX, gy, Math.max(1.5, r*0.4), 0,7); x.fill();
+  }
+  if(curv<5){
+    document.getElementById('fcR').innerHTML = '像面基本平整 → <b>整幅可同时清晰</b>（挪对焦也只是整体平移）。';
+  } else {
+    document.getElementById('fcR').innerHTML = '像面呈碗状：无论怎么对焦，<b>中心和边缘无法同时清楚</b>——只能让某一圈最锐。这就是场曲。';
+  }
+}
+
+// ---------- 畸变 ----------
+function renderDist(){
+  const d = +document.getElementById('distK').value;
+  document.getElementById('distKv').textContent = (d>0?'+':'')+d;
+  const {x,w,h} = setup('distC', 620, 300);
+  const cx=w/2, cy=h/2, k = d/100*0.0016, step=38;
+  x.strokeStyle = C.line; x.lineWidth = 1; x.beginPath();
+  for(let gx=0; gx<=w; gx+=step){
+    for(let gy=0; gy<=h; gy+=6){
+      const px=gx-cx, py=gy-cy, f=1+k*(px*px+py*py);
+      const X=cx+px*f, Y=cy+py*f; gy===0?x.moveTo(X,Y):x.lineTo(X,Y);
+    }
+  }
+  for(let gy=0; gy<=h; gy+=step){
+    for(let gx=0; gx<=w; gx+=6){
+      const px=gx-cx, py=gy-cy, f=1+k*(px*px+py*py);
+      const X=cx+px*f, Y=cy+py*f; gx===0?x.moveTo(X,Y):x.lineTo(X,Y);
+    }
+  }
+  x.stroke();
+  x.strokeStyle = C.blue; x.lineWidth = 2.5;
+  x.strokeRect(cx-w*0.32, cy-h*0.32, w*0.64, h*0.64);
+  x.fillStyle = C.sub; x.font = '11px sans-serif';
+  x.fillText(d>0?'桶形畸变：直线向外鼓':'枕形畸变：直线向内凹', cx-90, 18);
+  document.getElementById('distR').innerHTML = d===0 ? '无畸变，直线就是直线。'
+    : (d>0 ? '桶形：中心放大更多，网格与方框<b>向外鼓</b>（广角/鱼眼常见）。' : '枕形：边缘放大更多，网格与方框<b>向内凹</b>（长焦/变焦端常见）。') + ' 畸变不损清晰，只是像素移位，ISP 可校正。';
+}
+
+// ---------- 色差 ----------
+function renderCA(){
+  const ca = +document.getElementById('caK').value;
+  document.getElementById('caKv').textContent = ca;
+  const {x,w,h} = setup('caC', 620, 260);
+  x.fillStyle = '#0e1726'; x.fillRect(0,0,w,h);
+  const cx=w/2, cy=h/2, off = ca/100*26;
+  const edge = (color, dx, a) => { x.fillStyle=color; x.globalAlpha=a; x.fillRect(cx-7+dx, cy-70, 14, 140); };
+  edge('rgb(255,40,40)', -off, 0.6);
+  edge('rgb(40,255,40)', 0, 0.6);
+  edge('rgb(40,90,255)', off, 0.6);
+  x.globalAlpha = 1;
+  x.fillStyle = '#cdd8e4'; x.font = '12px sans-serif';
+  x.fillText('白亮边缘', cx-30, cy-84);
+  x.fillStyle = '#ff6b6b'; x.fillText('红边', cx-off-22, cy+92);
+  x.fillStyle = '#6b9bff'; x.fillText('蓝边', cx+off+6, cy+92);
+  document.getElementById('caR').innerHTML = ca<3 ? '无色差，边缘干净。'
+    : '白边被拆成<b style="color:#dc2626">红</b>与<b style="color:#2563eb">蓝</b>两道错位亮线 → 镶上彩边。车牌白边泛彩边会让机器读起来更费劲。';
+}
+
+// ---------- 渐晕 ----------
+function renderVig(){
+  const v = +document.getElementById('vigK').value;
+  document.getElementById('vigKv').textContent = v;
+  const {x,w,h} = setup('vigC', 620, 260);
+  x.fillStyle = '#bfe0ff'; x.fillRect(0,0,w,h*0.6);
+  x.fillStyle = '#9fd49a'; x.fillRect(0,h*0.6,w,h*0.4);
+  x.fillStyle = '#fff3b0'; x.beginPath(); x.arc(w*0.72, h*0.3, 28, 0, 7); x.fill();
+  x.fillStyle = '#5b7c99'; x.font = '13px sans-serif'; x.fillText('亮场景', w/2-26, h/2+4);
+  const g = x.createRadialGradient(w/2,h/2, Math.min(w,h)*0.18, w/2,h/2, Math.max(w,h)*0.72);
+  const a = v/100*0.85;
+  g.addColorStop(0,'rgba(0,0,0,0)');
+  g.addColorStop(1,'rgba(0,0,0,'+a+')');
+  x.fillStyle = g; x.fillRect(0,0,w,h);
+  document.getElementById('vigR').innerHTML = v<3 ? '无渐晕，整幅亮度均匀。'
+    : '四角比中心暗 <b>'+Math.round(v/100*85)+'%</b> 左右。广角镜头越明显，ISP 要做亮度均一化把边角提亮，否则边角一放大增益就噪点暴涨。';
+}
+
+// ---------- FNO（F 数） ----------
+function renderFNO(){
+  const F = +document.getElementById('fnoF').value;
+  const wl = +document.getElementById('fnoW').value;
+  document.getElementById('fnoFv').textContent = F.toFixed(1);
+  document.getElementById('fnoWv').textContent = wl;
+  const {x,w,h} = setup('fnoC', 620, 200);
+  // 镜头剖面 + 可变光圈
+  x.fillStyle='#fbfcfe'; x.fillRect(0,0,w,h);
+  const cx = w*0.5, cy = h*0.5;
+  // 镜头外壳
+  x.strokeStyle = C.line; x.lineWidth = 2;
+  x.strokeRect(cx-160, cy-44, 320, 88);
+  // 入瞳（按 F 反比缩放：F 越大孔越小）
+  const irisR = Math.max(8, 38 / F);
+  x.fillStyle = 'rgba(37,99,235,0.10)';
+  x.beginPath(); x.ellipse(cx, cy, irisR, irisR*0.95, 0, 0, 7); x.fill();
+  x.strokeStyle = C.blue; x.lineWidth = 2;
+  x.beginPath(); x.ellipse(cx, cy, irisR, irisR*0.95, 0, 0, 7); x.stroke();
+  // 叶片
+  x.fillStyle = 'rgba(26,34,51,0.55)';
+  for(let i=0;i<8;i++){
+    const a = i*Math.PI/4 + Math.PI/8;
+    const r1 = irisR*0.2, r2 = irisR*1.05;
+    x.beginPath();
+    x.moveTo(cx + Math.cos(a)*r1, cy + Math.sin(a)*r1);
+    x.lineTo(cx + Math.cos(a+0.32)*r2, cy + Math.sin(a+0.32)*r2);
+    x.lineTo(cx + Math.cos(a+0.06)*r2, cy + Math.sin(a+0.06)*r2);
+    x.closePath(); x.fill();
+  }
+  // 入射光束
+  const beamW = irisR + 6;
+  x.strokeStyle = 'rgba(37,99,235,0.45)'; x.lineWidth = 1.2;
+  for(let i=-3;i<=3;i++){
+    const o = i*(beamW/3);
+    x.beginPath(); x.moveTo(cx-150, cy+o); x.lineTo(cx-irisR, cy+o); x.stroke();
+  }
+  // 标尺
+  x.fillStyle = C.sub; x.font='11px sans-serif';
+  x.fillText('入瞳直径 ≈ '+Math.round(4.67/F*10)/10+' mm', cx-58, cy+62);
+  // Airy 斑直径 µm = 2.44·λ·F
+  const airy = 2.44 * (wl/1000) * F;
+  const dMax = 60;  // 显示上限
+  const ax = 60, ay = h-32, aw = 220, ah = 36;
+  x.fillStyle='#eef4ff'; x.fillRect(ax, ay, aw, ah);
+  x.strokeStyle=C.line; x.strokeRect(ax, ay, aw, ah);
+  x.fillStyle = C.ink; x.font='11px sans-serif';
+  x.fillText('Airy 斑直径（衍射极限）', ax+8, ay-6);
+  const r = Math.min(1, airy/dMax);
+  x.fillStyle = 'rgba(220,38,38,0.18)';
+  x.beginPath(); x.arc(ax+aw/2, ay+ah/2, r*ah*0.45, 0, 7); x.fill();
+  x.fillStyle = C.ink;
+  x.fillText(airy.toFixed(2)+' µm', ax+aw-60, ay+ah/2+4);
+  // 频率响应：高频 MTF 随 F 变化
+  const f = 119;  // lp/mm
+  const mtfH = Math.max(0, 1 - (f/2000)*F*1.4);
+  x.fillStyle = C.ink;
+  x.fillText('119 lp/mm 处 MTF ≈ ', 300, h-30);
+  x.fillStyle = mtfH>0.4 ? C.green : C.red;
+  x.fillText(mtfH.toFixed(2), 300+150, h-30);
+  document.getElementById('fnoR').innerHTML =
+    'F <b>'+F.toFixed(1)+'</b>，λ=<b>'+wl+'nm</b> → 入瞳 ≈ <b>'+(4.67/F).toFixed(2)+' mm</b>，'
+    +'Airy 斑直径 <b>'+airy.toFixed(2)+' µm</b>（衍射极限下限），'
+    +'119 lp/mm MTF 约 <b style="color:'+(mtfH>0.4?'#16a34a':'#dc2626')+'">'+mtfH.toFixed(2)+'</b>。'
+    +(F<2.2 ? '光圈偏大，<b>进光强</b>但 DOF 变浅、像差敏感。' :
+      F>5.5 ? '光圈偏小，<b>DOF 深</b>但进光弱、暗光下噪点会涨。' :
+      '<b>进光 / 景深 / 衍射</b>三档折衷的"甜蜜点"。');
+}
+
+// ---------- FOV（视场角） ----------
+function renderFOV(){
+  const EFL = +document.getElementById('fovF').value;
+  const sIdx = +document.getElementById('fovS').value;
+  document.getElementById('fovFv').textContent = EFL.toFixed(2);
+  // 4 档常见 sensor 尺寸 (mm)：对角线 / 水平 / 垂直
+  const sensors = [
+    {name:'1/2.7"', d:6.35, w:5.37, h:4.04},
+    {name:'1/2.3"', d:7.70, w:6.17, h:4.55},
+    {name:'1/1.8"', d:8.93, w:7.18, h:5.32},  // 默认：接近本项目 3840×2160 / 2.1µm
+    {name:'1/1.2"', d:11.43, w:9.50, h:7.00}
+  ];
+  const s = sensors[sIdx];
+  document.getElementById('fovSv').textContent = s.name;
+  const HFOV = 2 * Math.atan(s.w/(2*EFL)) * 180/Math.PI;
+  const VFOV = 2 * Math.atan(s.h/(2*EFL)) * 180/Math.PI;
+  const DFOV = 2 * Math.atan(s.d/(2*EFL)) * 180/Math.PI;
+  const {x,w,h} = setup('fovC', 620, 240);
+  // 视锥图（顶视图 + 侧视图）
+  // 顶视图（HFOV）
+  const cy1 = h*0.42;
+  const cx = w*0.5;
+  const half = Math.min(80, HFOV * 0.8);
+  // DOF 标定：HFOV 100° 对应 80px 半角
+  const scale = 80 / 50;  // 100°/2 = 50° → 80px
+  const pxH = Math.min(220, HFOV/2 * scale);
+  const pxV = Math.min(120, VFOV/2 * scale*0.7);
+  const pxD = Math.min(240, DFOV/2 * scale);
+  // 地面线
+  x.strokeStyle = C.road; x.lineWidth = 1.5;
+  x.beginPath(); x.moveTo(0, cy1+8); x.lineTo(w, cy1+8); x.stroke();
+  // 视锥（HFOV）
+  x.fillStyle = 'rgba(37,99,235,0.10)';
+  x.beginPath(); x.moveTo(cx, cy1); x.lineTo(cx-pxH, cy1+1.5*pxH); x.lineTo(cx+pxH, cy1+1.5*pxH); x.closePath(); x.fill();
+  x.strokeStyle = C.blue; x.lineWidth = 1.5;
+  x.beginPath(); x.moveTo(cx, cy1); x.lineTo(cx-pxH, cy1+1.5*pxH); x.stroke();
+  x.beginPath(); x.moveTo(cx, cy1); x.lineTo(cx+pxH, cy1+1.5*pxH); x.stroke();
+  // 镜头（中心方块）
+  x.fillStyle = C.ink; x.fillRect(cx-5, cy1-5, 10, 10);
+  // 标注
+  x.fillStyle = C.ink; x.font='bold 12px sans-serif';
+  x.fillText('水平 HFOV', 18, 22);
+  x.fillStyle = C.blue;
+  x.fillText(HFOV.toFixed(1)+'°', 18, 38);
+  // 侧视图（VFOV + DFOV 弧线）
+  const cy2 = h*0.85;
+  x.fillStyle = 'rgba(14,165,233,0.10)';
+  x.beginPath(); x.moveTo(cx, cy2); x.lineTo(cx-pxD, cy2-0.7*pxD); x.lineTo(cx+pxD, cy2-0.7*pxD); x.closePath(); x.fill();
+  x.strokeStyle = C.cyan; x.lineWidth = 1.5;
+  x.beginPath(); x.moveTo(cx, cy2); x.lineTo(cx-pxD, cy2-0.7*pxD); x.stroke();
+  x.beginPath(); x.moveTo(cx, cy2); x.lineTo(cx+pxD, cy2-0.7*pxD); x.stroke();
+  x.fillStyle = C.ink; x.font='bold 12px sans-serif';
+  x.fillText('垂直 VFOV', 18, h*0.55+18);
+  x.fillStyle = C.cyan;
+  x.fillText(VFOV.toFixed(1)+'°', 18, h*0.55+34);
+  // 标注对角线
+  x.fillStyle = C.sub; x.font='11px sans-serif';
+  x.fillText('DFOV '+DFOV.toFixed(1)+'°（对角线）', cx-50, cy2-pxD*0.7-6);
+  // sensor 选择标签
+  x.fillStyle = C.sub;
+  x.fillText('sensor '+s.name+'  对角 '+s.d+'mm  水平 '+s.w+'mm  垂直 '+s.h+'mm', 18, h-8);
+  document.getElementById('fovR').innerHTML =
+    'EFL=<b>'+EFL.toFixed(2)+'mm</b>，sensor=<b>'+s.name+'</b> → '
+    +'<b style="color:#2563eb">HFOV '+HFOV.toFixed(1)+'°</b> · '
+    +'<b style="color:#0ea5e9">VFOV '+VFOV.toFixed(1)+'°</b> · '
+    +'<b>DFOV '+DFOV.toFixed(1)+'°</b>。'
+    +(HFOV>95 ? '<br><b>广角</b>，畸变 / 渐晕 / 边缘像质压力大（spec 要求 HFOV≈100.5°±1.5°，需把畸变控在 -38.5%、RE-ILL≥79%）。' :
+      HFOV<40 ? '<br><b>长焦</b>，远处目标拉近但视角窄（看车牌、远距识别）。' :
+      '<br>中焦，常规视角。');
+}
+
+// ---------- CRA（主光线角度） ----------
+function renderCRA(){
+  const hfovHalf = +document.getElementById('craF').value;
+  const sensorMax = +document.getElementById('craM').value;
+  document.getElementById('craFv').textContent = hfovHalf;
+  document.getElementById('craMv').textContent = sensorMax.toFixed(1);
+  // 经验关系：CRA ≈ 0.5 × FOV半角 (光学经验近似)
+  const cra = 0.45 * hfovHalf;
+  const {x,w,h} = setup('craC', 620, 220);
+  // 示意图：sensor 像素 + 微透镜 + 主光线角度
+  const baseY = h-30;
+  const leftX = w*0.20, rightX = w*0.80;
+  // 中心像点（左）
+  x.fillStyle = '#1a2233';
+  x.fillRect(leftX-30, baseY-12, 60, 6);
+  x.fillStyle = C.sub; x.font='11px sans-serif'; x.fillText('中心像点（CRA≈0°）', leftX-50, baseY+22);
+  // 边缘像点（右）
+  x.fillStyle = '#1a2233';
+  x.fillRect(rightX-30, baseY-12, 60, 6);
+  // 微透镜
+  x.fillStyle = 'rgba(14,165,233,0.30)';
+  x.beginPath(); x.ellipse(rightX-5, baseY-15, 25, 12, 0, 0, 7); x.fill();
+  x.strokeStyle = C.cyan; x.lineWidth = 1; x.stroke();
+  // 像素阵列
+  x.strokeStyle = C.line; x.lineWidth = 0.5;
+  for(let i=0;i<8;i++){
+    x.beginPath(); x.moveTo(rightX-30+i*8, baseY-12); x.lineTo(rightX-30+i*8, baseY-6); x.stroke();
+  }
+  // 主光线（边缘）
+  x.strokeStyle = C.blue; x.lineWidth = 1.5;
+  // 从像点向左上方 30° 倾斜
+  const rad = cra * Math.PI/180;
+  x.beginPath(); x.moveTo(rightX, baseY-9);
+  x.lineTo(rightX - 60*Math.cos(rad), baseY-9 - 60*Math.sin(rad));
+  x.stroke();
+  // 法线
+  x.strokeStyle = C.sub; x.lineWidth = 1; x.setLineDash([4,3]);
+  x.beginPath(); x.moveTo(rightX, baseY-9); x.lineTo(rightX, baseY-60); x.stroke();
+  x.setLineDash([]);
+  // sensor 接受角弧
+  const sensorRad = sensorMax * Math.PI/180;
+  x.strokeStyle = C.green; x.lineWidth = 1.5;
+  x.beginPath();
+  x.arc(rightX, baseY-9, 40, -Math.PI/2, -Math.PI/2 + sensorRad, false);
+  x.stroke();
+  // CRA 角标
+  x.fillStyle = cra>sensorMax ? C.red : C.green; x.font='bold 12px sans-serif';
+  x.fillText('CRA = '+cra.toFixed(1)+'°', rightX-30, baseY-70);
+  x.fillStyle = C.green; x.font='11px sans-serif';
+  x.fillText('sensor 接受 ≤ '+sensorMax.toFixed(1)+'°', rightX-50, baseY-85);
+  // 状态判定
+  const ok = cra <= sensorMax;
+  document.getElementById('craR').innerHTML =
+    '半视场角 <b>'+hfovHalf+'°</b> → 边缘像点 CRA 约 <b>'+cra.toFixed(1)+'°</b>，'
+    +'sensor 微透镜最大接受 <b>'+sensorMax.toFixed(1)+'°</b>。'
+    +(ok
+      ? '<b style="color:#16a34a">匹配良好</b>——主光线能被微透镜收住，无光串、无边角发暗。'
+      : '<b style="color:#dc2626">超 budget</b>——CRA 大于 sensor 接受角，<b>光串到邻像素</b>、边角发暗、彩边。需更换 sensor 或镜头端做光路优化。');
+}
+
+// ---------- UV/IR CUT（双截止滤光片） ----------
+function renderCUT(){
+  const uv = +document.getElementById('cutU').value;
+  const ir = +document.getElementById('cutI').value;
+  document.getElementById('cutUv').textContent = uv;
+  document.getElementById('cutIv').textContent = ir;
+  const {x,w,h} = setup('cutC', 620, 220);
+  // 波长轴 380~720nm
+  const xmin = 380, xmax = 720;
+  const px = (wl) => 50 + (wl-xmin)/(xmax-xmin) * (w-80);
+  // 背景渐变：UV 暗 / 可见光高亮 / IR 暗
+  const bg = x.createLinearGradient(px(xmin),0,px(xmax),0);
+  bg.addColorStop(0, 'rgba(80,80,150,0.10)');
+  bg.addColorStop(0.08, 'rgba(255,255,255,0)');
+  bg.addColorStop((430-xmin)/(xmax-xmin), 'rgba(255,255,255,0)');
+  bg.addColorStop((680-xmin)/(xmax-xmin), 'rgba(255,255,255,0)');
+  bg.addColorStop(1, 'rgba(200,80,80,0.10)');
+  x.fillStyle = bg; x.fillRect(0,0,w,h);
+  // 网格
+  x.strokeStyle = '#eef2f7'; x.lineWidth = 1;
+  for(let wl=400; wl<=720; wl+=40){
+    const X = px(wl);
+    x.beginPath(); x.moveTo(X, 24); x.lineTo(X, h-32); x.stroke();
+    x.fillStyle = C.sub; x.font='10px sans-serif';
+    x.fillText(wl, X-10, h-18);
+  }
+  // 理想透过率曲线（双截止）
+  x.strokeStyle = C.blue; x.lineWidth = 2.5; x.beginPath();
+  for(let wl=xmin; wl<=xmax; wl+=2){
+    let T;
+    if(wl < uv-10) T = 0.02;
+    else if(wl < uv+10) T = 0.02 + (wl-(uv-10))/20 * 0.96;  // 过渡
+    else if(wl < ir-10) T = 0.98;
+    else if(wl < ir+10) T = 0.98 - (wl-(ir-10))/20 * 0.96;
+    else T = 0.02;
+    const X = px(wl), Y = h-30 - T*130;
+    if(wl===xmin) x.moveTo(X, Y); else x.lineTo(X, Y);
+  }
+  x.stroke();
+  // 截止标记
+  x.strokeStyle = C.cyan; x.lineWidth = 1.5; x.setLineDash([4,3]);
+  x.beginPath(); x.moveTo(px(uv), 24); x.lineTo(px(uv), h-30); x.stroke();
+  x.beginPath(); x.moveTo(px(ir), 24); x.lineTo(px(ir), h-30); x.stroke();
+  x.setLineDash([]);
+  x.fillStyle = C.ink; x.font='11px sans-serif';
+  x.fillText('UV '+uv+'nm', px(uv)-22, 38);
+  x.fillText('IR '+ir+'nm', px(ir)-22, 38);
+  // 可见光带底色
+  x.fillStyle = 'rgba(34,197,94,0.10)';
+  x.fillRect(px(uv), h-30, px(ir)-px(uv), 6);
+  // 标签
+  x.fillStyle = C.sub; x.font='10px sans-serif';
+  x.fillText('UV', 8, h/2);
+  x.fillText('可见', w/2-12, h/2);
+  x.fillText('IR', w-22, h/2);
+  x.fillText('波长 (nm)', w-58, h-4);
+  x.fillText('透过率 T', 4, 20);
+  // 评估
+  const visT = (ir - uv - 20) / 250;  // 可见光带宽比例
+  const ok = (uv >= 420 && uv <= 440) && (ir >= 670 && ir <= 690);
+  document.getElementById('cutR').innerHTML =
+    'UV 截止 <b>'+uv+'nm</b>，IR 截止 <b>'+ir+'nm</b> → 可见光通带 <b>'+(ir-uv)+'nm</b>。'
+    +(ok
+      ? '<b style="color:#16a34a">在 spec 容差内（430±10 / 680±10）</b>，色彩还原有保障。'
+      : (uv<420||uv>440||ir<670||ir>690
+          ? '<b style="color:#dc2626">偏移 spec</b>，会"漏 UV/IR"或"切掉可见光"，色温/对比度会偏。'
+          : '接近 spec，但需保证 ±10nm 公差才能稳定色彩。'));
+}
+
+// ---------- 热补偿（5 维参数 + 双画布 + 4 温区合规） ----------
+function renderThcomp(){
+  const T = +document.getElementById('thcT').value;
+  const cteIdx = +document.getElementById('thcCTE').value;
+  const stiff = +document.getElementById('thcK').value;
+  const algo = +document.getElementById('thcA').value;
+  const fIdx = +document.getElementById('thcF').value;
+  const cteArr = [70, 7.5, 3.5, 12];
+  const cteLabels = ['塑料镜片（CTE≈70）', '玻璃镜片（CTE≈7.5）', '低膨胀玻璃（CTE≈3.5）', '塑-玻混合（CTE≈12）'];
+  const cte = cteArr[cteIdx];
+  const cteLabel = cteLabels[cteIdx];
+  const focusLabels = ['远焦', '中焦', '近焦'];
+  const dofMap = [7, 15, 30];
+  const dof = dofMap[fIdx];
+  document.getElementById('thcTv').textContent = T;
+  document.getElementById('thcCTEv').textContent = cte;
+  document.getElementById('thcKv').textContent = stiff;
+  document.getElementById('thcAv').textContent = algo;
+  document.getElementById('thcFv').textContent = focusLabels[fIdx];
+  document.getElementById('thcDofV').textContent = dof;
+  // 模型：原始温漂 µm = CTE × ΔT × EFL(mm) × 0.001
+  // (EFL=4.67mm，标度使塑料 100℃ → ~33µm 量级)
+  const EFL = 4.67;
+  const baseDrift = (t) => cte * (t-25) * EFL * 0.001;
+  // 结构补偿：刚度 stiff 抵消 (1 - exp(-stiff/30)) × 80%
+  const structComp = 1 - Math.exp(-stiff/30) * 0.8;
+  // 算法补偿：剩余的 (algo/100) × 50%
+  const algoComp = (algo/100) * 0.5;
+  const resDrift = (t) => baseDrift(t) * (1 - structComp) * (1 - algoComp);
+  // 残余（当前温度）
+  const drift = resDrift(T);
+  const withinDof = Math.abs(drift) <= dof;
+  // MTF 衰减：超过 DOF 越多，MTF 越掉
+  const mtfFactor = withinDof ? 1 : Math.exp(-(Math.abs(drift)-dof)/dof * 0.5);
+  const centerMtf = 0.55 * mtfFactor;
+  const edgeMtf = 0.40 * mtfFactor * 0.92;
+
+  // ============= 主画布：温-漂曲线 =============
+  const g = setup('thcCurve', 620, 300);
+  const x = g.x, w = g.w, h = g.h;
+  // 4 温区背景
+  const xT = (t) => 60 + (t+40)/145 * (w-100);
+  const zones = [
+    {t1:-40, t2:-20, c:'rgba(59,130,246,0.06)', lbl:'-40~-20'},
+    {t1:-20, t2:25, c:'rgba(34,197,94,0.06)', lbl:'-20~25'},
+    {t1:25, t2:85, c:'rgba(245,158,11,0.06)', lbl:'25~85'},
+    {t1:85, t2:105, c:'rgba(220,38,38,0.06)', lbl:'85~105'}
+  ];
+  zones.forEach(z=>{
+    x.fillStyle = z.c;
+    x.fillRect(xT(z.t1), 24, xT(z.t2)-xT(z.t1), h-50);
+    x.fillStyle = C.sub; x.font='10px sans-serif';
+    x.fillText(z.lbl+'℃', xT((z.t1+z.t2)/2)-22, 36);
+  });
+  // DOF 容差带（±DOF）
+  const fy = (v) => h/2 - v/40 * (h/2-30);
+  x.fillStyle = 'rgba(34,197,94,0.18)';
+  x.fillRect(60, fy(dof), w-100, fy(-dof) - fy(dof));
+  // DOF 边线
+  x.strokeStyle = C.green; x.lineWidth = 1; x.setLineDash([4,3]);
+  x.beginPath(); x.moveTo(60, fy(dof)); x.lineTo(w-40, fy(dof)); x.stroke();
+  x.beginPath(); x.moveTo(60, fy(-dof)); x.lineTo(w-40, fy(-dof)); x.stroke();
+  x.setLineDash([]);
+  x.fillStyle = C.green; x.font='bold 11px sans-serif';
+  x.fillText('+'+dof+'µm', 12, fy(dof)+4);
+  x.fillText('-'+dof+'µm', 12, fy(-dof)+4);
+  // 坐标轴
+  x.strokeStyle = C.line; x.lineWidth = 1;
+  x.beginPath(); x.moveTo(60, 24); x.lineTo(60, h-26); x.lineTo(w-40, h-26); x.stroke();
+  // 0 线
+  x.strokeStyle = C.sub; x.setLineDash([2,2]);
+  x.beginPath(); x.moveTo(60, fy(0)); x.lineTo(w-40, fy(0)); x.stroke();
+  x.setLineDash([]);
+  // 不补偿曲线（红线）
+  x.strokeStyle = C.red; x.lineWidth = 2.5; x.beginPath();
+  for(let t=-40; t<=105; t+=1){
+    const v = Math.max(-40, Math.min(40, baseDrift(t)));
+    const X = xT(t), Y = fy(v);
+    if(t===-40) x.moveTo(X, Y); else x.lineTo(X, Y);
+  }
+  x.stroke();
+  x.fillStyle = C.red; x.font='bold 11px sans-serif';
+  x.fillText('无补偿', w-130, 50);
+  // 补偿后曲线（绿线）
+  x.strokeStyle = C.green; x.lineWidth = 2.5; x.beginPath();
+  for(let t=-40; t<=105; t+=1){
+    const v = Math.max(-40, Math.min(40, resDrift(t)));
+    const X = xT(t), Y = fy(v);
+    if(t===-40) x.moveTo(X, Y); else x.lineTo(X, Y);
+  }
+  x.stroke();
+  x.fillStyle = C.green;
+  x.fillText('补偿后（结构+算法）', w-220, 68);
+  // 当前温度标线
+  x.strokeStyle = C.blue; x.lineWidth = 1.5; x.setLineDash([5,3]);
+  x.beginPath(); x.moveTo(xT(T), 24); x.lineTo(xT(T), h-26); x.stroke();
+  x.setLineDash([]);
+  x.fillStyle = C.blue; x.font='bold 12px sans-serif';
+  x.fillText('T='+T+'℃', xT(T)-22, h-10);
+  // 当前漂移标记
+  x.fillStyle = withinDof ? C.green : C.red;
+  x.beginPath(); x.arc(xT(T), fy(Math.max(-40, Math.min(40, drift))), 5, 0, 7); x.fill();
+  // 轴标签
+  x.fillStyle = C.sub; x.font='10px sans-serif';
+  x.fillText('温度 (℃)', w-50, h-10);
+  x.save(); x.translate(14, h/2); x.rotate(-Math.PI/2); x.fillText('焦点偏移 (µm)', -36, 0); x.restore();
+
+  // ============= 副画布：当前温度下焦点在 sensor 上的位置 =============
+  const s2 = setup('thcC', 620, 130);
+  const xx = s2.x, ww = s2.w, hh = s2.h;
+  // 横向：sensor 面位置 (0) 居中
+  const midX = ww/2, sLeft = midX - 90, sRight = midX + 90;
+  const topY = 24, botY = hh - 24;
+  // 远处目标
+  xx.strokeStyle = C.ink; xx.lineWidth = 2;
+  xx.beginPath(); xx.moveTo(40, (topY+botY)/2-20); xx.lineTo(40, (topY+botY)/2+20); xx.stroke();
+  xx.fillStyle = C.ink; xx.font='11px sans-serif';
+  xx.fillText('远处目标', 20, (topY+botY)/2+36);
+  // 镜头组
+  xx.fillStyle = 'rgba(37,99,235,0.18)'; xx.strokeStyle = C.blue; xx.lineWidth = 2;
+  const lensX = midX - 200;
+  xx.beginPath();
+  xx.moveTo(lensX, (topY+botY)/2-30); xx.quadraticCurveTo(lensX+12, (topY+botY)/2, lensX, (topY+botY)/2+30);
+  xx.quadraticCurveTo(lensX-12, (topY+botY)/2, lensX, (topY+botY)/2-30); xx.fill(); xx.stroke();
+  // 平行光→汇聚
+  const imgPos = Math.max(-40, Math.min(40, drift));
+  const focusX = midX + imgPos * 2.0;
+  xx.strokeStyle = 'rgba(37,99,235,0.5)'; xx.lineWidth = 1.2;
+  [-22,-8,8,22].forEach(dy=>{
+    xx.beginPath(); xx.moveTo(lensX-130, (topY+botY)/2+dy); xx.lineTo(lensX, (topY+botY)/2+dy); xx.stroke();
+    xx.beginPath(); xx.moveTo(lensX, (topY+botY)/2+dy); xx.lineTo(focusX, (topY+botY)/2); xx.stroke();
+  });
+  // DOF 带（围绕 midX）
+  xx.fillStyle = withinDof ? 'rgba(34,197,94,0.18)' : 'rgba(220,38,38,0.10)';
+  xx.fillRect(sLeft, topY+8, sRight-sLeft, botY-topY-16);
+  xx.strokeStyle = withinDof ? C.green : '#fca5a5';
+  xx.lineWidth = 1.5; xx.setLineDash([4,3]);
+  xx.strokeRect(sLeft, topY+8, sRight-sLeft, botY-topY-16);
+  xx.setLineDash([]);
+  xx.fillStyle = C.ink; xx.font='10px sans-serif';
+  xx.fillText('DOF ±'+dof+'µm', midX-22, topY+4);
+  // 传感器
+  xx.strokeStyle = C.ink; xx.lineWidth = 4;
+  xx.beginPath(); xx.moveTo(midX, topY+6); xx.lineTo(midX, botY-6); xx.stroke();
+  xx.fillStyle = C.ink; xx.font='11px sans-serif';
+  xx.fillText('sensor', midX-18, botY-2);
+  // 像面
+  xx.strokeStyle = withinDof ? C.green : C.red; xx.lineWidth = 3;
+  xx.beginPath(); xx.moveTo(focusX, topY+12); xx.lineTo(focusX, botY-12); xx.stroke();
+  xx.fillStyle = withinDof ? C.green : C.red; xx.font='bold 11px sans-serif';
+  xx.fillText(withinDof?'像面（合焦）':'像面（跑焦 '+drift.toFixed(1)+'µm）', focusX-50, topY+4);
+
+  // ============= 读出 =============
+  document.getElementById('thcR').innerHTML =
+    '温度 <b>'+T+'℃</b>（ΔT='+(T-25)+'℃），<b>'+cteLabel+'</b> → '
+    +'原始温漂 <b style="color:#dc2626">'+Math.abs(baseDrift(T)).toFixed(1)+'µm</b>，'
+    +'结构抵消 '+(structComp*100).toFixed(0)+'%、算法抵消 '+(algoComp*100).toFixed(0)+'% → '
+    +'残余 <b style="color:'+(withinDof?'#16a34a':'#dc2626')+'">'+drift.toFixed(1)+'µm</b>（DOF ±'+dof+'µm）。<br>'
+    +'中心 MTF @119lp/mm ≈ <b style="color:'+(centerMtf>0.45?'#16a34a':'#dc2626')+'">'+centerMtf.toFixed(2)+'</b>，边缘 ≈ <b>'+edgeMtf.toFixed(2)+'</b>。'
+    +(withinDof
+      ? ' <b style="color:#16a34a">在 DOF 内，清晰合焦。</b>'
+      : ' <b style="color:#dc2626">超 DOF，跑焦。</b>');
+
+  // ============= 4 温区合规判定 =============
+  const checkTemps = [-40, -20, 25, 85];
+  const zoneHTML = checkTemps.map(t=>{
+    const v = resDrift(t);
+    const ok = Math.abs(v) <= dof;
+    return '<div style="background:'+(ok?'#f0fdf4':'#fef2f2')+';border:1px solid '+(ok?'#86efac':'#fca5a5')+';border-radius:6px;padding:5px 8px;color:'+(ok?'#166534':'#991b1b')+';text-align:center;">'
+      +'<div style="font-weight:700;">'+t+'℃</div>'
+      +'<div style="font-size:11px;">漂移 '+v.toFixed(1)+'µm</div>'
+      +'<div style="font-size:10px;font-weight:700;">'+(ok?'✓ 合规':'✗ 超出')+'</div>'
+      +'</div>';
+  }).join('');
+  document.getElementById('thcZones').innerHTML = zoneHTML;
+}
+
+
+// ---------- 杂光 ----------
+function renderStray(){
+  const s = +document.getElementById('strayS').value;
+  document.getElementById('straySv').textContent = s;
+  const {x,w,h} = setup('strayCv', 620, 260);
+  x.fillStyle = '#0b1020'; x.fillRect(0,0,w,h);
+  // 路面
+  x.fillStyle = '#1a2233'; x.beginPath();
+  x.moveTo(w*0.5, h*0.5); x.lineTo(0, h); x.lineTo(w, h); x.closePath(); x.fill();
+  // 车道线（高对比特征）
+  x.strokeStyle = '#e8eef6'; x.lineWidth=3; x.setLineDash([10,8]);
+  x.beginPath(); x.moveTo(w*0.5, h*0.5); x.lineTo(w*0.18, h); x.stroke();
+  x.beginPath(); x.moveTo(w*0.5, h*0.5); x.lineTo(w*0.82, h); x.stroke();
+  x.setLineDash([]);
+  // 暗处行人（会被杂光淹没的细节）
+  x.fillStyle = '#0b1020';
+  x.beginPath(); x.arc(w*0.30, h*0.62, 9, 0,7); x.fill();
+  x.fillRect(w*0.30-6, h*0.62, 12, 26);
+  x.fillStyle = C.sub; x.font='11px sans-serif'; x.fillText('暗处行人', w*0.30-22, h*0.62-14);
+  // 强光源（逆光）
+  const sx = w*0.74, sy = h*0.16, sr = 16 + s/100*10;
+  const sg = x.createRadialGradient(sx,sy,2, sx,sy, sr*2.4);
+  sg.addColorStop(0,'rgba(255,250,230,'+(0.5+s/200)+')');
+  sg.addColorStop(1,'rgba(255,250,230,0)');
+  x.fillStyle = sg; x.beginPath(); x.arc(sx,sy, sr*2.4, 0,7); x.fill();
+  x.fillStyle = '#fff7e0'; x.beginPath(); x.arc(sx,sy, sr, 0,7); x.fill();
+  x.fillStyle = C.sub; x.fillText('强光源', sx-16, sy-sr-6);
+  // veiling glare：均匀白雾，强度随 s
+  const veil = s/100*0.62;
+  x.fillStyle = 'rgba(220,225,235,'+veil+')';
+  x.fillRect(0,0,w,h);
+  const contrast = Math.max(0, 100 - s*0.9);
+  document.getElementById('strayR').innerHTML = '逆光强度 <b>'+s+'%</b> → 杂光雾(veiling glare)约 <b>'+Math.round(veil*100)+'%</b> 覆盖整幅，画面对比度降到约 <b>'+Math.round(contrast)+'%</b>：暗处行人'+(s>55?'<b style="color:#dc2626">几乎被淹没</b>':'仍可辨')+'。';
+}
+
+// ---------- 鬼像 ----------
+function renderGhost(){
+  const p = +document.getElementById('ghostP').value;
+  document.getElementById('ghostPv').textContent = p;
+  const {x,w,h} = setup('ghostCv', 620, 260);
+  x.fillStyle = '#0e1a2b'; x.fillRect(0,0,w,h*0.6);
+  x.fillStyle = '#15233a'; x.fillRect(0,h*0.6,w,h*0.4);
+  // 主光源（太阳）
+  const sx = w*0.26, sy = h*0.26, sr = 18 + p/100*8;
+  const sg = x.createRadialGradient(sx,sy,2, sx,sy, sr*2.6);
+  sg.addColorStop(0,'rgba(255,240,200,0.95)');
+  sg.addColorStop(1,'rgba(255,240,200,0)');
+  x.fillStyle = sg; x.beginPath(); x.arc(sx,sy, sr*2.6, 0,7); x.fill();
+  x.fillStyle = '#fff3c4'; x.beginPath(); x.arc(sx,sy, sr, 0,7); x.fill();
+  x.fillStyle = C.sub; x.font='11px sans-serif'; x.fillText('太阳(强光源)', sx-26, sy-sr-6);
+  // 鬼像：内部反射产生的错位亮斑
+  const gx = w*0.62, gy = h*0.46;
+  const ga = p/100*0.55, gr = 26 + p/100*14;
+  const gg = x.createRadialGradient(gx,gy,1, gx,gy, gr);
+  gg.addColorStop(0,'rgba(255,245,210,'+ga+')');
+  gg.addColorStop(0.6,'rgba(255,245,210,'+(ga*0.5)+')');
+  gg.addColorStop(1,'rgba(255,245,210,0)');
+  x.fillStyle = gg; x.beginPath(); x.arc(gx,gy, gr, 0,7); x.fill();
+  x.strokeStyle = 'rgba(255,245,210,'+(ga*0.8)+')'; x.lineWidth=2;
+  x.beginPath(); x.arc(gx,gy, gr*0.7, 0,7); x.stroke();
+  x.fillStyle = C.sub; x.fillText('鬼像(内部反射亮斑)', gx-52, gy-gr-6);
+  document.getElementById('ghostR').innerHTML = '光源亮度 <b>'+p+'%</b> → 鬼像亮度约主光源的 <b>'+Math.round(p*0.5)+'%</b>'+(p>50?'：画面上出现明显错位亮斑，逆光行车/看夕阳时最碍事。':'：弱到不易察觉。');
+}
+
+renderMTF();
+</script>
+</body>
+</html>

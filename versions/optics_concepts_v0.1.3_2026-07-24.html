@@ -3,15 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>车载光学知识工作台</title>
-  <meta name="theme-color" content="#0b1f4d">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="光学工作台">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-  <link rel="apple-touch-icon" href="icon-192.png">
+<title>车载镜头光学</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -170,54 +162,6 @@
   .sym-name{font-size:12.5px;font-weight:700;color:#0f172a;}
   .sym-desc{font-size:11.5px;color:#5b6678;line-height:1.45;}
   .sym-ex{font-size:11px;color:#2563eb;background:#eef3fb;border-radius:4px;padding:2px 6px;align-self:flex-start;}
-</style>
-<style>
-  /* ===== PWA 工作台：启动台 / 安装提示 / 主页按钮 ===== */
-  .launch{
-    position:fixed; inset:0; z-index:9999; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; padding:28px 22px;
-    background:linear-gradient(150deg,#0b1f4d 0%,#143a8a 55%,#1d72b8 100%);
-    color:#fff; text-align:center;
-  }
-  .launch.hidden{ display:none; }
-  .launch-logo{
-    width:84px; height:84px; border-radius:22px; margin-bottom:14px;
-    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .launch h1{ font-size:25px; font-weight:800; margin:0 0 6px; letter-spacing:1px; }
-  .launch p{ font-size:13px; color:#bcd4ff; margin:0 0 26px; letter-spacing:1px; }
-  .launch .ver{ font-size:11px; color:#8fb4ee; letter-spacing:1px; margin-top:6px; }
-  .launch .arch-link{ display:block; margin-top:16px; font-size:12px; color:#bcd4ff; text-decoration:none; }
-  .launch .arch-link:active{ color:#fff; }
-  .launch-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; max-width:340px; }
-  .tile{
-    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.26);
-    border-radius:16px; padding:20px 10px; color:#fff; cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    transition:transform .12s ease, background .12s ease;
-  }
-  .tile:active{ transform:scale(.96); background:rgba(255,255,255,0.2); }
-  .tile .ic{ font-size:30px; line-height:1; }
-  .tile .lb{ font-size:16px; font-weight:700; }
-  .tile .en{ font-size:11px; color:#bcd4ff; }
-  .launch-close{
-    position:absolute; top:16px; right:18px; width:34px; height:34px; border-radius:50%;
-    background:rgba(255,255,255,0.16); color:#fff; border:none; font-size:20px; cursor:pointer;
-  }
-  .install-bar{
-    position:fixed; top:0; left:0; right:0; z-index:9998; display:flex; align-items:center; gap:8px;
-    background:#0b1f4d; color:#e8f0ff; font-size:12.5px; padding:9px 12px; box-shadow:0 2px 10px rgba(0,0,0,.2);
-  }
-  .install-bar.hidden{ display:none; }
-  .install-bar b{ color:#fff; }
-  .install-bar .x{ margin-left:auto; background:none; border:none; color:#bcd4ff; font-size:18px; cursor:pointer; }
-  .home-fab{
-    position:fixed; right:16px; bottom:18px; z-index:9997; width:50px; height:50px; border-radius:50%;
-    background:linear-gradient(135deg,#143a8a,#1d72b8); color:#fff; border:none; font-size:22px;
-    box-shadow:0 6px 18px rgba(13,42,105,.4); cursor:pointer; display:none;
-  }
-  .home-fab.show{ display:block; }
 </style>
 </head>
 <body>
@@ -2183,72 +2127,6 @@ function renderGhost(){
 renderMTF();
 renderFNO();
 renderFNOLight();
-</script>
-<!-- ===== PWA 工作台：启动台（App 主页） ===== -->
-<div class="launch" id="launch">
-  <button class="launch-close" aria-label="关闭">×</button>
-  <div class="launch-logo">
-    <svg width="46" height="46" viewBox="0 0 100 100"><g fill="none" stroke="#fff" stroke-width="6">
-      <circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="21"/>
-      <line x1="50" y1="29" x2="50" y2="11"/><line x1="50" y1="71" x2="50" y2="89"/>
-      <line x1="29" y1="50" x2="11" y2="50"/><line x1="71" y1="50" x2="89" y2="50"/>
-      <line x1="35" y1="35" x2="22" y2="22"/><line x1="65" y1="65" x2="78" y2="78"/>
-      <line x1="65" y1="35" x2="78" y2="22"/><line x1="35" y1="65" x2="22" y2="78"/>
-    </g><circle cx="50" cy="50" r="7" fill="#fff"/></svg>
-  </div>
-  <h1>车载光学知识工作台</h1>
-  <p>AUTOMOTIVE LENS OPTICS · 离线可用</p>
-  <p class="ver">v0.1.3 · 2026-07-24</p>
-  <div class="launch-grid">
-    <div class="tile" data-cat="optics"><div class="ic">🔬</div><div class="lb">光学</div><div class="en">12 交互模块</div></div>
-    <div class="tile" data-cat="reliability"><div class="ic">🌡️</div><div class="lb">信赖性</div><div class="en">实车退化</div></div>
-    <div class="tile" data-cat="process"><div class="ic">🏭</div><div class="lb">工艺</div><div class="en">产线对照</div></div>
-    <div class="tile" data-cat="drawing"><div class="ic">📐</div><div class="lb">图纸</div><div class="en">符号图解</div></div>
-  </div>
-  <a class="arch-link" href="versions.html">📋 版本履历</a>
-</div>
-
-<!-- 安装提示条 -->
-<div class="install-bar" id="installBar">
-  💡 想放桌面？点浏览器右上角 <b>⋮菜单 → 添加到主屏幕</b>，即可当 App 使用
-  <button class="x" aria-label="关闭">×</button>
-</div>
-
-<!-- 回启动台按钮 -->
-<button class="home-fab" id="homeFab" aria-label="工作台主页">🏠</button>
-
-<script>
-  // 启动台交互
-  var launch = document.getElementById('launch');
-  function openLaunch(){ launch.classList.remove('hidden'); }
-  function closeLaunch(){ launch.classList.add('hidden'); }
-  document.querySelectorAll('.tile').forEach(function(t){
-    t.addEventListener('click', function(){
-      var cat = t.getAttribute('data-cat');
-      closeLaunch();
-      if (window.showCat) showCat(cat);
-      window.scrollTo(0,0);
-    });
-  });
-  document.querySelector('.launch-close').addEventListener('click', closeLaunch);
-  document.getElementById('homeFab').addEventListener('click', openLaunch);
-  document.getElementById('homeFab').classList.add('show');
-
-  // 安装提示：已安装则隐藏；可手动关闭并记忆
-  var bar = document.getElementById('installBar');
-  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-  if (standalone) bar.classList.add('hidden');
-  if (localStorage.getItem('ob_hidebar') === '1') bar.classList.add('hidden');
-  bar.querySelector('.x').addEventListener('click', function(){
-    bar.classList.add('hidden'); localStorage.setItem('ob_hidebar','1');
-  });
-
-  // Service Worker：离线缓存（装到桌面后无网也能开）
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').catch(function(e){ console.log('SW register failed:', e); });
-    });
-  }
 </script>
 </body>
 </html>
