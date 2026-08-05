@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>车载光学知识工作台</title>
-  <meta name="theme-color" content="#0b1f4d">
+  <meta name="theme-color" content="#3370FF">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,6 +14,12 @@
   <link rel="apple-touch-icon" href="icon-192.png">
 <style>
   * { box-sizing: border-box; }
+
+  :root{
+    --brand:#3370FF; --brand-600:#2b5fe0; --brand-700:var(--brand-700); --brand-ink:#0b1f4d;
+    --bg:#f4f7fb; --surface:#fff; --text:#1a2233; --muted:#5b6678;
+    --line:#e2e8f0; --amber:#f59e0b;
+  }
   body {
     margin: 0; padding: 30px 18px 70px;
     font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -24,8 +30,8 @@
   .hero {
     position: relative; overflow: hidden;
     border-radius: 16px; padding: 24px 26px 22px; margin: 0 0 16px;
-    background: linear-gradient(135deg,#0b1f4d 0%,#143a8a 52%,#1d72b8 100%);
-    box-shadow: 0 12px 32px rgba(13,42,105,0.25);
+    background: linear-gradient(135deg,var(--brand-ink) 0%,var(--brand-700) 45%,var(--brand) 100%);
+    box-shadow: 0 16px 40px rgba(13,42,105,0.30);
   }
   .hero::before {
     content:''; position:absolute; left:-60px; bottom:-70px;
@@ -57,13 +63,13 @@
     padding:3px 11px; border-radius:8px;
   }
   .catbar { display: flex; gap: 8px; margin-bottom: 12px; }
-  .cat { padding: 9px 22px; border: 1px solid #d4dce6; background: #fff; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 700; color: #5b6678; transition: .15s; }
-  .cat.active { background: #1a2233; color: #fff; border-color: #1a2233; }
-  .step { border: 1px solid #e2e8f0; border-radius: 12px; padding: 0; margin-bottom: 8px; background: #fff; overflow: hidden; transition: box-shadow .18s; }
-  .step:hover { box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
+  .cat { padding: 9px 22px; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 700; color: var(--muted); transition: .15s; box-shadow:0 1px 3px rgba(15,23,42,.04); }
+  .cat.active { background: var(--brand-ink); color: #fff; border-color: var(--brand-ink); box-shadow:0 2px 8px rgba(11,31,77,.2); }
+  .step { border: 1px solid var(--line); border-radius: 14px; padding: 0; margin-bottom: 10px; background: var(--surface); overflow: hidden; transition: box-shadow .2s, border-color .2s; box-shadow:0 1px 4px rgba(15,23,42,.04); }
+  .step:hover { box-shadow: 0 4px 14px rgba(15,23,42,.08); border-color:#c7d4ea; }
   .step-summary { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; user-select: none; }
   .step-summary:hover { background: #f8fafc; }
-  .step-no { width: 26px; height: 26px; border-radius: 50%; background: #2563eb; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .step-no { width: 26px; height: 26px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
   .step-name { font-size: 15px; font-weight: 700; color: #1a2233; }
   .step-en { font-size: 11px; color: #9aa6b5; font-weight: 400; }
   .step-tag { font-size: 12px; color: #5b6678; margin-top: 2px; }
@@ -71,7 +77,7 @@
   .step-illus { width: 140px; height: 44px; flex: none; border: 1px solid #eef2f7; border-radius: 6px; background: #fafbfc; padding: 2px; }
   .step-illus svg { width: 100%; height: 100%; display: block; }
   .step-arrow { width: 22px; height: 22px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #9aa6b5; transition: transform .2s; }
-  .step.open .step-arrow { transform: rotate(180deg); color: #2563eb; }
+  .step.open .step-arrow { transform: rotate(180deg); color: var(--brand); }
   .step-detail { max-height: 0; overflow: hidden; transition: max-height .25s ease; border-top: 1px solid transparent; }
   .step.open .step-detail { max-height: 1200px; border-top-color: #eef2f7; }
   .step-body { font-size: 13px; color: #5b6678; line-height: 1.75; padding: 10px 16px 14px 56px; }
@@ -84,31 +90,32 @@
   .step-toggle-row { display: flex; gap: 8px; margin: 8px 0 12px; }
   .step-toggle-btn { font-size: 12px; padding: 5px 12px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; color: #475569; cursor: pointer; }
   .step-toggle-btn:hover { background: #f1f5f9; color: #1a2233; }
-  .gate-mark { display: inline-block; background: #eef4ff; color: #2563eb; border-radius: 5px; padding: 1px 7px; font-size: 11px; font-weight: 600; margin-right: 5px; }
+  .gate-mark { display: inline-block; background: #eef4ff; color: var(--brand); border-radius: 5px; padding: 1px 7px; font-size: 11px; font-weight: 600; margin-right: 5px; }
   .tabs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
   .tab {
-    padding: 8px 11px; border: 1px solid #d4dce6; background: #fff;
-    border-radius: 9px; cursor: pointer; font-size: 13px; font-weight: 600;
-    color: #5b6678; text-align: center; transition: .15s; line-height: 1.2;
+    padding: 8px 11px; border: 1px solid var(--line); background: var(--surface);
+    border-radius:10px; cursor: pointer; font-size: 13px; font-weight: 600;
+    color: var(--muted); text-align: center; transition: .15s; line-height: 1.2;
+    box-shadow:0 1px 3px rgba(15,23,42,.04);
   }
   .tab .en { display: block; font-size: 10px; font-weight: 400; color: #9aa6b5; margin-top: 2px; }
-  .tab.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .tab.active { background: var(--brand); color: #fff; border-color: var(--brand); }
   .tab.active .en { color: #cfe0ff; }
-  .panel { display: none; background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; }
+  .panel { display: none; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; box-shadow:0 2px 8px rgba(15,23,42,.04); }
   .panel.show { display: block; }
   /* 释义：每个模块开篇先给一句清晰的定义 */
   .define {
     font-size: 13.5px; color: #1a2233; background: #eef4ff;
-    border: 1px solid #d3e2ff; border-left: 4px solid #2563eb;
+    border: 1px solid #d3e2ff; border-left: 4px solid var(--brand);
     border-radius: 8px; padding: 10px 12px; margin-bottom: 12px;
   }
   .define b { color: #1a3a66; }
-  .tagline { font-size: 14px; color: #2563eb; font-weight: 600; margin: 0 0 12px; }
+  .tagline { font-size: 14px; color: var(--brand); font-weight: 600; margin: 0 0 12px; }
   canvas { display: block; background: #fbfcfe; border: 1px solid #eef2f7; border-radius: 8px; width: 100%; }
   .ctrl { margin: 14px 0 4px; }
   .ctrl label { font-size: 13px; color: #5b6678; display: flex; justify-content: space-between; margin-bottom: 6px; }
   .ctrl label b { color: #1a2233; font-weight: 700; }
-  input[type=range] { width: 100%; accent-color: #2563eb; }
+  input[type=range] { width: 100%; accent-color: var(--brand); }
   .row2 { display: flex; gap: 14px; flex-wrap: wrap; }
   .row2 > div { flex: 1; min-width: 240px; }
   .cap { font-size: 12px; color: #9aa6b5; text-align: center; margin-top: 6px; }
@@ -133,8 +140,8 @@
   .gate-card .gv { font-size:11px; color:#5b6678; margin-top:3px; line-height:1.45; }
   /* 工序 ↔ 设备 一览表（一眼对应） */
   .eq-table { width:100%; border-collapse:collapse; margin-top:10px; font-size:12.5px; }
-  .eq-table caption { caption-side:top; text-align:left; font-size:13px; font-weight:700; color:#1e3a8a; margin-bottom:6px; }
-  .eq-table th { background:#1e3a8a; color:#fff; font-weight:700; font-size:11.5px; text-align:left; padding:8px 10px; }
+  .eq-table caption { caption-side:top; text-align:left; font-size:13px; font-weight:700; color:var(--brand-700); margin-bottom:6px; }
+  .eq-table th { background:var(--brand-700); color:#fff; font-weight:700; font-size:11.5px; text-align:left; padding:8px 10px; }
   .eq-table td { border:1px solid #e2e8f0; padding:7px 10px; vertical-align:top; color:#1a2233; line-height:1.5; }
   .eq-table tr:nth-child(even) td { background:#f6f9fd; }
   .eq-table .eq-proc { font-weight:700; white-space:nowrap; }
@@ -158,33 +165,34 @@
   .dwg-wrap{margin:10px 0 4px;text-align:center;}
   .dwg-img{max-width:100%;width:100%;border:1px solid #d8dee8;border-radius:8px;background:#fff;}
   .dwg-cap{font-size:11.5px;color:#5b6678;margin-top:6px;}
-  .dwg-cap a{color:#2563eb;font-weight:600;}
+  .dwg-cap a{color:var(--brand);font-weight:600;}
   /* 图纸模块：总览 + 符号图解（卡片网格） */
   .sym-group{margin-top:16px;}
-  .sym-gh{font-weight:700;color:#1e3a8a;font-size:14px;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px;}
+  .sym-gh{font-weight:700;color:var(--brand-700);font-size:14px;margin-bottom:8px;border-left:3px solid var(--brand);padding-left:8px;}
   .sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:8px;}
   .sym-card{border:1px solid #dbe2ec;border-radius:8px;padding:8px;background:#fbfdff;display:flex;flex-direction:column;gap:5px;}
   .sym-glyph{height:32px;display:flex;align-items:center;justify-content:center;}
-  .sym-glyph .gd{font-size:21px;color:#1e3a8a;font-weight:700;line-height:1;}
-  .sym-glyph .sm{font-size:12px;font-weight:700;color:#1e3a8a;}
+  .sym-glyph .gd{font-size:21px;color:var(--brand-700);font-weight:700;line-height:1;}
+  .sym-glyph .sm{font-size:12px;font-weight:700;color:var(--brand-700);}
   .sym-name{font-size:12.5px;font-weight:700;color:#0f172a;}
   .sym-desc{font-size:11.5px;color:#5b6678;line-height:1.45;}
-  .sym-ex{font-size:11px;color:#2563eb;background:#eef3fb;border-radius:4px;padding:2px 6px;align-self:flex-start;}
+  .sym-ex{font-size:11px;color:var(--brand);background:#eef3fb;border-radius:4px;padding:2px 6px;align-self:flex-start;}
 </style>
 <style>
   /* ===== PWA 工作台：启动台 / 安装提示 / 主页按钮 ===== */
   .launch{
     position:fixed; inset:0; z-index:9999; display:flex; flex-direction:column;
     align-items:center; justify-content:center; padding:28px 22px;
-    background:linear-gradient(150deg,#0b1f4d 0%,#143a8a 55%,#1d72b8 100%);
+    background:linear-gradient(150deg,var(--brand-ink) 0%,var(--brand-700) 50%,var(--brand) 100%);
     color:#fff; text-align:center;
   }
   .launch.hidden{ display:none; }
   .launch-logo{
-    width:84px; height:84px; border-radius:22px; margin-bottom:14px;
-    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3);
+    width:88px; height:88px; border-radius:24px; margin-bottom:14px;
+    overflow:hidden; box-shadow:0 8px 28px rgba(0,0,0,.18);
     display:flex; align-items:center; justify-content:center;
   }
+  .launch-logo img{ width:100%; height:100%; display:block; object-fit:cover; }
   .launch h1{ font-size:25px; font-weight:800; margin:0 0 6px; letter-spacing:1px; }
   .launch p{ font-size:13px; color:#bcd4ff; margin:0 0 26px; letter-spacing:1px; }
   .launch .ver{ font-size:11px; color:#8fb4ee; letter-spacing:1px; margin-top:6px; }
@@ -192,12 +200,13 @@
   .launch .arch-link:active{ color:#fff; }
   .launch-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; max-width:340px; }
   .tile{
-    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.26);
-    border-radius:16px; padding:20px 10px; color:#fff; cursor:pointer;
+    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28);
+    border-radius:18px; padding:22px 10px; color:#fff; cursor:pointer;
     display:flex; flex-direction:column; align-items:center; gap:8px;
-    transition:transform .12s ease, background .12s ease;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    box-shadow:0 4px 16px rgba(0,0,0,.12);
   }
-  .tile:active{ transform:scale(.96); background:rgba(255,255,255,0.2); }
+  .tile:active{ transform:scale(.96); background:rgba(255,255,255,0.24); box-shadow:0 2px 8px rgba(0,0,0,.16); }
   .tile .ic{ font-size:30px; line-height:1; }
   .tile .lb{ font-size:16px; font-weight:700; }
   .tile .en{ font-size:11px; color:#bcd4ff; }
@@ -315,10 +324,10 @@
           <circle cx="75" cy="75" r="58" fill="none" stroke="#cbd5e1" stroke-width="1"/>
           <circle cx="75" cy="75" r="38" fill="none" stroke="#cbd5e1" stroke-width="1"/>
           <circle cx="75" cy="75" r="18" fill="none" stroke="#cbd5e1" stroke-width="1"/>
-          <line x1="14" y1="75" x2="136" y2="75" stroke="#2563eb" stroke-width="2"/>
-          <line x1="75" y1="14" x2="75" y2="136" stroke="#2563eb" stroke-width="2"/>
-          <text x="79" y="70" font-size="9" fill="#2563eb" font-weight="700">T 子午</text>
-          <text x="79" y="83" font-size="9" fill="#2563eb" font-weight="700">(放射向)</text>
+          <line x1="14" y1="75" x2="136" y2="75" stroke="var(--brand)" stroke-width="2"/>
+          <line x1="75" y1="14" x2="75" y2="136" stroke="var(--brand)" stroke-width="2"/>
+          <text x="79" y="70" font-size="9" fill="var(--brand)" font-weight="700">T 子午</text>
+          <text x="79" y="83" font-size="9" fill="var(--brand)" font-weight="700">(放射向)</text>
           <path d="M75 17 A58 58 0 0 1 133 75" fill="none" stroke="#0ea5e9" stroke-width="2"/>
           <text x="98" y="40" font-size="9" fill="#0ea5e9" font-weight="700">S 弧矢</text>
           <text x="98" y="52" font-size="9" fill="#0ea5e9" font-weight="700">(切向)</text>
@@ -587,14 +596,14 @@
         </marker>
       </defs>
       <!-- 输入 -->
-      <rect x="250" y="6" width="220" height="34" rx="17" fill="#eef4ff" stroke="#2563eb"></rect>
+      <rect x="250" y="6" width="220" height="34" rx="17" fill="#eef4ff" stroke="var(--brand)"></rect>
       <text x="360" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#1a3a66">输入：镜片 / 镜筒 / 隔圈等来料</text>
 
       <!-- 8 个阶段 -->
       <!-- 阶段1 -->
       <g>
         <rect x="20" y="56" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
-        <circle cx="44" cy="87" r="13" fill="#2563eb"></circle>
+        <circle cx="44" cy="87" r="13" fill="var(--brand)"></circle>
         <text x="44" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
         <text x="68" y="82" font-size="15" font-weight="700" fill="#1a2233">来料检验</text>
         <text x="68" y="101" font-size="11" fill="#9aa6b5">Incoming Inspection</text>
@@ -604,7 +613,7 @@
       <!-- 阶段2 -->
       <g>
         <rect x="20" y="136" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
-        <circle cx="44" cy="167" r="13" fill="#2563eb"></circle>
+        <circle cx="44" cy="167" r="13" fill="var(--brand)"></circle>
         <text x="44" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
         <text x="68" y="162" font-size="15" font-weight="700" fill="#1a2233">镜筒加工</text>
         <text x="68" y="181" font-size="11" fill="#9aa6b5">Barrel Machining</text>
@@ -614,7 +623,7 @@
       <!-- 阶段3 -->
       <g>
         <rect x="20" y="216" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
-        <circle cx="44" cy="247" r="13" fill="#2563eb"></circle>
+        <circle cx="44" cy="247" r="13" fill="var(--brand)"></circle>
         <text x="44" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
         <text x="68" y="242" font-size="15" font-weight="700" fill="#1a2233">自动组装</text>
         <text x="68" y="261" font-size="11" fill="#9aa6b5">Automatic Assembly</text>
@@ -634,7 +643,7 @@
       <!-- 阶段5 -->
       <g>
         <rect x="20" y="376" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
-        <circle cx="44" cy="407" r="13" fill="#2563eb"></circle>
+        <circle cx="44" cy="407" r="13" fill="var(--brand)"></circle>
         <text x="44" y="412" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
         <text x="68" y="402" font-size="15" font-weight="700" fill="#1a2233">可靠性预处理</text>
         <text x="68" y="421" font-size="11" fill="#9aa6b5">Reliability</text>
@@ -664,7 +673,7 @@
       <!-- 阶段8 -->
       <g>
         <rect x="20" y="616" width="680" height="62" rx="12" fill="#ffffff" stroke="#d4dce6"></rect>
-        <circle cx="44" cy="647" r="13" fill="#2563eb"></circle>
+        <circle cx="44" cy="647" r="13" fill="var(--brand)"></circle>
         <text x="44" y="652" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">8</text>
         <text x="68" y="642" font-size="15" font-weight="700" fill="#1a2233">包装出货</text>
         <text x="68" y="661" font-size="11" fill="#9aa6b5">Packaging &amp; Shipment</text>
@@ -710,10 +719,10 @@
       <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">3</span><div class="step-info"><div class="step-name">自动组装 <span class="step-en">Automatic Assembly · ZZ010–ZZ070</span></div><div class="step-tag">镜片入筒+点胶锁付，决定 MTF 与像质</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
   <rect x="12" y="14" width="40" height="34" rx="5" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
   <ellipse cx="32" cy="24" rx="14" ry="5" fill="#94a3b8"/><ellipse cx="32" cy="36" rx="14" ry="5" fill="#94a3b8"/>
-  <rect x="74" y="20" width="54" height="22" rx="5" fill="none" stroke="#2563eb" stroke-width="1.5"/>
-  <path d="M140 26 q16 4 0 8" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <circle cx="156" cy="30" r="4" fill="#2563eb"/>
-  <text x="176" y="34" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="700">胶</text></svg></div><div class="step-arrow">⌄</div></div>
+  <rect x="74" y="20" width="54" height="22" rx="5" fill="none" stroke="var(--brand)" stroke-width="1.5"/>
+  <path d="M140 26 q16 4 0 8" fill="none" stroke="var(--brand)" stroke-width="2"/>
+  <circle cx="156" cy="30" r="4" fill="var(--brand)"/>
+  <text x="176" y="34" text-anchor="middle" font-size="9" fill="var(--brand)" font-weight="700">胶</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail"><div class="step-body"><div class="item"><b>工序：</b>自动组装(ZZ010) → 外压圈锁付(ZZ020) → 自动内尘检查(ZZ030) → IR 组立点胶曝光(ZZ060) → 外压圈点胶曝光(ZZ070) → 吸塑包材喷淋清洗。</div><div class="item"><b>关键：</b>组装顺序 / 点胶量 / 锁付力矩决定镜片间隔与偏心，是 MTF、场曲、畸变、偏心的源头。</div></div></div>
     </div>
     <div class="step" style="border-left:3px solid #0ea5e9;" data-step="4">
@@ -723,12 +732,12 @@
   <line x1="36" y1="100" x2="340" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
   <text x="14" y="58" font-size="9" fill="#5b6678">MTF</text>
   <text x="188" y="114" text-anchor="middle" font-size="9" fill="#5b6678">空间频率 (lp/mm)</text>
-  <polyline points="36,32 100,44 170,58 250,72 330,84" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <polyline points="36,32 100,44 170,58 250,72 330,84" fill="none" stroke="var(--brand)" stroke-width="2"/>
   <polyline points="36,42 100,54 170,68 250,82 330,94" fill="none" stroke="#0ea5e9" stroke-width="2"/>
   <polyline points="36,52 100,64 170,78 250,92 330,104" fill="none" stroke="#16a34a" stroke-width="2"/>
   <line x1="36" y1="64" x2="340" y2="64" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
   <text x="336" y="60" text-anchor="end" font-size="9" fill="#b45309">验收门槛</text>
-  <text x="64" y="26" text-anchor="middle" font-size="9" fill="#2563eb">0°</text>
+  <text x="64" y="26" text-anchor="middle" font-size="9" fill="var(--brand)">0°</text>
   <text x="130" y="34" text-anchor="middle" font-size="9" fill="#0ea5e9">4.5°</text>
   <text x="280" y="48" text-anchor="middle" font-size="9" fill="#16a34a">12°</text></svg><div class="fig-cap">一道 MTF：多视场曲线都要爬过橙色验收门槛（越高 = 越清晰）</div></div></div></div>
     </div>
@@ -900,10 +909,10 @@
       </div>
       <div class="illus">
         <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
-          <defs><marker id="arr2" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#2563eb"></path></marker></defs>
+          <defs><marker id="arr2" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="var(--brand)"></path></marker></defs>
           <rect x="8" y="46" width="18" height="18" fill="#64748b"></rect>
           <rect x="26" y="40" width="78" height="30" rx="15" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"></rect>
-          <path d="M60 26 a16 16 0 0 1 16 8" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arr2)"></path>
+          <path d="M60 26 a16 16 0 0 1 16 8" fill="none" stroke="var(--brand)" stroke-width="2" marker-end="url(#arr2)"></path>
           <path d="M132 36 L116 54 L132 54 Z" fill="#dc2626" stroke="#991b1b" stroke-width="1"></path>
           <text x="124" y="70" text-anchor="middle" font-size="9" fill="#dc2626">刀具</text>
         </svg>
@@ -1006,7 +1015,7 @@
 
     <!-- 工序 5：CNC车1 ★ -->
     <div class="step" data-step="5">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">5</span><div class="step-info"><div class="step-name">CNC 车 1 <span style="color:#f59e0b;">★</span> <span class="step-en">CNC Turning 1 · 北村 XKNC-204 · 0.002mm · 良率 95% · 500/台/日</span></div><div class="step-tag">镗内孔，保证光路同轴度</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#e2e8f0"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#475569" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/><text x="172" y="26" font-size="7" fill="#7f1d1d" font-weight="700">镗</text><text x="172" y="34" font-size="7" fill="#7f1d1d" font-weight="700">刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="#2563eb" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><path d="M156 16 a14 14 0 0 1 0 28" fill="none" stroke="#2563eb" stroke-width="1" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="#5b6678">工件转 · 镗刀径向进给 镗内孔</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">5</span><div class="step-info"><div class="step-name">CNC 车 1 <span style="color:#f59e0b;">★</span> <span class="step-en">CNC Turning 1 · 北村 XKNC-204 · 0.002mm · 良率 95% · 500/台/日</span></div><div class="step-tag">镗内孔，保证光路同轴度</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#e2e8f0"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#475569" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/><text x="172" y="26" font-size="7" fill="#7f1d1d" font-weight="700">镗</text><text x="172" y="34" font-size="7" fill="#7f1d1d" font-weight="700">刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><path d="M156 16 a14 14 0 0 1 0 28" fill="none" stroke="var(--brand)" stroke-width="1" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="#5b6678">工件转 · 镗刀径向进给 镗内孔</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>设备：</b>北村（Kitamura）XKNC-204 走心机 / 数控车床。</div>
@@ -1020,7 +1029,7 @@
 
     <!-- 工序 6：CNC车2 ★ -->
     <div class="step" data-step="6">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">6</span><div class="step-info"><div class="step-name">CNC 车 2 <span style="color:#f59e0b;">★</span> <span class="step-en">CNC Turning 2 · 北村 XKNC-204 · 0.002mm · 良率 95% · 600/台/日</span></div><div class="step-tag">车外形与端面，保证装配尺寸</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#e2e8f0"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#475569" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/><text x="172" y="22" font-size="7" fill="#7f1d1d" font-weight="700">外圆</text><text x="172" y="30" font-size="7" fill="#7f1d1d" font-weight="700">车刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="#2563eb" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><line x1="138" y1="46" x2="138" y2="52" stroke="#2563eb" stroke-width="1.5" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="#5b6678">工件转 · 刀径向 + 轴向 车外形/端面</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">6</span><div class="step-info"><div class="step-name">CNC 车 2 <span style="color:#f59e0b;">★</span> <span class="step-en">CNC Turning 2 · 北村 XKNC-204 · 0.002mm · 良率 95% · 600/台/日</span></div><div class="step-tag">车外形与端面，保证装配尺寸</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#e2e8f0"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#1a2233" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#475569" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/><text x="172" y="22" font-size="7" fill="#7f1d1d" font-weight="700">外圆</text><text x="172" y="30" font-size="7" fill="#7f1d1d" font-weight="700">车刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><line x1="138" y1="46" x2="138" y2="52" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="#5b6678">工件转 · 刀径向 + 轴向 车外形/端面</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>加工内容：</b>镜筒外圆 / 端面 / 螺纹 / 卡口结构精车。</div>
@@ -1156,7 +1165,7 @@
       <div class="sym-gh">② 视图 / 剖面 —— 从哪个方向看、是否剖开</div>
       <div class="sym-grid">
         <div class="sym-card"><div class="sym-glyph"><span class="sm">VIEW ②</span></div><div class="sym-name">视图标签</div><div class="sym-desc">从一个固定方向投影得到的图。</div><div class="sym-ex">VIEW No.2 / No.200–206</div></div>
-        <div class="sym-card"><div class="sym-glyph"><svg width="50" height="18" viewBox="0 0 50 18"><line x1="6" y1="9" x2="44" y2="9" stroke="#1e3a8a" stroke-width="1.4"/><polygon points="6,9 1,5.5 1,12.5" fill="#1e3a8a"/><polygon points="44,9 49,5.5 49,12.5" fill="#1e3a8a"/><text x="11" y="7" font-size="8" fill="#1e3a8a">A</text><text x="38" y="7" font-size="8" fill="#1e3a8a">A</text></svg></div><div class="sym-name">剖切位置线</div><div class="sym-desc">假想剖切位置，两端带箭头与字母。</div><div class="sym-ex">A──►◄──A</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="50" height="18" viewBox="0 0 50 18"><line x1="6" y1="9" x2="44" y2="9" stroke="var(--brand-700)" stroke-width="1.4"/><polygon points="6,9 1,5.5 1,12.5" fill="var(--brand-700)"/><polygon points="44,9 49,5.5 49,12.5" fill="var(--brand-700)"/><text x="11" y="7" font-size="8" fill="var(--brand-700)">A</text><text x="38" y="7" font-size="8" fill="var(--brand-700)">A</text></svg></div><div class="sym-name">剖切位置线</div><div class="sym-desc">假想剖切位置，两端带箭头与字母。</div><div class="sym-ex">A──►◄──A</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">SECTION</span></div><div class="sym-name">剖视图</div><div class="sym-desc">沿剖切线切开后看内部的图。</div><div class="sym-ex">SECTION VIEW AF-AF</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">10:1</span></div><div class="sym-name">局部放大</div><div class="sym-desc">该处放大 N 倍细看。</div><div class="sym-ex">SCALE 10:1</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">ISO 2:1</span></div><div class="sym-name">轴测图</div><div class="sym-desc">立体总图，看整体形状。</div><div class="sym-ex">ISOMETRIC 2:1</div></div>
@@ -1166,7 +1175,7 @@
     <div class="sym-group">
       <div class="sym-gh">③ 基准与坐标系 —— 拿什么定位、检验</div>
       <div class="sym-grid">
-        <div class="sym-card"><div class="sym-glyph"><svg width="42" height="22" viewBox="0 0 42 22"><rect x="2" y="3" width="18" height="16" rx="2" fill="none" stroke="#1e3a8a" stroke-width="1.4"/><text x="11" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">A</text><line x1="20" y1="11" x2="39" y2="11" stroke="#1e3a8a" stroke-width="1.4"/><polygon points="39,11 34,8 34,14" fill="#1e3a8a"/></svg></div><div class="sym-name">基准特征符号</div><div class="sym-desc">带字母的方框 = 基准；引线指到实际面/轴。</div><div class="sym-ex">DATUM A[PL]</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="42" height="22" viewBox="0 0 42 22"><rect x="2" y="3" width="18" height="16" rx="2" fill="none" stroke="var(--brand-700)" stroke-width="1.4"/><text x="11" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="var(--brand-700)">A</text><line x1="20" y1="11" x2="39" y2="11" stroke="var(--brand-700)" stroke-width="1.4"/><polygon points="39,11 34,8 34,14" fill="var(--brand-700)"/></svg></div><div class="sym-name">基准特征符号</div><div class="sym-desc">带字母的方框 = 基准；引线指到实际面/轴。</div><div class="sym-ex">DATUM A[PL]</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">[PL]/[SL]</span></div><div class="sym-name">基准类型</div><div class="sym-desc">框后括号：PL=平面，SL=直线，CA=圆柱。</div><div class="sym-ex">B[SL] 光机轴 / F[PL]</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">RPS</span></div><div class="sym-name">参考点系统</div><div class="sym-desc">X/Y/Z 三轴定位基准，装夹/检测找正用。</div><div class="sym-ex">RPS X/Y/Z-AXIS</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">⌖ 轴</span></div><div class="sym-name">光机轴</div><div class="sym-desc">镜片光轴（基准 B），过全局坐标原点。</div><div class="sym-ex">OPTOMECHANICAL AXIS</div></div>
@@ -1178,10 +1187,10 @@
       <div class="sym-grid">
         <div class="sym-card"><div class="sym-glyph"><span class="sm">No.200</span></div><div class="sym-name">特征标注号</div><div class="sym-desc">指向一个具体特征，旁附尺寸/公差。</div><div class="sym-ex">No.200–No.206</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">2.35±0.1</span></div><div class="sym-name">尺寸±公差</div><div class="sym-desc">线性尺寸允许的上下偏差。</div><div class="sym-ex">2.35±0.1</div></div>
-        <div class="sym-card"><div class="sym-glyph"><svg width="22" height="14" viewBox="0 0 22 14"><circle cx="8" cy="7" r="5.5" fill="none" stroke="#1e3a8a" stroke-width="1.4"/><line x1="14" y1="3" x2="20" y2="11" stroke="#1e3a8a" stroke-width="1.4"/></svg></div><div class="sym-name">直径 ⌀</div><div class="sym-desc">圆特征的直径。</div><div class="sym-ex">⌀ / 13.546</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="22" height="14" viewBox="0 0 22 14"><circle cx="8" cy="7" r="5.5" fill="none" stroke="var(--brand-700)" stroke-width="1.4"/><line x1="14" y1="3" x2="20" y2="11" stroke="var(--brand-700)" stroke-width="1.4"/></svg></div><div class="sym-name">直径 ⌀</div><div class="sym-desc">圆特征的直径。</div><div class="sym-ex">⌀ / 13.546</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">4×R1.15</span></div><div class="sym-name">半径 / 数量</div><div class="sym-desc">R=圆角；数字×=相同特征几处。</div><div class="sym-ex">4× R 1.15</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">(7.4)</span></div><div class="sym-name">参考尺寸</div><div class="sym-desc">括号包住 = 仅供参考，不检验。</div><div class="sym-ex">(7.4)</div></div>
-        <div class="sym-card"><div class="sym-glyph"><svg width="26" height="20" viewBox="0 0 26 20"><path d="M4 17 L13 5 L22 17" fill="none" stroke="#1e3a8a" stroke-width="1.6"/><text x="6" y="16" font-size="8" fill="#1e3a8a">Ra</text></svg></div><div class="sym-name">表面粗糙度</div><div class="sym-desc">表面微观不平度，Ra 越小越光。</div><div class="sym-ex">Ra 1.6</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="26" height="20" viewBox="0 0 26 20"><path d="M4 17 L13 5 L22 17" fill="none" stroke="var(--brand-700)" stroke-width="1.6"/><text x="6" y="16" font-size="8" fill="var(--brand-700)">Ra</text></svg></div><div class="sym-name">表面粗糙度</div><div class="sym-desc">表面微观不平度，Ra 越小越光。</div><div class="sym-ex">Ra 1.6</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="sm">0.087 A</span></div><div class="sym-name">形位公差框格</div><div class="sym-desc">公差值 + 基准字母（多基准序 G/D/C）。</div><div class="sym-ex">0.087 A / 0.4 G D C</div></div>
       </div>
     </div>
@@ -1189,7 +1198,7 @@
     <div class="sym-group">
       <div class="sym-gh">④ 附：形位公差里的"几何特性符号"（框格里第一个图形）</div>
       <div class="sym-grid">
-        <div class="sym-card"><div class="sym-glyph"><svg width="22" height="12" viewBox="0 0 22 12"><polygon points="2,9 11,3 20,3 11,9" fill="none" stroke="#1e3a8a" stroke-width="1.5"/></svg></div><div class="sym-name">平面度</div><div class="sym-desc">表面有多平。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="22" height="12" viewBox="0 0 22 12"><polygon points="2,9 11,3 20,3 11,9" fill="none" stroke="var(--brand-700)" stroke-width="1.5"/></svg></div><div class="sym-name">平面度</div><div class="sym-desc">表面有多平。</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="gd">⊥</span></div><div class="sym-name">垂直度</div><div class="sym-desc">与基准面/轴成 90° 的偏差。</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="gd">∥</span></div><div class="sym-name">平行度</div><div class="sym-desc">与基准面/轴平行的偏差。</div></div>
         <div class="sym-card"><div class="sym-glyph"><span class="gd">∠</span></div><div class="sym-name">倾斜度</div><div class="sym-desc">与基准成规定角度的偏差。</div></div>
@@ -1204,11 +1213,11 @@
     <div class="src">框格读作"几何特性符号 + 公差值 + 基准字母"。例如 <b>⊥ 0.02 A</b> = 垂直度误差 ≤0.02，相对基准 A。本图形位公差多引用 A/B/C/D/F/G 等基准。</div>
   </div>
 
-  <div class="ver">版本 v0.1.3 · 2026-07-24 · 历史版本与变更见 CHANGELOG.md</div>
+  <div class="ver">版本 v0.1.4 · 2026-08-05 · 历史版本与变更见 CHANGELOG.md</div>
 </div>
 
 <script>
-const C = { ink:'#1a2233', sub:'#5b6678', blue:'#2563eb', cyan:'#0ea5e9',
+const C = { ink:'#1a2233', sub:'#5b6678', blue:'var(--brand)', cyan:'#0ea5e9',
   warn:'#f59e0b', green:'#16a34a', red:'#dc2626', line:'#cbd5e1', road:'#cdd8e4' };
 
 function setup(id, w, h){
@@ -1315,7 +1324,7 @@ function renderMTF(){
   for(let nu=0; nu<=fmax; nu+=2){ const px=L+nu/fmax*(R-L); const py=B-mtfDiff(nu)*(B-Tp); nu===0?x.moveTo(px,py):x.lineTo(px,py); }
   x.stroke(); x.setLineDash([]);
   // 各视场实际 MTF = 素质% × 衍射极限 × 视场衰减
-  const colors = ['#16a34a','#2563eb','#f59e0b','#dc2626'];
+  const colors = ['#16a34a','var(--brand)','#f59e0b','#dc2626'];
   fields.forEach((fv,i)=>{
     const fd = 1 - 0.45*(fv/12);
     const m = nu => s/100 * mtfDiff(nu) * fd;
@@ -1522,7 +1531,7 @@ function renderCA(){
   x.fillStyle = '#ff6b6b'; x.fillText('红边', cx-off-22, cy+92);
   x.fillStyle = '#6b9bff'; x.fillText('蓝边', cx+off+6, cy+92);
   document.getElementById('caR').innerHTML = ca<3 ? '无色差，边缘干净。'
-    : '白边被拆成<b style="color:#dc2626">红</b>与<b style="color:#2563eb">蓝</b>两道错位亮线 → 镶上彩边。车牌白边泛彩边会让机器读起来更费劲。';
+    : '白边被拆成<b style="color:#dc2626">红</b>与<b style="color:var(--brand)">蓝</b>两道错位亮线 → 镶上彩边。车牌白边泛彩边会让机器读起来更费劲。';
 }
 
 // ---------- 渐晕 ----------
@@ -1661,7 +1670,7 @@ function renderFNOLight(){
     const isCur = (f === curF) && (i === all.length-1 || all.indexOf(curF) === i);
     // 始终把"当前"那一格涂成橙色（如果跟某 stop 重合也仍用橙色覆盖）
     const isCurrentBar = (Math.abs(f - curF) < 0.01);
-    x.fillStyle = isCurrentBar ? '#f59e0b' : '#2563eb';
+    x.fillStyle = isCurrentBar ? '#f59e0b' : 'var(--brand)';
     x.fillRect(bx, by, bw, bh);
     x.strokeStyle = isCurrentBar ? '#b45309' : C.line;
     x.lineWidth = isCurrentBar ? 2 : 1;
@@ -1741,7 +1750,7 @@ function renderFOV(){
   const lanes = widthM/3.5;
   document.getElementById('fovR').innerHTML =
     'EFL=<b>'+EFL.toFixed(2)+'mm</b>，sensor=<b>'+s.name+'</b> → '
-    +'<b style="color:#2563eb">HFOV '+HFOV.toFixed(1)+'°</b> · '
+    +'<b style="color:var(--brand)">HFOV '+HFOV.toFixed(1)+'°</b> · '
     +'<b style="color:#0ea5e9">VFOV '+VFOV.toFixed(1)+'°</b> · '
     +'<b>DFOV '+DFOV.toFixed(1)+'°</b>。<br>前方 10m 处可见宽度 ≈ <b>'+widthM.toFixed(1)+' m</b>（约 '+lanes.toFixed(1)+' 条车道）。'
     +(HFOV>95 ? '<br><b>广角</b>：看得宽（看路口/环视），但畸变·渐晕·边缘像质压力大。' :
@@ -2187,18 +2196,10 @@ renderFNOLight();
 <!-- ===== PWA 工作台：启动台（App 主页） ===== -->
 <div class="launch" id="launch">
   <button class="launch-close" aria-label="关闭">×</button>
-  <div class="launch-logo">
-    <svg width="46" height="46" viewBox="0 0 100 100"><g fill="none" stroke="#fff" stroke-width="6">
-      <circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="21"/>
-      <line x1="50" y1="29" x2="50" y2="11"/><line x1="50" y1="71" x2="50" y2="89"/>
-      <line x1="29" y1="50" x2="11" y2="50"/><line x1="71" y1="50" x2="89" y2="50"/>
-      <line x1="35" y1="35" x2="22" y2="22"/><line x1="65" y1="65" x2="78" y2="78"/>
-      <line x1="65" y1="35" x2="78" y2="22"/><line x1="35" y1="65" x2="22" y2="78"/>
-    </g><circle cx="50" cy="50" r="7" fill="#fff"/></svg>
-  </div>
+  <div class="launch-logo"><img src="icon-512.png" alt="车载光学" width="84" height="84"></div>
   <h1>车载光学知识工作台</h1>
   <p>AUTOMOTIVE LENS OPTICS · 离线可用</p>
-  <p class="ver">v0.1.3 · 2026-07-24</p>
+  <p class="ver">v0.1.4 · 2026-08-05</p>
   <div class="launch-grid">
     <div class="tile" data-cat="optics"><div class="ic">🔬</div><div class="lb">光学</div><div class="en">12 交互模块</div></div>
     <div class="tile" data-cat="reliability"><div class="ic">🌡️</div><div class="lb">信赖性</div><div class="en">实车退化</div></div>
