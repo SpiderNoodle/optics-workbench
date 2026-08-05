@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>图标候选预览 · 车载光学</title>
+<style>
+  :root{
+    --bg:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --sub:#6e6e73;
+    --line:#e5e5ea; --accent:#0071e3;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",
+      "PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+  }
+  header{padding:48px 24px 8px;text-align:center}
+  header h1{font-size:28px;font-weight:600;margin:0 0 8px;letter-spacing:-.02em}
+  header p{margin:0;color:var(--sub);font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:24px 20px 64px}
+  .grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+  }
+  @media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:22px 16px 18px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .card .chip{
+    width:96px;height:96px;border-radius:22px;overflow:hidden;
+    box-shadow:0 8px 22px rgba(0,0,0,.12);margin-bottom:14px;
+  }
+  .card .chip img{width:100%;height:100%;display:block;object-fit:cover}
+  .card .tag{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+  .card .name{font-size:17px;font-weight:600;margin:2px 0 6px}
+  .card .desc{font-size:13px;color:var(--sub);margin:0;min-height:54px}
+  .foot{margin-top:34px;text-align:center;color:var(--sub);font-size:13px}
+  .foot b{color:var(--ink);font-weight:600}
+  .row{
+    margin-top:22px;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:18px 20px;
+  }
+  .row h2{font-size:15px;margin:0 0 10px;font-weight:600}
+  .row ul{margin:0;padding-left:18px;color:var(--sub);font-size:13.5px}
+  .row li{margin:4px 0}
+  code{background:#ececf0;padding:2px 6px;border-radius:6px;font-size:12.5px}
+</style>
+</head>
+<body>
+<header>
+  <h1>车载光学 · 工作台图标候选</h1>
+  <p>从以下 4 款里挑一款，我会替换成正式图标并同步到手机 App</p>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+    <div class="card">
+      <div class="chip"><img src="icons/cand_A.png" alt="候选 A"></div>
+      <div class="tag">A</div>
+      <div class="name">清新蓝 · 光圈</div>
+      <div class="desc">亮蓝渐变 + 光圈叶片，科技感、辨识度高，最接近“镜头”直觉。</div>
+    </div>
+    <div class="card">
+      <div class="chip"><img src="icons/cand_B.png" alt="候选 B"></div>
+      <div class="tag">B</div>
+      <div class="name">纯蓝 · 极简双环</div>
+      <div class="desc">单色蓝 + 极简双环透镜，最克制、最“Apple”，适合首屏小图标。</div>
+    </div>
+    <div class="card">
+      <div class="chip"><img src="icons/cand_C.png" alt="候选 C"></div>
+      <div class="tag">C</div>
+      <div class="name">暗玻璃 · 青环</div>
+      <div class="desc">深灰玻璃质感 + 青色发光环，低调高级，夜间/深色模式更协调。</div>
+    </div>
+    <div class="card">
+      <div class="chip"><img src="icons/cand_D.png" alt="候选 D"></div>
+      <div class="tag">D</div>
+      <div class="name">靛青 · 透镜高光</div>
+      <div class="desc">靛蓝到青的渐变 + 单透镜高光点，色彩更有层次与“光学”寓意。</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>怎么选</h2>
+    <ul>
+      <li>直接在这里点开看效果（手机/电脑浏览器都行）。</li>
+      <li>告诉我你选 <b>A / B / C / D</b> 中的哪一个，我就把它导出为 192 与 512 正式图标。</li>
+      <li>若想微调（比如颜色更深/更亮、去掉渐变），也可以直接说，我改一版再给你看。</li>
+    </ul>
+  </div>
+
+  <p class="foot">已剔除此前的“小车”元素，按你要求改为 <b>简约 + 车载光学（镜头/光圈）</b> 风格。</p>
+</div>
+</body>
+</html>
