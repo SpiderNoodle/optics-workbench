@@ -389,31 +389,60 @@
     to  { opacity:1; transform:none; }
   }
 
-  /* ---- 首页分类卡 ---- */
-  .cat-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:12px; margin-bottom:20px; }
+  /* ---- 首页分类卡 · 工作台仪表盘风格 ---- */
+  .cat-cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px; margin-bottom:24px;
+  }
   .cat-card{
     position:relative; overflow:hidden; cursor:pointer; text-align:left;
-    padding:16px 16px 15px; border-radius:var(--r); border:1px solid var(--line);
+    padding:20px 18px 18px; border-radius:var(--r-l); border:1px solid var(--line);
     background:var(--surface);
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-    box-shadow:var(--sh); transition:.22s cubic-bezier(.4,0,.2,1); font-family:inherit;
+    box-shadow:var(--sh); transition:.28s cubic-bezier(.4,0,.2,1); font-family:inherit;
     animation:cardIn .5s cubic-bezier(.22,1,.36,1) both;
+    display:flex; flex-direction:column;
   }
-  .cat-card:nth-child(1){ animation-delay:.04s } .cat-card:nth-child(2){ animation-delay:.10s }
-  .cat-card:nth-child(3){ animation-delay:.16s } .cat-card:nth-child(4){ animation-delay:.22s }
-  @keyframes cardIn{ from{ opacity:0; transform:translateY(16px) } to{ opacity:1; transform:none } }
+  .cat-card:nth-child(1){ animation-delay:.03s } .cat-card:nth-child(2){ animation-delay:.07s }
+  .cat-card:nth-child(3){ animation-delay:.11s } .cat-card:nth-child(4){ animation-delay:.15s }
+  .cat-card:nth-child(5){ animation-delay:.19s } .cat-card:nth-child(6){ animation-delay:.23s }
+  .cat-card:nth-child(7){ animation-delay:.27s } .cat-card:nth-child(8){ animation-delay:.31s }
+  @keyframes cardIn{ from{ opacity:0; transform:translateY(18px) scale(.97) } to{ opacity:1; transform:none scale(1) } }
+  .cat-card::before{
+    content:''; position:absolute; left:0; top:0; width:4px; height:100%;
+    border-radius:4px 0 0 4px; background:linear-gradient(180deg,var(--brand),var(--brand-2));
+    opacity:.7; transition:opacity .3s;
+  }
   .cat-card::after{
-    content:''; position:absolute; right:-30px; top:-30px; width:100px; height:100px; border-radius:50%;
-    background:radial-gradient(circle,rgba(91,140,255,.20),transparent 70%); transition:.3s;
+    content:''; position:absolute; right:-20px; top:-20px; width:90px; height:90px; border-radius:50%;
+    background:radial-gradient(circle,rgba(91,140,255,.15),transparent 70%); transition:.35s;
   }
-  .cat-card:hover{ transform:translateY(-4px); border-color:var(--acc-line); box-shadow:var(--sh-l); }
-  .cat-card:hover::after{ transform:scale(1.5); }
-  .cc-ic{ font-size:23px; line-height:1; margin-bottom:9px; display:block; }
-  .cc-lb{ font-size:15px; font-weight:700; color:var(--text); display:block; }
-  .cc-en{ font-size:11px; color:var(--muted-2); margin-top:3px; display:block; }
-  .cc-bar{ height:4px; border-radius:99px; background:rgba(255,255,255,.09); margin-top:11px; overflow:hidden; }
-  .cc-bar u{ display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--brand),var(--brand-2)); transition:width .6s cubic-bezier(.4,0,.2,1); }
-
+  .cat-card:hover{ transform:translateY(-5px) scale(1.01); border-color:var(--acc-line); box-shadow:var(--sh-l); }
+  .cat-card:hover::after{ transform:scale(1.8); opacity:.6; }
+  .cat-card:hover::before{ opacity:1; }
+  .cc-header{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .cc-ic{
+    font-size:28px; line-height:1; display:flex; align-items:center; justify-content:center;
+    width:48px; height:48px; border-radius:12px;
+    background:linear-gradient(135deg,rgba(91,140,255,.15),rgba(124,108,255,.10));
+    flex-shrink:0;
+  }
+  .cc-title-group{ flex:1; min-width:0; }
+  .cc-lb{ font-size:16px; font-weight:700; color:var(--text); display:block; line-height:1.3; }
+  .cc-en{ font-size:11.5px; color:var(--muted-2); margin-top:2px; display:block; line-height:1.2; }
+  .cc-count{
+    display:inline-flex; align-items:center; gap:4px;
+    padding:3px 9px; border-radius:99px; font-size:11px; font-weight:600;
+    background:rgba(91,140,255,.12); color:var(--brand); margin-top:auto; align-self:flex-start;
+  }
+  .cc-desc{ font-size:12px; color:var(--muted-2); margin-top:8px; line-height:1.5; display:block; flex:1; }
+  .cc-bar{ height:3px; border-radius:99px; background:rgba(255,255,255,.07); margin-top:10px; overflow:hidden; }
+  .cc-bar u{ display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--brand),var(--brand-2)); transition:width .7s cubic-bezier(.4,0,.2,1); }
+  /* 响应式：平板 3 列 → 手机 2 列 → 小屏 1 列 */
+  @media(max-width:1100px){ .cat-cards{ grid-template-columns:repeat(3,1fr); } }
+  @media(max-width:860px){ .cat-cards{ grid-template-columns:repeat(2,1fr); gap:10px; } .cat-card{ padding:16px 14px 14px; } .cc-ic{ width:40px; height:40px; font-size:24px; } }
+  @media(max-width:480px){ .cat-cards{ grid-template-columns:1fr; } }
   /* ---- 随机页 ---- */
   #randHost{ min-height:180px; }
   #randHost .panel{ display:block !important; }
@@ -565,7 +594,7 @@
   <main id="main">
     <header id="topbar">
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">已学 0/40</span>
+      <span class="tb-prog" id="tbProg">已学 0/45</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -586,11 +615,14 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科</h1>
+      <h1 class="hero-title">车载光学百科 v0.2.1</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
         <span class="hero-chip">信赖性·车规 · 10</span>
+        <span class="hero-chip">工艺制造 · 2</span>
+        <span class="hero-chip">工程图纸 · 2</span>
+        <span class="hero-chip">设备与仪器 · 5</span>
         <span class="hero-chip">工艺制造 · 2</span>
         <span class="hero-chip">工程图纸 · 2</span>
         <span class="hero-chip">模组与系统 · 6</span>
@@ -600,21 +632,97 @@
     </div>
   </div>
 
-        <div class="cat-cards">
-        <div class="cat-card" data-cat="optics"><div class="cc-ic">🔬</div><div class="cc-lb">光学</div><div class="cc-en">12 交互模块</div></div>
-        <div class="cat-card" data-cat="reliability"><div class="cc-ic">🌡️</div><div class="cc-lb">信赖性</div><div class="cc-en">实车退化</div></div>
-        <div class="cat-card" data-cat="process"><div class="cc-ic">🏭</div><div class="cc-lb">工艺</div><div class="cc-en">产线对照</div></div>
-        <div class="cat-card" data-cat="drawing"><div class="cc-ic">📐</div><div class="cc-lb">图纸</div><div class="cc-en">符号图解</div></div>
+                <div class="cat-cards">
+        <div class="cat-card" data-cat="optics"><div class="cc-header"><div class="cc-ic">🔬</div><div class="cc-title-group"><div class="cc-lb">光学基础</div><div class="cc-en">Optics Fundamentals</div></div></div><span class="cc-count">📊 12 项</span><div class="cc-desc">MTF / DOF / EFL / FNO / FOV / CRA / 滤光片 / 场曲 / 畸变 / 色差 / 渐晕</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="reliability"><div class="cc-header"><div class="cc-ic">🌡️</div><div class="cc-title-group"><div class="cc-lb">信赖性·车规</div><div class="cc-en">Reliability & Qual</div></div></div><span class="cc-count">📊 10 项</span><div class="cc-desc">AEC-Q102 / 温度循环 / 湿热结露 / 盐雾 / 振动冲击 / IP防护 / 失效模式</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="equipment"><div class="cc-header"><div class="cc-ic">⚙️</div><div class="cc-title-group"><div class="cc-lb">设备与仪器</div><div class="cc-en">Equipment & Tools</div></div></div><span class="cc-count">📊 5 项</span><div class="cc-desc">检验检测 / 组装设备 / 加工设备 / 环境试验 / 清洗包装</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="process"><div class="cc-header"><div class="cc-ic">🏭</div><div class="cc-title-group"><div class="cc-lb">工艺制造</div><div class="cc-en">Manufacturing</div></div></div><span class="cc-count">📊 2 项</span><div class="cc-desc">镜头总装 FCT 整线 / 镜筒加工舜宇 14 道</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="drawing"><div class="cc-header"><div class="cc-ic">📐</div><div class="cc-title-group"><div class="cc-lb">工程图纸</div><div class="cc-en">Engineering Drawing</div></div></div><span class="cc-count">📊 2 项</span><div class="cc-desc">图纸总览 DRW / 标注符号视图基准公差</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="module"><div class="cc-header"><div class="cc-ic">🔧</div><div class="cc-title-group"><div class="cc-lb">模组与系统</div><div class="cc-en">Module & System</div></div></div><span class="cc-count">📊 6 项</span><div class="cc-desc">AA 主动对准 / 点胶固化 / 相机标定 / HDR / LFM / 玻塑混合 G+P</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="material"><div class="cc-header"><div class="cc-ic">💎</div><div class="cc-title-group"><div class="cc-lb">材料与镜片</div><div class="cc-en">Materials & Lens</div></div></div><span class="cc-count">📊 3 项</span><div class="cc-desc">镜片材料玻璃塑料 / 镀膜 AR IR / 非球面自由曲面</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+        <div class="cat-card" data-cat="application"><div class="cc-header"><div class="cc-ic">🚗</div><div class="cc-title-group"><div class="cc-lb">应用场景</div><div class="cc-en">Applications</div></div></div><span class="cc-count">📊 5 项</span><div class="cc-desc">整车摄像头布局 / CMS 电子后视镜 / DMS OMS / LiDAR / AR-HUD</div><div class="cc-bar"><u style="width:0%"></u></div></div>
       </div>
         <div class="cat-card" data-cat="module"><div class="cc-ic">🔧</div><div class="cc-lb">模组与系统</div><div class="cc-en">AA/标定/HDR/LFM</div></div>
         <div class="cat-card" data-cat="material"><div class="cc-ic">💎</div><div class="cc-lb">材料与镜片</div><div class="cc-en">玻璃/塑/镀膜</div></div>
         <div class="cat-card" data-cat="application"><div class="cc-ic">🚗</div><div class="cc-lb">应用场景</div><div class="cc-en">布局/CMS/LiDAR</div></div>
 
       <div id="browse">
+
+  <!-- 设备：检验检测 -->
+  <div class="panel" id="panel-eq-inspect">
+    <div class="define"><b>释义：</b><b>检验检测设备</b>是车载光学产线中用于<b>量化验证镜头光学性能与几何精度</b>的核心仪器群。它们把"看起来清晰"的主观判断转化为可追溯、可对比的数值（MTF lp/mm、偏心角 °、VGI %），是 PPAP 交付和制程 SPC 的数据来源。每道工序后都有对应的检验关口，形成"制造→测量→反馈"闭环。</div>
+    <p class="tagline">一句话：检验设备 = 产线的"眼睛"，把光学质量翻译成数字</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">🔬 逆光路 MTF 设备</div><div class="enc-b"><b>用途：</b>组装后第一道光学检验，测 MTF / DOF / 场曲 / 畸变。<br><b>原理：</b>从像面侧入射平行光，经镜头逆向成像到物方，用 CCD 分析空间频率响应。<br><b>适用工序：</b>④ 过程光学检验（一道MTF）<br><b>关键指标：</b>中心 MTF ≥0.50 @119lp/mm，边缘 ≥0.35；重复精度 ≤±0.02。</div></div>
+      <div class="enc-card"><div class="enc-h">📊 PRO10 综合测试仪</div><div class="enc-b"><b>用途：</b>老化后的二道 MTF 复测，同时测场曲/畸变/DOF/EFL/FFL/畸变多项指标。<br><b>特点：</b>高自动化换料+多通道并行，适合批量终检。<br><b>适用工序：</b>⑥ 二道 MTF 检查<br><b>关键指标：</b>MTF/场曲/畸变/DOF 四项同时判良；节拍 ≤15s/颗。</div></div>
+      <div class="enc-card"><div class="enc-h">🎯 自动偏心设备（Centering）</div><div class="enc-b"><b>用途：</b>测量镜片/镜组的光轴与机械轴偏差（偏心/倾斜），以 arcmin 或 ° 为单位。<br><b>原理：</b>透射/反射式自准直，旋转被测件找光轴摆幅。<br><b>适用工序：</b>⑦ 最终检验<br><b>关键指标：</b>车载镜头要求偏心 ≤0.3°（部分严苛 spec ≤0.1°）；分辨率 0.01°。</div></div>
+      <div class="enc-card"><div class="enc-h">💡 VGI 杂光设备</div><div class="enc-b"><b>用途：</b>定量测量镜头杂散光/鬼影强度，输出 VGI（Veiling Glare Index）百分比。<br><b>原理：</b>黑背景下置强光源（积分球），测像面非目标区域漏光占比。<br><b>适用工序：</b>⑦ 最终检验<br><b>关键指标：</b>VGI ≤2.0%（前视）；≤3.0%（环视）。光源需覆盖可见+近红外。</div></div>
+      <div class="enc-card"><div class="enc-h">✨ 自动杂光设备</div><div class="enc-b"><b>用途：</b>模拟实车光源分布（阳光/路灯/对向来车），定性+定量捕捉鬼影路径与强度。<br><b>特点：</b>多角度光源阵列 + CCD 成像分析，自动生成鬼影热力图。<br><b>适用工序：</b>⑦ 最终检验<br><b>关键指标：</b>特定角度鬼影亮度 ≤阈值；无致命鬼影落入 ADAS ROI 区域。</div></div>
+      <div class="enc-card"><div class="enc-h">📏 来料检具（IQC Gauge）</div><div class="enc-b"><b>用途：</b>来料阶段全检镜片/镜筒/隔圈的尺寸公差、镀膜反射率/透过率、外观缺陷。<br><b>包含：</b>千分尺/投影仪/分光光度计/显微镜/外观标准样板。<br><b>适用工序：</b>① 来料检验（JY040 / FZ010–FZ020）<br><b>关键原则：</b>"来料是地基"——尺寸/镀膜不达标，后续组装再好也救不回 MTF。</div></div>
+    </div>
+    <div class="note"><b>检验体系逻辑链：</b>来料 IQC（挡住不良毛坯）→ 过程 MTF（组装后立刻发现偏心/内尘）→ 可靠性预处理（温循逼出隐患）→ 二道 PRO10（确认老化后指标不漂）→ 最终 VGI+偏心+杂光（收口放行）。每道关口的数据都进入 SPC 控制图，异常触发停线报警。这套体系是 AEC-Q102 和 IATF 16949 的落地执行层。</div>
+  </div>
+
+  <!-- 设备：组装设备 -->
+  <div class="panel" id="panel-eq-assembly">
+    <div class="define"><b>释义：</b><b>组装设备</b>是把镜片、隔圈、IR 滤光片、镜筒等零部件按光学设计顺序装配成完整镜头模组的自动化设备群。组装精度直接决定最终 MTF——<b>镜片间隔误差 ±5µm 就会让 MTF 掉 5~10%</b>，所以组装设备的定位精度、压力控制、清洁环境等级都是核心参数。</div>
+    <p class="tagline">一句话：组装设备 = 把"零件堆"变成"精密镜头"的自动化手</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">🤖 自动组装机（Assembly Machine）</div><div class="enc-b"><b>用途：</b>核心工序——按顺序将镜片逐片装入镜筒，控制间隔和同轴度。<br><b>关键能力：</b>六轴精密定位（重复定位 ±2µm）、柔性夹具（兼容多型号）、力控压合（防碎裂）。<br><b>适用工序：</b>③ 自动组装（ZZ010）<br><b>洁净度：</b>通常在 Class 1000~10000（ISO 6~7）净化间运行。</div></div>
+      <div class="enc-card"><div class="enc-h">🔩 外压圈锁付机（Retainer Press）</div><div class="enc-b"><b>用途：</b>将金属/塑胶压圈旋入或压入镜筒端面，固定已装好的镜片组。<br><b>关键能力：</b>扭矩控制（mN·m 级精度）、深度限位（±10µm）、防刮伤软爪。<br><b>适用工序：</b>③ 自动组装子工序（ZZ020）<br><b>风险：</b>扭矩过大→镜片应力→双折射/偏振异常；过小→运输松脱→焦面漂移。</div></div>
+      <div class="enc-card"><div class="enc-h">💧 IR 组立点胶一体机（IR Bonding）</div><div class="enc-b"><b>用途：</b>将 IR 截止滤光片精确放入镜筒指定位置并 UV/热固化胶水粘接。<br><b>关键能力：</b>胶量闭环控制（mg 级）、UV 曝光能量监控（mJ/cm²）、位置视觉对准。<br><b>适用工序：</b>③ 自动组装子工序（ZZ060）<br><b>意义：</b>IR 片位置直接影响 CRA 匹配和红外截止性能，是 AA 对准后的定型关键步。</div></div>
+      <div class="enc-card"><div class="enc-h">🔵 外压圈点胶单工站（Retainer Gluing）</div><div class="enc-b"><b>用途：</b>在压圈与镜筒接触面施加厌氧胶/UV 胶，防止振动环境下松动。<br><b>关键能力：</b>点胶轨迹编程（环形/螺旋）、胶量微分配、固化时间控制。<br><b>适用工序：</b>③ 自动组装子工序（ZZ070）<br><b>注意：</b>此工序胶水不可溢出到光学通光孔内，否则成为杂光源头。</div></div>
+      <div class="enc-card"><div class="enc-h">🌪️ 自动内尘检查设备（Particle Inspector）</div><div class="enc-b"><b>用途：</b>组装过程中/完成后，自动扫描镜筒内部腔体，检测并计数灰尘颗粒。<br><b>原理：</b>暗场照明 + 高分辨率 CCD + AI 图像识别，按粒径分级统计。<br><b>适用工序：</b>③ 自动组装子工序（ZZ030）<br><b>标准：</b>车载镜头一般要求 ≥30µm 颗粒为 0 个；10~30µm 限制数量（如 ≤3 颗）。</div></div>
+    </div>
+    <div class="note"><b>组装精度链：</b>组装机定位（±2µm）→ 镜片间隔控制（±5µm）→ 压圈锁付（扭矩 mN·m）→ IR 点胶（位置 ±20µm）→ 内尘检查（≥30µm=0）。任一环节失控都会传递到下游：间隔超差→MTF 偏低；扭矩不当→温循后松脱→焦面漂移；胶溢出→杂光超标；内尘→VGI 恶化。所以组装设备不仅是"装起来"，更是"在 µm 级别上精准地装起来"。</div>
+  </div>
+
+  <!-- 设备：加工设备 -->
+  <div class="panel" id="panel-eq-machine">
+    <div class="define"><b>释义：</b><b>加工设备</b>负责将原材料（铝锭/塑胶粒子/玻璃毛坯）转化为符合图纸公差的精密零部件（镜筒/隔圈/支架）。车载光学的加工特点是<b>大批量 + 高一致性 + 严格洁净</b>——一个镜筒批次几千件，同轴度要求 0.005mm 级别。</div>
+    <p class="tagline">一句话：加工设备 = 把原材料变成 µm 级精度的镜筒/隔圈/支架</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">🌀 集尘器（Dust Collector）</div><div class="enc-b"><b>用途：</b>镜筒加工全线（CNC 铣/车/喷砂/镭雕）的切削粉尘和微粒抽排，保持净化间洁净度。<br><b>关键参数：</b>风量（CMH）、过滤效率（HEPA H13/H14）、负压维持能力。<br><b>适用工序：</b>② 镜筒加工全线（FZ030–FZ050）<br><b>重要性：</b>铝屑若残留在镜筒内膛，组装后就是内尘源 → VGI 升高 → 夜视出现光斑。</div></div>
+      <div class="enc-card"><div class="enc-h">📦 摆盘机（Tray Loader / Parts Feeder）</div><div class="enc-b"><b>用途：</b>将加工好的零部件从周转盘/托盘中自动取出、整理、排序，送入下一道工序或组装线上料位。<br><b>类型：</b>振动盘供料、托盘机器人抓取、视觉引导排列。<br><b>适用工序：</b>② 镜筒加工（FZ050 部品排料）及后续组装上料<br><b>效率：</b>典型节拍 2~5 秒/件，决定整线 UPH（每小时产出）上限。</div></div>
+      <div class="enc-card"><div class="enc-h">🏷️ 激光打标机（Laser Marker）</div><div class="enc-b"><b>用途：</b>在镜筒外表面雕刻永久性追溯信息（批号/日期/序列号/QR Code），满足 PPAP 可追溯要求和整车召回体系。<br><b>常用类型：</b>光纤激光（金属镜筒，波长 1064nm）、紫外激光（塑料镜筒，355nm）。<br><b>适用工序：</b>镜筒加工工序 11（镭雕）<br><b>关键：</b>标记深度须可控（不伤基体强度）、不可产生熔渣飞溅污染光学面。</div></div>
+      <div class="enc-card"><div class="enc-h">🔄 CNC 加工中心（CNC Machining Center）</div><div class="enc-b"><b>用途：</b>镜筒的铣削（外形/安装面/卡槽）和车削（内膛/螺纹/止口），是镜筒加工最核心的设备。<br><b>关键能力：</b>主轴转速 10000~20000rpm、定位精度 ±1µm、表面粗糙度 Ra 0.4~0.8。<br><b>适用工序：</b>镜筒加工 ★ 工序 4（CNC 铣）/ 5（CNC 车 1）/ 6（CNC 车 2）<br><b>影响链：</b>CNC 精度 → 镜筒同轴度/圆度 → 组装偏心 → MTF 边缘掉。</div></div>
+      <div class="enc-card"><div class="enc-h">🔨 压铸机（Die Casting Machine）</div><div class="enc-b"><b>用途：</b>铝合金镜筒毛坯的一次成型（工序 2 ★），将熔融铝高压注入钢模快速冷却成型。<br><b>关键参数：</b>合模力（吨）、注射速度、模具温度控制（±5℃）。<br><b>适用工序：</b>镜筒加工 ★ 工序 2（压铸）<br><b>为何 ★：</b>毛坯质量决定后 12 道工序成本和良率——气孔/冷隔/缩松一旦产生，后面全部白做。</div></div>
+    </div>
+    <div class="note"><b>加工→组装的质量传递：</b>压铸毛坯（气孔率控制）→ CNC 铣车（同轴度/圆度 ±0.005mm）→ 喷砂（表面均匀性）→ 阳极氧化（膜厚 8~15µm 封孔质量）→ 镭雕（追溯码）。每一道的输出公差都是下一道的输入基准。舜宇 14 道工序中标注了 7 道 ★ 关键控制工序，就是因为这些工序的设备能力和过程参数直接决定了最终镜头能否通过 MTF/VGI/偏心验收。</div>
+  </div>
+
+  <!-- 设备：环境试验 -->
+  <div class="panel" id="panel-eq-envtest">
+    <div class="define"><b>释义：</b><b>环境试验设备</b>用于模拟车载镜头在全生命周期中将遭遇的极端环境（高温/低温/湿热/温度冲击/盐雾/振动），通过加速老化验证产品可靠性。AEC-Q102 认证的大部分测试项目都在这类设备上完成。</div>
+    <p class="tagline">一句话：环境试验箱 = 时间加速器，把数月甚至数年的老化压缩到几天</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">🌡️ 老化箱（Aging Oven / Thermal Chamber）</div><div class="enc-b"><b>用途：</b>可靠性预处理核心设备——让模组在高温（如 85~105℃）下长时间烘烤，加速胶水固化完全、释放残余应力、逼出虚焊。<br><b>关键参数：</b>温度范围 −65℃~+150℃、均匀度 ±1℃、升温速率 >5℃/min。<br><b>适用工序：</b>⑤ 可靠性预处理（ZZ040 / ZZ080）<br><b>典型条件：</b>85℃ × 16H × 2 循环（共 32 小时老化），中间穿插冷热冲击。</div></div>
+      <div class="enc-card"><div class="enc-h">🔥 烘箱（Baking Oven）</div><div class="enc-b"><b>用途：</b>辅助老化手段——更高温度短时间烘烤，主要用于胶水后固化（Post-Cure）和除湿干燥。<br><b>与老化箱区别：</b>烘箱侧重"恒温烘烤"，老化箱侧重"程序控温循环"。烘箱温度可达 200℃+。<br><b>适用工序：</b>⑤ 可靠性预处理（配合 ZZ080）<br><b>注意：</b>UV 胶主固化后仍需热烘后固化才能达到最终剪切强度，这一步 skipped 会导致温循时胶裂。</div></div>
+      <div class="enc-card"><div class="enc-h">❄️ 冷热冲击箱（Thermal Shock Chamber）</div><div class="enc-b"><b>用途：</b>高低温快速交替冲击（如 −43℃ ↔ +95℃，转换时间 <10s），考核 CTE 不匹配导致的焊点疲劳、胶裂、焦面漂移。<br><b>类型：</b>两箱式（样品移动）/ 三箱式（高温/低温/静止各一室）。<br><b>典型条件：</b>500~1000 循环，每循环含高低温驻留 10~30min。<br><b>关联失效：</b>焊点开裂（图像丢行）、AA 胶裂（焦点永久偏移）、IR 滤片脱胶。</div></div>
+      <div class="enc-card"><div class="enc-h">💧 湿热试验箱（Damp Heat Chamber）</div><div class="enc-b"><b>用途：</b>考核吸湿、离子迁移、腐蚀、胶水解。双 85 条件（85℃/85%RH）是入门线；HAST 加速用 110℃/85%RH/2atm。<br><b>关键能力：</b>湿度控制精度 ±2%RH、无凝结水滴直接落在样品上。<br><b>关联标准：</b>AEC-Q102 THB/HAST 测试组、IEC 60068-2-78。<br><b>防护联动：</b>湿热不合格 → 加强 IP 密封 + 透气阀 + 干燥剂。</div></div>
+      <div class="enc-card"><div class="enc-h">🌊 盐雾试验箱（Salt Spray Chamber）</div><div class="enc-b"><b>用途：</b>中性盐雾 NSS（35℃、5% NaCl）考核金属外壳耐腐蚀能力。沿海/冬季除冰盐场景的关键测试。<br><b>关键能力：</b>喷雾量 1~2ml/h/80cm²、pH 6.5~7.2、连续/周期喷雾模式。<br><b>车厂企标：</b>常见 480h 无红锈（比国标 GB/T 2423.17 的 24h 严苛 20 倍）。<br><b>失效形态：</b>阳极氧化膜针孔腐蚀→基体膨胀→镜片偏心→MTF 永久降低。</div></div>
+      <div class="enc-card"><div class="enc-h">📳 振动台（Vibration Shaker）</div><div class="enc-b"><b>用途：</b>模拟行驶颠簸（随机振动 PSD 谱）和碰撞冲击（50~100g 半正弦），考核结构紧固性和光轴稳定性。<br><b>类型：</b>电动式（高频低推力）/ 液压式（低频高推力）。<br><b>关键参数：</b>频率范围 5~2000Hz、推力、加速度范围。<br><b>最严苛组合：</b>温振综合试验（温度循环叠加振动）——同时激发材料和结构两类退化机理。</div></div>
+    </div>
+    <div class="note"><b>环境试验矩阵设计原则：</b>不是所有测试都做最严——而是根据<b>摄像头布置位置</b>选择组合。前视（外露）：IP69K + 盐雾 480h + 温循 1000 循环 + 振动；舱内 DMS：双 85 1000h + 温循 500 循环（免盐雾）；CMS（半外露）：折中方案。设备选型要考虑<b>样品容量</b>（一次能测多少颗，影响测试成本）和<b>传感器布置</b>（温探头贴在胶层/焊点附近才能抓到真实温度）。</div>
+  </div>
+
+  <!-- 设备：清洗包装 -->
+  <div class="panel" id="panel-eq-cleanpack">
+    <div class="define"><b>释义：</b><b>清洗与包装设备</b>位于产线的末端和出货环节，负责清除加工/组装过程中残留的污染物（切削液/胶渍/粉尘/手指印），并以防潮防静电方式封装成品，确保镜头从工厂到整车厂的运输途中品质不变。</div>
+    <p class="tagline">一句话：清洗去污 + 真空封存 = 保证客户开箱时的镜头和出厂时一样好</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">🧊 干冰清洗设备（CO₂ Snow Cleaning）</div><div class="enc-b"><b>用途：</b>最终检验前用固态 CO₂ 颗粒喷射清洗镜头表面及镜筒缝隙，去除有机残留（指纹/油脂/胶渍）和微粒，且无液体残留（干式清洗）。<br><b>原理：</b>压缩空气携带干冰颗粒高速撞击表面，动能去除污垢 + 低温脆化油污 + 升华无二次污染。<br><b>适用工序：</b>⑦ 最终检验前置（ZZ100）<br><b>优势：</b>不损伤镀膜、不留水痕、环保（CO₂ 来自回收副产品）。</div></div>
+      <div class="enc-card"><div class="enc-h">📦 真空包装机（Vacuum Packaging Machine）</div><div class="enc-b"><b>用途：</b>成品镜头装入铝箔袋后抽真空热封，隔绝湿气和氧气，防止存储和运输过程中受潮氧化。<br><b>关键参数：</b>真空度（余压 <100Pa）、热封温度/时间、封口完整性（ peel strength >15N/25mm）。<br><b>适用工序：</b>⑧ 包装出货（BZ010）<br><b>配套：</b>袋内常放入干燥剂（硅胶/分子筛）和脱氧剂，延长保质期至 12~24 个月。</div></div>
+      <div class="enc-card"><div class="enc-h">🫧 超声波清洗机（Ultrasonic Cleaner）</div><div class="enc-b"><b>用途：</b>加工过程中的中间清洗——将镜筒/隔圈浸泡在清洗液中，用超声波（28~40kHz）震除切削液、铝屑、油污。<br><b>多槽配置：</b>①溶剂洗 → ②纯水漂洗 → ③慢拉脱水 → ④热风烘干。<br><b>适用场景：</b>镜筒加工工序 10（清洗）及组装前的部品清洁<br><b>注意：</b>清洗剂选型必须兼容铝材阳极氧化膜（不能用强碱）。</div></div>
+      <div class="enc-card"><div class="enc-h">🔓 离子风机 / 静电消除器（Ionizer）</div><div class="enc-b"><b>用途：</b>消除塑料镜片和镜筒表面的静电吸附——静电会吸附空气中的灰尘微粒，导致 VGI 升高。<br><b>类型：</b>离子风扇（工位局部除静电）、离子风刀（传送带隧道式全覆盖）。<br><b>适用场景：</b>组装线上料前、包装前、VGI 检测前<br><b>关键指标：</b>平衡电压 <±50V、残存时间 <5s。</div></div>
+    </div>
+    <div class="note"><b>清洗包装质量链条：</b>超声波中间清洗（去切削液/铝屑）→ 离子风机除静电（防灰尘再附着）→ 干冰终洗（去指纹/有机残留）→ 真空包装+干燥剂（防运输受潮）。任何一环疏忽都会在客户端 IQC 或实车上暴露：脏污→ADAS 误检；受潮→镜筒内部起雾；静电吸附→VGI 超标退货。"清洗包装是最便宜的工序，但也是最容易被忽视的质量杀手。"</div>
+  </div>
 <div class="catbar">
     <div class="cat active" id="cat-optics" onclick="showCat('optics')">光学</div>
     <div class="cat" id="cat-reliability" onclick="showCat('reliability')">信赖性</div>
     <div class="cat" id="cat-process" onclick="showCat('process')">工艺</div>
+    <div class="cat" id="cat-equipment" onclick="showCat('equipment')">设备</div>
     <div class="cat" id="cat-drawing" onclick="showCat('drawing')">图纸</div>
   </div>
     <div class="cat" id="cat-module" onclick="showCat('module')">模组与系统</div>
@@ -655,6 +763,13 @@
   <div class="tabs" id="subtabs-drawing" style="display:none;">
     <div class="tab active" id="tab-draw-overview" onclick="showTab('draw-overview')">图纸总览<span class="en">DRW020906004</span></div>
     <div class="tab" id="tab-drawsym" onclick="showTab('drawsym')">标注符号<span class="en">视图/基准/公差</span></div>
+  </div>
+  <div class="tabs" id="subtabs-equipment" style="display:none;">
+    <div class="tab active" id="tab-eq-inspect" onclick="showTab('eq-inspect')">检验检测<span class="en">MTF/VGI/偏心</span></div>
+    <div class="tab" id="tab-eq-assembly" onclick="showTab('eq-assembly')">组装设备<span class="en">AA/点胶/锁付</span></div>
+    <div class="tab" id="tab-eq-machine" onclick="showTab('eq-machine')">加工设备<span class="en">CNC/打标</span></div>
+    <div class="tab" id="tab-eq-envtest" onclick="showTab('eq-envtest')">环境试验<span class="en">老化/温循</span></div>
+    <div class="tab" id="tab-eq-cleanpack" onclick="showTab('eq-cleanpack')">清洗包装<span class="en">干冰/真空</span></div>
   </div>
   <div class="tabs" id="subtabs-module" style="display:none;">
     <div class="tab active" id="tab-aa" onclick="showTab('aa')">AA 主动对准<span class="en">6DOF</span></div>
@@ -1989,7 +2104,7 @@ function expandPanel(btn, open){
   });
 }
 let currentCat = 'optics';
-const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', module:'aa', material:'lensmat', application:'layout' };
+const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout' };
 const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
   fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
@@ -2004,7 +2119,7 @@ function showTab(id){
 }
 function showCat(cat){
   currentCat = cat;
-  ['optics','reliability','process','drawing','module','material','application'].forEach(c=>{
+  ['optics','reliability','process','drawing','equipment','module','material','application'].forEach(c=>{
     document.getElementById('cat-'+c).classList.toggle('active', c===cat);
   });
   document.getElementById('subtabs-optics').style.display = (cat==='optics') ? 'flex' : 'none';
@@ -2014,6 +2129,7 @@ function showCat(cat){
   document.getElementById('subtabs-module').style.display = (cat==='module') ? 'flex' : 'none';
   document.getElementById('subtabs-material').style.display = (cat==='material') ? 'flex' : 'none';
   document.getElementById('subtabs-application').style.display = (cat==='application') ? 'flex' : 'none';
+  document.getElementById('subtabs-equipment').style.display = (cat==='equipment') ? 'flex' : 'none';
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(cat==='process'){
@@ -2969,7 +3085,7 @@ renderFNOLight();
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 40;
+  var VER_TOTAL = 45;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -2992,7 +3108,7 @@ renderFNOLight();
     var title = ''; t.childNodes.forEach(function(n){ if(n.nodeType===3) title += n.textContent; });
     ITEMS.push({id:id, cat:cat, title:title.trim(), en:en});
   });
-  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', module:'模组与系统', material:'材料与镜片', application:'应用场景' };
+  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', equipment:'设备与仪器', module:'模组与系统', material:'材料与镜片', application:'应用场景' };
   function seenCount(){ return LS.get('optics_seen',[]).length; }
 
   var _showTab = showTab; showTab = function(id){ _showTab(id); recordView(id); };
