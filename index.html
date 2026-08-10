@@ -315,10 +315,10 @@
   ::-webkit-scrollbar-thumb:hover{ background:rgba(255,255,255,.22); background-clip:padding-box; }
   ::selection{ background:rgba(91,140,255,.35); color:#fff; }
 </style>
-<!-- 启动页样式已移除 v0.1.6 -->
+<!-- 启动页样式已移除 v0.2.0 -->
 
 <style>
-  /* ============ v0.1.6 深空玻璃 · 应用外壳 ============ */
+  /* ============ v0.2.0 深空玻璃 · 应用外壳 ============ */
   #bg{ position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
   #app{ position:relative; z-index:1; display:flex; min-height:100vh; }
 
@@ -528,6 +528,27 @@
   }
 </style>
 
+  <style id="enc-style">
+  .enc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:14px 0;}
+  .enc-card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:.2s;}
+  .enc-card:hover{border-color:rgba(124,108,255,.5);background:rgba(124,108,255,.06);}
+  .enc-h{font-size:13px;font-weight:600;color:var(--brand-2);margin-bottom:6px;letter-spacing:.3px;}
+  .enc-b{font-size:13px;line-height:1.62;color:var(--muted);}
+  .enc-b b{color:var(--text);font-weight:600;}
+  .enc-list{margin:10px 0;padding-left:18px;}
+  .enc-list li{margin:7px 0;line-height:1.65;font-size:13.5px;color:var(--muted);}
+  .enc-list li b{color:var(--text);}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px;margin:12px 0;}
+  .kv dt{color:var(--brand-2);font-weight:600;white-space:nowrap;}
+  .kv dd{color:var(--muted);margin:0;}
+  .svgbox{margin:12px 0;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+  .svgbox svg{max-width:100%;height:auto;}
+  .svgcap{font-size:11.5px;color:var(--muted);margin-top:4px;}
+  .lvgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0;}
+  .lv{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--muted);}
+  .lv b{color:var(--text);}
+  .lv .n{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:var(--brand-2);color:#fff;font-size:11px;margin-right:6px;}
+  </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
@@ -539,12 +560,12 @@
       <button class="nav-item" data-page="random"><span class="ni-ic">🎲</span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="dash"><span class="ni-ic">📊</span><span class="ni-lb">数据看板</span></button>
     </nav>
-    <div class="side-foot">v0.1.6 · 2026-08-10<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.2.0 · 2026-08-10<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">已学 0/19</span>
+      <span class="tb-prog" id="tbProg">已学 0/40</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -565,13 +586,16 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载镜头光学</h1>
-      <div class="hero-sub">Automotive Lens Optics</div>
+      <h1 class="hero-title">车载光学百科</h1>
+      <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
-        <span class="hero-chip">光学 · 12 交互模块</span>
-        <span class="hero-chip">信赖性 · 实车退化</span>
-        <span class="hero-chip">工艺 · 产线对照</span>
-        <span class="hero-chip">图纸 · 符号图解</span>
+        <span class="hero-chip">光学基础 · 12</span>
+        <span class="hero-chip">信赖性·车规 · 10</span>
+        <span class="hero-chip">工艺制造 · 2</span>
+        <span class="hero-chip">工程图纸 · 2</span>
+        <span class="hero-chip">模组与系统 · 6</span>
+        <span class="hero-chip">材料与镜片 · 3</span>
+        <span class="hero-chip">应用场景 · 5</span>
       </div>
     </div>
   </div>
@@ -582,6 +606,10 @@
         <div class="cat-card" data-cat="process"><div class="cc-ic">🏭</div><div class="cc-lb">工艺</div><div class="cc-en">产线对照</div></div>
         <div class="cat-card" data-cat="drawing"><div class="cc-ic">📐</div><div class="cc-lb">图纸</div><div class="cc-en">符号图解</div></div>
       </div>
+        <div class="cat-card" data-cat="module"><div class="cc-ic">🔧</div><div class="cc-lb">模组与系统</div><div class="cc-en">AA/标定/HDR/LFM</div></div>
+        <div class="cat-card" data-cat="material"><div class="cc-ic">💎</div><div class="cc-lb">材料与镜片</div><div class="cc-en">玻璃/塑/镀膜</div></div>
+        <div class="cat-card" data-cat="application"><div class="cc-ic">🚗</div><div class="cc-lb">应用场景</div><div class="cc-en">布局/CMS/LiDAR</div></div>
+
       <div id="browse">
 <div class="catbar">
     <div class="cat active" id="cat-optics" onclick="showCat('optics')">光学</div>
@@ -589,6 +617,10 @@
     <div class="cat" id="cat-process" onclick="showCat('process')">工艺</div>
     <div class="cat" id="cat-drawing" onclick="showCat('drawing')">图纸</div>
   </div>
+    <div class="cat" id="cat-module" onclick="showCat('module')">模组与系统</div>
+    <div class="cat" id="cat-material" onclick="showCat('material')">材料与镜片</div>
+    <div class="cat" id="cat-application" onclick="showCat('application')">应用场景</div>
+
   <div class="tabs" id="subtabs-optics">
     <div class="tab active" id="tab-mtf" onclick="showTab('mtf')">MTF<span class="en">调制传递</span></div>
     <div class="tab" id="tab-dof" onclick="showTab('dof')">DOF<span class="en">景深</span></div>
@@ -607,6 +639,13 @@
     <div class="tab" id="tab-thcomp" onclick="showTab('thcomp')">热补偿<span class="en">温度补偿</span></div>
     <div class="tab" id="tab-stray" onclick="showTab('stray')">杂光<span class="en">杂散光</span></div>
     <div class="tab" id="tab-ghost" onclick="showTab('ghost')">鬼像<span class="en">重影</span></div>
+    <div class="tab" id="tab-aecq102" onclick="showTab('aecq102')">AEC-Q102<span class="en">车规认证</span></div>
+    <div class="tab" id="tab-tempcycle" onclick="showTab('tempcycle')">温度循环<span class="en">热疲劳</span></div>
+    <div class="tab" id="tab-dampheat" onclick="showTab('dampheat')">湿热/结露<span class="en">腐蚀/起雾</span></div>
+    <div class="tab" id="tab-saltspray" onclick="showTab('saltspray')">盐雾<span class="en">腐蚀</span></div>
+    <div class="tab" id="tab-vibration" onclick="showTab('vibration')">振动冲击<span class="en">结构</span></div>
+    <div class="tab" id="tab-iprating" onclick="showTab('iprating')">IP 防护<span class="en">密封</span></div>
+    <div class="tab" id="tab-failmode" onclick="showTab('failmode')">失效模式<span class="en">图鉴</span></div>
   </div>
 
   <div class="tabs" id="subtabs-process" style="display:none;">
@@ -617,6 +656,27 @@
     <div class="tab active" id="tab-draw-overview" onclick="showTab('draw-overview')">图纸总览<span class="en">DRW020906004</span></div>
     <div class="tab" id="tab-drawsym" onclick="showTab('drawsym')">标注符号<span class="en">视图/基准/公差</span></div>
   </div>
+  <div class="tabs" id="subtabs-module" style="display:none;">
+    <div class="tab active" id="tab-aa" onclick="showTab('aa')">AA 主动对准<span class="en">6DOF</span></div>
+    <div class="tab" id="tab-dispensing" onclick="showTab('dispensing')">点胶与固化<span class="en">定焦</span></div>
+    <div class="tab" id="tab-calibration" onclick="showTab('calibration')">相机标定<span class="en">内/外参</span></div>
+    <div class="tab" id="tab-hdr" onclick="showTab('hdr')">HDR<span class="en">高动态</span></div>
+    <div class="tab" id="tab-lfm" onclick="showTab('lfm')">LFM<span class="en">闪抑</span></div>
+    <div class="tab" id="tab-gp" onclick="showTab('gp')">玻塑混合 G+P<span class="en">材料</span></div>
+  </div>
+  <div class="tabs" id="subtabs-material" style="display:none;">
+    <div class="tab active" id="tab-lensmat" onclick="showTab('lensmat')">镜片材料<span class="en">玻璃/塑料</span></div>
+    <div class="tab" id="tab-coating" onclick="showTab('coating')">镀膜工艺<span class="en">AR/IR</span></div>
+    <div class="tab" id="tab-asphere" onclick="showTab('asphere')">非球面/自由曲面<span class="en">面型</span></div>
+  </div>
+  <div class="tabs" id="subtabs-application" style="display:none;">
+    <div class="tab active" id="tab-layout" onclick="showTab('layout')">整车摄像头布局<span class="en">眼睛矩阵</span></div>
+    <div class="tab" id="tab-cms" onclick="showTab('cms')">CMS 电子后视镜<span class="en">GB15084</span></div>
+    <div class="tab" id="tab-dms" onclick="showTab('dms')">DMS/OMS<span class="en">舱内</span></div>
+    <div class="tab" id="tab-lidar" onclick="showTab('lidar')">LiDAR 光学<span class="en">激光雷达</span></div>
+    <div class="tab" id="tab-arhud" onclick="showTab('arhud')">AR-HUD<span class="en">自由曲面</span></div>
+  </div>
+
 
   <!-- MTF -->
   <div class="panel show" id="panel-mtf">
@@ -1537,6 +1597,345 @@
     <div class="src">框格读作"几何特性符号 + 公差值 + 基准字母"。例如 <b>⊥ 0.02 A</b> = 垂直度误差 ≤0.02，相对基准 A。本图形位公差多引用 A/B/C/D/F/G 等基准。</div>
   </div>
 
+          <div class="panel" id="panel-aecq102">
+
+    <div class="define"><b>释义：</b><b>AEC-Q102</b> 是汽车电子协会（AEC）针对<b>汽车光电器件</b>（LED / 激光器件 / 光电传感器 / 摄像头与 LiDAR 模组中的光电部件）发布的可靠性应力验证标准（2017 年），补足了 AEC-Q100（IC）/ Q101（分立半导体）/ Q200（被动件）未覆盖的"光"维度。带光电部件的摄像头、CMOS、红外、LiDAR 须过此认证方能上车。</div>
+    <p class="tagline">一句话：AEC-Q102 = 光电器件的车规"高考"，不过拿不到 Tier1 定点</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">家族定位</div><div class="enc-b">Q100 管 IC、Q101 管分立、<b>Q102 专管光电</b>、Q200 管被动。四者并列构成车规半导体认证矩阵。</div></div>
+      <div class="enc-card"><div class="enc-h">温度等级</div><div class="enc-b">Grade 0：−40~150℃；<b>Grade 1：−40~125℃</b>；Grade 2：−40~105℃；Grade 3：0~70℃。车载摄像头多取 G1/G2。</div></div>
+      <div class="enc-card"><div class="enc-h">测试组（节选）</div><div class="enc-b">预处理(MSL/回流)、温湿度偏置 THB/HAST、温度循环、功率温度循环 PTC、端子强度、可焊性、ESD、电参数、寿命、外观、交联度(胶)。</div></div>
+    </div>
+    <div class="note"><b>性质：</b>AEC 系列是<b>自愿标准但行业强制</b>——没有它，主机厂与 Tier1 不会定点。它验证的是"失效机理是否已被激发并可控"，并不直接规定性能规格（性能由你自己的 spec 定）。认证通常包含 20+ 项加速测试、累计数千小时，且须与 <b>IATF 16949</b> 质量流程绑定。摄像头模组里被考核的"光电件"主要是 CMOS 与 IR 截止滤光片；而整模组的结构可靠性（温循/振动）往往再用企业标准加严。</div>
+
+  </div>
+  <div class="panel" id="panel-tempcycle">
+
+    <div class="define"><b>释义：</b><b>温度循环（Temperature Cycling）</b>把模组在 −40℃ ↔ 105℃（甚至 150℃）之间反复升降，考核不同材料<b>热膨胀系数（CTE）不匹配</b>引起的焊点疲劳、胶层开裂、镜片/镜筒分离、焦面永久偏移。它是车规最基础、也最"杀人"的一项。</div>
+    <p class="tagline">一句话：反复冻融 → 材料胀缩不一致 → 焊裂/胶裂/焦面漂</p>
+    <div class="kv">
+      <dt>典型条件</dt><dd>−40~105℃、温变率 10~15℃/min、高低温驻留 10~30min、<b>500~1000 循环</b>（依等级）。</dd>
+      <dt>核心机理</dt><dd>玻璃 CTE≈7、塑料≈70、铝≈23、PCB≈17 ppm/℃——胀缩不一致 → 界面剪切应力累积 → 热疲劳。</dd>
+      <dt>常见失效</dt><dd>焊点开裂（图像丢行/断电）、AA 胶裂（焦点永久偏移→MTF 掉）、IR 滤片脱胶（鬼影）、FPC 断裂。</dd>
+    </div>
+    <div class="note"><b>与热补偿的区别：</b>热补偿管的是"运行中的可逆温漂"（靠结构+算法实时压回 DOF）；温度循环管的是"寿命累积的不可逆损伤"（胶裂/焊裂一旦发生就回不来）。二者互补：前者决定能不能用，后者决定能用多久。行业教训：某量产镜头温循约 300 循环后 AA 胶微裂，夜视焦面偏移约 15µm（远超 DOF），整批召回。</div>
+
+  </div>
+  <div class="panel" id="panel-dampheat">
+
+    <div class="define"><b>释义：</b><b>湿热 / 结露</b>：湿热（Damp Heat，THB 85℃/85%RH；高加速 HAST 110℃/85%RH/2atm）考核吸湿、离子迁移、腐蚀、胶水解；<b>结露（Condensation）</b>是车外镜头从冷库进暖库、或洗车/雨天骤冷骤热时，镜筒内表面凝水 → 起雾、电路短路。</div>
+    <p class="tagline">一句话：高湿高温 → 金属迁移/胶水解；温差大 → 镜筒内凝水起雾</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">失效形态</div><div class="enc-b">银/铜离子迁移致漏电短路；IR 滤片胶水解发白；PCB 腐蚀；镜头<b>内部起雾</b>。</div></div>
+      <div class="enc-card"><div class="enc-h">防护手段</div><div class="enc-b">纳米疏水镀膜（前表面）、<b>透气阀+干燥剂</b>（镜筒内腔）、全密封 IP、conformal coating 三防漆。</div></div>
+      <div class="enc-card"><div class="enc-h">与 IP 联动</div><div class="enc-b">结露多因密封不良或温差过大；<b>IP67 + 干燥剂</b>是外露镜头标配组合。</div></div>
+    </div>
+    <div class="note"><b>门槛：</b>双 85（85℃/85%RH）1000 小时是车规入门线；热带/高湿市场（东南亚）需加严。HAST 用高温高压水蒸气把数月老化压缩到几十小时。注意：全密封虽防进水，但内部温差会凝露，所以必须配<b>防水透气膜（Gore 类）</b>平衡气压、并放干燥剂吸残余水汽——这是一对需要协同设计的矛盾。</div>
+
+  </div>
+  <div class="panel" id="panel-saltspray">
+
+    <div class="define"><b>释义：</b><b>盐雾（Salt Spray）</b>用中性盐雾（NSS，35℃、5% NaCl）考核金属外壳/支架/端子在沿海与冬季除冰盐环境下的耐腐蚀能力。车载前视镜头裸露在外，<b>盐雾 + 石击</b>是外露金属件的"组合杀"。</div>
+    <p class="tagline">一句话：盐雾腐蚀金属 → 镜筒锈胀偏心、端子接触不良</p>
+    <div class="enc-list">
+      <li><b>失效：</b>铝镜筒阳极氧化膜针孔 → 基体腐蚀膨胀 → 镜片偏心；不锈钢支架生锈；端子接触不良。</li>
+      <li><b>防护：</b>阳极氧化膜加厚 + 封孔、不锈钢 316、导电防腐脂、结构密封。</li>
+      <li><b>标准：</b>IEC 60068-2-11、GB/T 2423.17；车厂企标更严（如 480h 无红锈）。</li>
+    </div>
+    <div class="note"><b>场景差异：</b>北方冬季撒融雪盐，盐雾叠加冻融循环对外露金属最伤；沿海城市的盐雾 + 高湿则加速电化学腐蚀。阳极氧化"封孔"质量是关键——封孔不良等于给腐蚀开了门。对摄像头而言，金属腐蚀不仅丑，更会顶歪镜片造成<b>永久性偏心</b>，直接拉低 MTF。</div>
+
+  </div>
+  <div class="panel" id="panel-vibration">
+
+    <div class="define"><b>释义：</b><b>振动与机械冲击</b>考核行驶颠簸、坑洼、碰撞下结构不松脱、光轴不偏、图像不抖。引擎/路面/底盘多源振动叠加，须让结构<b>避开共振频率</b>。</div>
+    <p class="tagline">一句话：长期抖 + 瞬时撞 → 螺丝松、焦点慢漂、焊点虚</p>
+    <div class="kv">
+      <dt>振动</dt><dd>随机振动 PSD 按车厂谱（如 5~2000Hz、数 Grms）；正弦扫频找共振。</dd>
+      <dt>冲击</dt><dd>机械冲击 50~100g 半正弦（模拟过减速带/碰撞）。</dd>
+      <dt>失效</dt><dd>螺丝松动（光轴偏）、AA 胶蠕变（焦点慢漂）、sensor 虚焊（丢帧）、镜筒共振异响。</dd>
+    </div>
+    <div class="note"><b>设计对策：</b>锁付扭矩 + 防松胶、AA 用高 Tg 胶、加减振垫、模态分析避开共振峰。最贴近实车的是<b>温振综合试验</b>（温度循环叠加振动），能同时激发材料与结构两类的退化。摄像头若共振在行驶常用频段（如 30~80Hz），图像会周期性模糊，ADAS 误检率飙升。</div>
+
+  </div>
+  <div class="panel" id="panel-iprating">
+
+    <div class="define"><b>释义：</b><b>IP 防护等级（Ingress Protection）</b>表防尘防水。车载摄像头常用 <b>IP67</b>（尘密 + 1m 水浸 30min）或 <b>IP69K</b>（高压高温水射流，模拟洗车）。它直接决定外壳密封方案。</div>
+    <p class="tagline">一句话：IP 第一位防尘、第二位防水；前视环视要扛洗车水枪</p>
+    <div class="lvgrid">
+      <div class="lv"><span class="n">6</span><b>防尘</b>：尘密，完全阻尘</div>
+      <div class="lv"><span class="n">7</span><b>防水</b>：短时浸水（1m/30min）</div>
+      <div class="lv"><span class="n">9K</span><b>高压</b>：高温高压水射流</div>
+      <div class="lv"><span class="n">5</span><b>防尘</b>：防有害沉积（舱内级）</div>
+    </div>
+    <div class="note"><b>实现与矛盾：</b>靠激光焊/超声焊外壳、O 形圈、防水透气膜。难点在于——<b>全密封防进水，但内部温差会凝露</b>，所以必须配透气阀+干燥剂去解（见"湿热/结露"）。取舍：前视/环视等外露件要 IP69K 扛洗车；舱内 DMS 一般 IP5X 即可。IP 等级定太高会增加成本与透气设计难度，按布置位置分级即可。</div>
+
+  </div>
+  <div class="panel" id="panel-failmode">
+
+    <div class="define"><b>释义：</b><b>失效模式图鉴</b>把车载镜头常见失效按"现象 → 根因 → 检测方法"归档，是 FMEA 与售后 RMA 的知识库，让"退回件"反推"产线关口"，形成质量闭环。</div>
+    <p class="tagline">一句话：把"糊了/暗了/闪了"翻译成可定位的根因</p>
+    <div class="enc-list">
+      <li><b>图像发虚 / MTF 掉</b> → AA 胶裂、温漂、镜片偏心。</li>
+      <li><b>暗角</b> → RE-ILL 不足、遮光片偏位。</li>
+      <li><b>亮斑鬼影</b> → 镜片反射、IR 滤片脱胶。</li>
+      <li><b>整幅灰雾</b> → 杂光、VGI 超标。</li>
+      <li><b>丢行 / 断电</b> → 焊点裂、FPC 断。</li>
+      <li><b>噪点暴涨</b> → sensor 污染、ISP 增益过高。</li>
+      <li><b>色彩偏</b> → IR 截止偏移、白平衡失准。</li>
+      <li><b>水痕/起雾</b> → 结露、密封失效。</li>
+    </div>
+    <div class="note"><b>检测对应：</b>工位 MTF（发虚）、VGI（灰雾）、杂光测试（鬼影）、偏心仪（偏心）、温循后复测（胶裂）、气密（氦检，密封）、X-ray（虚焊）。把这张图鉴固化进测试用例，售后每退一台就回填一条，知识库越滚越准——这是"信赖性"从玄学变工程的落地方式。</div>
+
+  </div>
+  <div class="panel" id="panel-aa">
+
+    <div class="define"><b>释义：</b><b>AA（Active Alignment，主动对准）</b>是摄像头模组封装时，用<b>六自由度（6DOF：X/Y/Z 平移 + Rx/Ry/Rz 倾斜）主动调整 sensor 相对镜头的位置</b>，边调边测 MTF，把成像最优位置"锁死"再用胶固化。区别于被动对齐（靠结构公差堆叠）。</div>
+    <p class="tagline">一句话：边调边测 MTF，把单颗模组调到最清晰再点胶定死</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 340 150" width="340" height="150" xmlns="http://www.w3.org/2000/svg">
+        <rect x="110" y="35" width="80" height="64" rx="6" fill="rgba(91,140,255,.15)" stroke="#5b8cff"/>
+        <text x="150" y="72" fill="#e9efff" font-size="12" text-anchor="middle">镜头筒</text>
+        <rect x="140" y="108" width="60" height="14" rx="3" fill="rgba(124,108,255,.22)" stroke="#7c6cff"/>
+        <text x="170" y="118" fill="#e9efff" font-size="10" text-anchor="middle">Sensor 板</text>
+        <g stroke="#34d399" stroke-width="2" fill="none">
+          <path d="M150 35 L150 20"/><path d="M190 52 L210 52"/>
+        </g>
+        <g stroke="#fbbf24" stroke-width="2" fill="none">
+          <path d="M110 70 A28 28 0 0 1 92 52"/><path d="M190 70 A28 28 0 0 0 208 88"/>
+        </g>
+        <text x="138" y="16" fill="#34d399" font-size="10">Z 对焦</text>
+        <text x="214" y="52" fill="#34d399" font-size="10">X/Y</text>
+        <text x="78" y="48" fill="#fbbf24" font-size="10">Rx</text>
+        <text x="212" y="94" fill="#fbbf24" font-size="10">Ry</text>
+      </svg>
+      <div class="svgcap">6DOF：Z 调焦、X/Y 平移、Rx/Ry 倾斜（消偏心/场曲），Rz 旋转</div>
+    </div>
+    <div class="enc-list">
+      <li><b>为何必要：</b>镜头与 sensor 的装配误差（偏心/倾斜/离焦）直接吃 MTF；被动堆叠难达车载 119lp/mm，AA 把公差从"结构"转给"算法+执行"，单颗调优。</li>
+      <li><b>过程：</b>吸住 sensor → 镜头打光 → 实时抓图算 MTF/SFR → 6 轴步进搜索全局最优 Z(对焦)+倾斜 → UV 点胶 → 固化。</li>
+      <li><b>判定：</b>调完要求四角 SFR 均匀、残余倾斜极小、MTF 最大化。</li>
+    </div>
+    <div class="note"><b>与温循的关系：</b>AA 用胶固化，胶的 <b>Tg / CTE</b> 决定温循后焦点是否漂移。手机双摄"请保持手机静止"正是在做 AA/标定；车载要求更严——要在全温区都保持 MTF，所以 AA 胶的选材和固化能量也是可靠性命门。</div>
+
+  </div>
+  <div class="panel" id="panel-dispensing">
+
+    <div class="define"><b>释义：</b><b>点胶（Dispensing）与固化（Curing）</b>是把镜片 / IR / sensor 用 UV 胶或热固胶"粘牢"并定焦的工序，是 AA 后的定型步骤，也是温循/振动可靠性的命门。</div>
+    <p class="tagline">一句话：胶是模组的"骨骼"，选错胶 = 埋雷</p>
+    <div class="kv">
+      <dt>胶类型</dt><dd>UV 胶（秒级固化、低收缩）用于 IR/sensor；热固/双组份用于镜片大面；底部填缝用 underfill。</dd>
+      <dt>关键参数</dt><dd>胶量、轨迹、高度、固化能量(UV mJ/cm²)、<b>收缩率(&lt;1~3%)</b>、<b>Tg(高 Tg 抗温漂)</b>、CTE(匹配玻璃)、吸水率(低防湿热)。</dd>
+      <dt>失效</dt><dd>胶量不足→偏心；固化不足→蠕变跑焦；收缩大→应力双折射/焦移；气泡→鬼影；温循后胶裂。</dd>
+    </div>
+    <div class="note"><b>协同：</b>点胶量/轨迹由 AA 后的最优位置决定，固化要够能量又不过焦（过热伤 sensor）。胶的 CTE 越接近玻璃、Tg 越高，温循后焦点越稳。这也是为什么"信赖性"里的温循失效，根因常追溯到点胶与胶材——胶选错，前面 AA 调得再好也白搭。</div>
+
+  </div>
+  <div class="panel" id="panel-calibration">
+
+    <div class="define"><b>释义：</b><b>相机标定（Camera Calibration）</b>求相机<b>内参（intrinsic：焦距 fx/fy、主点 cx/cy、畸变 k1/k2/p1/p2/k3）</b>与<b>外参（extrinsic：相对车体的旋转 R、平移 t）</b>，把像素坐标映射到真实三维/世界坐标。它是感知算法（测距、融合）的地基。</div>
+    <p class="tagline">一句话：内参管"单目怎么变形"，外参管"装在车上朝哪看"</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">内参</div><div class="enc-b">张正友棋盘标定；广角车载镜头畸变大，需<b>高阶径向+切向模型</b>。决定去畸变质量。</div></div>
+      <div class="enc-card"><div class="enc-h">外参</div><div class="enc-b">多摄像头间（环视拼接）、摄像头−雷达/IMU 间（时空同步），决定融合精度。</div></div>
+      <div class="enc-card"><div class="enc-h">在线标定</div><div class="enc-b">行驶中用地平面/车道线<b>自标定</b>，补偿温漂/振动引起的外参慢漂。</div></div>
+    </div>
+    <div class="note"><b>量级感知：</b>外参偏 1° ≈ 50m 处横向偏 0.87m，足以导致误刹或漏检。所以车载不仅要"出厂标定准"，还要"路上自标定稳"。标定误差会直接传导到测距与融合——是感知链路最上游的精度闸门。</div>
+
+  </div>
+  <div class="panel" id="panel-hdr">
+
+    <div class="define"><b>释义：</b><b>HDR（High Dynamic Range，高动态范围）</b>让摄像头同时看清隧道外的亮景与隧道内的暗景（动态范围可达 120~140dB，远超普通 60~70dB）。车载进出隧道、对向车灯、夜间路灯都是 HDR 刚需。</div>
+    <p class="tagline">一句话：亮处不过曝、暗处不丢细节，进出隧道不"黑白洞"</p>
+    <div class="enc-list">
+      <li><b>多斜率 / 多次曝光合成：</b>短曝光保高光 + 长曝光保暗部，算法融合。</li>
+      <li><b>像素级 LOFIC：</b>横向溢出积分电容，单帧内存储溢出电荷，支撑大动态。</li>
+      <li><b>与 LFM 冲突：</b>多次曝光若不同步 LED，会拍到 LED 闪烁（见 LFM）——车载要 HDR+LFM 兼得。</li>
+    </div>
+    <div class="note"><b>合规驱动：</b>隧道"黑白洞"效应是事故高发场景，部分法规/市场把 HDR 能力列为卖点。设计难点在于：HDR 的多次曝光时序必须与 LFM 的长曝光协调，否则"看清暗部"和"不闪 LED"互相打架——这是车载 sensor 架构的核心权衡之一。</div>
+
+  </div>
+  <div class="panel" id="panel-lfm">
+
+    <div class="define"><b>释义：</b><b>LFM（LED Flicker Mitigation，LED 闪烁抑制）</b>解决 LED 交通灯/车灯/路灯以 90~400Hz PWM 调光时，普通摄像头曝光恰好"拍到灭的瞬间"→ 画面里 LED 一明一暗甚至全黑的问题。对 ADAS 识别红绿灯/尾灯致命。</div>
+    <p class="tagline">一句话：曝光窗口要覆盖整个 LED 亮周期，才不会被拍成"灭"</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 340 120" width="340" height="120" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="16" fill="#9db0d2" font-size="11">LED PWM 亮灭</text>
+        <rect x="10" y="22" width="320" height="20" fill="rgba(255,255,255,.05)"/>
+        <g fill="#fbbf24"><rect x="10" y="22" width="60" height="20"/><rect x="130" y="22" width="60" height="20"/><rect x="250" y="22" width="60" height="20"/></g>
+        <text x="10" y="68" fill="#9db0d2" font-size="11">短曝光窗口(拍到灭)</text>
+        <rect x="10" y="74" width="320" height="20" fill="rgba(255,255,255,.05)"/>
+        <rect x="70" y="74" width="40" height="20" fill="#f87171"/>
+        <text x="10" y="112" fill="#9db0d2" font-size="11">长曝光窗口(覆盖整周期→亮度稳)</text>
+        <rect x="10" y="104" width="320" height="14" fill="rgba(255,255,255,.05)"/>
+        <rect x="10" y="104" width="180" height="14" fill="#34d399"/>
+      </svg>
+      <div class="svgcap">曝光时间 &lt; LED 周期且不同步 → 采样到灭相；长曝光覆盖整周期则稳定</div>
+    </div>
+    <div class="enc-list">
+      <li><b>成因：</b>LED 用 PWM 调亮度（占空比亮灭）；摄像头曝光时间 &lt; LED 亮周期且不同步 → 采样到"灭"相。</li>
+      <li><b>解法：</b>① 长曝光（曝光 ≥ 4~5ms 覆盖 200Hz）；② HDR 多次曝光用特殊时序避开灭相；③ sensor 电容增大（LOFIC）支撑长曝光不过曝。</li>
+      <li><b>矛盾：</b>长曝光带来运动模糊，需权衡。</li>
+    </div>
+    <div class="note"><b>法规背景：</b>UNECE/AEC 等把"LED 不闪"列为识别前提，LFM 已成车载 sensor 标配能力。没有 LFM，红绿灯在画面里忽明忽暗，感知会误判"灯灭/灯亮"，直接危及决策。</div>
+
+  </div>
+  <div class="panel" id="panel-gp">
+
+    <div class="define"><b>释义：</b><b>G+P（Glass + Plastic，玻塑混合）</b>镜头 = 部分镜片用<b>玻璃</b>（低 CTE、耐温、低畸变、高折射可选），部分用<b>塑料非球面</b>（低成本、轻、易注塑复杂面型），取长补短。车载温区大，纯塑料温漂大，纯玻璃贵重，G+P 是平衡点。</div>
+    <p class="tagline">一句话：玻璃稳住温漂与色散，塑料非球面压成本与像差</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">玻璃优点</div><div class="enc-b">CTE 小（温漂小）、热稳定、硬度高耐磨；缺点：贵、重、非球面靠模压/研磨。</div></div>
+      <div class="enc-card"><div class="enc-h">塑料优点</div><div class="enc-b">便宜、轻、可注塑高精度非球面/自由曲面、量产一致；缺点：CTE 大(≈70ppm/℃)、吸水、耐热有限、双折射。</div></div>
+      <div class="enc-card"><div class="enc-h">典型结构</div><div class="enc-b">用塑料非球面校像差，玻璃片稳温漂与色散；常见 <b>3G3P / 2G4P / 4G3P</b>。</div></div>
+    </div>
+    <div class="note"><b>落地：</b>你手上的 spec（3G3P+IRF）正是 G+P——温漂靠玻璃片 + 结构补偿兜底。G+P 是"性能/成本/可靠性"三角里最务实的解：全玻璃太贵太重，全塑料温漂扛不住车规，混合方案各取所长。趋势是高折射塑料（降片数）+ 模压玻璃非球面（降本）。</div>
+
+  </div>
+  <div class="panel" id="panel-lensmat">
+
+    <div class="define"><b>释义：</b>车载镜头镜片材料主要是<b>光学玻璃</b>（火石/冕牌，高折射/低色散）与<b>光学塑料</b>（PC / PMMA / COP），外加<b>模压玻璃（WGM）</b>。材料决定折射率 nd、阿贝数 νd、CTE、透过率与耐候性。</div>
+    <p class="tagline">一句话：材料 CTE 是温漂根因，选料即选可靠性</p>
+    <div class="enc-list">
+      <li><b>玻璃：</b>高 nd(1.7~1.9)、低 νd 火石校正色差；耐温 −40~105℃ 不变形；但重、贵，非球面靠研磨/模压。</li>
+      <li><b>塑料 COP/PMMA：</b>注塑非球面，轻便宜；COP 吸水低、双折射小，车载偏向 COP；持续耐温有限（≤90~100℃）。</li>
+      <li><b>趋势：</b>高折射塑料（降片数）、模压玻璃非球面（降成本）。</li>
+    </div>
+    <div class="note"><b>为什么重要：</b>材料的 CTE 直接决定温漂幅度（见"热补偿/温度循环"）。玻璃 CTE≈7ppm/℃、塑料≈70，差一个数量级——这就是 G+P 里必须用玻璃片"压阵"的根本原因。同时，塑料的吸水会让焦距随湿度微变，也是湿热项要管的对象。</div>
+
+  </div>
+  <div class="panel" id="panel-coating">
+
+    <div class="define"><b>释义：</b><b>镀膜（Coating）</b>在镜片表面镀多层介质膜，实现<b>增透（AR，降反射提透过）、硬膜（耐磨）、红外截止（IR Cut）、带通</b>等。车载镜头每片都有 AR+硬膜，IR 片单独镀截止。</div>
+    <p class="tagline">一句话：镀膜反射率直接决定鬼像强度与透过率</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 90" width="320" height="90" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="30" width="120" height="34" rx="4" fill="rgba(91,140,255,.18)" stroke="#5b8cff"/>
+        <text x="80" y="52" fill="#e9efff" font-size="12" text-anchor="middle">玻璃基底</text>
+        <g fill="rgba(124,108,255,.45)" stroke="#7c6cff">
+          <rect x="140" y="34" width="10" height="26"/><rect x="154" y="38" width="8" height="18"/><rect x="166" y="42" width="6" height="10"/>
+        </g>
+        <text x="200" y="34" fill="#9db0d2" font-size="10">多层介质膜</text>
+        <text x="230" y="52" fill="#e9efff" font-size="11">空气</text>
+        <line x1="280" y1="20" x2="280" y2="70" stroke="#34d399" stroke-width="2"/>
+        <text x="250" y="84" fill="#34d399" font-size="10">入射光 →</text>
+      </svg>
+      <div class="svgcap">玻璃基底 + 多层 λ/4 介质膜 + 空气；膜层越匹配反射越低</div>
+    </div>
+    <div class="enc-list">
+      <li><b>AR 增透：</b>多层 λ/4 膜把单面反射从 ~4% 降到 &lt;0.5%，提透过、压鬼像（反射少了内部"照镜子"就弱）。</li>
+      <li><b>硬膜：</b>SiO₂ / 类金刚石，防雨刮与沙尘刮擦。</li>
+      <li><b>IR Cut：</b>蓝玻璃（吸收式）或干涉膜（反射式），截止 650~700nm，让 CMOS 只收可见光。</li>
+      <li><b>工艺：</b>真空蒸发 / 离子辅助 / 磁控溅射 / 原子层（ALD）。</li>
+    </div>
+    <div class="note"><b>与杂光/鬼像联动：</b>镀膜反射率直接决定鬼像强度（见"杂光/鬼像"）——镜片间"照镜子"的反射光，源头就是没镀好或镀层磨损。IR 截止若偏移，夜视会出现色偏（见失效模式图鉴）。</div>
+
+  </div>
+  <div class="panel" id="panel-asphere">
+
+    <div class="define"><b>释义：</b><b>非球面（Asphere）</b>面型偏离球面，与<b>自由曲面（Free-form，无旋转对称）</b>用<b>更少镜片校正更多像差</b>，是小型化、广角、低畸变的关键。车载环视/前视广角高度依赖。</div>
+    <p class="tagline">一句话：一个非球面 ≈ 2~3 个球面，广角低畸变几乎靠它堆出来</p>
+    <div class="enc-list">
+      <li><b>非球面：</b>校正球差/彗差；塑料注塑易做，玻璃靠模压/研磨。</li>
+      <li><b>自由曲面：</b>离轴 HUD / 楔镜 / 特殊照明用，面型任意，光学设计自由度大。</li>
+      <li><b>检测：</b>干涉仪测面型（PV/RMS）；注塑件 100% 抽检。</li>
+    </div>
+    <div class="note"><b>价值：</b>球面透镜天生有球差，要用多片不同曲率去"互相抵消"；非球面一片就能把球差拉直，片数↓→体积↓、重量↓、装配误差↓。车载要 100°+ 广角还低畸变，几乎等于"非球面堆叠 + 塑料注塑"的工程。自由曲面则是 AR-HUD 等离轴系统的命门。</div>
+
+  </div>
+  <div class="panel" id="panel-layout">
+
+    <div class="define"><b>释义：</b><b>整车摄像头布局</b> = 在车周身布多少颗、放哪、看哪，构成视觉感知的"眼睛矩阵"。常见 <b>1V（前视）+ 4R（环视）+ 1/2 后视 + 1 DMS + 可选侧视 / e-Mirror</b>。</div>
+    <p class="tagline">一句话：布局是感知架构第一步，L2 约 6 颗 → L4 的 10+ 颗</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 300 170" width="300" height="170" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="40" width="220" height="90" rx="22" fill="rgba(91,140,255,.10)" stroke="#5b8cff"/>
+        <text x="150" y="90" fill="#e9efff" font-size="13" text-anchor="middle">车辆俯视</text>
+        <g fill="#34d399"><circle cx="150" cy="40" r="5"/><circle cx="40" cy="85" r="5"/><circle cx="260" cy="85" r="5"/><circle cx="150" cy="130" r="5"/></g>
+        <g stroke="#fbbf24" stroke-width="2" fill="none" opacity=".9">
+          <path d="M150 40 L150 12"/><path d="M40 85 L12 85"/><path d="M260 85 L288 85"/><path d="M150 130 L150 158"/>
+        </g>
+        <text x="150" y="8" fill="#fbbf24" font-size="9">前视</text>
+        <text x="6" y="82" fill="#fbbf24" font-size="9">左环视</text>
+        <text x="262" y="82" fill="#fbbf24" font-size="9">右环视</text>
+        <text x="150" y="170" fill="#fbbf24" font-size="9">后视</text>
+      </svg>
+      <div class="svgcap">典型布局：前视 1~3 + 环视 4 + 后视 1~2 + DMS 1 + 可选侧视/e-Mirror</div>
+    </div>
+    <div class="enc-list">
+      <li><b>前视：</b>风挡后 1~3 颗（窄/中/广），看车道/车辆/行人/交通灯，常置于挡风黑点区。</li>
+      <li><b>环视 AVM：</b>4 颗鱼眼（前标/后标/两后视镜）拼 360° 鸟瞰。</li>
+      <li><b>后视：</b>牌照灯/尾门，倒车 + 流媒体后视镜。</li>
+      <li><b>DMS：</b>方向盘/内后视镜，看驾驶员。</li>
+      <li><b>视角分配：</b>前视 HFOV 30~60°（远距）+ 广角 100~120°（近距）；环视 ~190° 鱼眼。</li>
+    </div>
+    <div class="note"><b>趋势：</b>从 L2 的约 6 颗到 L4 的 10+ 颗，数量随智驾等级上升。布局要同时考虑遮挡、清洗（脏污）、碰撞可维修性与标定可达性——是系统工程的起点。</div>
+
+  </div>
+  <div class="panel" id="panel-cms">
+
+    <div class="define"><b>释义：</b><b>CMS（Camera Monitor System，电子后视镜）</b>用摄像头 + 显示屏取代传统光学后视镜（间接视野）。我国 <b>GB 15084-2022</b> 已放开，解决盲区/风阻/夜间可视问题。</div>
+    <p class="tagline">一句话：用摄像头+屏取代两块玻璃镜子，视野更大、风阻更低</p>
+    <div class="enc-list">
+      <li><b>合规：</b>GB 15084-2022（替代 1994 光学镜版）规定 CMS 的视野、分辨率、延迟、亮度适应、失效提示；欧标 UN R46 并行。</li>
+      <li><b>组成：</b>高动态摄像头（耐候 IP6K9K）+ 控制器 + 车内显示屏（侧窗/A 柱）。</li>
+      <li><b>优势：</b>视野大、无盲、风阻降、夜间可补光；<b>挑战：</b>延迟（法规 &lt;100~200ms）、雨雾、成本、用户习惯。</li>
+    </div>
+    <div class="note"><b>与车载光学关系：</b>CMS 摄像头要吃 HDR（进出隧道）、LFM（LED 尾灯不闪）、宽温与 IP69K，本质是一颗"强化版车载镜头"+"低延迟链路"。国内新车已可合法用 CMS，是镜头厂商的新增量市场。</div>
+
+  </div>
+  <div class="panel" id="panel-dms">
+
+    <div class="define"><b>释义：</b><b>DMS（Driver Monitoring System）</b>监测驾驶员（疲劳/分心/脱手），<b>OMS（Occupant Monitoring）</b>监测全舱（乘客/儿童/物品）。是 L2+ 法规（欧盟 GSR 2023 强制 DMS）刚需。</div>
+    <p class="tagline">一句话：近红外摄像头 + 人脸关键点，闭眼/分心一眼看穿</p>
+    <div class="enc-list">
+      <li><b>硬件：</b>近红外 NIR 摄像头（<b>850nm 或 940nm</b>）+ 红外补光，夜间无可见光也能看。</li>
+      <li><b>取舍：</b>940nm 不可见更隐蔽但灵敏度略低；850nm 亮但略红。常选 940nm。</li>
+      <li><b>算法：</b>人脸关键点 → 闭眼/打哈欠/视线/头部姿态 → 疲劳分心判定；OMS 用 ToF/RGB-IR 分舱。</li>
+      <li><b>布置：</b>方向盘 / 转向柱 / 内后视镜。</li>
+    </div>
+    <div class="note"><b>法规：</b>欧盟 General Safety Regulation 2023 起新车强制 DMS；国内也在跟进。舱内镜头不拍彩色清晰人脸（隐私），用 NIR + 结构光/ToF 做活体，规避隐私争议。它与前视镜头共用"车载光学"底层能力（IR、宽温、标定），只是场景换成舱内。</div>
+
+  </div>
+  <div class="panel" id="panel-lidar">
+
+    <div class="define"><b>释义：</b><b>LiDAR（激光雷达）</b>用激光测距（ToF / FMCW）做三维点云，是 L3+ 主力传感器。其光学含<b>发射端（Tx：激光器 + 准直/扩束）</b>与<b>接收端（Rx：透镜组 + 窄带滤光片 + APD/SPAD 探测器）</b>。</div>
+    <p class="tagline">一句话：Tx 打激光、Rx 收回波，点云给感知"量距离"</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 110" width="320" height="110" xmlns="http://www.w3.org/2000/svg">
+        <rect x="14" y="44" width="40" height="22" rx="4" fill="rgba(248,113,113,.18)" stroke="#f87171"/>
+        <text x="34" y="59" fill="#e9efff" font-size="10" text-anchor="middle">Tx</text>
+        <line x1="54" y1="55" x2="150" y2="55" stroke="#f87171" stroke-width="2"/>
+        <circle cx="200" cy="55" r="14" fill="rgba(255,255,255,.08)" stroke="#9db0d2"/>
+        <text x="200" y="59" fill="#e9efff" font-size="10" text-anchor="middle">目标</text>
+        <line x1="214" y1="55" x2="290" y2="40" stroke="#34d399" stroke-width="2"/>
+        <rect x="290" y="28" width="22" height="24" rx="4" fill="rgba(52,211,153,.18)" stroke="#34d399"/>
+        <text x="301" y="43" fill="#e9efff" font-size="9" text-anchor="middle">Rx</text>
+        <text x="34" y="84" fill="#f87171" font-size="9">发射</text>
+        <text x="301" y="84" fill="#34d399" font-size="9">接收</text>
+      </svg>
+      <div class="svgcap">Tx 激光 → 目标 → Rx 经窄带滤光片 + 透镜集光 → 探测器</div>
+    </div>
+    <div class="enc-list">
+      <li><b>Tx：</b>905nm（人眼安全、便宜）或 1550nm（更高功率、更远但贵）；VCSEL/边发射；光学准直扩束。</li>
+      <li><b>Rx：</b>大口径接收透镜集光 + 窄带滤光片（只放 905/1550，压太阳光背景）+ 探测器（APD/SPAD/SiPM）。</li>
+      <li><b>扫描：</b>机械 / 转镜 / MEMS / Flash / OPA。</li>
+    </div>
+    <div class="note"><b>与摄像头互补：</b>点云测距准、摄像头辨色分类，前融合互补。905nm 受人眼安全功率限，1550nm 可更高功率但 InGaAs 探测器贵。LiDAR 光学（尤其 Rx 窄带滤光 + 大口径集光）与车载镜头同源不同参。</div>
+
+  </div>
+  <div class="panel" id="panel-arhud">
+
+    <div class="define"><b>释义：</b><b>AR-HUD（增强现实抬头显示）</b>把导航/预警叠加到真实路面（虚像距 7~15m 甚至更远），需自由曲面/楔形挡风光学把图像投到更大视场，是智驾人机交互入口。</div>
+    <p class="tagline">一句话：PGU 出图 → 自由曲面镜反射 → 挡风成虚像，叠加真实路面</p>
+    <div class="enc-list">
+      <li><b>组成：</b>PGU（图像生成单元，常 TFT/LCOS/DLP）+ 自由曲面镜（两片非球面/自由曲面反射）+ 楔形挡风玻璃（消重影）。</li>
+      <li><b>关键指标：</b>虚像距离 VID、视场角 FOV（越大越难）、眼动范围 eyebox、亮度（抗阳光）、重影（挡风双反射）。</li>
+      <li><b>光学难点：</b>自由曲面加工/检测、挡风楔形角设计、阳光负载（耐 100000 lux）。</li>
+    </div>
+    <div class="note"><b>难度不亚于一颗镜头：</b>AR-HUD 的"光学难度"不亚于车载镜头，自由曲面是关键——既要大 FOV 又要小体积还要消重影。它与"非球面/自由曲面""玻塑混合"共享底层工艺，是车载光学从"看外"到"看路+交互"的延伸。</div>
+
+  </div>
         </div><!-- /#browse -->
     </section><!-- /#view-home -->
 
@@ -1590,7 +1989,7 @@ function expandPanel(btn, open){
   });
 }
 let currentCat = 'optics';
-const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview' };
+const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', module:'aa', material:'lensmat', application:'layout' };
 const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
   fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
@@ -1605,13 +2004,16 @@ function showTab(id){
 }
 function showCat(cat){
   currentCat = cat;
-  ['optics','reliability','process','drawing'].forEach(c=>{
+  ['optics','reliability','process','drawing','module','material','application'].forEach(c=>{
     document.getElementById('cat-'+c).classList.toggle('active', c===cat);
   });
   document.getElementById('subtabs-optics').style.display = (cat==='optics') ? 'flex' : 'none';
   document.getElementById('subtabs-reliability').style.display = (cat==='reliability') ? 'flex' : 'none';
   document.getElementById('subtabs-process').style.display = (cat==='process') ? 'flex' : 'none';
   document.getElementById('subtabs-drawing').style.display = (cat==='drawing') ? 'flex' : 'none';
+  document.getElementById('subtabs-module').style.display = (cat==='module') ? 'flex' : 'none';
+  document.getElementById('subtabs-material').style.display = (cat==='material') ? 'flex' : 'none';
+  document.getElementById('subtabs-application').style.display = (cat==='application') ? 'flex' : 'none';
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(cat==='process'){
@@ -2567,7 +2969,7 @@ renderFNOLight();
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 19;
+  var VER_TOTAL = 40;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -2590,7 +2992,7 @@ renderFNOLight();
     var title = ''; t.childNodes.forEach(function(n){ if(n.nodeType===3) title += n.textContent; });
     ITEMS.push({id:id, cat:cat, title:title.trim(), en:en});
   });
-  var CATNAME = { optics:'光学', reliability:'信赖性', process:'工艺', drawing:'图纸' };
+  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', module:'模组与系统', material:'材料与镜片', application:'应用场景' };
   function seenCount(){ return LS.get('optics_seen',[]).length; }
 
   var _showTab = showTab; showTab = function(id){ _showTab(id); recordView(id); };
