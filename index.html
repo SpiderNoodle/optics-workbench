@@ -390,59 +390,61 @@
   }
 
   /* ---- 首页分类卡 · 工作台仪表盘风格 ---- */
-  .cat-cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:14px; margin-bottom:24px;
-  }
-  .cat-card{
-    position:relative; overflow:hidden; cursor:pointer; text-align:left;
-    padding:20px 18px 18px; border-radius:var(--r-l); border:1px solid var(--line);
-    background:var(--surface);
+  /* ---- 首页：Notion 风格左右分栏 ---- */
+  .home-split{ display:flex; gap:20px; align-items:stretch; margin-top:10px; }
+  .cat-nav{
+    width:248px; flex-shrink:0; align-self:stretch;
+    display:flex; flex-direction:column; gap:3px;
+    padding:10px; border-radius:var(--r-l);
+    background:var(--surface); border:1px solid var(--line);
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-    box-shadow:var(--sh); transition:.28s cubic-bezier(.4,0,.2,1); font-family:inherit;
-    animation:cardIn .5s cubic-bezier(.22,1,.36,1) both;
-    display:flex; flex-direction:column;
+    box-shadow:var(--sh);
+    max-height:calc(100vh - 168px); overflow:auto; position:sticky; top:74px;
+    animation:viewIn .5s both;
   }
-  .cat-card:nth-child(1){ animation-delay:.03s } .cat-card:nth-child(2){ animation-delay:.07s }
-  .cat-card:nth-child(3){ animation-delay:.11s } .cat-card:nth-child(4){ animation-delay:.15s }
-  .cat-card:nth-child(5){ animation-delay:.19s } .cat-card:nth-child(6){ animation-delay:.23s }
-  .cat-card:nth-child(7){ animation-delay:.27s } .cat-card:nth-child(8){ animation-delay:.31s }
-  @keyframes cardIn{ from{ opacity:0; transform:translateY(18px) scale(.97) } to{ opacity:1; transform:none scale(1) } }
-  .cat-card::before{
-    content:''; position:absolute; left:0; top:0; width:4px; height:100%;
-    border-radius:4px 0 0 4px; background:linear-gradient(180deg,var(--brand),var(--brand-2));
-    opacity:.7; transition:opacity .3s;
+  .cat-nav-h{
+    font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--muted-2); padding:6px 12px 9px;
   }
-  .cat-card::after{
-    content:''; position:absolute; right:-20px; top:-20px; width:90px; height:90px; border-radius:50%;
-    background:radial-gradient(circle,rgba(91,140,255,.15),transparent 70%); transition:.35s;
+  .cat-nav-item{
+    display:flex; align-items:center; gap:11px; cursor:pointer;
+    padding:9px 11px; border-radius:12px; border:1px solid transparent;
+    color:var(--muted); font-size:14px; font-weight:600; line-height:1.3;
+    transition:background .2s,color .2s,border-color .2s,transform .2s;
   }
-  .cat-card:hover{ transform:translateY(-5px) scale(1.01); border-color:var(--acc-line); box-shadow:var(--sh-l); }
-  .cat-card:hover::after{ transform:scale(1.8); opacity:.6; }
-  .cat-card:hover::before{ opacity:1; }
-  .cc-header{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-  .cc-ic{
-    font-size:28px; line-height:1; display:flex; align-items:center; justify-content:center;
-    width:48px; height:48px; border-radius:12px;
-    background:linear-gradient(135deg,rgba(91,140,255,.15),rgba(124,108,255,.10));
-    flex-shrink:0;
+  .cat-nav-item .cn-ic{
+    width:34px; height:34px; flex-shrink:0; border-radius:9px; font-size:18px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,rgba(91,140,255,.16),rgba(124,108,255,.10));
+    transition:background .25s;
   }
-  .cc-title-group{ flex:1; min-width:0; }
-  .cc-lb{ font-size:16px; font-weight:700; color:var(--text); display:block; line-height:1.3; }
-  .cc-en{ font-size:11.5px; color:var(--muted-2); margin-top:2px; display:block; line-height:1.2; }
-  .cc-count{
-    display:inline-flex; align-items:center; gap:4px;
-    padding:3px 9px; border-radius:99px; font-size:11px; font-weight:600;
-    background:rgba(91,140,255,.12); color:var(--brand); margin-top:auto; align-self:flex-start;
+  .cat-nav-item .cn-lb{ flex:1; min-width:0; }
+  .cat-nav-item .cn-en{ display:block; font-size:10.5px; font-weight:500; color:var(--muted-2); margin-top:1px; }
+  .cat-nav-item .cn-count{
+    font-size:11px; font-weight:700; color:var(--brand);
+    background:rgba(91,140,255,.12); padding:2px 8px; border-radius:99px; flex-shrink:0;
   }
-  .cc-desc{ font-size:12px; color:var(--muted-2); margin-top:8px; line-height:1.5; display:block; flex:1; }
-  .cc-bar{ height:3px; border-radius:99px; background:rgba(255,255,255,.07); margin-top:10px; overflow:hidden; }
-  .cc-bar u{ display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--brand),var(--brand-2)); transition:width .7s cubic-bezier(.4,0,.2,1); }
-  /* 响应式：平板 3 列 → 手机 2 列 → 小屏 1 列 */
-  @media(max-width:1100px){ .cat-cards{ grid-template-columns:repeat(3,1fr); } }
-  @media(max-width:860px){ .cat-cards{ grid-template-columns:repeat(2,1fr); gap:10px; } .cat-card{ padding:16px 14px 14px; } .cc-ic{ width:40px; height:40px; font-size:24px; } }
-  @media(max-width:480px){ .cat-cards{ grid-template-columns:1fr; } }
+  .cat-nav-item:hover{ background:rgba(255,255,255,.05); color:var(--text); border-color:var(--line); }
+  .cat-nav-item.active{
+    background:linear-gradient(135deg,rgba(91,140,255,.20),rgba(124,108,255,.12));
+    color:var(--text); border-color:var(--acc-line);
+    box-shadow:0 0 0 1px rgba(91,140,255,.22),var(--sh);
+  }
+  .cat-nav-item.active .cn-ic{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); }
+  #browse{ flex:1; min-width:0; }
+  @media(max-width:980px){
+    .cat-nav{ width:210px; }
+  }
+  @media(max-width:860px){
+    .home-split{ flex-direction:column; gap:14px; }
+    .cat-nav{
+      width:100%; flex-direction:row; max-height:none; position:static;
+      overflow-x:auto; overflow-y:hidden; padding:8px; gap:8px;
+    }
+    .cat-nav-h{ display:none; }
+    .cat-nav-item{ flex:0 0 auto; align-items:center; }
+    .cat-nav-item .cn-en{ display:none; }
+  }
   /* ---- 随机页 ---- */
   #randHost{ min-height:180px; }
   #randHost .panel{ display:block !important; }
@@ -532,7 +534,6 @@
     .hero-title{ font-size:25px; letter-spacing:1px; }
     .hero-deco{ display:none; }
     .panel{ padding:16px 14px; border-radius:var(--r); }
-    .cat-cards{ grid-template-columns:1fr 1fr; gap:10px; }
     .dash-stats{ grid-template-columns:1fr 1fr; }
     .step-illus{ display:none; }
     .step-body{ padding-left:18px; }
@@ -540,7 +541,6 @@
     .eq-table td,.eq-table th{ padding:6px 7px; }
   }
   @media (max-width:400px){
-    .cat-cards{ grid-template-columns:1fr; }
     .hero-title{ font-size:22px; }
   }
 
@@ -589,7 +589,7 @@
       <button class="nav-item" data-page="random"><span class="ni-ic">🎲</span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="dash"><span class="ni-ic">📊</span><span class="ni-lb">数据看板</span></button>
     </nav>
-    <div class="side-foot">v0.2.0 · 2026-08-10<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.2.2 · 2026-08-10<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
@@ -615,13 +615,11 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.2.1</h1>
+      <h1 class="hero-title">车载光学百科 v0.2.2</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
         <span class="hero-chip">信赖性·车规 · 10</span>
-        <span class="hero-chip">工艺制造 · 2</span>
-        <span class="hero-chip">工程图纸 · 2</span>
         <span class="hero-chip">设备与仪器 · 5</span>
         <span class="hero-chip">工艺制造 · 2</span>
         <span class="hero-chip">工程图纸 · 2</span>
@@ -632,20 +630,50 @@
     </div>
   </div>
 
-                <div class="cat-cards">
-        <div class="cat-card" data-cat="optics"><div class="cc-header"><div class="cc-ic">🔬</div><div class="cc-title-group"><div class="cc-lb">光学基础</div><div class="cc-en">Optics Fundamentals</div></div></div><span class="cc-count">📊 12 项</span><div class="cc-desc">MTF / DOF / EFL / FNO / FOV / CRA / 滤光片 / 场曲 / 畸变 / 色差 / 渐晕</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="reliability"><div class="cc-header"><div class="cc-ic">🌡️</div><div class="cc-title-group"><div class="cc-lb">信赖性·车规</div><div class="cc-en">Reliability & Qual</div></div></div><span class="cc-count">📊 10 项</span><div class="cc-desc">AEC-Q102 / 温度循环 / 湿热结露 / 盐雾 / 振动冲击 / IP防护 / 失效模式</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="equipment"><div class="cc-header"><div class="cc-ic">⚙️</div><div class="cc-title-group"><div class="cc-lb">设备与仪器</div><div class="cc-en">Equipment & Tools</div></div></div><span class="cc-count">📊 5 项</span><div class="cc-desc">检验检测 / 组装设备 / 加工设备 / 环境试验 / 清洗包装</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="process"><div class="cc-header"><div class="cc-ic">🏭</div><div class="cc-title-group"><div class="cc-lb">工艺制造</div><div class="cc-en">Manufacturing</div></div></div><span class="cc-count">📊 2 项</span><div class="cc-desc">镜头总装 FCT 整线 / 镜筒加工舜宇 14 道</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="drawing"><div class="cc-header"><div class="cc-ic">📐</div><div class="cc-title-group"><div class="cc-lb">工程图纸</div><div class="cc-en">Engineering Drawing</div></div></div><span class="cc-count">📊 2 项</span><div class="cc-desc">图纸总览 DRW / 标注符号视图基准公差</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="module"><div class="cc-header"><div class="cc-ic">🔧</div><div class="cc-title-group"><div class="cc-lb">模组与系统</div><div class="cc-en">Module & System</div></div></div><span class="cc-count">📊 6 项</span><div class="cc-desc">AA 主动对准 / 点胶固化 / 相机标定 / HDR / LFM / 玻塑混合 G+P</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="material"><div class="cc-header"><div class="cc-ic">💎</div><div class="cc-title-group"><div class="cc-lb">材料与镜片</div><div class="cc-en">Materials & Lens</div></div></div><span class="cc-count">📊 3 项</span><div class="cc-desc">镜片材料玻璃塑料 / 镀膜 AR IR / 非球面自由曲面</div><div class="cc-bar"><u style="width:0%"></u></div></div>
-        <div class="cat-card" data-cat="application"><div class="cc-header"><div class="cc-ic">🚗</div><div class="cc-title-group"><div class="cc-lb">应用场景</div><div class="cc-en">Applications</div></div></div><span class="cc-count">📊 5 项</span><div class="cc-desc">整车摄像头布局 / CMS 电子后视镜 / DMS OMS / LiDAR / AR-HUD</div><div class="cc-bar"><u style="width:0%"></u></div></div>
+                      <div class="home-split">
+        <aside class="cat-nav">
+          <div class="cat-nav-h">知识分类 · 8</div>
+      <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
+        <span class="cn-ic">🔬</span>
+        <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
+        <span class="cn-count">12</span>
       </div>
-        <div class="cat-card" data-cat="module"><div class="cc-ic">🔧</div><div class="cc-lb">模组与系统</div><div class="cc-en">AA/标定/HDR/LFM</div></div>
-        <div class="cat-card" data-cat="material"><div class="cc-ic">💎</div><div class="cc-lb">材料与镜片</div><div class="cc-en">玻璃/塑/镀膜</div></div>
-        <div class="cat-card" data-cat="application"><div class="cc-ic">🚗</div><div class="cc-lb">应用场景</div><div class="cc-en">布局/CMS/LiDAR</div></div>
-
+      <div class="cat-nav-item" id="cat-reliability" onclick="showCat('reliability')">
+        <span class="cn-ic">🌡️</span>
+        <span class="cn-lb">信赖性·车规<span class="cn-en">Reliability & Qual</span></span>
+        <span class="cn-count">10</span>
+      </div>
+      <div class="cat-nav-item" id="cat-equipment" onclick="showCat('equipment')">
+        <span class="cn-ic">⚙️</span>
+        <span class="cn-lb">设备与仪器<span class="cn-en">Equipment & Tools</span></span>
+        <span class="cn-count">5</span>
+      </div>
+      <div class="cat-nav-item" id="cat-process" onclick="showCat('process')">
+        <span class="cn-ic">🏭</span>
+        <span class="cn-lb">工艺制造<span class="cn-en">Manufacturing</span></span>
+        <span class="cn-count">2</span>
+      </div>
+      <div class="cat-nav-item" id="cat-drawing" onclick="showCat('drawing')">
+        <span class="cn-ic">📐</span>
+        <span class="cn-lb">工程图纸<span class="cn-en">Engineering Drawing</span></span>
+        <span class="cn-count">2</span>
+      </div>
+      <div class="cat-nav-item" id="cat-module" onclick="showCat('module')">
+        <span class="cn-ic">🔧</span>
+        <span class="cn-lb">模组与系统<span class="cn-en">Module & System</span></span>
+        <span class="cn-count">6</span>
+      </div>
+      <div class="cat-nav-item" id="cat-material" onclick="showCat('material')">
+        <span class="cn-ic">💎</span>
+        <span class="cn-lb">材料与镜片<span class="cn-en">Materials & Lens</span></span>
+        <span class="cn-count">3</span>
+      </div>
+      <div class="cat-nav-item" id="cat-application" onclick="showCat('application')">
+        <span class="cn-ic">🚗</span>
+        <span class="cn-lb">应用场景<span class="cn-en">Applications</span></span>
+        <span class="cn-count">5</span>
+      </div>
+        </aside>
       <div id="browse">
 
   <!-- 设备：检验检测 -->
@@ -718,18 +746,7 @@
     </div>
     <div class="note"><b>清洗包装质量链条：</b>超声波中间清洗（去切削液/铝屑）→ 离子风机除静电（防灰尘再附着）→ 干冰终洗（去指纹/有机残留）→ 真空包装+干燥剂（防运输受潮）。任何一环疏忽都会在客户端 IQC 或实车上暴露：脏污→ADAS 误检；受潮→镜筒内部起雾；静电吸附→VGI 超标退货。"清洗包装是最便宜的工序，但也是最容易被忽视的质量杀手。"</div>
   </div>
-<div class="catbar">
-    <div class="cat active" id="cat-optics" onclick="showCat('optics')">光学</div>
-    <div class="cat" id="cat-reliability" onclick="showCat('reliability')">信赖性</div>
-    <div class="cat" id="cat-process" onclick="showCat('process')">工艺</div>
-    <div class="cat" id="cat-equipment" onclick="showCat('equipment')">设备</div>
-    <div class="cat" id="cat-drawing" onclick="showCat('drawing')">图纸</div>
-  </div>
-    <div class="cat" id="cat-module" onclick="showCat('module')">模组与系统</div>
-    <div class="cat" id="cat-material" onclick="showCat('material')">材料与镜片</div>
-    <div class="cat" id="cat-application" onclick="showCat('application')">应用场景</div>
-
-  <div class="tabs" id="subtabs-optics">
+<div class="tabs" id="subtabs-optics">
     <div class="tab active" id="tab-mtf" onclick="showTab('mtf')">MTF<span class="en">调制传递</span></div>
     <div class="tab" id="tab-dof" onclick="showTab('dof')">DOF<span class="en">景深</span></div>
     <div class="tab" id="tab-efl" onclick="showTab('efl')">EFL<span class="en">有效焦距</span></div>
@@ -2052,6 +2069,7 @@
 
   </div>
         </div><!-- /#browse -->
+          </div><!-- /home-split -->
     </section><!-- /#view-home -->
 
     <section id="view-random" class="view">
