@@ -43,6 +43,37 @@
 
 **3）技术细节**
 - index.html v0.2.1 → v0.2.2；sw.js CACHE → `optics-workbench-v0.2.2`；单文件约 927 KB。
+### 2026-08-11 · v0.2.3 · 四项 UI 优化（卡片提亮 / 看板→设置 / 多主题 / 悬浮毛玻璃导航）
+
+**1）修复卡片内参数变动可视化（背景提亮 + 对比度）**
+- 根因：旧版卡片背景偏暗，Canvas 绘图区底色 `rgba(255,255,255,.03)` 过暗，参数变化时曲线/读数与背景对比不足，导致「看不出动了」。
+- 提亮 Canvas 绘图区底色为中性亮色 `var(--canvas-bg)`（如深空蓝 `rgba(30,40,66,.62)`），整体明度与对比度提升，参数滑块拖动时变化清晰可辨。
+- 同步统一外壳与各面板 Token，避免深浅硬切换。
+
+**2）「看板」入口 → 「设置」页面（整合统计 + 美化）**
+- 侧栏与底部导航的「数据看板 📊」入口移除，替换为「设置 ⚙️」。
+- 原有学习统计（总体进度 / 4 大分类进度条 / 收藏数 / 最近学习记录）整合进设置页，作为独立区块，可点击跳回对应知识点。
+- 设置页整体重做：玻璃卡片分区（`.set-sec`）+ 标题（`.set-sec-h`）、统计宫格（`.stat-grid/.stat`）、分类进度（`.cat-prog/.cp-fill`）、最近学习（`.recent/.ri`）、数据与显示（减少动效开关 + 清除记录按钮），联动主题变量。
+
+**3）设置页新增「多主题」模块（实时切换）**
+- 提供 4 套主题：深空蓝(space) / 极光紫(aurora) / 晨曦橙(sunrise) / 暗夜绿(forest)，各含完整色彩 Token（背景辉光 / 品牌色 / 表面 / 文字 / 描边 / Canvas 底色）。
+- 主题选择器（`.theme-row/.theme-chip/.theme-swatch`）点击即切换，通过 `:root[data-theme="..."]` 覆盖 CSS 变量，**实时生效**；选择持久化到 `localStorage(optics_theme)`。
+- 初始化即读取上次主题并应用，首屏无闪烁。
+
+**4）底部导航改为悬浮毛玻璃 + 华为沉浸式光感（图标重设计）**
+- 底部 Tab 栏改为**悬浮胶囊**：`position:fixed` 居中 + `border-radius:26px` + `backdrop-filter:blur(26px) saturate(180%)` + 多层 box-shadow 光晕 + `::before` 径向渐变光感，呈现华为系沉浸式质感。
+- 三个导航 icon **全新 SVG 设计**：首页（房子）/ 随机（骰子）/ 设置（齿轮），替换原 emoji，视觉更精致统一；选中态加指示条（`.bt-item.active::after`）。
+- 移动端 `.view` 底部内边距避让悬浮栏（96px → 118px）。
+
+**5）版本号与缓存 bump**
+- index.html v0.2.2 → v0.2.3；sw.js CACHE → `optics-workbench-v0.2.3`；单文件约 3240 行。
+
+**质量校验**
+- 3 段脚本 `node --check` 通过；Headless Chromium 初始渲染无运行时错误（hero 显示 v0.2.3、3 个 bt-item、view-settings 存在、data-theme 属性 5 处）。
+- 设置页渲染验证：theme-chip 8（含 4 主题 × 选中/描述）、set-sec 9、stat-grid 3、cat-prog 4、theme-swatch 3，零 JS 报错。
+
+---
+
 - 校验：DIV 配平 891/891、3 段脚本 `node --check` 通过、Headless 渲染 8 类切换 `panelShown=navActive=true`、无孤立节点、无 JS 报错。
 
 ---
