@@ -88,6 +88,50 @@
     --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06); --line-3:rgba(255,255,255,.16);
     --canvas-bg:rgba(18,48,30,.62);
   }
+  /* 黑粉 · 暗色（霓虹粉 × 紫，个性暗色） */
+  :root[data-theme="darkpink"]{
+    --theme-name:'黑粉';
+    --bg-1:#16060f; --bg-2:#1d0816; --bg-3:#260a1e;
+    --glow-1:rgba(236,72,153,.22); --glow-2:rgba(168,85,247,.18);
+    --brand:#ec4899; --brand-2:#d946ef;
+    --surface:rgba(255,255,255,.07); --surface-2:rgba(255,255,255,.05); --surface-3:rgba(255,255,255,.11);
+    --text:#ffe9f6; --muted:#e9a7d0; --muted-2:#c97fb0;
+    --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06); --line-3:rgba(255,255,255,.16);
+    --canvas-bg:rgba(48,20,42,.62);
+  }
+  /* 晨光白 · 明亮（浅色蓝紫，户外/强光可读） */
+  :root[data-theme="light"]{
+    --theme-name:'晨光白';
+    --bg-1:#e9eef7; --bg-2:#f3f6fc; --bg-3:#e3eaf6;
+    --glow-1:rgba(96,165,250,.22); --glow-2:rgba(167,139,250,.18);
+    --brand:#2563eb; --brand-2:#7c3aed;
+    --surface:rgba(255,255,255,.78); --surface-2:rgba(255,255,255,.55); --surface-3:rgba(255,255,255,.92);
+    --text:#0f1a30; --muted:#41506b; --muted-2:#5a6b88;
+    --line:rgba(15,23,42,.10); --line-2:rgba(15,23,42,.06); --line-3:rgba(15,23,42,.16);
+    --canvas-bg:rgba(255,255,255,.72);
+  }
+  /* 薄荷绿 · 明亮（清新浅绿，低刺激护眼） */
+  :root[data-theme="mint"]{
+    --theme-name:'薄荷绿';
+    --bg-1:#e7f7f0; --bg-2:#f0fbf6; --bg-3:#e1f3ea;
+    --glow-1:rgba(16,185,129,.18); --glow-2:rgba(45,212,191,.16);
+    --brand:#059669; --brand-2:#0d9488;
+    --surface:rgba(255,255,255,.76); --surface-2:rgba(255,255,255,.54); --surface-3:rgba(255,255,255,.92);
+    --text:#06231a; --muted:#2f5a4c; --muted-2:#467060;
+    --line:rgba(6,35,26,.10); --line-2:rgba(6,35,26,.06); --line-3:rgba(6,35,26,.16);
+    --canvas-bg:rgba(255,255,255,.72);
+  }
+  /* 樱花粉 · 明亮（柔浅粉橙，温馨轻快） */
+  :root[data-theme="sakura"]{
+    --theme-name:'樱花粉';
+    --bg-1:#fdeef5; --bg-2:#fdf3f8; --bg-3:#fbe8f1;
+    --glow-1:rgba(244,114,182,.20); --glow-2:rgba(251,146,60,.14);
+    --brand:#db2777; --brand-2:#f97316;
+    --surface:rgba(255,255,255,.80); --surface-2:rgba(255,255,255,.56); --surface-3:rgba(255,255,255,.93);
+    --text:#3a0f24; --muted:#7a3556; --muted-2:#945571;
+    --line:rgba(58,15,36,.10); --line-2:rgba(58,15,36,.06); --line-3:rgba(58,15,36,.16);
+    --canvas-bg:rgba(255,255,255,.74);
+  }
 
   html,body{ height:100%; }
   body {
@@ -595,6 +639,15 @@
   .switch.on i{ left:23px; }
   .reduce-motion #bg{ display:none; }
   .reduce-motion *, .reduce-motion *::before, .reduce-motion *::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  /* ---- 变更履历（设置页内） ---- */
+  .cl-list{ display:flex; flex-direction:column; gap:10px; }
+  .cl-item{ border:1px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); padding:12px 14px; }
+  .cl-head{ display:flex; align-items:baseline; gap:9px; margin-bottom:6px; }
+  .cl-v{ font-size:13.5px; font-weight:800; color:var(--brand); font-variant-numeric:tabular-nums; }
+  .cl-d{ font-size:11px; color:var(--muted-2); margin-left:auto; }
+  .cl-t{ font-size:12px; font-weight:600; color:var(--text); }
+  .cl-items{ margin:4px 0 0; padding-left:16px; }
+  .cl-items li{ font-size:11.5px; color:var(--muted); line-height:1.7; }
 
   /* ---- 移动端底部悬浮导航（毛玻璃 · 华为沉浸式光感） ---- */
   #bottomtab{
@@ -706,7 +759,7 @@
       <button class="nav-item" data-page="random"><span class="ni-ic">🎲</span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic">⚙️</span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.2.6 · 2026-08-11<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.2.7 · 2026-08-11<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
@@ -732,7 +785,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.2.6 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-11</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.2.7 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-11</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
@@ -749,7 +802,7 @@
 
                       <div class="home-split">
         <aside class="cat-nav">
-          <div class="cat-nav-h">知识分类 · 10</div>
+          <div class="cat-nav-h">知识分类 · 11</div>
       <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
         <span class="cn-ic">🔬</span>
         <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
@@ -799,6 +852,11 @@
         <span class="cn-ic">📋</span>
         <span class="cn-lb">项目管理<span class="en">Project Mgmt</span></span>
         <span class="cn-count">3</span>
+      </div>
+      <div class="cat-nav-item" id="cat-quality" onclick="showCat('quality')">
+        <span class="cn-ic">🛡️</span>
+        <span class="cn-lb">质量工具<span class="en">Quality Tools</span></span>
+        <span class="cn-count">4</span>
       </div>
         </aside>
       <div id="browse">
@@ -1114,6 +1172,14 @@
     <div class="tab" id="tab-pm-ppap" onclick="showTab('pm-ppap')">PPAP 生产批准<span class="en">PPAP</span></div>
   </div>
 
+  <!-- 质量工具 · DFMEA / PFMEA / CP / 清洁度 -->
+  <div class="tabs" id="subtabs-quality" style="display:none;">
+    <div class="tab active" id="tab-dfmea" onclick="showTab('dfmea')">DFMEA<span class="en">设计失效</span></div>
+    <div class="tab" id="tab-pfmea" onclick="showTab('pfmea')">PFMEA<span class="en">过程失效</span></div>
+    <div class="tab" id="tab-cp" onclick="showTab('cp')">CP 控制计划<span class="en">Control Plan</span></div>
+    <div class="tab" id="tab-clean" onclick="showTab('clean')">清洁度<span class="en">Cleanliness</span></div>
+  </div>
+
   <style>
   .pm-tl{ font-size:12px; font-weight:800; color:var(--brand,#3370FF); margin:14px 0 4px; letter-spacing:.4px; }
   .pm-card{ background:rgba(255,255,255,.045); border:1px solid var(--line); border-radius:14px; padding:16px 16px 12px; margin-bottom:12px; }
@@ -1230,6 +1296,103 @@
       <div class="pm-body">获得 PSW 签署 → 进入合格供应商 AVL → 收到正式 PO → 开始 SOP 量产供货。但 PPAP 通过不是终点——后续还有：<b>年度重审（Re-PPAP）</b>、<b>工程变更时重新提交（PPAP 变更通知）</b>、<b>质量问题时的遏制与 8D</b>。</div>
     </div>
     <div class="note"><b>PPAP 一句话总结：</b>它不是「考试及格就完事」，而是「证明你有能力持续稳定地交出合格的镜头」。对车载光学来说，PPAP 包里的每一份文件（DFMEA/CPK/MSA/DV-PV）都是你在量产前就已经把坑填好的证据。没做 PPAP 就量产 = 在赌运气。</div>
+  </div>
+
+  <!-- 质量工具 · DFMEA -->
+  <div class="panel" id="panel-dfmea">
+    <div class="define"><b>释义：</b><b>DFMEA（Design FMEA，设计失效模式与影响分析）</b>在量产前系统性识别「产品设计本身可能怎么坏」——从功能要求反推失效模式、原因与后果，按严重度 <b>S / 频度 O / 探测度 D</b> 评估风险，优先堵住高风险的设计弱点。车载光学里，DFMEA 覆盖光学面型、镀膜、材料、结构与热设计等维度。</div>
+    <p class="tagline">一句话：在设计图阶段就把「这镜头会怎么失效」想透，比量产后召回便宜 100 倍</p>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🧭</span>AIAG-VDA 七步法<span class="tag">方法论</span></div>
+      <div class="pm-body">新版 FMEA 用结构化七步，取代旧版「填表」：<br><b>①规划范围</b> → <b>②结构分析</b> → <b>③功能分析</b> → <b>④失效分析</b> → <b>⑤风险分析(S/O/D→AP)</b> → <b>⑥优化</b> → <b>⑦结果文件化</b>。<br><b>对光学：</b>结构分析拆到「每片镜片 / 每枚胶合 / 每个隔圈」；功能分析落到「焦距 / MTF / 畸变 / 杂光」；失效分析列「偏心 / 鬼影 / 温漂」。</div>
+    </div>
+
+    <div class="pm-card pm-warn">
+      <div class="pm-h"><span class="em">⚠️</span>严重度 S（车载最关键）<span class="tag">安全</span></div>
+      <div class="pm-body"><b>S=9~10：</b>影响安全 / 法规（如夜视摄像头黑屏 → AEB 失效）→ 零容忍，必须有设计对策。<br><b>光学典型高风险：</b>低光 SNR 崩 → 识别率掉；HUD 双影 → 分心；IR 截止偏移 → 色偏误判红绿灯。</div>
+      <table class="pm-table"><tr><td>S 9~10</td><td>安全/法规 → 必须设计预防，AP=高</td></tr><tr><td>S 5~8</td><td>功能降级（如 MTF 边缘略低）→ 客户可感知</td></tr><tr><td>S 1~4</td><td>外观/轻微 → 影响小</td></tr></table>
+    </div>
+
+    <div class="pm-card pm-ok">
+      <div class="pm-h"><span class="em">📊</span>RPN → AP 行动优先级<span class="tag">新版</span></div>
+      <div class="pm-body">旧版 <b>RPN = S×O×D</b>（1~1000）；新版 AIAG-VDA 用 <b>AP（高/中/低）</b>综合 S/O/D 判定，避免「高 S 低 O 却被低 RPN 掩盖」。<br><b>对光学：</b>S 高即 AP=高，即便 O/D 低也要设计预防（如加挡光片防杂光、加加热膜防结露）。</div>
+    </div>
+    <div class="note"><b>DFMEA vs PFMEA：</b>DFMEA 管「设计能不能不出问题」，PFMEA 管「产线能不能稳定造出来」。两者都进 PPAP 第 4/5 项——DFMEA 证明设计可靠，PFMEA 证明工艺可控。</div>
+  </div>
+
+  <!-- 质量工具 · PFMEA -->
+  <div class="panel" id="panel-pfmea">
+    <div class="define"><b>释义：</b><b>PFMEA（Process FMEA，过程失效模式与影响分析）</b>识别「制造 / 装配过程可能怎么失控」——镀膜、清洗、胶合、AA、检测每道工序的失效模式、原因与现行控制。车载光学<b>良率的天花板由 PFMEA 决定</b>。</div>
+    <p class="tagline">一句话：每道工序都可能埋雷，PFMEA 是把雷在试产阶段就排掉</p>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🏭</span>工序地图（车载镜头典型）<span class="tag">流程</span></div>
+      <div class="pm-body">来料镜片 → 清洗 → 镀膜 → 胶合 → <b>AA 主动对准</b> → 点胶固化 → 终检(MTF/VGI/偏心) → 可靠性。<br>每工序列失效：<b>清洗不净</b>→颗粒鬼影；<b>镀膜不均</b>→反射率波动；<b>AA 胶蠕变</b>→焦点慢漂；<b>点胶气泡</b>→应力双折射。</div>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">⭐</span>关键特性与特殊特性<span class="tag">管控重点</span></div>
+      <div class="pm-body">特殊特性（⭐）指一旦失控后果严重的特性——O 或 D 高时必须 100% 检或 SPC。<br><b>对光学：</b>同轴度、焦距误差、MTF、IR 截止波长。同轴度 CPK≥1.33；MTF 每颗全检；镀膜厚度 SPC 控制。</div>
+      <table class="pm-table"><tr><td>同轴度</td><td>特殊特性 → SPC + 每批 GR&amp;R</td></tr><tr><td>中心 MTF</td><td>特殊特性 → 100% 全检</td></tr><tr><td>镀膜厚度</td><td>特殊特性 → 在线 SPC</td></tr></table>
+    </div>
+
+    <div class="pm-card pm-ok">
+      <div class="pm-h"><span class="em">🛡️</span>探测度 D 与防错<span class="tag">Poka-Yoke</span></div>
+      <div class="pm-body"><b>D 低</b>=检得出（自动 MTF 全检、AI 外观检）；<b>D 高</b>=靠人眼漏检 → 风险大。<br><b>防错：</b>AA 前激光清洗确认、胶量定量点胶、来料颗粒计数、装配静电消除。</div>
+    </div>
+    <div class="note"><b>PFMEA → CP 的链路：</b>PFMEA 输出的「特殊特性清单」直接喂给 CP（控制计划）——哪道工序控什么、怎么检，全来自 PFMEA。两者 + DFMEA 构成「活的三件套」。</div>
+  </div>
+
+  <!-- 质量工具 · CP 控制计划 -->
+  <div class="panel" id="panel-cp">
+    <div class="define"><b>释义：</b><b>CP（Control Plan，控制计划）</b>是把 PFMEA 的结论「落成每道工序的操作手册」——明确每个特性「用什么方法、什么频次、什么标准、谁负责」监控。它是 PPAP 第 6 项，也是量产 SPC 的依据。</div>
+    <p class="tagline">一句话：FMEA 说「哪里会坏」，CP 说「怎么盯着不让它坏」</p>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">📋</span>三阶段控制计划<span class="tag">生命周期</span></div>
+      <div class="pm-body"><b>样件 CP（Prototype）</b> → <b>试产 CP（Pre-launch）</b> → <b>量产 CP（Production）</b>。<br><b>对光学：</b>试产 CP 定镀膜 SPC 频次；量产 CP 固化全检 MTF 节拍与反应计划。</div>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🔢</span>控制计划字段（一行一特性）<span class="tag">结构</span></div>
+      <div class="pm-body">每个受控特性一行：<b>特性 / 规范 / 方法(量具) / 频次 / 反应计划</b>。</div>
+      <table class="pm-table"><tr><td>同轴度 ≤0.3°</td><td>偏心仪 ｜ 每批首件+每2h巡检 ｜ 超差停线调机</td></tr><tr><td>中心 MTF ≥0.50@119lp/mm</td><td>MTF台 ｜ 100% 全检 ｜ 降级复测/隔离</td></tr><tr><td>VGI ≤2.0%</td><td>VGI台 ｜ 每批抽检 ｜ 查镀膜洁净度</td></tr></table>
+    </div>
+
+    <div class="pm-card pm-warn">
+      <div class="pm-h"><span class="em">🚨</span>反应计划（关键但常被忽略）<span class="tag">兜底</span></div>
+      <div class="pm-body">超差时动作：<b>停线 → 隔离 → 8D → 回写 PFMEA/CP</b>。<br><b>对光学：</b>MTF 整批掉 → 查 AA 胶固化曲线；VGI 超标 → 查镀膜洁净度与清洗工序。</div>
+    </div>
+    <div class="note"><b>CP 是活的：</b>每次 PFMEA 更新、工程变更(ECN)、客诉 8D 都要回写 CP。CP 与 PFMEA / DFMEA 不是「写完归档」，而是随产线持续改进的动态文件。</div>
+  </div>
+
+  <!-- 质量工具 · 清洁度 -->
+  <div class="panel" id="panel-clean">
+    <div class="define"><b>释义：</b><b>清洁度（Component Cleanliness，零部件清洁度）</b>量化零部件表面允许的颗粒污染物上限——直接决定成像是否有「脏点 / 鬼影」。车载光学遵循 <b>VDA 19 / ISO 16232</b> 标准，用「颗粒尺寸分布 + 最大允许颗粒数」定义等级。</div>
+    <p class="tagline">一句话：镜头里一颗 50μm 的颗粒，在画面中心就是一颗永远擦不掉的黑点</p>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">📐</span>标准与等级（VDA 19-2 / ISO 16232）<span class="tag">规范</span></div>
+      <div class="pm-body">按「最大允许颗粒尺寸」分级：<b>Code 12</b> = 最大颗粒 400μm；<b>Code 15</b> = 最大 2000μm。<br><b>对光学：</b>成像路径零件（镜片 / 隔圈 / IR 片）通常要求 <b>Code ≤ 12~13</b>；越靠近像面要求越严。</div>
+      <table class="pm-table"><tr><td>Code 12</td><td>最大颗粒 400μm（成像路径常用）</td></tr><tr><td>Code 13</td><td>最大颗粒 800μm（结构件）</td></tr><tr><td>Code 15</td><td>最大颗粒 2000μm（非成像件）</td></tr></table>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🔬</span>怎么测（萃取 + 分析）<span class="tag">方法</span></div>
+      <div class="pm-body"><b>压力萃取</b>（冲洗颗粒）→ <b>滤膜收集</b> → <b>显微镜 / 激光粒度仪计数分级</b>。<br><b>对光学：</b>镜头内腔用异丙醇萃取；每批抽检；颗粒数超 Code → 整批返清洗。</div>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🌀</span>颗粒从哪来（污染源）<span class="tag">根因</span></div>
+      <div class="pm-body">来料粉尘、机加碎屑、镀膜粉尘、装配手套纤维、清洗不净。<br><b>控制：</b>洁净间等级（如 ISO 7 / Class 10000）、离子风除静电、粘尘辊、无尘包装。</div>
+    </div>
+
+    <div class="pm-card pm-warn">
+      <div class="pm-h"><span class="em">❌</span>清洁度失效的典型表现<span class="tag">后果</span></div>
+      <div class="pm-body"><b>鬼影 / 亮斑：</b>大颗粒在镜片间散射杂光；<b>暗点 / 黑点：</b>颗粒挡光形成固定位置亮点（与运动模糊区分：<b>脏点是静态的</b>）；<b>低良率：</b>清洁度不达标 → 终检 MTF/VGI 整批掉。</div>
+    </div>
+    <div class="note"><b>看不见的质量：</b>清洁度不写在光学 spec 里，却直接吃掉成像良率。车载摄像头因脏点导致夜间噪点 / 鬼影的 RMA，根因八成在清洁度管控——它是 DFMEA/PFMEA 里「清洗工序」那一行背后的真正战场。</div>
   </div>
 
   <!-- MTF -->
@@ -2553,13 +2716,14 @@ function expandPanel(btn, open){
   });
 }
 let currentCat = 'optics';
-const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout', photography:'ph-expo', project:'pm-vda' };
+const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout', photography:'ph-expo', project:'pm-vda', quality:'dfmea' };
 const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
   fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
   thcomp:renderThcomp, stray:renderStray, ghost:renderGhost,
   'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr, 'ph-cards':renderPhCards,
-  'pm-vda':renderPmVda, 'pm-apqp':renderPmApqp, 'pm-ppap':renderPmPpap };
+  'pm-vda':renderPmVda, 'pm-apqp':renderPmApqp, 'pm-ppap':renderPmPpap,
+  'dfmea':renderDfmea, 'pfmea':renderPfmea, 'cp':renderCp, 'clean':renderClean };
 function showTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -2570,7 +2734,7 @@ function showTab(id){
 }
 function showCat(cat){
   currentCat = cat;
-  ['optics','reliability','process','drawing','equipment','module','material','application','photography','project'].forEach(c=>{
+  ['optics','reliability','process','drawing','equipment','module','material','application','photography','project','quality'].forEach(c=>{
     document.getElementById('cat-'+c).classList.toggle('active', c===cat);
   });
   document.getElementById('subtabs-optics').style.display = (cat==='optics') ? 'flex' : 'none';
@@ -2582,6 +2746,7 @@ function showCat(cat){
   document.getElementById('subtabs-application').style.display = (cat==='application') ? 'flex' : 'none';
   document.getElementById('subtabs-photography').style.display = (cat==='photography') ? 'flex' : 'none';
   document.getElementById('subtabs-project').style.display = (cat==='project') ? 'flex' : 'none';
+  document.getElementById('subtabs-quality').style.display = (cat==='quality') ? 'flex' : 'none';
   document.getElementById('subtabs-equipment').style.display = (cat==='equipment') ? 'flex' : 'none';
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -3663,6 +3828,10 @@ function renderPhCards(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 function renderPmVda(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 function renderPmApqp(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderDfmea(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderPfmea(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderCp(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderClean(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 
 </script>
 
@@ -3693,7 +3862,7 @@ function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 53;
+  var VER_TOTAL = 57;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -3716,7 +3885,7 @@ function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     var title = ''; t.childNodes.forEach(function(n){ if(n.nodeType===3) title += n.textContent; });
     ITEMS.push({id:id, cat:cat, title:title.trim(), en:en});
   });
-  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', equipment:'设备与仪器', module:'模组与系统', material:'材料与镜片', application:'应用场景', photography:'摄影/相机' };
+  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', equipment:'设备与仪器', module:'模组与系统', material:'材料与镜片', application:'应用场景', photography:'摄影/相机', project:'项目管理', quality:'质量工具' };
   function seenCount(){ return LS.get('optics_seen',[]).length; }
 
   var _showTab = showTab; showTab = function(id){ _showTab(id); recordView(id); };
@@ -3767,7 +3936,11 @@ function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     { id:'space',  name:'深空蓝', desc:'经典蓝紫 · 沉稳', c1:'#5b8cff', c2:'#7c6cff' },
     { id:'aurora', name:'极光紫', desc:'青绿 × 紫 · 灵动', c1:'#22d3ee', c2:'#a855f7' },
     { id:'sunrise',name:'晨曦橙', desc:'暖橙 × 粉 · 活力', c1:'#fb923c', c2:'#f472b6' },
-    { id:'forest', name:'暗夜绿', desc:'青绿 · 护眼长阅', c1:'#34d399', c2:'#10b981' }
+    { id:'forest', name:'暗夜绿', desc:'青绿 · 护眼长阅', c1:'#34d399', c2:'#10b981' },
+    { id:'darkpink', name:'黑粉', desc:'黑底 × 霓虹粉 · 个性', c1:'#ec4899', c2:'#d946ef' },
+    { id:'light', name:'晨光白', desc:'明亮浅色 · 户外可读', c1:'#2563eb', c2:'#7c3aed' },
+    { id:'mint', name:'薄荷绿', desc:'明亮薄荷 · 清爽护眼', c1:'#059669', c2:'#0d9488' },
+    { id:'sakura', name:'樱花粉', desc:'明亮樱粉 · 柔和轻快', c1:'#db2777', c2:'#f97316' }
   ];
   function applyTheme(t){
     if(!t) t='space';
@@ -3776,6 +3949,14 @@ function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     var chips = document.querySelectorAll('.theme-chip');
     chips.forEach(function(c){ c.classList.toggle('active', c.dataset.theme===t); });
   }
+  var CHANGELOG = [
+    { v:'v0.2.7', d:'2026-08-11', t:'主题与质量模块', items:['新增黑粉主题 + 3 个明亮主题（晨光白/薄荷绿/樱花粉）','新增「质量工具」模块（DFMEA / PFMEA / CP / 清洁度）','变更履历整合进设置页'] },
+    { v:'v0.2.6', d:'2026-08-11', t:'修复与扩展', items:['修复 Canvas 文字重叠（曝光三角/对焦平面/FOV/等效焦距）','版本号后添加小字更新日期','新增「项目管理」模块（VDA / APQP / PPAP）'] },
+    { v:'v0.2.5', d:'2026-08-11', t:'摄影参数速查', items:['摄影分类新增「参数速查」交付卡片','覆盖 DR / SNR / 白平衡 / 像素分辨率 与场景映射'] },
+    { v:'v0.2.4', d:'2026-08-11', t:'摄影/相机分类', items:['新增第 9 大分类「摄影/相机」','曝光三角 / 景深 / 等效焦距 / 镜头像差图鉴'] },
+    { v:'v0.2.3', d:'2026-08-11', t:'四项 UI 优化', items:['卡片内参数变动可视化提亮','移除看板入口→设置页','设置页多主题功能','底部导航悬浮毛玻璃'] },
+    { v:'v0.2.2', d:'2026-08-10', t:'基础内容体系', items:['光学基础 / 信赖性 / 工艺 / 图纸 / 设备 / 模组 / 材料 / 应用 等核心面板'] }
+  ];
   function renderSettings(){
     var seen = LS.get('optics_seen',[]);
     var fav = LS.get('optics_fav',[]);
@@ -3816,6 +3997,15 @@ function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-row"><div><div class="lr">减少动效</div><div class="ld">关闭粒子背景与过渡动画</div></div><button class="switch" id="setMotion"></button></div>';
     html += '<div class="set-row"><div><div class="lr">清除学习记录</div><div class="ld">清空已学 / 收藏进度（不可恢复）</div></div><button class="set-btn" id="setClear">清除</button></div>';
     html += '</div>';
+    /* 变更履历 */
+    html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/><path d="M3 12a9 9 0 0 1 18 0"/></svg>变更履历<span class="sub">版本更新记录</span></div>';
+    html += '<div class="cl-list">';
+    CHANGELOG.forEach(function(c){
+      html += '<div class="cl-item"><div class="cl-head"><span class="cl-v">'+c.v+'</span><span class="cl-t">'+c.t+'</span><span class="cl-d">'+c.d+'</span></div><ul class="cl-items">';
+      c.items.forEach(function(it){ html += '<li>'+it+'</li>'; });
+      html += '</ul></div>';
+    });
+    html += '</div></div>';
     settingsHost.innerHTML = html;
     settingsHost.querySelectorAll('.theme-chip').forEach(function(c){
       c.addEventListener('click', function(){ applyTheme(c.dataset.theme); });
