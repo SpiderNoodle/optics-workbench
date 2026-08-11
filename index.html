@@ -706,7 +706,7 @@
       <button class="nav-item" data-page="random"><span class="ni-ic">🎲</span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic">⚙️</span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.2.5 · 2026-08-11<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.2.6 · 2026-08-11<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
@@ -732,7 +732,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.2.5</h1>
+      <h1 class="hero-title">车载光学百科 v0.2.6 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-11</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
@@ -749,7 +749,7 @@
 
                       <div class="home-split">
         <aside class="cat-nav">
-          <div class="cat-nav-h">知识分类 · 9</div>
+          <div class="cat-nav-h">知识分类 · 10</div>
       <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
         <span class="cn-ic">🔬</span>
         <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
@@ -794,6 +794,11 @@
         <span class="cn-ic">📷</span>
         <span class="cn-lb">摄影/相机<span class="cn-en">Photography</span></span>
         <span class="cn-count">5</span>
+      </div>
+      <div class="cat-nav-item" id="cat-project" onclick="showCat('project')">
+        <span class="cn-ic">📋</span>
+        <span class="cn-lb">项目管理<span class="en">Project Mgmt</span></span>
+        <span class="cn-count">3</span>
       </div>
         </aside>
       <div id="browse">
@@ -1100,6 +1105,131 @@
 
     </div>
     <div class="note"><b>一张表记住取舍：</b>DR 管「亮暗都要」、SNR 管「暗部干净」、WB 管「颜色正」、像素管「细节够」。它们都由 <b>传感器本身 + ISP 处理</b> 决定，拧不动快门光圈——所以选机 / 选车载 sensor 时，这些参数比「像素数」更该看。<b>车载关联：</b>行车记录 / 智驾要的是高 DR + 高 SNR + 准 WB 的「可信图像」，而非高像素；像素太密反而拖慢帧率与算法。</div>
+  </div>
+
+  <!-- 项目管理 · VDA / APQP / PPAP -->
+  <div class="tabs" id="subtabs-project" style="display:none;">
+    <div class="tab active" id="tab-pm-vda" onclick="showTab('pm-vda')">VDA 标准<span class="en">VDA Standard</span></div>
+    <div class="tab" id="tab-pm-apqp" onclick="showTab('pm-apqp')">APQP 先期策划<span class="en">APQP</span></div>
+    <div class="tab" id="tab-pm-ppap" onclick="showTab('pm-ppap')">PPAP 生产批准<span class="en">PPAP</span></div>
+  </div>
+
+  <style>
+  .pm-tl{ font-size:12px; font-weight:800; color:var(--brand,#3370FF); margin:14px 0 4px; letter-spacing:.4px; }
+  .pm-card{ background:rgba(255,255,255,.045); border:1px solid var(--line); border-radius:14px; padding:16px 16px 12px; margin-bottom:12px; }
+  .pm-h{ font-weight:700; font-size:15px; color:var(--text); display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .pm-h .em{ font-size:18px; }
+  .pm-h .tag{ font-size:10px; font-weight:600; padding:2px 8px;border-radius:10px;background:rgba(91,140,255,0.15);color:#5b8cff;margin-left:auto; }
+  .pm-body{ font-size:12px; color:var(--muted); line-height:1.65; }
+  .pm-body b{ color:var(--text); }
+  .pm-flow{ display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px; }
+  .pm-step{ font-size:11px; padding:5px 10px; border-radius:8px; background:rgba(255,255,255,.06); border:1px solid var(--line); white-space:nowrap; }
+  .pm-step.active{ border-color:var(--brand,#3370FF); background:rgba(51,112,255,0.08); color:var(--brand,#3370FF); font-weight:600; }
+  .pm-step.done{ opacity:0.55; text-decoration:line-through; }
+  .pm-table{ width:100%; border-collapse:collapse; margin:8px 0; font-size:11px; }
+  .pm-table td{ padding:6px 6px; border-top:1px solid var(--line); vertical-align:top; }
+  .pm-table td:first-child{ color:#46d3c4; font-weight:600; width:38%; }
+  .pm-table td:last-child{ color:var(--muted); }
+  .pm-warn{ background:rgba(251,191,36,0.08); border-color:#fcd34d; }
+  .pm-ok{ background:rgba(52,211,153,0.06); border-color:#34d399; }
+  </style>
+
+  <!-- 项目管理 · VDA -->
+  <div class="panel" id="panel-pm-vda">
+    <div class="define"><b>释义：</b><b>VDA（Verband der Automobilindustrie，德国汽车工业协会）标准体系</b>是德系整车厂（VW / BMW / Mercedes）对供应商质量管理的统一规范。对车载光学项目而言，最核心的是<b>VDA 6.3（过程审核）</b>与<b>VDA 6.5（产品审核）</b>——前者查「你做镜头的过程稳不稳」，后者查「做出来的镜头好不好」。VDA 是进入德系供应链的「入场券」。</div>
+    <p class="tagline">VDA 不是一份文件，而是一整套「过程→产品→持续改进」的质量语言</p>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">📐</span>VDA 6.3 过程审核<span class="tag">P1 核心</span></div>
+      <div class="pm-body">审核生产过程的稳定性与能力。用<b>打分制（A/B/C）</b>评价各工序要素（P2–P7），总分决定是否具备批量供货资格。<br><b>对光学项目的影响：</b>镀膜工序的厚度均匀性、装配工序的同轴度、清洁工序的颗粒控制——这些都会被逐项打分。一次 C 评级可能导致暂停供货。</div>
+      <div class="pm-tl">六大过程要素（P2–P7）</div>
+      <table class="pm-table"><tr><td>P2 项目管理</td><td>资源、计划、风险管理</td></tr><tr><td>P3 产品/过程策划</td><td>FMEA、控制计划、工艺设计</td></tr><tr><td>P4 资源</td><td>人员资质、设备能力、测量系统</td></tr><tr><td>P5 交付</td><td>来料检验、仓储、物流</td></tr><tr><td>P6 过程控制</td><td>SPC、首件检验、巡检</td></tr><tr><td>P7 客户支持</td><td>投诉处理、8D 报告、持续改进</td></tr></table>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🔍</span>VDA 6.5 产品审核<span class="tag">P1 核心</span></div>
+      <div class="pm-body">从客户视角抽样检查成品质量。按缺陷严重程度分级：<b>A（关键）= 安全/法规 → 0 容忍</b>；<b>B（主要）= 功能失效 → 极低容忍</b>；<b>C（次要）= 外观瑕疵 → 有条件接受</b>。<br><b>对光学项目的影响：</b>MTF 不达标 = B 类；镜片划伤/脏点 = C 类；镜头脱落/裂纹 = A 类（零容忍）。每次出货前必须做产品审核并记录 QKZ（质量特征值）。</div>
+    </div>
+
+    <div class="pm-card pm-warn">
+      <div class="pm-h"><span class="em">⚠️</span>常见扣分项（光学项目特有）</div>
+      <div class="pm-body"><b>• 过程不稳定：</b>镀膜反射率波动 >±1%（未做 SPC）、装配同轴度 CPK &lt; 1.33<br><b>• 文件缺失：</b>无最新版控制计划、无校准记录、无追溯批次号<br><b>• 测量系统不足：</b>MTF 设备未做 MSA（GR&amp;R &gt;30%）、量具超期未校准<br><b>• 变更未管控：</b>工艺参数调整未走 ECN（工程变更通知）流程</div>
+    </div>
+    <div class="note"><b>一句话：</b>VDA 6.3 问「你的过程能不能稳定产出好镜头」，VDA 6.5 问「这批镜头到底好不好」。两个都过了，德系 OEM 才会给你长期订单。</div>
+  </div>
+
+  <!-- 项目管理 · APQP -->
+  <div class="panel" id="panel-pm-apqp">
+    <div class="define"><b>释义：</b><b>APQP（Advanced Product Quality Planning，产品质量先期策划）</b>是 AIAG（美系汽车工业行动集团）定义的<b>五阶段新产品开发流程</b>。从概念到量产，每阶段有明确的输入/输出和评审关口（Gate Review）。车载光学项目从「镜头规格定义」到「SOP 量产」全程受 APQP 框架约束。</div>
+    <p class="tagline">五阶段：概念 → 计划 → 开发 → 验证 → 量产 —— 每一步都有明确的交付物</p>
+
+    <div class="pm-flow">
+      <div class="pm-step active">Phase 1 概念</div>
+      <div class="pm-step">Phase 2 计划</div>
+      <div class="pm-step">Phase 3 开发</div>
+      <div class="pm-step">Phase 4 验证</div>
+      <div class="pm-step">Phase 5 量产</div>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">💡</span>Phase 1：概念与立项<span class="tag">输入</span></div>
+      <div class="pm-body">确定项目范围、目标市场、技术可行性。<br><b>光学项目输出：</b>VOG（Voice of Guest）需求清单 → 转化为光学规格（EFL/FOV/FNO/MTF/畸变/IR Cut）、目标成本、产能规划。</div>
+      <table class="pm-table"><tr><td>关键交付物</td><td>可行性研究报告、初始 BOM、项目 charter、标杆分析</td></tr><tr><td>评审关口</td><td>Kick-off Meeting（立项评审）</td></tr><tr><td>风险点</td><td>规格过于激进（如要求 f/1.4 + 150°FOV + 120dB DR 同时满足）</td></tr></table>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">📋</span>Phase 2：产品设计与开发计划<span class="tag">核心</span></div>
+      <div class="pm-body">完成产品设计、确定制造工艺、制定控制计划。<br><b>光学项目输出：</b>光学设计报告（Zemax/Code V）、公差分析（Monte Carlo）、DFM（可制造性评估）、原型样件制作。</div>
+      <table class="pm-table"><tr><td>关键交付物</td><td>DFMEA、PFMEA 初始版、控制计划、原型样件（DV 样件）、设计评审 DCR</td></tr><tr><td>评审关口</td><td>Design Review（设计冻结）</td></tr><tr><td>风险点</td><td>公差分配不合理导致良率预估 &lt;80%、DFMEA 遗漏失效模式</td></tr></table>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">⚙️</span>Phase 3：过程设计与开发<span class="tag">核心</span></div>
+      <div class="pm-body">开发制造工艺、验证工装夹具、建立生产线。<br><b>光学项目输出：</b>镀膜工艺窗口（温度/时间/气体流量）、胶合固化曲线、AA（Active Alignment）算法参数、SPC 控制图基线。</div>
+      <table class="pm-table"><tr><td>关键交付物</td><td>PFMEA 正式版、作业指导书 SOP、MSA 报告（GR&amp;R）、PV 样件试产</td></tr><tr><td>评审关口</td><td>Process Review（工艺冻结）</td></tr><tr><td>风险点</td><td>CPK 不达标（同轴度 &lt;1.33）、MSA GR&amp;R &gt;30%（测量系统不可信）</td></tr></table>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🧪</span>Phase 4：产品和过程确认<span class="tag">验证</span></div>
+      <div class="pm-body">量产前最终验证——确认产品满足所有 spec、过程稳定可控。<br><b>光学项目输出：</b>DV/PV 报告全绿、可靠性测试（高低温/振动/盐雾/UV）通过、PPAP 文件包准备完毕。</div>
+      <table class="pm-table"><tr><td>关键交付物</td><td>DV 报告、PV 报告、生产能力研究（初始过程能力）、PPAP 提交包</td></tr><tr><td>评审关口</td><td>Pre-SOP Review（量产前终审）</td></tr><tr><td>风险点</td><td>可靠性测试单项 FAIL（如 -40℃ MTF 下降 &gt;20%）</td></tr></table>
+    </div>
+
+    <div class="pm-card pm-ok">
+      <div class="pm-h"><span class="em">🏭</span>Phase 5：反馈、纠正与持续改进<span class="tag">SOP 后</span></div>
+      <div class="pm-body">SOP（Start of Production）后持续监控与改进。<br><b>光学项目输出：</b>量产 SPC 监控（每日 MTF/同轴度/外观）、OEE 追踪、客诉 8D 报告、年度 VDA 审核。</div>
+      <table class="pm-table"><tr><td>关键活动</td><td>减少变差（Six Sigma）、降低成本（VAVE）、预防再发生</td></tr><tr><td>关键指标</td><td>PPM（百万分之不良率）、OEE（设备综合效率）、CPK 趋势</td></tr></table>
+    </div>
+    <div class="note"><b>APQP 与光学的映射：</b>Phase 2 定「镜头该长什么样」（光学设计），Phase 3 定「怎么造出来」（镀膜/胶合/AA 工艺），Phase 4 验「真的能满足 spec 吗」（DV/PV）。跳过任何一阶段直接冲量产，几乎必然在 Phase 5 付出 10 倍代价去救火。</div>
+  </div>
+
+  <!-- 项目管理 · PPAP -->
+  <div class="panel" id="panel-pm-ppap">
+    <div class="define"><b>释义：</b><b>PPAP（Production Part Approval Process，生产件批准程序）</b>是供应商向 OEM 证明「我已具备稳定量产能力」的正式提交包。包含 <b>18+ 份文档</b>，覆盖设计记录、过程能力、测量系统、材料认证、试验报告等。PPAP 通过 = 获得「量产供货许可」。对车载光学而言，PPAP 是从「样件」到「正式订单」的最后一道门。</div>
+    <p class="tagline">PPAP 不是交一堆纸，而是证明「你的过程能稳定产出符合 spec 的镜头」</p>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">📦</span>PPAP 18 要素总览<span class="tag">完整清单</span></div>
+      <div class="pm-tl">核心文档（光学项目必交）</div>
+      <table class="pm-table"><tr><td>1 设计记录</td><td>2D/3D 图纸 + 光学规格书（EFL/FOV/MTF/公差表）</td></tr><tr><td>2 工程变更</td><td>ECN 清单（如有设计变更需附批准记录）</td></tr><tr><td>3 工程批准</td><td>客户签署的设计批准（通常为 ES 签字）</td></tr><tr><td>4 DFMEA</td><td>设计失效模式分析（光学面型/镀膜/材料/结构）</td></tr><tr><td>5 PFMEA</td><td>过程失效模式（镀膜/清洗/胶合/AA/检测 各工序）</td></tr><tr><td>6 控制计划</td><td>进料→制程→成品→出货 全流程控制要点</td></tr><tr><td>7 MSA</td><td>测量系统分析（MTF 设备 GR&amp;R、同心度仪 GR&amp;R 等）</td></tr><tr><td>8 尺寸结果</td><td>全尺寸检测报告（含光学参数实测 vs spec）</td></tr><tr><td>9 材料/性能试验</td><td>可靠性报告（高低温/振动/盐雾/UV/循环）</td></tr><tr><td>10 初始过程研究</td><td>CPK/PPK 报告（关键特性 KPC 必须 CPK ≥1.33 或 1.67）</td></tr><tr><td>11 合格实验室</td><td>实验室 ISO17025 认可或客户承认</td></tr><tr><td>12 控制计划(AIAG)</td><td>AIAG 格式控制计划（与 #6 同源但格式不同）</td></tr><tr><td>13 感官/外观批准</td><td>主样板（Master Sample）签字 + 外观标准（限度样本）</td></tr><tr><td>14 内部认可</td><td>供应商内部 PPAP 批准签字</td></tr><tr><td>15 送货承诺</td><td>包装规范、标签、运输防护方案</td></tr><tr><td>16 样品</td><td>生产件样品（通常 30 pcs 用于客户复测）</td></tr><tr><td>17 检具</td><td>专用检具（如 AA 夹具、外观检具）+ 校准记录</td></tr><tr><td>18 顾客特殊要求</td><td>OEM 特定附加要求（如 VW Form-Q、BMW GSL 等）</td></tr></table>
+    </div>
+
+    <div class="pm-card">
+      <div class="pm-h"><span class="em">🎯</span>PPAP 提交等级<span class="tag">选哪个？</span></div>
+      <div class="pm-body">根据零件风险等级选择提交等级：<br><b>Level 1</b> = 只交 PSW（Part Submission Warrant）保证书——最低<br><b>Level 2</b> = PSW + 实物样品<br><b>Level 3</b> = PSW + 完整文档包（最常见）<br><b>Level 4</b> = Level 3 + 顾客指定额外要求<br><b>Level 5</b> = PSW + 客户现场审核</div>
+      <table class="pm-table"><tr><td>车载光学镜头</td><td>通常 Level 3（安全件可能 Level 4~5）</td></tr><tr><td>普通结构件</td><td>通常 Level 1~2</td></tr><tr><td>首次供货新供应商</td><td>建议 Level 3+（建立信任）</td></tr></table>
+    </div>
+
+    <div class="pm-card pm-warn">
+      <div class="pm-h"><span class="em">❌</span>PPAP 常见驳回原因（光学项目）</div>
+      <div class="pm-body"><b>• CPK 不达标：</b>关键尺寸（如同轴度、焦距误差）CPK &lt;1.33 → 过程能力不足<br><b>• MSA 不过关：</b>测量系统 GR&amp;R &gt;30% → 数据不可信，CPK 也无效<br><b>• 可靠性 FAIL：</b>高温 85℃ MTF 下降超标、盐雾后镀膜起泡<br><b>• 样品不一致：</b>提交的 30pcs 中有离散值（说明过程不稳定）<br><b>• 文件不匹配：</b>控制计划与实际工艺不符、图纸版本过旧</div>
+    </div>
+
+    <div class="pm-card pm-ok">
+      <div class="pm-h"><span class="em">✅</span>PPAP 通过之后</div>
+      <div class="pm-body">获得 PSW 签署 → 进入合格供应商 AVL → 收到正式 PO → 开始 SOP 量产供货。但 PPAP 通过不是终点——后续还有：<b>年度重审（Re-PPAP）</b>、<b>工程变更时重新提交（PPAP 变更通知）</b>、<b>质量问题时的遏制与 8D</b>。</div>
+    </div>
+    <div class="note"><b>PPAP 一句话总结：</b>它不是「考试及格就完事」，而是「证明你有能力持续稳定地交出合格的镜头」。对车载光学来说，PPAP 包里的每一份文件（DFMEA/CPK/MSA/DV-PV）都是你在量产前就已经把坑填好的证据。没做 PPAP 就量产 = 在赌运气。</div>
   </div>
 
   <!-- MTF -->
@@ -2423,12 +2553,13 @@ function expandPanel(btn, open){
   });
 }
 let currentCat = 'optics';
-const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout', photography:'ph-expo' };
+const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout', photography:'ph-expo', project:'pm-vda' };
 const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
   fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
   thcomp:renderThcomp, stray:renderStray, ghost:renderGhost,
-  'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr, 'ph-cards':renderPhCards };
+  'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr, 'ph-cards':renderPhCards,
+  'pm-vda':renderPmVda, 'pm-apqp':renderPmApqp, 'pm-ppap':renderPmPpap };
 function showTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -2439,7 +2570,7 @@ function showTab(id){
 }
 function showCat(cat){
   currentCat = cat;
-  ['optics','reliability','process','drawing','equipment','module','material','application','photography'].forEach(c=>{
+  ['optics','reliability','process','drawing','equipment','module','material','application','photography','project'].forEach(c=>{
     document.getElementById('cat-'+c).classList.toggle('active', c===cat);
   });
   document.getElementById('subtabs-optics').style.display = (cat==='optics') ? 'flex' : 'none';
@@ -2450,6 +2581,7 @@ function showCat(cat){
   document.getElementById('subtabs-material').style.display = (cat==='material') ? 'flex' : 'none';
   document.getElementById('subtabs-application').style.display = (cat==='application') ? 'flex' : 'none';
   document.getElementById('subtabs-photography').style.display = (cat==='photography') ? 'flex' : 'none';
+  document.getElementById('subtabs-project').style.display = (cat==='project') ? 'flex' : 'none';
   document.getElementById('subtabs-equipment').style.display = (cat==='equipment') ? 'flex' : 'none';
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -2567,7 +2699,7 @@ function renderDOF(){
   x.strokeStyle = C.green; x.setLineDash([5,4]); x.lineWidth = 1.5;
   x.beginPath(); x.moveTo(focusX, 30); x.lineTo(focusX, h-10); x.stroke();
   x.setLineDash([]);
-  x.fillStyle = C.green; x.font = '11px sans-serif'; x.fillText('对焦平面', focusX-26, 24);
+  x.fillStyle = C.green; x.font = '11px sans-serif'; x.fillText('对焦平面', focusX-26, 18);
   const t = F<2.5 ? '很浅（背景大片虚化）' : (F>9 ? '很深（前后都清楚）' : '中等');
   document.getElementById('dofR').innerHTML = '光圈 <b>F '+F.toFixed(1)+'</b> → 景深 <b>'+t+'</b>。' +
     (F<2.5 ? ' 只有对焦的车清楚，远近都虚。' : (F>9 ? ' 近处树和远处车都还清楚。' : ''));
@@ -2922,13 +3054,13 @@ function renderFOV(){
   x.strokeStyle = C.blue; x.lineWidth=1.5;
   x.beginPath(); x.arc(carX, carY, 36, -halfRad, halfRad); x.stroke();
   x.fillStyle = C.blue; x.font='bold 12px sans-serif';
-  x.fillText('HFOV '+HFOV.toFixed(1)+'°', carX+44, carY-6);
+  x.fillText('HFOV '+HFOV.toFixed(1)+'°', carX+44, carY-8);
   // VFOV 小弧（垂直）
   const vRad = VFOV/2*Math.PI/180;
   x.strokeStyle = C.cyan; x.lineWidth=1.5;
   x.beginPath(); x.arc(carX, carY, 24, -Math.PI/2-vRad, -Math.PI/2+vRad); x.stroke();
   x.fillStyle = C.cyan; x.font='bold 11px sans-serif';
-  x.fillText('VFOV '+VFOV.toFixed(1)+'°', carX+28, carY-30);
+  x.fillText('VFOV '+VFOV.toFixed(1)+'°', carX+28, carY-34);
   x.fillStyle = C.sub; x.font='11px sans-serif';
   x.fillText('DFOV '+DFOV.toFixed(1)+'°（对角线）', carX+44, carY+24);
   x.fillStyle = C.sub; x.fillText('sensor '+s.name+'  水平 '+s.w+'mm', 18, h-10);
@@ -3407,11 +3539,11 @@ function renderPhExpo(){
   const mx=40, mw=w-80, my=h*0.40, mh=14;
   x.strokeStyle=C.line; x.lineWidth=1; x.strokeRect(mx,my,mw,mh);
   for(let k=-4;k<=4;k++){ const tx=mx+mw*(k+4)/8; x.strokeStyle=C.line; x.beginPath(); x.moveTo(tx,my); x.lineTo(tx,my+(k===0?-7:3)); x.stroke(); x.fillStyle=C.sub; x.font='9px sans-serif'; x.textAlign='center'; x.fillText((k>0?'+':'')+k, tx, my+mh+12); }
-  x.fillStyle=C.green; x.textAlign='center'; x.font='10px sans-serif'; x.fillText('正确曝光', mx+mw/2, my-10);
   const cl=Math.max(-4,Math.min(4,dEV));
   const nx=mx+mw*(cl+4)/8;
   const col=Math.abs(dEV)<=0.5?C.green:Math.abs(dEV)<=2?C.warn:C.red;
-  x.fillStyle=col; x.beginPath(); x.moveTo(nx,my-6); x.lineTo(nx-6,my-18); x.lineTo(nx+6,my-18); x.closePath(); x.fill();
+  x.fillStyle=col; x.beginPath(); x.moveTo(nx,my-6); x.lineTo(nx-5,my-16); x.lineTo(nx+5,my-16); x.closePath(); x.fill();
+  x.fillStyle=C.green; x.textAlign='center'; x.font='10px sans-serif'; x.fillText('正确曝光', mx+mw/2, my-22);
   x.fillRect(nx-1.5,my,3,mh);
   const ty=h-44;
   const grad=x.createLinearGradient(mx,0,mx+mw,0);
@@ -3500,7 +3632,7 @@ function renderPhEqfl(){
     x.strokeRect(rx,ry,rw,rh);
     x.fillStyle = idx===fi?C.green:'rgba(157,176,210,0.7)';
     x.font='9px sans-serif'; x.textAlign='left';
-    x.fillText(fm.n+' · 裁切'+cr.toFixed(2)+'×', rx, ry-4);
+    x.fillText(fm.n+' · 裁切'+cr.toFixed(2)+'×', rx, ry-6);
   });
   x.fillStyle=C.ink; x.font='bold 13px sans-serif'; x.textAlign='center';
   x.fillText('等效全画幅焦距 ≈ '+feq.toFixed(0)+' mm', cx, cy+maxRh/2+24);
@@ -3528,6 +3660,9 @@ function renderPhAberr(){
   document.getElementById('phAberrR').innerHTML='光圈 <b>f/'+N.toFixed(1)+'</b>：边缘光线（球差/彗差主因）被光圈叶片挡掉，参与成像的只剩中心光线，弥散斑从 '+maxR+'px 收紧到 '+r.toFixed(0)+'px——这就是"收光圈提升画质"的底层原因。';
 }
 function renderPhCards(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderPmVda(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderPmApqp(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+function renderPmPpap(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 
 </script>
 
@@ -3558,7 +3693,7 @@ function renderPhCards(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 50;
+  var VER_TOTAL = 53;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
