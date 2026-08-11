@@ -706,7 +706,7 @@
       <button class="nav-item" data-page="random"><span class="ni-ic">🎲</span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic">⚙️</span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.2.3 · 2026-08-10<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.2.4 · 2026-08-11<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
@@ -732,7 +732,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.2.3</h1>
+      <h1 class="hero-title">车载光学百科 v0.2.4</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
@@ -749,7 +749,7 @@
 
                       <div class="home-split">
         <aside class="cat-nav">
-          <div class="cat-nav-h">知识分类 · 8</div>
+          <div class="cat-nav-h">知识分类 · 9</div>
       <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
         <span class="cn-ic">🔬</span>
         <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
@@ -789,6 +789,11 @@
         <span class="cn-ic">🚗</span>
         <span class="cn-lb">应用场景<span class="cn-en">Applications</span></span>
         <span class="cn-count">5</span>
+      </div>
+      <div class="cat-nav-item" id="cat-photography" onclick="showCat('photography')">
+        <span class="cn-ic">📷</span>
+        <span class="cn-lb">摄影/相机<span class="cn-en">Photography</span></span>
+        <span class="cn-count">4</span>
       </div>
         </aside>
       <div id="browse">
@@ -926,6 +931,113 @@
     <div class="tab" id="tab-arhud" onclick="showTab('arhud')">AR-HUD<span class="en">自由曲面</span></div>
   </div>
 
+
+  <!-- 摄影/相机 · 分类标签 -->
+  <div class="tabs" id="subtabs-photography" style="display:none;">
+    <div class="tab active" id="tab-ph-expo" onclick="showTab('ph-expo')">曝光三角<span class="en">Exposure</span></div>
+    <div class="tab" id="tab-ph-dof" onclick="showTab('ph-dof')">景深 DoF<span class="en">Depth</span></div>
+    <div class="tab" id="tab-ph-eqfl" onclick="showTab('ph-eqfl')">等效焦距<span class="en">Crop</span></div>
+    <div class="tab" id="tab-ph-aberr" onclick="showTab('ph-aberr')">镜头像差<span class="en">Aberration</span></div>
+  </div>
+
+  <style>
+  .aberr-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin:12px 0; }
+  .aberr-card{ background:rgba(255,255,255,.05); border:1px solid var(--line); border-radius:12px; padding:10px; }
+  .aberr-svg{ width:100%; height:84px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.28); border-radius:8px; margin-bottom:6px; }
+  .aberr-svg svg{ width:80px; height:80px; }
+  .aberr-t{ font-weight:700; font-size:13px; color:var(--text); }
+  .aberr-t span{ font-weight:500; font-size:10px; color:var(--muted-2); margin-left:4px; }
+  .aberr-d{ font-size:11px; color:var(--muted); margin-top:3px; line-height:1.4; }
+  </style>
+
+  <!-- 摄影/相机 · 曝光三角 -->
+  <div class="panel" id="panel-ph-expo">
+    <div class="define"><b>释义：</b>曝光三角（Exposure Triangle）指<b>光圈 N、快门 t、感光度 ISO</b> 三者共同决定传感器接收的光量（曝光量）。三者<b>互易</b>：保持曝光不变时，开大光圈就要加快快门或降低 ISO，反之亦然。曝光量 H ∝ t·ISO / N²。</div>
+    <p class="tagline">光圈 / 快门 / ISO 此消彼长：锁定曝光后，调一项、另两项须反向补偿</p>
+    <canvas id="phExpoC" width="620" height="220"></canvas>
+    <div class="cap">曝光标尺：指针位置 = 当前组合相对「正确曝光」的档位偏差（0 = 正确曝光）</div>
+    <div class="ctrl">
+      <label>光圈 f 数<b>f/<span id="phApv">4</span></b></label>
+      <input type="range" id="phAperture" min="0" max="8" value="3" step="1" oninput="renderPhExpo()">
+    </div>
+    <div class="ctrl">
+      <label>快门速度<b><span id="phShv">1/60</span> s</b></label>
+      <input type="range" id="phShutter" min="0" max="14" value="6" step="1" oninput="renderPhExpo()">
+    </div>
+    <div class="ctrl">
+      <label>感光度 ISO<b><span id="phIsv">400</span></b></label>
+      <input type="range" id="phIso" min="0" max="8" value="2" step="1" oninput="renderPhExpo()">
+    </div>
+    <div class="readout" id="phExpoR"></div>
+    <div class="note">互易律：把光圈开大一档（进光 ×2），需把快门加快一档（×1/2）或 ISO 降一档（×1/2）来抵消。<b>车载关联：</b>车载摄像头暗光下靠大像素 + 长曝光提 SNR，但长曝光会拖影，故车规 sensor 追求高满阱与低噪声，而非无限制拉长快门。</div>
+  </div>
+
+  <!-- 摄影/相机 · 景深 -->
+  <div class="panel" id="panel-ph-dof">
+    <div class="define"><b>释义：</b>景深（Depth of Field, DoF）是焦平面<b>前后仍清晰</b>的范围，由<b>光圈 N、焦距 f、对焦距离 u、弥散圆 c</b> 共同决定。光圈越小（N 大）、焦距越短、对焦越远，景深越深。近/远界：u_near = u·f²/(f²+N·c·(u−f))，u_far = u·f²/(f²−N·c·(u−f))。</div>
+    <p class="tagline">收小光圈→景深变深；长焦/近摄→景深变浅（背景虚化）</p>
+    <canvas id="phDofC" width="620" height="240"></canvas>
+    <div class="cap">侧视示意图：相机在左，焦点在被摄物；绿区=清晰景深范围，区外逐渐虚化</div>
+    <div class="ctrl">
+      <label>光圈 f 数<b>f/<span id="phDofNv">4.0</span></b></label>
+      <input type="range" id="phDofN" min="1.4" max="22" value="4" step="0.1" oninput="renderPhDoF()">
+    </div>
+    <div class="ctrl">
+      <label>焦距 f<b><span id="phDoffv">50</span> mm</b></label>
+      <input type="range" id="phDoff" min="8" max="200" value="50" step="1" oninput="renderPhDoF()">
+    </div>
+    <div class="ctrl">
+      <label>对焦距离<b><span id="phDofuv">3.0</span> m</b></label>
+      <input type="range" id="phDofu" min="0.2" max="20" value="3" step="0.1" oninput="renderPhDoF()">
+    </div>
+    <div class="ctrl">
+      <label>画幅（决定弥散圆 c）<b><span id="phDoffmtv">全画幅</span></b></label>
+      <input type="range" id="phDoffmt" min="0" max="4" value="0" step="1" oninput="renderPhDoF()">
+    </div>
+    <div class="readout" id="phDofR"></div>
+    <div class="note"><b>车载关联：</b>车载摄像头<b>刻意用小光圈换大景深</b>，保证近（几 cm 车牌）远（几十 m 车辆）都清晰——与摄影人像"大光圈虚化"的需求正好相反。弥散圆 c ≈ 画幅对角线 / 1500。</div>
+  </div>
+
+  <!-- 摄影/相机 · 等效焦距与裁切系数 -->
+  <div class="panel" id="panel-ph-eqfl">
+    <div class="define"><b>释义：</b>小尺寸传感器上同一颗镜头看到的视角，等价于全画幅上更长的焦距——即<b>等效焦距 f_eq = f_实际 × 裁切系数</b>，裁切系数 = 全画幅对角线(43.3mm) / 本传感器对角线。FOV = 2·atan(画幅宽 / 2f)。裁切越大，"拍得越远"。</div>
+    <p class="tagline">同一镜头，传感器越小→裁切越大→等效焦距越长→视角越窄</p>
+    <canvas id="phEqflC" width="620" height="250"></canvas>
+    <div class="cap">取景框对比：固定镜头下，全画幅取最宽，1/2.7" 只取中央一小块（视角最窄）</div>
+    <div class="ctrl">
+      <label>实际焦距 f<b><span id="phEqlfv">24</span> mm</b></label>
+      <input type="range" id="phEqlf" min="4" max="50" value="24" step="1" oninput="renderPhEqfl()">
+    </div>
+    <div class="ctrl">
+      <label>传感器画幅<b><span id="phEqfmtv">全画幅</span></b></label>
+      <input type="range" id="phEqfmt" min="0" max="4" value="0" step="1" oninput="renderPhEqfl()">
+    </div>
+    <div class="readout" id="phEqflR"></div>
+    <div class="note"><b>车载关联：</b>车载 sensor 多为 1/2.7"~1/1.2"（裁切 6~3），要做出 100°+ 广角，物理焦距只需 2~4mm——这就是为什么车载镜头"又短又广"。手机/运动相机同理。</div>
+  </div>
+
+  <!-- 摄影/相机 · 镜头像差图鉴 -->
+  <div class="panel" id="panel-ph-aberr">
+    <div class="define"><b>释义：</b>理想透镜无法把点光源汇聚成点，会产生各类<b>像差</b>。单色光有五种（球差/彗差/像散/场曲/畸变），加上色差（同镜对不同色光焦点不同）。它们都会让画面边缘画质下降——车载广角镜头边缘尤甚，需靠非球面+镀膜+ISP 校正。</div>
+    <p class="tagline">七类像差：点变成"圈/彗星/十字/弯曲/扭曲/彩边"，就是透镜不完美</p>
+    <div class="aberr-grid">
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="none" stroke="#cdd8e4" stroke-width="13" opacity="0.5"/><circle cx="50" cy="50" r="6" fill="#5b8cff"/></svg></div><div class="aberr-t">球差<span>Spherical</span></div><div class="aberr-d">边缘光线比中心光线聚焦更前，点变成圈。</div></div>
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><path d="M74 50 C58 43 40 46 24 50 C40 54 58 57 74 50 Z" fill="#cdd8e4" opacity="0.4"/><circle cx="76" cy="50" r="6" fill="#5b8cff"/></svg></div><div class="aberr-t">彗差<span>Coma</span></div><div class="aberr-d">离轴点光源拖出彗星状尾巴。</div></div>
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><line x1="20" y1="50" x2="80" y2="50" stroke="#cdd8e4" stroke-width="6" opacity="0.5"/><line x1="50" y1="22" x2="50" y2="78" stroke="#5b8cff" stroke-width="6" opacity="0.6"/></svg></div><div class="aberr-t">像散<span>Astigma</span></div><div class="aberr-d">水平/垂直焦点不在同一面，点变十字。</div></div>
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><path d="M14 38 Q50 86 86 38" fill="none" stroke="#cdd8e4" stroke-width="6" opacity="0.6"/><circle cx="50" cy="72" r="5" fill="#5b8cff"/></svg></div><div class="aberr-t">场曲<span>Field</span></div><div class="aberr-d">清晰面不是平面而是碗状弯曲。</div></div>
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><path d="M28 28 Q50 12 72 28 Q88 50 72 72 Q50 88 28 72 Q12 50 28 28 Z" fill="none" stroke="#cdd8e4" stroke-width="4" opacity="0.6"/><path d="M50 12 V88 M12 50 H88" stroke="#5b8cff" stroke-width="2" opacity="0.4"/></svg></div><div class="aberr-t">畸变<span>Distortion</span></div><div class="aberr-d">直线变弯：桶形（外鼓）/枕形（内凹）。</div></div>
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><circle cx="50" cy="42" r="26" fill="none" stroke="#f87171" stroke-width="5" opacity="0.6"/><circle cx="50" cy="58" r="26" fill="none" stroke="#5b8cff" stroke-width="5" opacity="0.6"/></svg></div><div class="aberr-t">位置色差<span>Axial CA</span></div><div class="aberr-d">不同色光焦点前后错开，图像发虚。</div></div>
+      <div class="aberr-card"><div class="aberr-svg"><svg viewBox="0 0 100 100"><rect x="28" y="28" width="44" height="44" fill="none" stroke="#f87171" stroke-width="4" opacity="0.6"/><rect x="34" y="34" width="44" height="44" fill="none" stroke="#5b8cff" stroke-width="4" opacity="0.6"/></svg></div><div class="aberr-t">倍率色差<span>Lateral CA</span></div><div class="aberr-d">不同色光放大率不同，边缘出现红/蓝边。</div></div>
+    </div>
+    <div class="ctrl">
+      <label>收小光圈（演示球差/彗差被压制）<b>f/<span id="phAbNv">1.4</span></b></label>
+      <input type="range" id="phAbN" min="1.4" max="16" value="1.4" step="0.1" oninput="renderPhAberr()">
+    </div>
+    <canvas id="phAberrC" width="620" height="150"></canvas>
+    <div class="cap">点光源经镜头在焦平面的弥散斑：光圈全开时斑大（像差严重），收小后斑收紧</div>
+    <div class="readout" id="phAberrR"></div>
+    <div class="note"><b>车载关联：</b>广角车载镜头 f 值小、视场大，球差/彗差/畸变在边缘最猛；非球面镜片把边缘光线重新汇聚，再配合 ISP 几何校正，才能把 100°+ 广角的边缘拉直、对齐。</div>
+  </div>
 
   <!-- MTF -->
   <div class="panel show" id="panel-mtf">
@@ -2248,11 +2360,12 @@ function expandPanel(btn, open){
   });
 }
 let currentCat = 'optics';
-const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout' };
+const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout', photography:'ph-expo' };
 const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
   fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
-  thcomp:renderThcomp, stray:renderStray, ghost:renderGhost };
+  thcomp:renderThcomp, stray:renderStray, ghost:renderGhost,
+  'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr };
 function showTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -2263,7 +2376,7 @@ function showTab(id){
 }
 function showCat(cat){
   currentCat = cat;
-  ['optics','reliability','process','drawing','equipment','module','material','application'].forEach(c=>{
+  ['optics','reliability','process','drawing','equipment','module','material','application','photography'].forEach(c=>{
     document.getElementById('cat-'+c).classList.toggle('active', c===cat);
   });
   document.getElementById('subtabs-optics').style.display = (cat==='optics') ? 'flex' : 'none';
@@ -2273,6 +2386,7 @@ function showCat(cat){
   document.getElementById('subtabs-module').style.display = (cat==='module') ? 'flex' : 'none';
   document.getElementById('subtabs-material').style.display = (cat==='material') ? 'flex' : 'none';
   document.getElementById('subtabs-application').style.display = (cat==='application') ? 'flex' : 'none';
+  document.getElementById('subtabs-photography').style.display = (cat==='photography') ? 'flex' : 'none';
   document.getElementById('subtabs-equipment').style.display = (cat==='equipment') ? 'flex' : 'none';
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -3200,6 +3314,157 @@ function renderGhost(){
 renderMTF();
 renderFNO();
 renderFNOLight();
+
+/* ===== 摄影/相机 · 新分类 4 面板渲染 ===== */
+const PH_AP = [1.4,2,2.8,4,5.6,8,11,16,22];
+const PH_SH = [1/4000,1/2000,1/1000,1/500,1/250,1/125,1/60,1/30,1/15,1/8,1/4,1/2,1,2,4];
+const PH_ISO = [100,200,400,800,1600,3200,6400,12800,25600];
+const PH_FMT = [
+  {n:'全画幅', d:43.3, w:36.0},
+  {n:'APS-C', d:28.2, w:23.6},
+  {n:'M4/3', d:21.6, w:17.3},
+  {n:'1英寸', d:15.9, w:13.2},
+  {n:'1/2.7"', d:6.72, w:5.37}
+];
+function fmtSh(t){ return t>=1 ? t+'s' : '1/'+Math.round(1/t)+'s'; }
+
+function renderPhExpo(){
+  const a=+document.getElementById('phAperture').value;
+  const s=+document.getElementById('phShutter').value;
+  const i=+document.getElementById('phIso').value;
+  const N=PH_AP[a], T=PH_SH[s], S=PH_ISO[i];
+  document.getElementById('phApv').textContent=N;
+  document.getElementById('phShv').textContent=fmtSh(T);
+  document.getElementById('phIsv').textContent=S;
+  const Q0=(1/60*400)/(4*4);
+  const Q=(T*S)/(N*N);
+  const dEV=Math.log2(Q/Q0);
+  const {x,w,h}=setup('phExpoC',620,220);
+  x.fillStyle='#0f1729'; x.fillRect(0,0,w,h);
+  const mx=40, mw=w-80, my=h*0.40, mh=14;
+  x.strokeStyle=C.line; x.lineWidth=1; x.strokeRect(mx,my,mw,mh);
+  for(let k=-4;k<=4;k++){ const tx=mx+mw*(k+4)/8; x.strokeStyle=C.line; x.beginPath(); x.moveTo(tx,my); x.lineTo(tx,my+(k===0?-7:3)); x.stroke(); x.fillStyle=C.sub; x.font='9px sans-serif'; x.textAlign='center'; x.fillText((k>0?'+':'')+k, tx, my+mh+12); }
+  x.fillStyle=C.green; x.textAlign='center'; x.font='10px sans-serif'; x.fillText('正确曝光', mx+mw/2, my-10);
+  const cl=Math.max(-4,Math.min(4,dEV));
+  const nx=mx+mw*(cl+4)/8;
+  const col=Math.abs(dEV)<=0.5?C.green:Math.abs(dEV)<=2?C.warn:C.red;
+  x.fillStyle=col; x.beginPath(); x.moveTo(nx,my-6); x.lineTo(nx-6,my-18); x.lineTo(nx+6,my-18); x.closePath(); x.fill();
+  x.fillRect(nx-1.5,my,3,mh);
+  const ty=h-44;
+  const grad=x.createLinearGradient(mx,0,mx+mw,0);
+  grad.addColorStop(0,'#000'); grad.addColorStop(0.5,'#888'); grad.addColorStop(1,'#fff');
+  x.fillStyle=grad; x.fillRect(mx,ty,mw,26);
+  if(dEV<0){ const cw=mw*Math.min(1,Math.abs(dEV)/4); x.fillStyle='rgba(248,113,113,0.55)'; x.fillRect(mx,ty,cw,26); }
+  else if(dEV>0){ const cw=mw*Math.min(1,dEV/4); x.fillStyle='rgba(248,113,113,0.55)'; x.fillRect(mx+mw-cw,ty,cw,26); }
+  x.fillStyle=C.sub; x.font='10px sans-serif'; x.textAlign='left'; x.fillText('像素亮度分布（红=裁切丢失）', mx, ty-6);
+  x.textAlign='left';
+  const label = dEV<-0.5?'欠曝（画面偏暗）' : dEV>0.5?'过曝（高光溢出）':'曝光正常';
+  document.getElementById('phExpoR').innerHTML =
+    '光圈 <b>f/'+N+'</b> · 快门 <b>'+fmtSh(T)+'</b> · ISO <b>'+S+'</b> → 相对正确曝光 <b style="color:'+col+'">'+ (dEV>=0?'+':'')+dEV.toFixed(1) +' 档</b>（'+label+'）。'
+    +'<br>互易律验证：把光圈开大一档，需快门加快一档或 ISO 降一档，指针才会回到 0。';
+}
+
+function renderPhDoF(){
+  const N=+document.getElementById('phDofN').value;
+  const f=+document.getElementById('phDoff').value;
+  const u=+document.getElementById('phDofu').value;
+  const fi=+document.getElementById('phDoffmt').value;
+  const fmt=PH_FMT[fi];
+  const c=fmt.d/1500;
+  document.getElementById('phDofNv').textContent=N.toFixed(1);
+  document.getElementById('phDoffv').textContent=f;
+  document.getElementById('phDofuv').textContent=u.toFixed(1);
+  document.getElementById('phDoffmtv').textContent=fmt.n;
+  const uu=u*1000;
+  const k=N*c;
+  const denNear=f*f + k*(uu-f);
+  const denFar =f*f - k*(uu-f);
+  let near=uu*f*f/denNear;
+  let far = denFar>0 ? uu*f*f/denFar : Infinity;
+  const dof = (far>0&&isFinite(far)) ? (far-near) : Infinity;
+  const {x,w,h}=setup('phDofC',620,240);
+  x.fillStyle='#0f1729'; x.fillRect(0,0,w,h);
+  const camX=44, midY=h/2;
+  const maxU=Math.max(6, Math.min(30, u*1.8));
+  const mapX=mm=> camX+20 + (mm/1000)/(maxU)*(w-64-camX);
+  x.fillStyle=C.ink; x.fillRect(camX-12,midY-14,18,28);
+  x.fillStyle=C.sub; x.font='10px sans-serif'; x.textAlign='center'; x.fillText('相机', camX-3, midY+30);
+  const fx=mapX(uu);
+  x.strokeStyle=C.green; x.lineWidth=2; x.beginPath(); x.moveTo(fx,midY-46); x.lineTo(fx,midY+46); x.stroke();
+  x.fillStyle=C.green; x.font='10px sans-serif'; x.fillText('对焦', fx, midY-54);
+  if(isFinite(near)&&isFinite(far)){
+    const nx=mapX(near), fX=mapX(far);
+    x.fillStyle='rgba(52,211,153,0.15)'; x.fillRect(nx,midY-38,fX-nx,76);
+    x.strokeStyle=C.green; x.setLineDash([4,3]); x.beginPath(); x.moveTo(nx,midY-46); x.lineTo(nx,midY+46); x.moveTo(fX,midY-46); x.lineTo(fX,midY+46); x.stroke(); x.setLineDash([]);
+    x.fillStyle=C.sub; x.font='9px sans-serif'; x.fillText('景深', (nx+fX)/2, midY+58);
+  }
+  const dists=[0.5,1,2,3,5,8,12,20];
+  dists.forEach((dd)=>{
+    const sx=mapX(dd*1000); if(sx>w-8) return;
+    const inDof = dd*1000>=near && dd*1000<= (isFinite(far)?far:1e9);
+    const blur = inDof?0:Math.min(6, (Math.abs(dd*1000-near)+Math.abs(dd*1000-(isFinite(far)?far:uu)))/400);
+    x.save(); if(blur>0.3) x.filter='blur('+blur.toFixed(1)+'px)';
+    x.fillStyle= inDof? C.ink : 'rgba(205,216,228,0.55)';
+    x.beginPath(); x.arc(sx, midY-70, 7,0,7); x.fill(); x.restore();
+    x.fillStyle=C.sub; x.font='8px sans-serif'; x.textAlign='center'; x.fillText(dd+'m', sx, midY-84);
+  });
+  x.filter='none'; x.textAlign='left';
+  const dofTxt = isFinite(dof)? (dof/1000).toFixed(2)+' m' : '∞（超焦距）';
+  document.getElementById('phDofR').innerHTML =
+    '画幅 <b>'+fmt.n+'</b>（c='+c.toFixed(4)+'mm）· 光圈 <b>f/'+N.toFixed(1)+'</b> · 焦距 <b>'+f+'mm</b> · 对焦 <b>'+u.toFixed(1)+'m</b><br>'
+    +'景深 ≈ <b>'+dofTxt+'</b>（近界 '+(near/1000).toFixed(2)+'m · 远界 '+(isFinite(far)?(far/1000).toFixed(1)+'m':'∞')+'）。';
+}
+
+function renderPhEqfl(){
+  const f=+document.getElementById('phEqlf').value;
+  const fi=+document.getElementById('phEqfmt').value;
+  const fmt=PH_FMT[fi];
+  const crop=43.3/fmt.d;
+  const feq=f*crop;
+  const fov=2*Math.atan((fmt.w/2)/f)*180/Math.PI;
+  document.getElementById('phEqlfv').textContent=f;
+  document.getElementById('phEqfmtv').textContent=fmt.n;
+  const {x,w,h}=setup('phEqflC',620,250);
+  x.fillStyle='#0f1729'; x.fillRect(0,0,w,h);
+  const cx=w/2, cy=h/2-10, baseW=210, maxRh=baseW*0.62;
+  PH_FMT.forEach((fm,idx)=>{
+    const cr=43.3/fm.d;
+    const rw=baseW*(fm.w/36.0);
+    const rh=rw*0.62;
+    const rx=cx-rw/2, ry=cy-rh/2;
+    x.strokeStyle = idx===fi? C.green : 'rgba(255,255,255,0.28)';
+    x.lineWidth = idx===fi?2.5:1;
+    x.strokeRect(rx,ry,rw,rh);
+    x.fillStyle = idx===fi?C.green:'rgba(157,176,210,0.7)';
+    x.font='9px sans-serif'; x.textAlign='left';
+    x.fillText(fm.n+' · 裁切'+cr.toFixed(2)+'×', rx, ry-4);
+  });
+  x.fillStyle=C.ink; x.font='bold 13px sans-serif'; x.textAlign='center';
+  x.fillText('等效全画幅焦距 ≈ '+feq.toFixed(0)+' mm', cx, cy+maxRh/2+24);
+  x.fillStyle=C.sub; x.font='10px sans-serif';
+  x.fillText('水平视角 HFOV ≈ '+fov.toFixed(0)+'°（传感器越小，视角越窄）', cx, cy+maxRh/2+40);
+  x.textAlign='left';
+  document.getElementById('phEqflR').innerHTML =
+    '实际焦距 <b>'+f+'mm</b> · 画幅 <b>'+fmt.n+'</b> · 裁切系数 <b>'+crop.toFixed(2)+'×</b><br>'
+    +'等效全画幅焦距 <b>'+feq.toFixed(0)+'mm</b> · 水平视角 <b>'+fov.toFixed(0)+'°</b>。';
+}
+
+function renderPhAberr(){
+  const N=+document.getElementById('phAbN').value;
+  document.getElementById('phAbNv').textContent=N.toFixed(1);
+  const {x,w,h}=setup('phAberrC',620,150);
+  x.fillStyle='#0f1729'; x.fillRect(0,0,w,h);
+  const cx=w/2, cy=h/2;
+  const maxR=46, minR=6;
+  const r=maxR - (N-1.4)/(16-1.4)*(maxR-minR);
+  for(let i=10;i>=1;i--){ x.fillStyle='rgba(91,140,255,'+(0.04+0.05*(11-i)/10)+')'; x.beginPath(); x.arc(cx,cy, r*i/10, 0,7); x.fill(); }
+  x.fillStyle=C.blue; x.beginPath(); x.arc(cx,cy,3,0,7); x.fill();
+  x.fillStyle=C.sub; x.font='11px sans-serif'; x.textAlign='left';
+  x.fillText('弥散斑半径 ≈ '+r.toFixed(0)+' px（光圈越小越紧）', 16, 20);
+  x.textAlign='left';
+  document.getElementById('phAberrR').innerHTML='光圈 <b>f/'+N.toFixed(1)+'</b>：边缘光线（球差/彗差主因）被光圈叶片挡掉，参与成像的只剩中心光线，弥散斑从 '+maxR+'px 收紧到 '+r.toFixed(0)+'px——这就是"收光圈提升画质"的底层原因。';
+}
+
 </script>
 
 <!-- 安装提示条 -->
@@ -3229,7 +3494,7 @@ renderFNOLight();
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 45;
+  var VER_TOTAL = 49;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -3252,7 +3517,7 @@ renderFNOLight();
     var title = ''; t.childNodes.forEach(function(n){ if(n.nodeType===3) title += n.textContent; });
     ITEMS.push({id:id, cat:cat, title:title.trim(), en:en});
   });
-  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', equipment:'设备与仪器', module:'模组与系统', material:'材料与镜片', application:'应用场景' };
+  var CATNAME = { optics:'光学基础', reliability:'信赖性·车规', process:'工艺制造', drawing:'工程图纸', equipment:'设备与仪器', module:'模组与系统', material:'材料与镜片', application:'应用场景', photography:'摄影/相机' };
   function seenCount(){ return LS.get('optics_seen',[]).length; }
 
   var _showTab = showTab; showTab = function(id){ _showTab(id); recordView(id); };
