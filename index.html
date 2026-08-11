@@ -706,7 +706,7 @@
       <button class="nav-item" data-page="random"><span class="ni-ic">🎲</span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic">⚙️</span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.2.4 · 2026-08-11<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.2.5 · 2026-08-11<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
@@ -732,7 +732,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.2.4</h1>
+      <h1 class="hero-title">车载光学百科 v0.2.5</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
@@ -793,7 +793,7 @@
       <div class="cat-nav-item" id="cat-photography" onclick="showCat('photography')">
         <span class="cn-ic">📷</span>
         <span class="cn-lb">摄影/相机<span class="cn-en">Photography</span></span>
-        <span class="cn-count">4</span>
+        <span class="cn-count">5</span>
       </div>
         </aside>
       <div id="browse">
@@ -938,6 +938,7 @@
     <div class="tab" id="tab-ph-dof" onclick="showTab('ph-dof')">景深 DoF<span class="en">Depth</span></div>
     <div class="tab" id="tab-ph-eqfl" onclick="showTab('ph-eqfl')">等效焦距<span class="en">Crop</span></div>
     <div class="tab" id="tab-ph-aberr" onclick="showTab('ph-aberr')">镜头像差<span class="en">Aberration</span></div>
+    <div class="tab" id="tab-ph-cards" onclick="showTab('ph-cards')">参数速查<span class="en">Cards</span></div>
   </div>
 
   <style>
@@ -948,6 +949,18 @@
   .aberr-t{ font-weight:700; font-size:13px; color:var(--text); }
   .aberr-t span{ font-weight:500; font-size:10px; color:var(--muted-2); margin-left:4px; }
   .aberr-d{ font-size:11px; color:var(--muted); margin-top:3px; line-height:1.4; }
+  .dc-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(262px,1fr)); gap:14px; margin:14px 0 4px; }
+  .dc-card{ background:rgba(255,255,255,.045); border:1px solid var(--line); border-radius:14px; padding:14px 14px 12px; display:flex; flex-direction:column; }
+  .dc-h{ font-weight:700; font-size:15px; color:var(--text); display:flex; align-items:center; gap:7px; }
+  .dc-h .em{ font-size:18px; }
+  .dc-h .en{ font-size:10px; color:var(--muted-2); font-weight:500; margin-left:auto; }
+  .dc-sec{ font-size:11px; font-weight:800; color:var(--brand,#3370FF); margin:10px 0 3px; letter-spacing:.4px; }
+  .dc-t{ font-size:12px; color:var(--muted); line-height:1.55; }
+  .dc-t b{ color:var(--text); }
+  .dc-tbl{ width:100%; border-collapse:collapse; margin-top:4px; font-size:11px; }
+  .dc-tbl td{ padding:5px 4px; border-top:1px solid var(--line); vertical-align:top; }
+  .dc-tbl td:first-child{ color:#46d3c4; font-weight:600; width:44%; }
+  .dc-tbl td:last-child{ color:var(--muted); }
   </style>
 
   <!-- 摄影/相机 · 曝光三角 -->
@@ -1037,6 +1050,56 @@
     <div class="cap">点光源经镜头在焦平面的弥散斑：光圈全开时斑大（像差严重），收小后斑收紧</div>
     <div class="readout" id="phAberrR"></div>
     <div class="note"><b>车载关联：</b>广角车载镜头 f 值小、视场大，球差/彗差/畸变在边缘最猛；非球面镜片把边缘光线重新汇聚，再配合 ISP 几何校正，才能把 100°+ 广角的边缘拉直、对齐。</div>
+  </div>
+
+  <!-- 摄影/相机 · 参数速查交付卡片 -->
+  <div class="panel" id="panel-ph-cards">
+    <div class="define"><b>释义：</b>这一组是摄影里"看不见但决定成败"的画质参数——<b>动态范围 DR、信噪比 SNR、白平衡 WB、像素与分辨率</b>。它们不像曝光三角那样能直接拧旋钮，却决定了"亮暗能不能都留住、暗部干不干净、颜色正不正、细节够不够"。下面用交付卡片逐一说明概念、对摄影的影响，以及什么参数配什么场景。</div>
+    <p class="tagline">不是每个参数都要拉满：看懂「参数 → 场景」的取舍，比堆参数更重要</p>
+    <div class="dc-grid">
+
+      <div class="dc-card">
+        <div class="dc-h"><span class="em">🌗</span>动态范围 DR<span class="en">Dynamic Range</span></div>
+        <div class="dc-sec">概念</div>
+        <div class="dc-t">传感器能同时记录的最亮与最暗亮度之比，常用<b>档(stops)</b>或 <b>dB</b>。DR ≈ log₂(满阱容量 ÷ 本底噪声)。相机约 <b>12–15 档(≈72–90dB)</b>；车载 HDR 合成可达 <b>120–140dB</b>。</div>
+        <div class="dc-sec">对摄影的影响</div>
+        <div class="dc-t">DR 不够→亮处过曝成死白、暗处欠曝成死黑，云层 / 阴影细节全丢。逆光、日出日落、夜景最吃 DR。</div>
+        <div class="dc-sec">参数 → 场景</div>
+        <table class="dc-tbl"><tr><td>高 DR（≥14档 / HDR 多帧合成 / 车载 120dB+）</td><td>逆光人像、日出日落、车载进出隧道、对向车灯</td></tr><tr><td>中 DR（12–13档）</td><td>阴天、室内窗边、日常记录</td></tr><tr><td>低 DR（手机默认 / 高 ISO 拉满）</td><td>仅均匀光照，避开大反差</td></tr></table>
+      </div>
+
+      <div class="dc-card">
+        <div class="dc-h"><span class="em">📈</span>信噪比 SNR<span class="en">Signal-to-Noise</span></div>
+        <div class="dc-sec">概念</div>
+        <div class="dc-t">真实信号（光子信息）与噪声（读出噪声 + 散粒噪声 + 热噪声）之比，常用 <b>dB</b>。SNR ∝ √满阱；<b>ISO 越高，读出噪声相对越突出，信噪比下降</b>。</div>
+        <div class="dc-sec">对摄影的影响</div>
+        <div class="dc-t">暗光下 SNR 崩→满屏噪点、细节糊。提 ISO 救亮度却牺牲 SNR，是曝光三角之外的「第三难」。车规追求高满阱 + 低噪声读出。</div>
+        <div class="dc-sec">参数 → 场景</div>
+        <table class="dc-tbl"><tr><td>大像素 / 低 ISO / 长曝光（高 SNR）</td><td>星空、夜景、弱光车载前视</td></tr><tr><td>中 ISO（SNR 可接受）</td><td>室内、黄昏手持</td></tr><tr><td>高 ISO（SNR 低、噪点明显）</td><td>不得已的暗光手持：宁可噪点也不糊</td></tr></table>
+      </div>
+
+      <div class="dc-card">
+        <div class="dc-h"><span class="em">🎨</span>白平衡 WB<span class="en">White Balance</span></div>
+        <div class="dc-sec">概念</div>
+        <div class="dc-t">让「白」在不同色温光源下仍显白。色温单位 <b>K</b>：烛光≈1800K(暖黄)、正午≈5500K(中性)、阴天 / 阴影≈7000K(偏蓝)。WB 校正＝对 R/B 通道乘系数补偿。</div>
+        <div class="dc-sec">对摄影的影响</div>
+        <div class="dc-t">WB 错→整体偏色（黄 / 蓝），肤色、商品色失真；车载若 WB 失准，红绿灯 / 标志牌识别会出错，故需 IR 截止滤片 + 自动 WB。</div>
+        <div class="dc-sec">参数 → 场景</div>
+        <table class="dc-tbl"><tr><td>自动 WB（AWB）</td><td>日常、混合光源</td></tr><tr><td>日光 5200–5500K</td><td>户外晴天</td></tr><tr><td>阴天 / 阴影 6000–7000K</td><td>补蓝、去冷调</td></tr><tr><td>钨丝灯 2800–3200K</td><td>室内暖光</td></tr><tr><td>自定义灰卡</td><td>商业 / 产品 / 车载标定</td></tr></table>
+      </div>
+
+      <div class="dc-card">
+        <div class="dc-h"><span class="em">🔲</span>像素与分辨率<span class="en">Pixel &amp; Resolution</span></div>
+        <div class="dc-sec">概念</div>
+        <div class="dc-t">像素＝感光单元；分辨率＝总像素（如 200万=1600×1200，车载常用 2–8MP）。<b>单像素尺寸(μm)决定满阱与 SNR</b>；「像素高≠画质好」，小像素高密度→暗光 SNR 崩。</div>
+        <div class="dc-sec">对摄影的影响</div>
+        <div class="dc-t">像素密度过高（小像素）在暗光 SNR 崩；分辨率够用即可。车载更看重「单位像素够大 + 高帧率 + HDR」，而非堆像素。</div>
+        <div class="dc-sec">参数 → 场景</div>
+        <table class="dc-tbl"><tr><td>大像素(≥2.0μm) + 中分辨率</td><td>暗光、车载前视 / 周视</td></tr><tr><td>小像素 + 高分辨率</td><td>强光细节、车牌特写、数码变焦裁切</td></tr><tr><td>高分辨率(8MP+)</td><td>远距目标识别(读远牌)，但带宽 / 算力↑</td></tr></table>
+      </div>
+
+    </div>
+    <div class="note"><b>一张表记住取舍：</b>DR 管「亮暗都要」、SNR 管「暗部干净」、WB 管「颜色正」、像素管「细节够」。它们都由 <b>传感器本身 + ISP 处理</b> 决定，拧不动快门光圈——所以选机 / 选车载 sensor 时，这些参数比「像素数」更该看。<b>车载关联：</b>行车记录 / 智驾要的是高 DR + 高 SNR + 准 WB 的「可信图像」，而非高像素；像素太密反而拖慢帧率与算法。</div>
   </div>
 
   <!-- MTF -->
@@ -2365,7 +2428,7 @@ const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
   fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
   thcomp:renderThcomp, stray:renderStray, ghost:renderGhost,
-  'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr };
+  'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr, 'ph-cards':renderPhCards };
 function showTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -3464,6 +3527,7 @@ function renderPhAberr(){
   x.textAlign='left';
   document.getElementById('phAberrR').innerHTML='光圈 <b>f/'+N.toFixed(1)+'</b>：边缘光线（球差/彗差主因）被光圈叶片挡掉，参与成像的只剩中心光线，弥散斑从 '+maxR+'px 收紧到 '+r.toFixed(0)+'px——这就是"收光圈提升画质"的底层原因。';
 }
+function renderPhCards(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 
 </script>
 
@@ -3494,7 +3558,7 @@ function renderPhAberr(){
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 49;
+  var VER_TOTAL = 50;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
