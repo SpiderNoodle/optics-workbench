@@ -31,6 +31,12 @@
     --glass-blur:blur(24px) saturate(180%);
     /* 文字 */
     --text:#e9efff; --muted:#9db0d2; --muted-2:#8093b6; --dim:#61759d;
+    /* 强调文字（标签 / 数值 / 次级标题）—— 亮色主题会被覆盖 */
+    --accent:#a9c4ff; --accent-2:#cfdcff; --text-bright:#fff;
+    /* 图表 / 示意文字（SVG 内 fill） */
+    --dia-text:#9db0d2;
+    /* 滑块轨道底色 */
+    --track:rgba(255,255,255,.14);
     /* 线 */
     --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06);
     --line-3:rgba(255,255,255,.16);
@@ -55,27 +61,79 @@
     --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06); --line-3:rgba(255,255,255,.16);
     --canvas-bg:rgba(30,40,66,.62);
   }
-  /* 极光紫 */
-  :root[data-theme="aurora"]{
-    --theme-name:'极光紫';
-    --bg-1:#06141a; --bg-2:#081a24; --bg-3:#0a2030;
-    --glow-1:rgba(34,211,238,.20); --glow-2:rgba(168,85,247,.18);
-    --brand:#22d3ee; --brand-2:#a855f7;
-    --surface:rgba(255,255,255,.09); --surface-2:rgba(255,255,255,.06); --surface-3:rgba(255,255,255,.13);
-    --text:#eaffff; --muted:#9ad4dd; --muted-2:#7fb3bd;
-    --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06); --line-3:rgba(255,255,255,.16);
-    --canvas-bg:rgba(20,42,50,.62);
+  /* 赛博朋克 · Cyberpunk（霓虹品红 × 青 · 暗色） */
+  :root[data-theme="cyber"]{
+    --theme-name:'赛博朋克';
+    --bg-1:#0a0118; --bg-2:#0d0220; --bg-3:#12032a;
+    --glow-1:rgba(255,46,151,.22); --glow-2:rgba(0,240,255,.18);
+    --brand:#ff2e97; --brand-2:#00f0ff;
+    --surface:rgba(255,255,255,.08); --surface-2:rgba(255,255,255,.05); --surface-3:rgba(255,255,255,.12);
+    --text:#f3e9ff; --muted:#c79ae0; --muted-2:#9d6fc4;
+    --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06); --line-3:rgba(0,240,255,.30);
+    --canvas-bg:rgba(20,2,40,.72);
   }
-  /* 晨曦橙 */
-  :root[data-theme="sunrise"]{
-    --theme-name:'晨曦橙';
-    --bg-1:#1a1006; --bg-2:#1e120a; --bg-3:#241408;
-    --glow-1:rgba(251,146,60,.20); --glow-2:rgba(244,114,182,.16);
-    --brand:#fb923c; --brand-2:#f472b6;
-    --surface:rgba(255,255,255,.09); --surface-2:rgba(255,255,255,.06); --surface-3:rgba(255,255,255,.13);
-    --text:#fff3ea; --muted:#e0b89c; --muted-2:#c79a80;
-    --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06); --line-3:rgba(255,255,255,.16);
-    --canvas-bg:rgba(54,34,18,.62);
+  /* 像素游戏 · Pixel（暗靛蓝 × 街机红青 · 方块边 + 等宽字） */
+  :root[data-theme="pixel"]{
+    --theme-name:'像素游戏';
+    --bg-1:#15182b; --bg-2:#1b1f37; --bg-3:#222640;
+    --glow-1:rgba(255,82,119,.16); --glow-2:rgba(65,234,212,.14);
+    --brand:#ff5277; --brand-2:#41ead4;
+    --surface:rgba(255,255,255,.07); --surface-2:rgba(255,255,255,.05); --surface-3:rgba(255,255,255,.11);
+    --text:#eef1ff; --muted:#aab0d8; --muted-2:#828ab8;
+    --line:rgba(255,255,255,.12); --line-2:rgba(255,255,255,.07); --line-3:rgba(65,234,212,.36);
+    --canvas-bg:rgba(20,24,44,.80);
+    --r:0; --r-s:0; --r-l:0;
+  }
+  /* 像素游戏专属：全局方块化 + 街机质感 */
+  :root[data-theme="pixel"] *{ border-radius:0 !important; }
+  :root[data-theme="pixel"] .glass,
+  :root[data-theme="pixel"] .panel,
+  :root[data-theme="pixel"] .set-sec,
+  :root[data-theme="pixel"] .theme-chip,
+  :root[data-theme="pixel"] .cat-card,
+  :root[data-theme="pixel"] .cat-nav,
+  :root[data-theme="pixel"] .fav-item,
+  :root[data-theme="pixel"] .rand-hero-inner,
+  :root[data-theme="pixel"] .reader,
+  :root[data-theme="pixel"] .enc-card,
+  :root[data-theme="pixel"] .lv,
+  :root[data-theme="pixel"] .pm-card,
+  :root[data-theme="pixel"] .aberr-card,
+  :root[data-theme="pixel"] .dc-card,
+  :root[data-theme="pixel"] .home-search,
+  :root[data-theme="pixel"] .hs-box,
+  :root[data-theme="pixel"] .hs-item,
+  :root[data-theme="pixel"] .mtf-guide{
+    box-shadow:4px 4px 0 var(--line-3);
+  }
+  :root[data-theme="pixel"] .hero-title,
+  :root[data-theme="pixel"] .hero-badge,
+  :root[data-theme="pixel"] .hero-chip,
+  :root[data-theme="pixel"] .rand-hero-title,
+  :root[data-theme="pixel"] .rand-hero-btn,
+  :root[data-theme="pixel"] .rkh-title,
+  :root[data-theme="pixel"] .rkh-cat,
+  :root[data-theme="pixel"] .set-sec-h,
+  :root[data-theme="pixel"] .tab,
+  :root[data-theme="pixel"] .bt-lb,
+  :root[data-theme="pixel"] .theme-name,
+  :root[data-theme="pixel"] .theme-desc,
+  :root[data-theme="pixel"] .cat-nav-h,
+  :root[data-theme="pixel"] .cn-lb,
+  :root[data-theme="pixel"] .cn-en,
+  :root[data-theme="pixel"] .hs-input,
+  :root[data-theme="pixel"] .hs-clear,
+  :root[data-theme="pixel"] .fav-title,
+  :root[data-theme="pixel"] .cap,
+  :root[data-theme="pixel"] .note,
+  :root[data-theme="pixel"] .define{
+    font-family:'Courier New', ui-monospace, SFMono-Regular, monospace;
+    letter-spacing:.5px;
+  }
+  :root[data-theme="pixel"] body::after{
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:9990;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px);
+    opacity:.5; mix-blend-mode:multiply;
   }
   /* 暗夜绿 */
   :root[data-theme="forest"]{
@@ -108,6 +166,8 @@
     --surface:rgba(255,255,255,.78); --surface-2:rgba(255,255,255,.55); --surface-3:rgba(255,255,255,.92);
     --text:#0f1a30; --muted:#41506b; --muted-2:#5a6b88;
     --line:rgba(15,23,42,.10); --line-2:rgba(15,23,42,.06); --line-3:rgba(15,23,42,.16);
+    --accent:#1d4ed8; --accent-2:#1e3a8a; --text-bright:#0f1a30;
+    --dia-text:#334155; --track:rgba(15,23,42,.18);
     --canvas-bg:rgba(255,255,255,.72);
   }
   /* 薄荷绿 · 明亮（清新浅绿，低刺激护眼） */
@@ -119,6 +179,8 @@
     --surface:rgba(255,255,255,.76); --surface-2:rgba(255,255,255,.54); --surface-3:rgba(255,255,255,.92);
     --text:#06231a; --muted:#2f5a4c; --muted-2:#467060;
     --line:rgba(6,35,26,.10); --line-2:rgba(6,35,26,.06); --line-3:rgba(6,35,26,.16);
+    --accent:#047857; --accent-2:#065f46; --text-bright:#06231a;
+    --dia-text:#14532d; --track:rgba(6,35,26,.20);
     --canvas-bg:rgba(255,255,255,.72);
   }
   /* 樱花粉 · 纯粉明亮（纯粉底 × 深粉字，极致粉） */
@@ -130,6 +192,8 @@
     --surface:rgba(255,255,255,.85); --surface-2:rgba(255,255,255,.60); --surface-3:rgba(255,255,255,.96);
     --text:#330018; --muted:#992255; --muted-2:#bb3377;
     --line:rgba(51,0,24,.10); --line-2:rgba(51,0,24,.06); --line-3:rgba(255,0,120,.18);
+    --accent:#c2185b; --accent-2:#7a1238; --text-bright:#330018;
+    --dia-text:#8a1d4d; --track:rgba(51,0,24,.20);
     --canvas-bg:rgba(255,240,248,.85);
   }
 
@@ -173,7 +237,7 @@
   .hero-inner { position:relative; z-index:2; }
   .hero-badge {
     display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.5px;
-    color:#bcd0ff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+    color:var(--brand-2); background:var(--surface); border:1px solid var(--line);
     padding:3px 11px; border-radius:20px; margin-bottom:11px;
     backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
   }
@@ -183,13 +247,35 @@
     -webkit-background-clip:text; background-clip:text;
     -webkit-text-fill-color:transparent; color:#fff;
   }
-  .hero-sub { font-size:12px; font-weight:600; letter-spacing:3px; color:#8fa6d8; text-transform:uppercase; margin-top:7px; }
+  .hero-sub { font-size:12px; font-weight:600; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-top:7px; }
   .hero-chips { display:flex; gap:7px; margin-top:15px; flex-wrap:wrap; }
   .hero-chip {
-    font-size:11.5px; font-weight:600; color:#dce6ff;
-    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15);
+    font-size:11.5px; font-weight:600; color:var(--text);
+    background:var(--surface); border:1px solid var(--line);
     padding:4px 11px; border-radius:9px;
     backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  /* 亮色主题：hero 文字从渐变白改为深色实色，保证可读 */
+  :root[data-theme="light"] .hero-title,
+  :root[data-theme="mint"] .hero-title,
+  :root[data-theme="sakura"] .hero-title {
+    background:none; -webkit-text-fill-color:var(--text); color:var(--text);
+    text-shadow:none;
+  }
+  :root[data-theme="light"] .hero-badge,
+  :root[data-theme="mint"] .hero-badge,
+  :root[data-theme="sakura"] .hero-badge {
+    color:var(--brand); border-color:var(--line-3);
+  }
+  :root[data-theme="light"] .hero-sub,
+  :root[data-theme="mint"] .hero-sub,
+  :root[data-theme="sakura"] .hero-sub {
+    color:var(--muted);
+  }
+  :root[data-theme="light"] .hero-chip,
+  :root[data-theme="mint"] .hero-chip,
+  :root[data-theme="sakura"] .hero-chip {
+    color:var(--text); border-color:var(--line-3);
   }
   /* ---- 首页随机知识入口 ---- */
   .rand-hero{
@@ -230,6 +316,21 @@
     box-shadow:0 3px 12px rgba(91,140,255,.30);
   }
   .rand-hero-btn:hover{ filter:brightness(1.1); transform:translateY(-1px); }
+  .home-search{ margin-top:14px; }
+  .home-search .hs-box{ display:flex; align-items:center; gap:10px; padding:0 12px; height:46px; border-radius:var(--r); background:linear-gradient(135deg, var(--surface-3), var(--surface)); border:1px solid var(--line-2); transition:.2s; }
+  .home-search .hs-box:focus-within{ border-color:var(--brand); box-shadow:0 4px 18px rgba(0,0,0,.15); }
+  .home-search .hs-ic{ color:var(--brand); flex:none; }
+  .home-search .hs-input{ flex:1; min-width:0; height:100%; border:none; background:none; outline:none; color:var(--text); font-size:14px; }
+  .home-search .hs-input::placeholder{ color:var(--muted-2); }
+  .home-search .hs-clear{ flex:none; width:26px; height:26px; border-radius:50%; border:none; background:var(--surface-3); color:var(--muted); cursor:pointer; font-size:13px; display:none; align-items:center; justify-content:center; }
+  .home-search .hs-clear.show{ display:flex; }
+  .home-search .hs-result{ margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+  .home-search .hs-item{ display:flex; align-items:center; gap:10px; padding:11px 13px; border-radius:var(--r-s); background:var(--surface); border:1px solid var(--line); cursor:pointer; transition:.15s; }
+  .home-search .hs-item:hover{ border-color:var(--brand); transform:translateX(2px); }
+  .home-search .hs-cat{ font-size:10.5px; font-weight:700; color:var(--brand); background:var(--surface-3); padding:2px 8px; border-radius:99px; flex:none; }
+  .home-search .hs-name{ font-size:13.5px; font-weight:700; color:var(--text); }
+  .home-search .hs-en{ font-size:11px; color:var(--muted-2); margin-left:auto; }
+  .home-search .hs-empty{ font-size:12.5px; color:var(--muted-2); padding:10px 4px; }
 
   /* ============ 分类切换 ============ */
   .catbar { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
@@ -285,7 +386,7 @@
     background:var(--surface-2); border-radius:8px; color:var(--muted); cursor:pointer; transition:.15s;
   }
   .step-toggle-btn:hover { background:var(--acc-soft); color:var(--text); border-color:var(--acc-line); }
-  .gate-mark { display:inline-block; background:var(--acc-soft); color:#a9c4ff; border-radius:6px; padding:1px 7px; font-size:11px; font-weight:600; margin-right:5px; }
+  .gate-mark { display:inline-block; background:var(--acc-soft); color:var(--accent); border-radius:6px; padding:1px 7px; font-size:11px; font-weight:600; margin-right:5px; }
 
   /* ============ 知识点 Tab ============ */
   .tabs { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:16px; }
@@ -319,7 +420,7 @@
     border-radius:var(--r-s); padding:11px 13px; margin-bottom:13px; line-height:1.72;
   }
   .define b { color:#bed2ff; }
-  .tagline { font-size:14px; color:#a9c4ff; font-weight:600; margin:0 0 12px; }
+  .tagline { font-size:14px; color:var(--accent); font-weight:600; margin:0 0 12px; }
 
   canvas {
     display:block; background:var(--canvas-bg);
@@ -329,10 +430,10 @@
 
   .ctrl { margin:14px 0 4px; }
   .ctrl label { font-size:13px; color:var(--muted); display:flex; justify-content:space-between; margin-bottom:7px; }
-  .ctrl label b { color:#a9c4ff; font-weight:700; font-variant-numeric:tabular-nums; }
+  .ctrl label b { color:var(--accent); font-weight:700; font-variant-numeric:tabular-nums; }
   input[type=range] {
     width:100%; accent-color:var(--brand); height:4px; -webkit-appearance:none; appearance:none;
-    background:rgba(255,255,255,.12); border-radius:99px; outline:none;
+    background:var(--track); border-radius:99px; outline:none; border:1px solid var(--line-2);
   }
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%;
@@ -348,12 +449,34 @@
   .row2 > div { flex:1; min-width:240px; }
   .cap { font-size:12px; color:var(--muted-2); text-align:center; margin-top:7px; line-height:1.6; }
   .readout {
-    background:linear-gradient(135deg,rgba(91,140,255,.12),rgba(124,108,255,.06));
+    background:linear-gradient(135deg,var(--acc-soft),var(--surface-2));
     border:1px solid var(--acc-line); border-radius:var(--r-s);
-    padding:11px 13px; font-size:13px; color:#cfdcff; margin-top:12px; line-height:1.7;
+    padding:11px 13px; font-size:13px; color:var(--text); margin-top:12px; line-height:1.7;
   }
   .note { font-size:13px; color:var(--muted); margin-top:13px; padding-left:12px; border-left:3px solid var(--acc-line); line-height:1.75; }
+  .dir-dia{ flex:none; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; }
   .note b { color:var(--text); }
+  .realfig{ margin:14px 0 4px; }
+  .realfig img{ display:block; width:100%; max-width:560px; margin:0 auto; border-radius:var(--r-s); border:1px solid var(--line);
+    box-shadow:var(--sh); background:var(--surface-2); }
+  .realfig figcaption{ font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px; text-align:center; padding:0 4px; }
+  .realfig figcaption b{ color:var(--text); }
+  .mtf-curve-h{ font-size:13px; font-weight:700; color:var(--text); margin:14px 0 2px; }
+  .mtf-guide{ margin:12px 0 4px; padding:14px 16px; border:1px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); }
+  .mtf-guide .mg-h{ font-size:13.5px; font-weight:800; color:var(--brand); margin-bottom:10px; }
+  .mtf-guide .mg-grid{ display:flex; flex-direction:column; gap:8px; }
+  .mtf-guide .mg-item{ display:flex; align-items:center; gap:9px; font-size:12.5px; color:var(--muted); line-height:1.5; }
+  .mtf-guide .mg-item b{ color:var(--text); }
+  .mtf-guide .dot{ width:13px; height:13px; border-radius:3px; flex:none; display:inline-block; }
+  .mtf-guide .dot.dash{ background:repeating-linear-gradient(90deg,#7286aa 0 4px, transparent 4px 7px); }
+  .mtf-guide .dot.vline{ background:repeating-linear-gradient(0deg, rgba(255,255,255,.6) 0 4px, transparent 4px 7px); }
+  .mtf-guide .mg-tip{ margin-top:11px; padding-top:10px; border-top:1px dashed var(--line-2); font-size:12px; color:var(--muted-2); line-height:1.7; }
+  /* 对比缩略图（杂光 / 鬼像直观化） */
+  .cmp-row{ display:flex; gap:12px; flex-wrap:wrap; margin:4px 0 16px; }
+  .cmp{ flex:1 1 240px; min-width:200px; }
+  .cmp canvas{ width:100%; height:auto; display:block; border-radius:var(--r-s); border:1px solid var(--line); background:#0b1020; }
+  .cmp-cap{ font-size:11.5px; color:var(--muted); margin-top:6px; text-align:center; line-height:1.5; }
+  .cmp-cap b{ color:var(--text); }
 
   /* ============ 工艺流程 ============ */
   .flow-title { font-size:14px; font-weight:700; color:var(--text); margin:4px 0 10px; }
@@ -381,10 +504,10 @@
   /* ============ 工序↔设备表 ============ */
   .eq-table { width:100%; border-collapse:collapse; margin-top:10px; font-size:12.5px;
     border-radius:var(--r-s); overflow:hidden; }
-  .eq-table caption { caption-side:top; text-align:left; font-size:13px; font-weight:700; color:#a9c4ff; margin-bottom:7px; }
+  .eq-table caption { caption-side:top; text-align:left; font-size:13px; font-weight:700; color:var(--accent); margin-bottom:7px; }
   .eq-table th {
     background:linear-gradient(135deg,rgba(91,140,255,.30),rgba(124,108,255,.22));
-    color:#fff; font-weight:700; font-size:11.5px; text-align:left; padding:9px 10px;
+    color:var(--text-bright); font-weight:700; font-size:11.5px; text-align:left; padding:9px 10px;
     border-bottom:1px solid var(--line);
   }
   .eq-table td { border:1px solid var(--line-2); padding:8px 10px; vertical-align:top; color:var(--text); line-height:1.55; }
@@ -421,9 +544,9 @@
   .dwg-wrap{ margin:10px 0 4px; text-align:center; }
   .dwg-img{ max-width:100%; width:100%; border:1px solid var(--line); border-radius:var(--r-s); background:rgba(255,255,255,.04); }
   .dwg-cap{ font-size:11.5px; color:var(--muted); margin-top:7px; }
-  .dwg-cap a{ color:#a9c4ff; font-weight:600; }
+  .dwg-cap a{ color:var(--accent); font-weight:600; }
   .sym-group{ margin-top:16px; }
-  .sym-gh{ font-weight:700; color:#a9c4ff; font-size:14px; margin-bottom:9px; border-left:3px solid var(--brand); padding-left:9px; }
+  .sym-gh{ font-weight:700; color:var(--accent); font-size:14px; margin-bottom:9px; border-left:3px solid var(--brand); padding-left:9px; }
   .sym-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(152px,1fr)); gap:9px; }
   .sym-card{
     border:1px solid var(--line); border-radius:var(--r-s); padding:9px;
@@ -431,11 +554,11 @@
   }
   .sym-card:hover{ border-color:var(--acc-line); background:var(--surface); transform:translateY(-2px); }
   .sym-glyph{ height:32px; display:flex; align-items:center; justify-content:center; }
-  .sym-glyph .gd{ font-size:21px; color:#a9c4ff; font-weight:700; line-height:1; }
-  .sym-glyph .sm{ font-size:12px; font-weight:700; color:#a9c4ff; }
+  .sym-glyph .gd{ font-size:21px; color:var(--accent); font-weight:700; line-height:1; }
+  .sym-glyph .sm{ font-size:12px; font-weight:700; color:var(--accent); }
   .sym-name{ font-size:12.5px; font-weight:700; color:var(--text); }
   .sym-desc{ font-size:11.5px; color:var(--muted); line-height:1.5; }
-  .sym-ex{ font-size:11px; color:#a9c4ff; background:var(--acc-soft); border-radius:5px; padding:2px 7px; align-self:flex-start; }
+  .sym-ex{ font-size:11px; color:var(--accent); background:var(--acc-soft); border-radius:5px; padding:2px 7px; align-self:flex-start; }
 
   /* 滚动条 */
   ::-webkit-scrollbar{ width:10px; height:10px; }
@@ -493,7 +616,7 @@
     padding:12px 12px 4px; border-top:1px solid var(--line-2);
   }
   .side-foot a{ color:#8ba4d4; text-decoration:none; }
-  .side-foot a:hover{ color:#a9c4ff; }
+  .side-foot a:hover{ color:var(--accent); }
 
   /* ---- 主区 ---- */
   #main{ margin-left:242px; flex:1; min-width:0; min-height:100vh; display:flex; flex-direction:column; }
@@ -507,7 +630,7 @@
   }
   .tb-title{ font-size:15.5px; font-weight:700; color:var(--text); letter-spacing:.3px; }
   .tb-prog{
-    font-size:11.5px; color:#a9c4ff; padding:4px 12px; border-radius:99px;
+    font-size:11.5px; color:var(--accent); padding:4px 12px; border-radius:99px;
     background:var(--acc-soft); border:1px solid var(--acc-line);
     font-variant-numeric:tabular-nums; white-space:nowrap;
   }
@@ -604,19 +727,22 @@
   .rkh-title{ font-size:18px; font-weight:800; color:var(--text); }
   .rkh-en{ font-size:12px; color:var(--muted-2); margin-top:3px; }
   .rkh-desc{ font-size:12px; color:var(--muted); margin-top:8px; line-height:1.65; }
-  .rand-bar{ display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap; }
+  .rand-actions{ display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
   .rb{
-    padding:10px 20px; border-radius:var(--r-s); font-size:13.5px; font-weight:700; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:13px 22px; border-radius:var(--r-s); font-size:14px; font-weight:700; cursor:pointer;
     border:1px solid var(--line); background:var(--surface); color:var(--text);
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-    transition:.18s; font-family:inherit;
+    transition:.18s; font-family:inherit; flex:1 1 auto;
   }
+  .rb svg{ width:17px; height:17px; flex:none; }
   .rb:hover{ border-color:var(--acc-line); transform:translateY(-1px); }
   .rb.pri{
     background:linear-gradient(135deg,var(--brand),var(--brand-2)); border-color:transparent; color:#fff;
     box-shadow:0 6px 22px rgba(91,140,255,.40);
   }
-  .rb.on{ background:rgba(251,191,36,.16); border-color:rgba(251,191,36,.4); color:var(--amber); }
+  .rb.on{ background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(251,146,60,.16)); border-color:rgba(251,191,36,.55); color:var(--amber); box-shadow:0 4px 16px rgba(251,191,36,.22); }
+  .rb.on svg{ fill:var(--amber); stroke:var(--amber); }
 
   /* ---- 看板 ---- */
   .dash-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:18px; }
@@ -625,7 +751,7 @@
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); box-shadow:var(--sh);
   }
   .ds .dv{ font-size:27px; font-weight:800; line-height:1.1;
-    background:linear-gradient(120deg,#fff,#a9c4ff); -webkit-background-clip:text; background-clip:text;
+    background:linear-gradient(120deg,var(--text-bright),var(--accent)); -webkit-background-clip:text; background-clip:text;
     -webkit-text-fill-color:transparent; color:#fff; font-variant-numeric:tabular-nums; }
   .ds .dl{ font-size:11.5px; color:var(--muted-2); margin-top:5px; letter-spacing:.3px; }
   .dash-sec{
@@ -638,7 +764,7 @@
   .cp:last-child{ margin-bottom:0; }
   .cp-top{ display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:7px; color:var(--muted); }
   .cp-top b{ color:var(--text); }
-  .cp-top i{ font-style:normal; font-variant-numeric:tabular-nums; color:#a9c4ff; }
+  .cp-top i{ font-style:normal; font-variant-numeric:tabular-nums; color:var(--accent); }
   .cp-bar{ height:7px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden; }
   .cp-bar u{ display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--brand),var(--brand-2)); transition:width .7s cubic-bezier(.4,0,.2,1); }
   .rc-list{ display:flex; flex-direction:column; gap:7px; }
@@ -690,13 +816,16 @@
     mask-image:linear-gradient(to bottom, #000 70%, transparent); }
   .recent-more{ text-align:center; font-size:11px; color:var(--brand); margin-top:8px; font-weight:600; }
   /* ---- 收藏页 ---- */
-  .fav-head{ margin-bottom:14px; }
-  .fav-title{ font-size:20px; font-weight:800; color:var(--text); }
-  .fav-sub{ font-size:12px; color:var(--muted-2); margin-top:3px; }
+  .fav-head{ margin-bottom:16px; }
+  .fav-title{ display:flex; align-items:center; gap:9px; font-size:20px; font-weight:800; color:var(--text); }
+  .fav-star{ width:24px; height:24px; color:var(--amber); flex:none; filter:drop-shadow(0 2px 6px rgba(251,191,36,.35)); }
+  .fav-sub{ font-size:12px; color:var(--muted-2); margin-top:5px; }
   .fav-list{ display:flex; flex-direction:column; gap:10px; }
   .fav-item{ display:flex; align-items:center; gap:12px; padding:13px 15px; border-radius:14px; background:var(--surface); border:1px solid var(--line); cursor:pointer; transition:.18s ease; }
   .fav-item:hover{ border-color:var(--brand); transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,0,0,.18); }
-  .fav-ic{ font-size:18px; color:var(--brand); }
+  .fav-ic{ display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:11px; flex:none;
+    background:linear-gradient(135deg,rgba(251,191,36,.20),rgba(251,146,60,.14)); color:var(--amber); }
+  .fav-ic svg{ width:19px; height:19px; }
   .fav-info{ flex:1; min-width:0; }
   .fav-name{ font-size:14px; font-weight:700; color:var(--text); }
   .fav-meta{ font-size:11px; color:var(--muted-2); margin-top:2px; }
@@ -814,7 +943,7 @@
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
   }
   .install-bar.hidden{ display:none; }
-  .install-bar b{ color:#a9c4ff; }
+  .install-bar b{ color:var(--accent); }
   .install-bar .x{ margin-left:auto; background:none; border:none; color:#8ba4d4; font-size:18px; cursor:pointer; }
 
   /* ---- 响应式 ---- */
@@ -884,7 +1013,7 @@
       <button class="nav-item" data-page="favorites"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></span><span class="ni-lb">收藏</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0zM14.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0z"/><path d="M9.5 12h5"/></svg></span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.3.2 · 2026-08-12<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.3.4 · 2026-08-16<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
@@ -910,7 +1039,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.3.2 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-12</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.3.4 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-16</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 12</span>
@@ -927,7 +1056,7 @@
     <div class="rand-hero" id="randHero">
       <div class="rand-hero-inner">
         <div class="rand-hero-icon-wrap">
-          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1.5"/><rect x="14" y="2" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><circle cx="18" cy="18" r="4"/></svg>
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
@@ -938,13 +1067,22 @@
     </div>
   </div>
 
+                      <div class="home-search" id="homeSearch">
+                        <div class="hs-box">
+                          <svg class="hs-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>
+                          <input class="hs-input" id="hsInput" type="search" placeholder="搜索知识点，如 MTF、偏心、鬼像、镀膜…" autocomplete="off" enterkeyhint="search">
+                          <button class="hs-clear" id="hsClear" type="button" aria-label="清空">✕</button>
+                        </div>
+                        <div class="hs-result" id="hsResult"></div>
+                      </div>
+
                       <div class="home-split">
         <aside class="cat-nav">
           <div class="cat-nav-h">知识分类 · 11</div>
       <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
         <span class="cn-ic">🔬</span>
         <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
-        <span class="cn-count">12</span>
+        <span class="cn-count">13</span>
       </div>
       <div class="cat-nav-item" id="cat-reliability" onclick="showCat('reliability')">
         <span class="cn-ic">🌡️</span>
@@ -1082,6 +1220,7 @@
     <div class="tab" id="tab-dist" onclick="showTab('dist')">畸变<span class="en">桶/枕形</span></div>
     <div class="tab" id="tab-ca" onclick="showTab('ca')">色差<span class="en">彩色镶边</span></div>
     <div class="tab" id="tab-vig" onclick="showTab('vig')">渐晕<span class="en">边角发暗</span></div>
+    <div class="tab" id="tab-decenter" onclick="showTab('decenter')">偏心<span class="en">装偏/装歪</span></div>
   </div>
   <div class="tabs" id="subtabs-reliability" style="display:none;">
     <div class="tab" id="tab-thcomp" onclick="showTab('thcomp')">热补偿<span class="en">温度补偿</span></div>
@@ -1497,6 +1636,7 @@
   .pm-card{ background:rgba(255,255,255,.045); border:1px solid var(--line); border-radius:14px; padding:16px 16px 12px; margin-bottom:12px; }
   .pm-h{ font-weight:700; font-size:15px; color:var(--text); display:flex; align-items:center; gap:8px; margin-bottom:6px; }
   .pm-h .em{ font-size:18px; }
+  .pm-h .pm-ic{ width:18px; height:18px; flex:none; color:var(--brand); }
   .pm-h .tag{ font-size:10px; font-weight:600; padding:2px 8px;border-radius:10px;background:rgba(91,140,255,0.15);color:#5b8cff;margin-left:auto; }
   .pm-body{ font-size:12px; color:var(--muted); line-height:1.65; }
   .pm-body b{ color:var(--text); }
@@ -1510,6 +1650,7 @@
   .pm-table td:last-child{ color:var(--muted); }
   .pm-warn{ background:rgba(251,191,36,0.08); border-color:#fcd34d; }
   .pm-ok{ background:rgba(52,211,153,0.06); border-color:#34d399; }
+  .pm-info{ background:rgba(91,140,255,0.07); border-color:var(--brand); }
   </style>
 
   <!-- 项目管理 · VDA -->
@@ -1685,26 +1826,37 @@
     <p class="tagline">一句话：镜头里一颗 50μm 的颗粒，在画面中心就是一颗永远擦不掉的黑点</p>
 
     <div class="pm-card">
-      <div class="pm-h"><span class="em">📐</span>标准与等级（VDA 19-2 / ISO 16232）<span class="tag">规范</span></div>
+      <div class="pm-h"><svg class="pm-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M4 4v14a2 2 0 0 0 2 2"/></svg>标准与等级（VDA 19-2 / ISO 16232）<span class="tag">规范</span></div>
       <div class="pm-body">按「最大允许颗粒尺寸」分级：<b>Code 12</b> = 最大颗粒 400μm；<b>Code 15</b> = 最大 2000μm。<br><b>对光学：</b>成像路径零件（镜片 / 隔圈 / IR 片）通常要求 <b>Code ≤ 12~13</b>；越靠近像面要求越严。</div>
       <table class="pm-table"><tr><td>Code 12</td><td>最大颗粒 400μm（成像路径常用）</td></tr><tr><td>Code 13</td><td>最大颗粒 800μm（结构件）</td></tr><tr><td>Code 15</td><td>最大颗粒 2000μm（非成像件）</td></tr></table>
     </div>
 
+    <div class="pm-card pm-info">
+      <div class="pm-h"><svg class="pm-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.5h.01"/></svg>易混：40/20、60/40 是什么？<span class="tag">表面疵病</span></div>
+      <div class="pm-body">注意：它和上面讲的「颗粒洁净度」<b>是两码事</b>。<b>40/20、60/40 不是污染等级，而是<b>光学元件表面疵病（surface quality / scratch-dig）等级</b></b>，依据美军标 <b>MIL-PRF-13830B</b>，写在图纸的「表面质量」栏。<br>
+      格式「前数 / 后数」：<br>
+      • <b>前数 = 划痕（scratch）等级</b>：按宽度分档（10 / 20 / 40 / 60 / 80），数字越大划痕越宽（约 数÷10 µm，如 40≈4µm 宽）。<br>
+      • <b>后数 = 麻点（dig）直径</b>：= 数 × 0.01 mm（如 <b>20→0.2mm=200µm</b>，40→0.4mm=400µm）。<br>
+      常见档位（严 → 松）：<b>10/5 &lt; 20/10 &lt; 40/20 &lt; 60/40 &lt; 80/50</b>。40/20 比 60/40 干净、缺陷更少；车载成像镜片常要求 40/20，甚至 20/10。<br>
+      <b>和「洁净度」的区别：</b>40/20 是<b>玻璃上永久的制造缺陷</b>（抛光 / 镀膜留下的划痕麻点，<b>洗不掉</b>）；而洁净度是<b>可清洗掉的松散颗粒</b>。两者都管「表面质量」，但一个是「先天缺陷」、一个是「后天脏污」。</div>
+      <table class="pm-table"><tr><td>10/5</td><td>最严：划痕≤10级、麻点≤0.05mm(50µm)</td></tr><tr><td>40/20</td><td>常用：划痕≤40级、麻点≤0.2mm(200µm)</td></tr><tr><td>60/40</td><td>较松：划痕≤60级、麻点≤0.4mm(400µm)</td></tr></table>
+    </div>
+
     <div class="pm-card">
-      <div class="pm-h"><span class="em">🔬</span>怎么测（萃取 + 分析）<span class="tag">方法</span></div>
+      <div class="pm-h"><svg class="pm-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6l-4 8a2 2 0 0 0 2 3h8a2 2 0 0 0 2-3l-4-8V3"/><path d="M7.5 15h9"/></svg>怎么测（萃取 + 分析）<span class="tag">方法</span></div>
       <div class="pm-body"><b>压力萃取</b>（冲洗颗粒）→ <b>滤膜收集</b> → <b>显微镜 / 激光粒度仪计数分级</b>。<br><b>对光学：</b>镜头内腔用异丙醇萃取；每批抽检；颗粒数超 Code → 整批返清洗。</div>
     </div>
 
     <div class="pm-card">
-      <div class="pm-h"><span class="em">🌀</span>颗粒从哪来（污染源）<span class="tag">根因</span></div>
+      <div class="pm-h"><svg class="pm-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>颗粒从哪来（污染源）<span class="tag">根因</span></div>
       <div class="pm-body">来料粉尘、机加碎屑、镀膜粉尘、装配手套纤维、清洗不净。<br><b>控制：</b>洁净间等级（如 ISO 7 / Class 10000）、离子风除静电、粘尘辊、无尘包装。</div>
     </div>
 
     <div class="pm-card pm-warn">
-      <div class="pm-h"><span class="em">❌</span>清洁度失效的典型表现<span class="tag">后果</span></div>
+      <div class="pm-h"><svg class="pm-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>清洁度失效的典型表现<span class="tag">后果</span></div>
       <div class="pm-body"><b>鬼影 / 亮斑：</b>大颗粒在镜片间散射杂光；<b>暗点 / 黑点：</b>颗粒挡光形成固定位置亮点（与运动模糊区分：<b>脏点是静态的</b>）；<b>低良率：</b>清洁度不达标 → 终检 MTF/VGI 整批掉。</div>
     </div>
-    <div class="note"><b>看不见的质量：</b>清洁度不写在光学 spec 里，却直接吃掉成像良率。车载摄像头因脏点导致夜间噪点 / 鬼影的 RMA，根因八成在清洁度管控——它是 DFMEA/PFMEA 里「清洗工序」那一行背后的真正战场。</div>
+    <div class="note"><b>看不见的质量：</b>清洁度不写在光学 spec 里，却直接吃掉成像良率。车载摄像头因脏点导致夜间噪点 / 鬼影的 RMA，根因八成在清洁度管控——它是 DFMEA/PFMEA 里「清洗工序」那一行背后的真正战场。而 40/20 这类表面疵病，则要在来料 IQC 用对照样板目视/自动检测把关，二者共同守住「干净又完好」的成像表面。</div>
   </div>
 
   <!-- 质量工具 · SPC -->
@@ -1817,7 +1969,7 @@
   <div class="panel show" id="panel-mtf">
     <div class="define"><b>释义：</b>MTF（Modulation Transfer Function，调制传递函数）衡量镜头<b>还原"黑白相间细密条纹"对比度的能力</b>——数值越高细节保留越好，远处车牌 / 条码越读得清。它是镜头"清晰度"的量化指标。
     <br><b>单位 lp/mm（line pairs / 毫米，线对每毫米）：</b>把"一条黑线 + 一条白线"算 1 个线对，lp/mm 表示每毫米能分清多少个明暗周期。<b>数值越大 = 能分辨越细的条纹</b>。车载 spec 要求 <b>119 lp/mm</b> 处仍有足够 MTF（中心 ≥0.50、边缘 ≥0.35）。
-    <br><b>两条曲线（T / S）：</b>MTF 是"方向相关"的。子午（T，tangential / meridional，过圆心放射状方向）与弧矢（S，sagittal，垂直子午的同心圆切线方向）要分别画曲线。<b>通常 S 略优于 T</b>，好镜头要求 T、S 贴合。
+    <br><b>两条曲线（T / S）—— 别被名字吓到，其实就是"两个方向"：</b>想象一个<b>车轮</b>：<b>T 子午 = 辐条方向</b>（从圆心朝外放射，像时钟的指针），<b>S 弧矢 = 轮圈方向</b>（沿着圆周的切线，像钟面的刻度）。镜头拍一个"十字星点"时，沿 T 方向和沿 S 方向的清晰度可能不一样，所以 MTF 要<b>分别画两条曲线</b>。<b>好镜头 T、S 贴合</b>；装歪或低质镜头两条线会"分家"。
     <br><b>轴上 / 离轴：</b>还要分视场——中心（0°）MTF 最好，越往边缘（0.7 / 1.0 视场）越掉。spec 的 "0°≥0.50 / 4.5°≥0.45 / 8.6°≥0.38 / 12°≥0.35" 就是不同视场的要求。
     <br><b>天花板 = 衍射极限：</b>任何镜头 MTF 都不可能超过"理想衍射极限"（由波长 λ 与光圈 F 决定），实际镜头只能逼近它。</div>
     <p class="tagline">MTF = 镜头留住多少"黑白对比"，越细的条纹（高 lp/mm）越容易丢；子午 T、弧矢 S 各一条</p>
@@ -1825,8 +1977,20 @@
       <div><canvas id="mtfA" width="300" height="120"></canvas><div class="cap">真实车牌（无损）</div></div>
       <div><canvas id="mtfB" width="300" height="120"></canvas><div class="cap">这台镜头拍出来</div></div>
     </div>
+    <div class="mtf-curve-h">MTF 曲线（拖下方滑块实时变化）</div>
     <canvas id="mtfCurve" width="620" height="190" style="margin-top:6px;"></canvas>
     <div class="cap">MTF 曲线：横轴 = 空间频率（lp/mm，越右越细）；纵轴 = 剩余对比度 %。灰虚线 = 衍射极限；彩线 = 不同视场的镜头实际 MTF（子午 T）</div>
+    <div class="mtf-guide">
+      <div class="mg-h">怎么读这张 MTF 曲线</div>
+      <div class="mg-grid">
+        <div class="mg-item"><span class="dot" style="background:#9aa7c7"></span><b>横轴 →</b> 空间频率 lp/mm，越往右 = 条纹越细</div>
+        <div class="mg-item"><span class="dot" style="background:#9aa7c7"></span><b>纵轴 ↑</b> 剩余对比度 %，越往上 = 越清晰</div>
+        <div class="mg-item"><span class="dot dash"></span><b>灰虚线</b> 衍射极限——镜头天花板，实际永远碰不到</div>
+        <div class="mg-item"><span class="dot" style="background:#34d399"></span><b>绿 / 蓝 / 黄 / 红</b> 中心 → 边缘四个视场的真实 MTF</div>
+        <div class="mg-item"><span class="dot vline"></span><b>竖虚线 119</b> 车载 spec 考察点，圆点压在线上方 = 达标</div>
+      </div>
+      <div class="mg-tip">一句话：曲线越靠右上、且 T/S 两条（子午/弧矢）贴得越紧，镜头越好。拖「镜头素质」看细条码怎么先趴下，拖「考察视场」看边缘怎么比中心掉得快。</div>
+    </div>
     <div class="row2" style="align-items:flex-start;margin-top:8px;">
       <div>
         <div class="ctrl">
@@ -1838,20 +2002,29 @@
           <input type="range" id="mtfF" min="0" max="3" value="0" step="1" oninput="renderMTF()">
         </div>
       </div>
-      <div style="display:flex;gap:12px;align-items:center;">
-        <svg width="150" height="150" viewBox="0 0 150 150" style="flex:none;background:#121b31;border:1px solid #1a2340;border-radius:8px;">
-          <circle cx="75" cy="75" r="58" fill="none" stroke="#43537b" stroke-width="1"/>
-          <circle cx="75" cy="75" r="38" fill="none" stroke="#43537b" stroke-width="1"/>
-          <circle cx="75" cy="75" r="18" fill="none" stroke="#43537b" stroke-width="1"/>
-          <line x1="14" y1="75" x2="136" y2="75" stroke="var(--brand)" stroke-width="2"/>
-          <line x1="75" y1="14" x2="75" y2="136" stroke="var(--brand)" stroke-width="2"/>
-          <text x="79" y="70" font-size="9" fill="var(--brand)" font-weight="700">T 子午</text>
-          <text x="79" y="83" font-size="9" fill="var(--brand)" font-weight="700">(放射向)</text>
-          <path d="M75 17 A58 58 0 0 1 133 75" fill="none" stroke="#38bdf8" stroke-width="2"/>
-          <text x="98" y="40" font-size="9" fill="#38bdf8" font-weight="700">S 弧矢</text>
-          <text x="98" y="52" font-size="9" fill="#38bdf8" font-weight="700">(切向)</text>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <svg width="160" height="160" viewBox="0 0 160 160" class="dir-dia" role="img" aria-label="T子午与S弧矢方向示意">
+          <!-- 车轮隐喻 -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="var(--line-3)" stroke-width="1"/>
+          <circle cx="80" cy="80" r="40" fill="none" stroke="var(--line-3)" stroke-width="1"/>
+          <circle cx="80" cy="80" r="18" fill="none" stroke="var(--line-3)" stroke-width="1"/>
+          <!-- T 子午 = 辐条（放射向，蓝） -->
+          <line x1="20" y1="80" x2="140" y2="80" stroke="#5b8cff" stroke-width="2.5"/>
+          <line x1="80" y1="20" x2="80" y2="140" stroke="#5b8cff" stroke-width="2.5"/>
+          <text x="84" y="76" font-size="10" fill="#5b8cff" font-weight="700">T 子午</text>
+          <text x="84" y="90" font-size="9" fill="#5b8cff">辐条向</text>
+          <!-- S 弧矢 = 轮圈切线（青） -->
+          <path d="M80 20 A60 60 0 0 1 140 80" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+          <path d="M80 140 A60 60 0 0 1 20 80" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+          <text x="104" y="42" font-size="10" fill="#38bdf8" font-weight="700">S 弧矢</text>
+          <text x="104" y="55" font-size="9" fill="#38bdf8">轮圈向</text>
         </svg>
-        <div style="font-size:12px;color:#9db0d2;line-height:1.6;"><b>T 子午</b>（蓝，经线 / 放射方向）<br><b>S 弧矢</b>（青，纬线 / 切向）<br>同一视场通常<br>S 略优于 T。</div>
+        <div style="font-size:12.5px;color:var(--dia-text);line-height:1.7;flex:1;min-width:150px;">
+          <b style="color:#5b8cff">T 子午</b>（蓝）＝辐条放射方向<br>
+          <b style="color:#38bdf8">S 弧矢</b>（青）＝轮圈切线方向<br>
+          两个方向清晰度若不一样，星点就会<b>拉成"米字"而非圆点</b>。<br>
+          好镜头 T、S 贴合；装歪或像差大的会<b>"分家"</b>。
+        </div>
       </div>
     </div>
     <div class="readout" id="mtfR"></div>
@@ -1881,14 +2054,10 @@
       <label>光圈 F 数<b>F <span id="fnoFv">1.8</span></b></label>
       <input type="range" id="fnoF" min="1.4" max="16" value="1.8" step="0.1" oninput="renderFNO();renderFNOLight();">
     </div>
-    <div class="ctrl">
-      <label>工作波长 λ（影响 Airy 斑大小）<b><span id="fnoWv">550</span> nm</b></label>
-      <input type="range" id="fnoW" min="430" max="680" value="550" step="10" oninput="renderFNO()">
-    </div>
     <canvas id="fnoLightC" width="620" height="110"></canvas>
     <div class="cap">相对进光量（以 F=1.4 = 100% 为基准；照度 ∝ 1 / F²）</div>
     <div class="readout" id="fnoR"></div>
-    <div class="note">产品 spec：<b>F.NO = 1.8 ±5%</b>。车载镜头要兼顾<b>暗光进光</b>（F 不宜太大）+ <b>远近都清</b>（F 不宜太小）+ <b>衍射不盖过像素</b>（Airy 斑 ≤ 3×像素尺寸 ≈ 6µm），F=1.8 是这三项的折衷点。</div>
+    <div class="note">产品 spec：<b>F.NO = 1.8 ±5%</b>。车载镜头要兼顾<b>暗光进光</b>（F 不宜太大）+ <b>远近都清</b>（F 不宜太小）+ <b>衍射不盖过像素</b>（Airy 斑 ≤ 3×像素尺寸 ≈ 6µm），F=1.8 是这三项的折衷点。<br><br><b>顺带说下波长：</b>人眼可见光约 430~680nm（紫到红）。波长越长，光的"最小可汇聚光斑（Airy 斑）"越大、衍射越重——所以红光比蓝光更容易被衍射"糊掉"。上面 Airy 斑按可见光中心波长 550nm 估算，车载镜头通常就在这个区间工作。</div>
   </div>
 
   <!-- FOV（视场角） -->
@@ -2030,16 +2199,34 @@
     <div class="note">成因有两层：几何上斜射光按 <b>cos⁴θ 定律</b>衰减（视角越大衰越多），机械上镜筒/镜片边缘也会挡掉部分斜光。车载广角前视/环视镜头四角容易偏暗，ISP 要做<b>亮度均一化（shading correction）</b>把边角提亮，否则边角一放大增益就噪点暴涨。spec 要求 <b>RE-ILL ≥ 79% ±5% @HFOV</b>，即 HFOV 边缘像点的照度不得低于中心的 79%——这条线是镜头与 ISP 之间的"分账协议"。</div>
   </div>
 
+  <!-- 光学：偏心 -->
+  <div class="panel" id="panel-decenter">
+    <div class="define"><b>释义：</b>偏心（Decenter / Tilt）就是镜头里某片<b>镜片没装正</b>：<b>偏心</b>＝镜片光心偏离镜筒机械轴（左右装偏了）；<b>倾斜</b>＝镜片光轴与机械轴不平行（装歪了）。它和杂光、鬼像一样，是<b>组装公差失控</b>的典型产物——只要有一片装歪，整张图像就<b>一边清楚、一边糊</b>，星点也被拉成"彗差状"拖尾。</div>
+    <p class="tagline">偏心 = 镜片装偏 / 装歪；像点变彗差拖尾，一侧糊一侧清</p>
+    <canvas id="decCv" width="620" height="260"></canvas>
+    <div class="cap" style="text-align:left;color:var(--dia-text);margin-top:6px;">左：镜片相对机械轴（灰虚线）的偏移 / 倾斜，黄线＝实际光轴；右：一个点光源（星点）从圆点被拉成彗差状拖尾</div>
+    <div class="ctrl">
+      <label>① 偏心量（镜片横移）<b><span id="decDv">0.0</span> µm</b></label>
+      <input type="range" id="decD" min="0" max="20" value="0" step="0.5" oninput="renderDecenter()">
+    </div>
+    <div class="ctrl">
+      <label>② 倾斜角（镜片歪斜）<b><span id="decTv">0.0</span> °</b></label>
+      <input type="range" id="decT" min="0" max="3" value="0" step="0.1" oninput="renderDecenter()">
+    </div>
+    <div class="readout" id="decR"></div>
+    <div class="note"><b>为什么车载镜头特别怕偏心？</b> 车载镜头要把<b>整幅画面（尤其边角）</b>都给 ADAS 看清——而偏心恰恰让<b>边缘像质不对称崩塌</b>（一侧 MTF 骤降、彗差拖尾），车牌/行人检测在某一侧就会漏检。所以组装站用<b>偏心仪 / 中心仪</b>逐片量：镜片光心必须落在机械轴 ±5µm、倾斜 ≤ 1° 以内，超差即返修。这跟"温漂靠结构+算法压、杂光靠消光+遮光片"是同一套思路——<b>公差不兜住，参数再漂亮也没用</b>。</div>
+  </div>
+
   <!-- 信赖性：热补偿 -->
   <div class="panel" id="panel-thcomp">
     <div class="define"><b>释义：</b>热补偿（Thermal Compensation）指镜头 / 模组在 <b>-40℃~105℃ 的车载温区</b>内，通过 <b>材料选择（CTE）+ 机械结构（浮动组 / 形状记忆合金）+ ISP 算法</b> 三层叠加，主动抵消镜片热胀冷缩引起的像面偏移。它要同时满足：<b>4 个温区合规</b>（-40 / -20 / 25 / 85℃）、<b>残余偏移 ≤ DOF</b>、<b>MTF 不掉档</b>。</div>
     <p class="tagline">热补偿 = CTE × 温变 × EFL 算出来的温漂，靠结构+算法压回 DOF 内</p>
 
     <canvas id="thcCurve" width="620" height="300"></canvas>
-    <div class="cap" style="text-align:left;color:#9db0d2;margin-top:-6px;">横轴 = 温度（℃），纵轴 = 焦点偏移（µm）；<span style="color:#34d399">绿带</span>=DOF 容差、<span style="color:#61759d">灰带</span>=4 个温区背景、<span style="color:#f87171">红线</span>=无补偿漂移、<span style="color:#34d399">绿线</span>=补偿后</div>
+    <div class="cap" style="text-align:left;color:var(--dia-text);margin-top:-6px;">横轴 = 温度（℃），纵轴 = 焦点偏移（µm）；<span style="color:#34d399">绿带</span>=DOF 容差、<span style="color:#61759d">灰带</span>=4 个温区背景、<span style="color:#f87171">红线</span>=无补偿漂移、<span style="color:#34d399">绿线</span>=补偿后</div>
 
     <canvas id="thcC" width="620" height="130" style="margin-top:12px;"></canvas>
-    <div class="cap" style="text-align:left;color:#9db0d2;margin-top:-6px;">当前温度下，焦点在 sensor 平面上的位置（中间带 = DOF，<span style="color:#34d399">绿=在带内清晰</span>，<span style="color:#f87171">红=跑焦</span>）</div>
+    <div class="cap" style="text-align:left;color:var(--dia-text);margin-top:-6px;">当前温度下，焦点在 sensor 平面上的位置（中间带 = DOF，<span style="color:#34d399">绿=在带内清晰</span>，<span style="color:#f87171">红=跑焦</span>）</div>
 
     <div class="row2" style="margin-top:10px;">
       <div>
@@ -2077,6 +2264,11 @@
   <div class="panel" id="panel-stray">
     <div class="define"><b>释义：</b>杂光（Stray Light，杂散光）就是<b>不该进镜头的那部分光</b>。正常成像只需要"从目标直线射来的光"；但太阳、路灯、对向车灯、路面反光，甚至镜筒内壁，都会把光<b>弹来弹去、散射</b>后"溜"进传感器。这些乱入的光不像正常图像那样成像，而是在整幅画面上叠了一层<b>均匀的灰白雾（veiling glare，遮光罩眩光）</b>——它把黑电平整体抬高、对比度压低，<b>暗处的行人、标线、车牌就被这层雾"吃掉"了</b>。</div>
     <p class="tagline">一句话：杂光 = 强光的"溢光"像牛奶一样糊住整幅，对比度被整体拉低</p>
+    <figure class="realfig"><img loading="lazy" src="data:image/jpeg;base64,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" alt="遮光罩抑制杂光实拍对比"><figcaption>实拍示例：<b>遮光罩对杂光的抑制</b> —— 左：无遮光罩，强光直射镜头产生炫光与灰雾、对比度暴跌；右：加装遮光罩后画面干净。这正是「杂光」在真实照片里的样子。</figcaption></figure>
+    <div class="cmp-row">
+      <div class="cmp"><canvas id="strayCmpA" width="300" height="150"></canvas><div class="cmp-cap"><b>正常夜景</b>：暗处行人 / 车道线清晰</div></div>
+      <div class="cmp"><canvas id="strayCmpB" width="300" height="150"></canvas><div class="cmp-cap"><b>出现杂光</b>：整幅泛白，暗处行人被"吃掉"</div></div>
+    </div>
     <canvas id="strayCv" width="620" height="260"></canvas>
     <div class="ctrl">
       <label>① 强光源亮度 / 逆光强度<b><span id="straySv">45</span>%</b></label>
@@ -2092,6 +2284,11 @@
   <div class="panel" id="panel-ghost">
     <div class="define"><b>释义：</b>鬼像（Ghosting）是杂光的"<b>点状版本</b>"。当画面前方有<b>很强的小光源</b>（太阳、尾灯、路灯）时，这束强光会在相邻两片镜片之间<b>反弹 1~2 次</b>——相当于光在镜片之间"照了一次镜子"，最后在画面的<b>另一个位置</b>印出一个<b>错位、发虚的亮斑或光环</b>。它不像杂光那样糊整幅，而是<b>固定位置的一个亮斑</b>，跟着光源走、随亮度强弱变化。</div>
     <p class="tagline">一句话：鬼像 = 强光源在镜片间"照镜子"，在画面别处留下一个错位亮斑</p>
+    <figure class="realfig"><img loading="lazy" src="data:image/jpeg;base64,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" alt="手机摄影中的鬼影与反射杂光"><figcaption>实拍示例：逆光 / 夜景里，强光源（太阳、路灯、车灯）在镜片间多次反射，于画面别处留下<b>错位亮斑与鬼影</b>（ghosting），常呈光圈形状或成串分布。</figcaption></figure>
+    <div class="cmp-row">
+      <div class="cmp"><canvas id="ghostCmpA" width="300" height="150"></canvas><div class="cmp-cap"><b>正常逆光</b>：画面里只有太阳本身</div></div>
+      <div class="cmp"><canvas id="ghostCmpB" width="300" height="150"></canvas><div class="cmp-cap"><b>出现鬼像</b>：画面别处多出偏移亮斑</div></div>
+    </div>
     <canvas id="ghostCv" width="620" height="260"></canvas>
     <div class="ctrl">
       <label>① 强光源亮度<b><span id="ghostPv">50</span>%</b></label>
@@ -2126,7 +2323,7 @@
         <text x="44" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
         <text x="68" y="82" font-size="15" font-weight="700" fill="#e9efff">来料检验</text>
         <text x="68" y="101" font-size="11" fill="#8093b6">Incoming Inspection</text>
-        <text x="250" y="91" font-size="12.5" fill="#9db0d2">来料接收 · 来料报检 · 零部件入库/发料 · 物料接收</text>
+        <text x="250" y="91" font-size="12.5" fill="var(--dia-text)">来料接收 · 来料报检 · 零部件入库/发料 · 物料接收</text>
       </g>
       <line x1="360" y1="118" x2="360" y2="134" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段2 -->
@@ -2136,7 +2333,7 @@
         <text x="44" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
         <text x="68" y="162" font-size="15" font-weight="700" fill="#e9efff">镜筒加工</text>
         <text x="68" y="181" font-size="11" fill="#8093b6">Barrel Machining</text>
-        <text x="250" y="171" font-size="12.5" fill="#9db0d2">镜筒打标 · 镜筒吹拭 · 摆盘/取料 · 集尘</text>
+        <text x="250" y="171" font-size="12.5" fill="var(--dia-text)">镜筒打标 · 镜筒吹拭 · 摆盘/取料 · 集尘</text>
       </g>
       <line x1="360" y1="198" x2="360" y2="214" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段3 -->
@@ -2146,7 +2343,7 @@
         <text x="44" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
         <text x="68" y="242" font-size="15" font-weight="700" fill="#e9efff">自动组装</text>
         <text x="68" y="261" font-size="11" fill="#8093b6">Automatic Assembly</text>
-        <text x="250" y="251" font-size="12.5" fill="#9db0d2">自动组装 · 部品排料 · 外压圈锁付 · IR 组立点胶曝光</text>
+        <text x="250" y="251" font-size="12.5" fill="var(--dia-text)">自动组装 · 部品排料 · 外压圈锁付 · IR 组立点胶曝光</text>
       </g>
       <line x1="360" y1="278" x2="360" y2="294" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段4 -->
@@ -2156,7 +2353,7 @@
         <text x="44" y="332" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
         <text x="68" y="322" font-size="15" font-weight="700" fill="#7dd3fc">过程光学检验</text>
         <text x="68" y="341" font-size="11" fill="#8093b6">In-process Optical Check</text>
-        <text x="250" y="331" font-size="12.5" fill="#9db0d2">自动内尘检查 · 一道 MTF 检查（逆光路设备）</text>
+        <text x="250" y="331" font-size="12.5" fill="var(--dia-text)">自动内尘检查 · 一道 MTF 检查（逆光路设备）</text>
       </g>
       <line x1="360" y1="358" x2="360" y2="374" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段5 -->
@@ -2166,7 +2363,7 @@
         <text x="44" y="412" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
         <text x="68" y="402" font-size="15" font-weight="700" fill="#e9efff">可靠性预处理</text>
         <text x="68" y="421" font-size="11" fill="#8093b6">Reliability</text>
-        <text x="250" y="411" font-size="12.5" fill="#9db0d2">温度预处理（老化箱）· 高温烘烤（烘箱）· 老化 16H×2 循环</text>
+        <text x="250" y="411" font-size="12.5" fill="var(--dia-text)">温度预处理（老化箱）· 高温烘烤（烘箱）· 老化 16H×2 循环</text>
       </g>
       <line x1="360" y1="438" x2="360" y2="454" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段6 -->
@@ -2176,7 +2373,7 @@
         <text x="44" y="492" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">6</text>
         <text x="68" y="482" font-size="15" font-weight="700" fill="#7dd3fc">二道 MTF 检查</text>
         <text x="68" y="501" font-size="11" fill="#8093b6">2nd MTF Inspection · PRO10 设备</text>
-        <text x="250" y="491" font-size="12.5" fill="#9db0d2">老化后复测 MTF / 场曲 / 畸变 / DOF</text>
+        <text x="250" y="491" font-size="12.5" fill="var(--dia-text)">老化后复测 MTF / 场曲 / 畸变 / DOF</text>
       </g>
       <line x1="360" y1="518" x2="360" y2="534" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段7 -->
@@ -2186,7 +2383,7 @@
         <text x="44" y="572" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">7</text>
         <text x="68" y="562" font-size="15" font-weight="700" fill="#7dd3fc">最终检验</text>
         <text x="68" y="581" font-size="11" fill="#8093b6">Final Inspection</text>
-        <text x="250" y="571" font-size="12.5" fill="#9db0d2">干冰清洗 · VGI 检查 · 杂光检查 · 偏心检查 · 二道外观</text>
+        <text x="250" y="571" font-size="12.5" fill="var(--dia-text)">干冰清洗 · VGI 检查 · 杂光检查 · 偏心检查 · 二道外观</text>
       </g>
       <line x1="360" y1="598" x2="360" y2="614" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
       <!-- 阶段8 -->
@@ -2196,7 +2393,7 @@
         <text x="44" y="652" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">8</text>
         <text x="68" y="642" font-size="15" font-weight="700" fill="#e9efff">包装出货</text>
         <text x="68" y="661" font-size="11" fill="#8093b6">Packaging &amp; Shipment</text>
-        <text x="250" y="651" font-size="12.5" fill="#9db0d2">真空包装 · 成品包装 · 完工检验 · 出货入库</text>
+        <text x="250" y="651" font-size="12.5" fill="var(--dia-text)">真空包装 · 成品包装 · 完工检验 · 出货入库</text>
       </g>
       <!-- 输出 -->
       <line x1="360" y1="678" x2="360" y2="690" stroke="#61759d" stroke-width="2" marker-end="url(#ah)"></line>
@@ -2249,8 +2446,8 @@
       <div class="step-detail"><div class="step-body"><div class="item"><b>内容：</b>组装后立即用逆光路法测一道 MTF，并与内尘检查联动。</div><div class="item"><b>验证：</b><span class="gate-mark">MTF</span> 119lp/mm：0°≥0.50 / 4.5°≥0.45 / 8.6°≥0.38 / 12°≥0.35；<span class="gate-mark">DOF</span> ≥10µm。</div><div class="item"><b>关键：</b>第一道光学体检，偏倚在此暴露，不合格直接返工/隔离。</div><div class="step-fig"><svg viewBox="0 0 360 120" xmlns="http://www.w3.org/2000/svg">
   <line x1="36" y1="14" x2="36" y2="100" stroke="#61759d" stroke-width="1.5"/>
   <line x1="36" y1="100" x2="340" y2="100" stroke="#61759d" stroke-width="1.5"/>
-  <text x="14" y="58" font-size="9" fill="#9db0d2">MTF</text>
-  <text x="188" y="114" text-anchor="middle" font-size="9" fill="#9db0d2">空间频率 (lp/mm)</text>
+  <text x="14" y="58" font-size="9" fill="var(--dia-text)">MTF</text>
+  <text x="188" y="114" text-anchor="middle" font-size="9" fill="var(--dia-text)">空间频率 (lp/mm)</text>
   <polyline points="36,32 100,44 170,58 250,72 330,84" fill="none" stroke="var(--brand)" stroke-width="2"/>
   <polyline points="36,42 100,54 170,68 250,82 330,94" fill="none" stroke="#38bdf8" stroke-width="2"/>
   <polyline points="36,52 100,64 170,78 250,92 330,104" fill="none" stroke="#34d399" stroke-width="2"/>
@@ -2265,13 +2462,13 @@
       <div class="step-detail"><div class="step-body"><div class="item"><b>工序：</b>温度预处理(ZZ040, 老化箱) → 高温烘烤(ZZ080, 烘箱)。</div><div class="item"><b>温区（单循环 480min × 2 = 16H）：</b>25→-43℃(0–30min) → 恒-43℃(30–270min) → 升95℃(270–300min) → 恒95℃(300–420min) → 降-43℃(420–450min) → 回25℃(450–480min)。</div><div class="item"><b>关键：</b>模拟车载极端冷热冲击，把虚焊 / 应力松动逼出来，确保考验后指标仍稳。</div><div class="step-fig"><svg viewBox="0 0 360 120" xmlns="http://www.w3.org/2000/svg">
   <line x1="28" y1="108" x2="340" y2="108" stroke="#61759d" stroke-width="1.5"/>
   <line x1="28" y1="16" x2="28" y2="108" stroke="#61759d" stroke-width="1.5"/>
-  <text x="12" y="40" font-size="9" fill="#9db0d2">℃</text>
+  <text x="12" y="40" font-size="9" fill="var(--dia-text)">℃</text>
   <polyline points="30,58 40,18 120,18 130,98 170,98 180,18 190,58 200,18 280,18 290,98 330,98 340,58" fill="none" stroke="#fcd34d" stroke-width="2"/>
   <text x="80" y="14" text-anchor="middle" font-size="9" fill="#fcd34d">-43℃</text>
   <text x="230" y="14" text-anchor="middle" font-size="9" fill="#fcd34d">-43℃</text>
   <text x="160" y="20" text-anchor="middle" font-size="9" fill="#fcd34d">95℃</text>
   <text x="310" y="20" text-anchor="middle" font-size="9" fill="#fcd34d">95℃</text>
-  <text x="184" y="114" text-anchor="middle" font-size="9" fill="#9db0d2">2 循环 × 16H 冷热冲击（每循环 480min）</text></svg><div class="fig-cap">可靠性预处理：在 -43℃ ↔ 95℃ 间来回冲击，逼出虚焊 / 应力松动</div></div></div></div>
+  <text x="184" y="114" text-anchor="middle" font-size="9" fill="var(--dia-text)">2 循环 × 16H 冷热冲击（每循环 480min）</text></svg><div class="fig-cap">可靠性预处理：在 -43℃ ↔ 95℃ 间来回冲击，逼出虚焊 / 应力松动</div></div></div></div>
     </div>
     <div class="step" style="border-left:3px solid #38bdf8;" data-step="6">
       <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">6</span><div class="step-info"><div class="step-name">二道 MTF 检查 <span class="step-en">2nd MTF Inspection · PRO10</span></div><div class="step-tag">老化后复测，确认指标不漂</div></div><div class="step-arrow">⌄</div></div>
@@ -2508,7 +2705,7 @@
 
     <!-- 工序 3：脱硅 -->
     <div class="step" data-step="3">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">3</span><div class="step-info"><div class="step-name">脱硅 <span class="step-en">De-siliconizing · 手动线 · 良率 100% · 10k/台/日</span></div><div class="step-tag">NaOH 浸泡刷洗富 Si 层</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="22" width="120" height="30" rx="3" fill="#1d3260" stroke="#7aa2ff" stroke-width="1.5"/><line x1="20" y1="30" x2="140" y2="30" stroke="#7fb2ff" stroke-width="0.5" stroke-dasharray="2,2"/><text x="80" y="46" text-anchor="middle" font-size="8" fill="#7aa2ff" font-weight="700">NaOH 弱碱液</text><rect x="50" y="14" width="20" height="10" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1"/><rect x="48" y="10" width="24" height="6" rx="1" fill="#61759d"/><line x1="150" y1="14" x2="170" y2="42" stroke="#aabdd9" stroke-width="2"/><line x1="170" y1="42" x2="190" y2="14" stroke="#aabdd9" stroke-width="2"/><line x1="150" y1="14" x2="150" y2="42" stroke="#aabdd9" stroke-width="0.5"/><line x1="170" y1="42" x2="170" y2="14" stroke="#aabdd9" stroke-width="0.5"/><line x1="160" y1="14" x2="160" y2="42" stroke="#aabdd9" stroke-width="0.5"/><line x1="180" y1="14" x2="180" y2="42" stroke="#aabdd9" stroke-width="0.5"/><line x1="190" y1="14" x2="190" y2="42" stroke="#aabdd9" stroke-width="0.5"/><text x="170" y="58" text-anchor="middle" font-size="7" fill="#9db0d2">刷洗富 Si 层</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">3</span><div class="step-info"><div class="step-name">脱硅 <span class="step-en">De-siliconizing · 手动线 · 良率 100% · 10k/台/日</span></div><div class="step-tag">NaOH 浸泡刷洗富 Si 层</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="22" width="120" height="30" rx="3" fill="#1d3260" stroke="#7aa2ff" stroke-width="1.5"/><line x1="20" y1="30" x2="140" y2="30" stroke="#7fb2ff" stroke-width="0.5" stroke-dasharray="2,2"/><text x="80" y="46" text-anchor="middle" font-size="8" fill="#7aa2ff" font-weight="700">NaOH 弱碱液</text><rect x="50" y="14" width="20" height="10" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1"/><rect x="48" y="10" width="24" height="6" rx="1" fill="#61759d"/><line x1="150" y1="14" x2="170" y2="42" stroke="#aabdd9" stroke-width="2"/><line x1="170" y1="42" x2="190" y2="14" stroke="#aabdd9" stroke-width="2"/><line x1="150" y1="14" x2="150" y2="42" stroke="#aabdd9" stroke-width="0.5"/><line x1="170" y1="42" x2="170" y2="14" stroke="#aabdd9" stroke-width="0.5"/><line x1="160" y1="14" x2="160" y2="42" stroke="#aabdd9" stroke-width="0.5"/><line x1="180" y1="14" x2="180" y2="42" stroke="#aabdd9" stroke-width="0.5"/><line x1="190" y1="14" x2="190" y2="42" stroke="#aabdd9" stroke-width="0.5"/><text x="170" y="58" text-anchor="middle" font-size="7" fill="var(--dia-text)">刷洗富 Si 层</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>工艺：</b>化学法去除压铸件表面<b>富 Si 层</b>（ADC12 含 Si 9.6~12%，压铸时 Si 易在表面偏聚形成硬脆层，影响后续加工与阳极氧化色差）。</div>
@@ -2520,7 +2717,7 @@
 
     <!-- 工序 4：CNC铣 ★ -->
     <div class="step" data-step="4">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">4</span><div class="step-info"><div class="step-name">CNC 铣 <span style="color:#fcd34d;">★</span> <span class="step-en">CNC Milling · 兄弟 S500x1 · ±0.01mm · 良率 99% · 1000/台/日</span></div><div class="step-tag">立式主轴 + 旋转刀，X / Y 走刀</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#fcd34d"/></marker></defs><rect x="80" y="2" width="20" height="14" fill="#61759d" stroke="#aabdd9" stroke-width="1"/><text x="90" y="13" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">主轴</text><line x1="90" y1="16" x2="90" y2="26" stroke="#aabdd9" stroke-width="2"/><polygon points="84,26 96,26 90,40" fill="#94a6c7" stroke="#e9efff" stroke-width="1"/><line x1="90" y1="40" x2="90" y2="48" stroke="#e9efff" stroke-width="1"/><rect x="40" y="46" width="120" height="10" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1"/><rect x="50" y="36" width="80" height="14" rx="3" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="90" y="46" text-anchor="middle" font-size="8" fill="#e9efff" font-weight="700">镜筒毛坯</text><line x1="120" y1="42" x2="160" y2="42" stroke="#fcd34d" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="3,2"/><text x="180" y="22" font-size="7" fill="#fcd34d" font-weight="700">X/Y</text><text x="178" y="32" font-size="7" fill="#fcd34d" font-weight="700">进给</text><text x="100" y="58" text-anchor="middle" font-size="7" fill="#9db0d2">立式主轴 · 刀具绕轴转 · 工件 X/Y 走刀</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">4</span><div class="step-info"><div class="step-name">CNC 铣 <span style="color:#fcd34d;">★</span> <span class="step-en">CNC Milling · 兄弟 S500x1 · ±0.01mm · 良率 99% · 1000/台/日</span></div><div class="step-tag">立式主轴 + 旋转刀，X / Y 走刀</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#fcd34d"/></marker></defs><rect x="80" y="2" width="20" height="14" fill="#61759d" stroke="#aabdd9" stroke-width="1"/><text x="90" y="13" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">主轴</text><line x1="90" y1="16" x2="90" y2="26" stroke="#aabdd9" stroke-width="2"/><polygon points="84,26 96,26 90,40" fill="#94a6c7" stroke="#e9efff" stroke-width="1"/><line x1="90" y1="40" x2="90" y2="48" stroke="#e9efff" stroke-width="1"/><rect x="40" y="46" width="120" height="10" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1"/><rect x="50" y="36" width="80" height="14" rx="3" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="90" y="46" text-anchor="middle" font-size="8" fill="#e9efff" font-weight="700">镜筒毛坯</text><line x1="120" y1="42" x2="160" y2="42" stroke="#fcd34d" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="3,2"/><text x="180" y="22" font-size="7" fill="#fcd34d" font-weight="700">X/Y</text><text x="178" y="32" font-size="7" fill="#fcd34d" font-weight="700">进给</text><text x="100" y="58" text-anchor="middle" font-size="7" fill="var(--dia-text)">立式主轴 · 刀具绕轴转 · 工件 X/Y 走刀</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>设备：</b>Brother（兄弟）S500x1 立式加工中心。</div>
@@ -2534,7 +2731,7 @@
 
     <!-- 工序 5：CNC车1 ★ -->
     <div class="step" data-step="5">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">5</span><div class="step-info"><div class="step-name">CNC 车 1 <span style="color:#fcd34d;">★</span> <span class="step-en">CNC Turning 1 · 北村 XKNC-204 · 0.002mm · 良率 95% · 500/台/日</span></div><div class="step-tag">镗内孔，保证光路同轴度</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#2b3654"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#aabdd9" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#f87171" stroke="#fca5a5" stroke-width="1"/><text x="172" y="26" font-size="7" fill="#fca5a5" font-weight="700">镗</text><text x="172" y="34" font-size="7" fill="#fca5a5" font-weight="700">刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><path d="M156 16 a14 14 0 0 1 0 28" fill="none" stroke="var(--brand)" stroke-width="1" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="#9db0d2">工件转 · 镗刀径向进给 镗内孔</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">5</span><div class="step-info"><div class="step-name">CNC 车 1 <span style="color:#fcd34d;">★</span> <span class="step-en">CNC Turning 1 · 北村 XKNC-204 · 0.002mm · 良率 95% · 500/台/日</span></div><div class="step-tag">镗内孔，保证光路同轴度</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#2b3654"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#aabdd9" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#f87171" stroke="#fca5a5" stroke-width="1"/><text x="172" y="26" font-size="7" fill="#fca5a5" font-weight="700">镗</text><text x="172" y="34" font-size="7" fill="#fca5a5" font-weight="700">刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><path d="M156 16 a14 14 0 0 1 0 28" fill="none" stroke="var(--brand)" stroke-width="1" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="var(--dia-text)">工件转 · 镗刀径向进给 镗内孔</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>设备：</b>北村（Kitamura）XKNC-204 走心机 / 数控车床。</div>
@@ -2548,7 +2745,7 @@
 
     <!-- 工序 6：CNC车2 ★ -->
     <div class="step" data-step="6">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">6</span><div class="step-info"><div class="step-name">CNC 车 2 <span style="color:#fcd34d;">★</span> <span class="step-en">CNC Turning 2 · 北村 XKNC-204 · 0.002mm · 良率 95% · 600/台/日</span></div><div class="step-tag">车外形与端面，保证装配尺寸</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#2b3654"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#aabdd9" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#f87171" stroke="#fca5a5" stroke-width="1"/><text x="172" y="22" font-size="7" fill="#fca5a5" font-weight="700">外圆</text><text x="172" y="30" font-size="7" fill="#fca5a5" font-weight="700">车刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><line x1="138" y1="46" x2="138" y2="52" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="#9db0d2">工件转 · 刀径向 + 轴向 车外形/端面</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">6</span><div class="step-info"><div class="step-name">CNC 车 2 <span style="color:#fcd34d;">★</span> <span class="step-en">CNC Turning 2 · 北村 XKNC-204 · 0.002mm · 良率 95% · 600/台/日</span></div><div class="step-tag">车外形与端面，保证装配尺寸</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--brand)"/></marker></defs><rect x="20" y="14" width="32" height="32" rx="3" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><text x="36" y="34" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">卡盘</text><rect x="50" y="22" width="80" height="16" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><rect x="56" y="26" width="68" height="8" fill="#2b3654"/><text x="90" y="33" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒（旋转）</text><line x1="130" y1="30" x2="156" y2="30" stroke="#aabdd9" stroke-width="1"/><polygon points="156,24 168,30 156,36" fill="#f87171" stroke="#fca5a5" stroke-width="1"/><text x="172" y="22" font-size="7" fill="#fca5a5" font-weight="700">外圆</text><text x="172" y="30" font-size="7" fill="#fca5a5" font-weight="700">车刀</text><line x1="130" y1="30" x2="146" y2="30" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)" stroke-dasharray="2,2"/><line x1="138" y1="46" x2="138" y2="52" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#illArr)"/><text x="100" y="58" text-anchor="middle" font-size="7" fill="var(--dia-text)">工件转 · 刀径向 + 轴向 车外形/端面</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>加工内容：</b>镜筒外圆 / 端面 / 螺纹 / 卡口结构精车。</div>
@@ -2561,7 +2758,7 @@
 
     <!-- 工序 7：喷砂 -->
     <div class="step" data-step="7">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">7</span><div class="step-info"><div class="step-name">喷砂 <span class="step-en">Sandblasting · 黔丰 QFH9070 · 良率 99% · 10k/台/日</span></div><div class="step-tag">金刚砂高速喷射，得到亚光面</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#fcd34d"/></marker></defs><rect x="20" y="18" width="50" height="10" rx="3" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><rect x="14" y="22" width="6" height="2" fill="#aabdd9"/><text x="45" y="14" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">喷枪</text><g stroke="#fcd34d" stroke-width="0.8" opacity="0.8"><line x1="70" y1="22" x2="110" y2="28"/><line x1="70" y1="24" x2="112" y2="30"/><line x1="70" y1="26" x2="110" y2="32"/><line x1="70" y1="20" x2="108" y2="26"/><line x1="70" y1="28" x2="108" y2="34"/></g><rect x="108" y="18" width="60" height="22" rx="3" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="138" y="32" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><text x="138" y="56" text-anchor="middle" font-size="7" fill="#9db0d2">金刚砂高速喷射 · 表面亚光</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">7</span><div class="step-info"><div class="step-name">喷砂 <span class="step-en">Sandblasting · 黔丰 QFH9070 · 良率 99% · 10k/台/日</span></div><div class="step-tag">金刚砂高速喷射，得到亚光面</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#fcd34d"/></marker></defs><rect x="20" y="18" width="50" height="10" rx="3" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><rect x="14" y="22" width="6" height="2" fill="#aabdd9"/><text x="45" y="14" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">喷枪</text><g stroke="#fcd34d" stroke-width="0.8" opacity="0.8"><line x1="70" y1="22" x2="110" y2="28"/><line x1="70" y1="24" x2="112" y2="30"/><line x1="70" y1="26" x2="110" y2="32"/><line x1="70" y1="20" x2="108" y2="26"/><line x1="70" y1="28" x2="108" y2="34"/></g><rect x="108" y="18" width="60" height="22" rx="3" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="138" y="32" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><text x="138" y="56" text-anchor="middle" font-size="7" fill="var(--dia-text)">金刚砂高速喷射 · 表面亚光</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>设备：</b>黔丰 QFH9070 自动喷砂机。</div>
@@ -2573,7 +2770,7 @@
 
     <!-- 工序 8：阳极氧化 ★ -->
     <div class="step" data-step="8">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">8</span><div class="step-info"><div class="step-name">阳极氧化 <span style="color:#fcd34d;">★</span> <span class="step-en">Anodizing · 手动线 · 0.002mm（膜厚均匀性） · 良率 98% · 10k/台/日</span></div><div class="step-tag">电解生成 Al₂O₃ 亚光发黑层</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#34d399"/></marker></defs><rect x="40" y="10" width="120" height="38" rx="3" fill="#17274c" stroke="#7aa2ff" stroke-width="1.5"/><line x1="40" y1="18" x2="160" y2="18" stroke="#7fb2ff" stroke-width="0.5" stroke-dasharray="2,2"/><line x1="40" y1="42" x2="160" y2="42" stroke="#7fb2ff" stroke-width="0.5" stroke-dasharray="2,2"/><text x="100" y="50" text-anchor="middle" font-size="7" fill="#7aa2ff" font-weight="700">H₂SO₄ 槽液</text><rect x="50" y="22" width="20" height="6" rx="1" fill="#e9efff"/><text x="60" y="58" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">+ 阳极</text><rect x="92" y="20" width="36" height="10" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="110" y="28" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><rect x="138" y="22" width="20" height="6" rx="1" fill="#61759d"/><text x="148" y="58" text-anchor="middle" font-size="7" fill="#9db0d2">- 阴极板</text><rect x="92" y="14" width="36" height="6" rx="1" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="2,1"/><text x="110" y="11" text-anchor="middle" font-size="6" fill="#34d399" font-weight="700">Al₂O₃ 膜</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">8</span><div class="step-info"><div class="step-name">阳极氧化 <span style="color:#fcd34d;">★</span> <span class="step-en">Anodizing · 手动线 · 0.002mm（膜厚均匀性） · 良率 98% · 10k/台/日</span></div><div class="step-tag">电解生成 Al₂O₃ 亚光发黑层</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#34d399"/></marker></defs><rect x="40" y="10" width="120" height="38" rx="3" fill="#17274c" stroke="#7aa2ff" stroke-width="1.5"/><line x1="40" y1="18" x2="160" y2="18" stroke="#7fb2ff" stroke-width="0.5" stroke-dasharray="2,2"/><line x1="40" y1="42" x2="160" y2="42" stroke="#7fb2ff" stroke-width="0.5" stroke-dasharray="2,2"/><text x="100" y="50" text-anchor="middle" font-size="7" fill="#7aa2ff" font-weight="700">H₂SO₄ 槽液</text><rect x="50" y="22" width="20" height="6" rx="1" fill="#e9efff"/><text x="60" y="58" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">+ 阳极</text><rect x="92" y="20" width="36" height="10" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="110" y="28" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><rect x="138" y="22" width="20" height="6" rx="1" fill="#61759d"/><text x="148" y="58" text-anchor="middle" font-size="7" fill="var(--dia-text)">- 阴极板</text><rect x="92" y="14" width="36" height="6" rx="1" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="2,1"/><text x="110" y="11" text-anchor="middle" font-size="6" fill="#34d399" font-weight="700">Al₂O₃ 膜</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>工艺：</b>硫酸阳极氧化（电压 15~18V，电流密度 1.5 A/dm²，槽液温度 18~22℃）。在铝表面生成 Al₂O₃ 氧化膜（厚 5~15μm，硬 300~400HV）。</div>
@@ -2586,7 +2783,7 @@
 
     <!-- 工序 9：去除氧化层 ★ -->
     <div class="step" data-step="9">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">9</span><div class="step-info"><div class="step-name">去除氧化层 <span style="color:#fcd34d;">★</span> <span class="step-en">De-oxidizing · 兄弟 S500x1 · ±0.01mm · 良率 95% · 800/台/日</span></div><div class="step-tag">精铣配合面，露出铝基体</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect x="80" y="2" width="20" height="14" fill="#61759d" stroke="#aabdd9" stroke-width="1"/><text x="90" y="13" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">主轴</text><line x1="90" y1="16" x2="90" y2="26" stroke="#aabdd9" stroke-width="2"/><polygon points="84,26 96,26 90,38" fill="#94a6c7" stroke="#e9efff" stroke-width="1"/><rect x="50" y="38" width="100" height="12" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><rect x="60" y="32" width="80" height="8" rx="1" fill="#e9efff" stroke="#f87171" stroke-width="1"/><text x="100" y="38" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">去除的氧化膜</text><rect x="48" y="40" width="104" height="4" fill="#2b3654"/><text x="100" y="56" text-anchor="middle" font-size="7" fill="#9db0d2">精铣掉配合面氧化膜 · 露出铝基体（导电 ≤5Ω）</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">9</span><div class="step-info"><div class="step-name">去除氧化层 <span style="color:#fcd34d;">★</span> <span class="step-en">De-oxidizing · 兄弟 S500x1 · ±0.01mm · 良率 95% · 800/台/日</span></div><div class="step-tag">精铣配合面，露出铝基体</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect x="80" y="2" width="20" height="14" fill="#61759d" stroke="#aabdd9" stroke-width="1"/><text x="90" y="13" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">主轴</text><line x1="90" y1="16" x2="90" y2="26" stroke="#aabdd9" stroke-width="2"/><polygon points="84,26 96,26 90,38" fill="#94a6c7" stroke="#e9efff" stroke-width="1"/><rect x="50" y="38" width="100" height="12" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><rect x="60" y="32" width="80" height="8" rx="1" fill="#e9efff" stroke="#f87171" stroke-width="1"/><text x="100" y="38" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">去除的氧化膜</text><rect x="48" y="40" width="104" height="4" fill="#2b3654"/><text x="100" y="56" text-anchor="middle" font-size="7" fill="var(--dia-text)">精铣掉配合面氧化膜 · 露出铝基体（导电 ≤5Ω）</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>工艺：</b>CNC 精密加工去除<b>装配配合面</b>的氧化膜，露出铝基体（保证导电 / 接地的电阻 ≤5Ω，对应 FCT-PFD 镜筒要求）。</div>
@@ -2610,7 +2807,7 @@
 
     <!-- 工序 11：镭雕 ★ -->
     <div class="step" data-step="11">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">11</span><div class="step-info"><div class="step-name">镭雕 <span style="color:#fcd34d;">★</span> <span class="step-en">Laser Marking · 大鹏 · ±0.05mm · 良率 99% · 1000/台/日</span></div><div class="step-tag">底部激光烧码，PPAP 追溯</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#f87171"/></marker></defs><rect x="130" y="6" width="50" height="14" rx="2" fill="#61759d" stroke="#aabdd9" stroke-width="1"/><text x="155" y="16" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">激光器</text><line x1="130" y1="14" x2="100" y2="38" stroke="#f87171" stroke-width="2" marker-end="url(#illArr)"/><text x="124" y="22" text-anchor="middle" font-size="6" fill="#f87171" font-weight="700">激光</text><rect x="20" y="38" width="120" height="16" rx="3" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="50" y="50" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><g fill="#e9efff"><rect x="76" y="42" width="3" height="3"/><rect x="80" y="42" width="3" height="3"/><rect x="84" y="42" width="3" height="3"/><rect x="88" y="42" width="3" height="3"/><rect x="92" y="42" width="3" height="3"/><rect x="96" y="42" width="3" height="3"/><rect x="100" y="42" width="3" height="3"/><rect x="104" y="42" width="3" height="3"/><rect x="108" y="42" width="3" height="3"/><rect x="112" y="42" width="3" height="3"/><rect x="116" y="42" width="3" height="3"/><rect x="120" y="42" width="3" height="3"/><rect x="124" y="42" width="3" height="3"/><rect x="128" y="42" width="3" height="3"/><rect x="76" y="46" width="3" height="3"/><rect x="84" y="46" width="3" height="3"/><rect x="88" y="46" width="3" height="3"/><rect x="96" y="46" width="3" height="3"/><rect x="100" y="46" width="3" height="3"/><rect x="108" y="46" width="3" height="3"/><rect x="112" y="46" width="3" height="3"/><rect x="120" y="46" width="3" height="3"/><rect x="128" y="46" width="3" height="3"/><rect x="76" y="50" width="3" height="3"/><rect x="80" y="50" width="3" height="3"/><rect x="88" y="50" width="3" height="3"/><rect x="92" y="50" width="3" height="3"/><rect x="104" y="50" width="3" height="3"/><rect x="108" y="50" width="3" height="3"/><rect x="116" y="50" width="3" height="3"/><rect x="124" y="50" width="3" height="3"/></g><text x="100" y="58" text-anchor="middle" font-size="6" fill="#9db0d2">SN/日期码（DM 码）· 打在底面</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">11</span><div class="step-info"><div class="step-name">镭雕 <span style="color:#fcd34d;">★</span> <span class="step-en">Laser Marking · 大鹏 · ±0.05mm · 良率 99% · 1000/台/日</span></div><div class="step-tag">底部激光烧码，PPAP 追溯</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><defs><marker id="illArr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#f87171"/></marker></defs><rect x="130" y="6" width="50" height="14" rx="2" fill="#61759d" stroke="#aabdd9" stroke-width="1"/><text x="155" y="16" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">激光器</text><line x1="130" y1="14" x2="100" y2="38" stroke="#f87171" stroke-width="2" marker-end="url(#illArr)"/><text x="124" y="22" text-anchor="middle" font-size="6" fill="#f87171" font-weight="700">激光</text><rect x="20" y="38" width="120" height="16" rx="3" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="50" y="50" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><g fill="#e9efff"><rect x="76" y="42" width="3" height="3"/><rect x="80" y="42" width="3" height="3"/><rect x="84" y="42" width="3" height="3"/><rect x="88" y="42" width="3" height="3"/><rect x="92" y="42" width="3" height="3"/><rect x="96" y="42" width="3" height="3"/><rect x="100" y="42" width="3" height="3"/><rect x="104" y="42" width="3" height="3"/><rect x="108" y="42" width="3" height="3"/><rect x="112" y="42" width="3" height="3"/><rect x="116" y="42" width="3" height="3"/><rect x="120" y="42" width="3" height="3"/><rect x="124" y="42" width="3" height="3"/><rect x="128" y="42" width="3" height="3"/><rect x="76" y="46" width="3" height="3"/><rect x="84" y="46" width="3" height="3"/><rect x="88" y="46" width="3" height="3"/><rect x="96" y="46" width="3" height="3"/><rect x="100" y="46" width="3" height="3"/><rect x="108" y="46" width="3" height="3"/><rect x="112" y="46" width="3" height="3"/><rect x="120" y="46" width="3" height="3"/><rect x="128" y="46" width="3" height="3"/><rect x="76" y="50" width="3" height="3"/><rect x="80" y="50" width="3" height="3"/><rect x="88" y="50" width="3" height="3"/><rect x="92" y="50" width="3" height="3"/><rect x="104" y="50" width="3" height="3"/><rect x="108" y="50" width="3" height="3"/><rect x="116" y="50" width="3" height="3"/><rect x="124" y="50" width="3" height="3"/></g><text x="100" y="58" text-anchor="middle" font-size="6" fill="var(--dia-text)">SN/日期码（DM 码）· 打在底面</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>设备：</b>大鹏光纤激光打标机。</div>
@@ -2635,7 +2832,7 @@
 
     <!-- 工序 13：检验入库 -->
     <div class="step" data-step="13">
-      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">13</span><div class="step-info"><div class="step-name">检验入库 <span class="step-en">Final Inspection &amp; Warehousing</span></div><div class="step-tag">尺寸 / 外观 / 扫码最终放行</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="22" width="50" height="14" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="45" y="32" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><line x1="70" y1="20" x2="100" y2="14" stroke="#aabdd9" stroke-width="2"/><line x1="100" y1="14" x2="100" y2="40" stroke="#aabdd9" stroke-width="2"/><line x1="100" y1="14" x2="80" y2="14" stroke="#aabdd9" stroke-width="1"/><line x1="80" y1="14" x2="80" y2="40" stroke="#aabdd9" stroke-width="1"/><text x="84" y="50" text-anchor="middle" font-size="6" fill="#9db0d2">卡尺</text><rect x="130" y="20" width="14" height="20" rx="2" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><line x1="125" y1="14" x2="137" y2="22" stroke="#f87171" stroke-width="1.5"/><line x1="125" y1="18" x2="135" y2="24" stroke="#f87171" stroke-width="1.5"/><text x="137" y="50" text-anchor="middle" font-size="6" fill="#9db0d2">扫码</text><text x="100" y="58" text-anchor="middle" font-size="7" fill="#9db0d2">尺寸 + 外观 + 追溯码 全检</text></svg></div><div class="step-arrow">⌄</div></div>
+      <div class="step-summary" onclick="toggleStep(this)"><span class="step-no">13</span><div class="step-info"><div class="step-name">检验入库 <span class="step-en">Final Inspection &amp; Warehousing</span></div><div class="step-tag">尺寸 / 外观 / 扫码最终放行</div></div><div class="step-illus"><svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="22" width="50" height="14" rx="2" fill="#43537b" stroke="#aabdd9" stroke-width="1.5"/><text x="45" y="32" text-anchor="middle" font-size="7" fill="#e9efff" font-weight="700">镜筒</text><line x1="70" y1="20" x2="100" y2="14" stroke="#aabdd9" stroke-width="2"/><line x1="100" y1="14" x2="100" y2="40" stroke="#aabdd9" stroke-width="2"/><line x1="100" y1="14" x2="80" y2="14" stroke="#aabdd9" stroke-width="1"/><line x1="80" y1="14" x2="80" y2="40" stroke="#aabdd9" stroke-width="1"/><text x="84" y="50" text-anchor="middle" font-size="6" fill="var(--dia-text)">卡尺</text><rect x="130" y="20" width="14" height="20" rx="2" fill="#61759d" stroke="#aabdd9" stroke-width="1.5"/><line x1="125" y1="14" x2="137" y2="22" stroke="#f87171" stroke-width="1.5"/><line x1="125" y1="18" x2="135" y2="24" stroke="#f87171" stroke-width="1.5"/><text x="137" y="50" text-anchor="middle" font-size="6" fill="var(--dia-text)">扫码</text><text x="100" y="58" text-anchor="middle" font-size="7" fill="var(--dia-text)">尺寸 + 外观 + 追溯码 全检</text></svg></div><div class="step-arrow">⌄</div></div>
       <div class="step-detail">
         <div class="step-body">
         <div class="item"><b>检验内容：</b>全检尺寸（关键 5 项：外径、内孔、端面平面度、垂直度、粗糙度 Ra）+ 全检外观（氧化层色差、追溯码可读）+ 抽检性能（同轴度 0.005mm / 电阻 ≤5Ω）。</div>
@@ -2660,7 +2857,7 @@
       <div style="margin-top:6px;">
         <span class="k">工序 11 镭雕</span> → 决定<b>追溯体系</b> → PPAP 强制项 / 客诉召回能力
       </div>
-      <div style="margin-top:8px;color:#9db0d2;">镜筒加工做好了，<b>总装才有底气说 MTF / 场曲 / 畸变 / 杂光 / 偏心 / VGI 一次过</b>。</div>
+      <div style="margin-top:8px;color:var(--dia-text);">镜筒加工做好了，<b>总装才有底气说 MTF / 场曲 / 畸变 / 杂光 / 偏心 / VGI 一次过</b>。</div>
     </div>
 
     <div class="src">参考：<b>舜宇车载光学 · 镜筒加工流程图及关键控制要点</b>（一四、加工流程图及关键控制要点）。共 14 道工序，<b>7 道关键控制工序</b>（压铸 / CNC铣 / CNC车1 / CNC车2 / 阳极氧化 / 去除氧化层 / 镭雕），良率 90~100%，精度 0.002~0.05mm。数据以原图为准，规格随客户 / 产品线调整。</div>
@@ -2895,13 +3092,13 @@
     <p class="tagline">一句话：曝光窗口要覆盖整个 LED 亮周期，才不会被拍成"灭"</p>
     <div class="svgbox">
       <svg viewBox="0 0 340 120" width="340" height="120" xmlns="http://www.w3.org/2000/svg">
-        <text x="10" y="16" fill="#9db0d2" font-size="11">LED PWM 亮灭</text>
+        <text x="10" y="16" fill="var(--dia-text)" font-size="11">LED PWM 亮灭</text>
         <rect x="10" y="22" width="320" height="20" fill="rgba(255,255,255,.05)"/>
         <g fill="#fbbf24"><rect x="10" y="22" width="60" height="20"/><rect x="130" y="22" width="60" height="20"/><rect x="250" y="22" width="60" height="20"/></g>
-        <text x="10" y="68" fill="#9db0d2" font-size="11">短曝光窗口(拍到灭)</text>
+        <text x="10" y="68" fill="var(--dia-text)" font-size="11">短曝光窗口(拍到灭)</text>
         <rect x="10" y="74" width="320" height="20" fill="rgba(255,255,255,.05)"/>
         <rect x="70" y="74" width="40" height="20" fill="#f87171"/>
-        <text x="10" y="112" fill="#9db0d2" font-size="11">长曝光窗口(覆盖整周期→亮度稳)</text>
+        <text x="10" y="112" fill="var(--dia-text)" font-size="11">长曝光窗口(覆盖整周期→亮度稳)</text>
         <rect x="10" y="104" width="320" height="14" fill="rgba(255,255,255,.05)"/>
         <rect x="10" y="104" width="180" height="14" fill="#34d399"/>
       </svg>
@@ -2950,7 +3147,7 @@
         <g fill="rgba(124,108,255,.45)" stroke="#7c6cff">
           <rect x="140" y="34" width="10" height="26"/><rect x="154" y="38" width="8" height="18"/><rect x="166" y="42" width="6" height="10"/>
         </g>
-        <text x="200" y="34" fill="#9db0d2" font-size="10">多层介质膜</text>
+        <text x="200" y="34" fill="var(--dia-text)" font-size="10">多层介质膜</text>
         <text x="230" y="52" fill="#e9efff" font-size="11">空气</text>
         <line x1="280" y1="20" x2="280" y2="70" stroke="#34d399" stroke-width="2"/>
         <text x="250" y="84" fill="#34d399" font-size="10">入射光 →</text>
@@ -3041,7 +3238,7 @@
         <rect x="14" y="44" width="40" height="22" rx="4" fill="rgba(248,113,113,.18)" stroke="#f87171"/>
         <text x="34" y="59" fill="#e9efff" font-size="10" text-anchor="middle">Tx</text>
         <line x1="54" y1="55" x2="150" y2="55" stroke="#f87171" stroke-width="2"/>
-        <circle cx="200" cy="55" r="14" fill="rgba(255,255,255,.08)" stroke="#9db0d2"/>
+        <circle cx="200" cy="55" r="14" fill="rgba(255,255,255,.08)" stroke="var(--dia-text)"/>
         <text x="200" y="59" fill="#e9efff" font-size="10" text-anchor="middle">目标</text>
         <line x1="214" y1="55" x2="290" y2="40" stroke="#34d399" stroke-width="2"/>
         <rect x="290" y="28" width="22" height="24" rx="4" fill="rgba(52,211,153,.18)" stroke="#34d399"/>
@@ -3078,13 +3275,19 @@
     <section id="view-random" class="view">
       <div class="rand-topbar">
         <span class="rand-topbar-title">随机知识</span>
-        <button class="gbtn ghost rand-home-btn" id="randBack">← 返回首页</button>
+        <button class="rand-home-btn" id="randBack">← 返回首页</button>
+      </div>
+      <div class="rand-actions">
+        <button class="rb pri" id="randNext">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M21 3l-7 7"/><path d="M8 21H3v-5"/><path d="M3 21l7-7"/><path d="M21 16v5h-5"/><path d="M3 8V3h5"/></svg>
+          换一条
+        </button>
+        <button class="rb" id="randFav">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>
+          <span id="randFavLbl">收藏</span>
+        </button>
       </div>
       <div class="reader glass" id="randHost"></div>
-      <div class="rand-bar">
-        <button class="gbtn" id="randNext">换一条 →</button>
-        <button class="gbtn ghost" id="randFav">☆ 收藏</button>
-      </div>
     </section>
 
     <section id="view-settings" class="view">
@@ -3156,7 +3359,7 @@ let currentCat = 'optics';
 const lastTab = { optics:'mtf', reliability:'thcomp', process:'process-assembly', drawing:'draw-overview', equipment:'eq-inspect', module:'aa', material:'lensmat', application:'layout', photography:'ph-expo', project:'pm-vda', quality:'dfmea' };
 const renderMap = { mtf:renderMTF, dof:renderDOF, efl:renderEFL, ffl:renderFFL,
   fno:renderFNO, fov:renderFOV, cra:renderCRA, cut:renderCUT,
-  fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig,
+  fc:renderFC, dist:renderDist, ca:renderCA, vig:renderVig, decenter:renderDecenter,
   thcomp:renderThcomp, stray:renderStray, ghost:renderGhost,
   'ph-expo':renderPhExpo, 'ph-dof':renderPhDoF, 'ph-eqfl':renderPhEqfl, 'ph-aberr':renderPhAberr, 'ph-cards':renderPhCards,
   'ph-basic':renderPhBasic, 'ph-aperture':renderPhAperture, 'ph-shutter':renderPhShutter, 'ph-iso':renderPhIso,
@@ -3476,9 +3679,8 @@ function renderVig(){
 // ---------- FNO（F 数） ----------
 function renderFNO(){
   const F = +document.getElementById('fnoF').value;
-  const wl = +document.getElementById('fnoW').value;
+  const wl = 550; // 可见光中心波长（nm），用于估算 Airy 斑
   document.getElementById('fnoFv').textContent = F.toFixed(1);
-  document.getElementById('fnoWv').textContent = wl;
   const {x,w,h} = setup('fnoC', 620, 240);
   x.fillStyle='#0f1729'; x.fillRect(0,0,w,h);
   drawLensSection(x, 160, h*0.40, 1.4, 'F = 1.4 满光圈', true);
@@ -3982,6 +4184,57 @@ function renderThcomp(){
 }
 
 
+// ---------- 对比缩略图：夜景小场景（杂光/鬼像直观化用）----------
+function drawSceneCmp(id, o){
+  // o: { veil:0~0.85, ghost:0~0.9, sun:true/false }
+  const {x,w,h} = setup(id, 300, 150);
+  x.clearRect(0,0,w,h);
+  const sky = x.createLinearGradient(0,0,0,h);
+  sky.addColorStop(0,'#0a1330'); sky.addColorStop(1,'#1b2746');
+  x.fillStyle=sky; x.fillRect(0,0,w,h);
+  // 地平线
+  x.fillStyle='#0c1426'; x.fillRect(0,h*0.52,w,2);
+  // 路面（透视梯形）
+  x.fillStyle='#141a26';
+  x.beginPath(); x.moveTo(w*0.5-w*0.05,h*0.52); x.lineTo(w*0.5+w*0.05,h*0.52); x.lineTo(w,h); x.lineTo(0,h); x.closePath(); x.fill();
+  // 车道虚线
+  x.strokeStyle='rgba(255,230,140,0.8)'; x.lineWidth=2; x.setLineDash([7,7]);
+  x.beginPath(); x.moveTo(w*0.5,h*0.52); x.lineTo(w*0.5,h); x.stroke(); x.setLineDash([]);
+  // 远处车尾灯
+  x.fillStyle='#ff4d4d';
+  x.beginPath(); x.arc(w*0.43,h*0.49,2.6,0,7); x.fill();
+  x.beginPath(); x.arc(w*0.57,h*0.49,2.6,0,7); x.fill();
+  // 暗处行人（左侧路肩）
+  const px=w*0.2, py=h*0.48;
+  x.fillStyle='#070b16';
+  x.beginPath(); x.arc(px+3,py-5,4,0,7); x.fill();
+  x.fillRect(px,py-1,6,15);
+  // 太阳（强光源）
+  if(o.sun){
+    const sx=w*0.16, sy=h*0.18, sr=8;
+    const g=x.createRadialGradient(sx,sy,1,sx,sy,sr*2.4);
+    g.addColorStop(0,'rgba(255,244,210,0.95)'); g.addColorStop(1,'rgba(255,244,210,0)');
+    x.fillStyle=g; x.beginPath(); x.arc(sx,sy,sr*2.4,0,7); x.fill();
+    x.fillStyle='#fff4d2'; x.beginPath(); x.arc(sx,sy,sr,0,7); x.fill();
+  }
+  // 杂光：均匀灰白雾（veiling glare）
+  if(o.veil>0.001){
+    x.fillStyle='rgba(222,228,238,'+Math.min(0.85,o.veil)+')';
+    x.fillRect(0,0,w,h);
+  }
+  // 鬼像：偏移亮斑（镜片间"照镜子"的错位光斑）
+  if(o.ghost>0.001){
+    const gx=w*0.74, gy=h*0.42, gr=13+o.ghost*20;
+    const gg=x.createRadialGradient(gx,gy,1,gx,gy,gr);
+    gg.addColorStop(0,'rgba(255,245,210,'+Math.min(0.9,o.ghost)+')');
+    gg.addColorStop(0.6,'rgba(255,245,210,'+(o.ghost*0.5)+')');
+    gg.addColorStop(1,'rgba(255,245,210,0)');
+    x.fillStyle=gg; x.beginPath(); x.arc(gx,gy,gr,0,7); x.fill();
+    x.strokeStyle='rgba(255,245,210,'+(o.ghost*0.7)+')'; x.lineWidth=1.5;
+    x.beginPath(); x.arc(gx,gy,gr*0.62,0,7); x.stroke();
+  }
+}
+
 // ---------- 杂光（重做：镜筒内壁反弹 + 消光滑块）----------
 function renderStray(){
   const s = +document.getElementById('strayS').value;   // 逆光强度 0-100
@@ -4047,6 +4300,8 @@ function renderStray(){
     '逆光 <b>'+s+'%</b> × 未消光 <b>'+Math.round(reflect*100)+'%</b> → 杂光雾约 <b>'+Math.round(veil*100)+'%</b>，对比度≈ <b>'+Math.round(contrast)+'%</b>。'
     + (b>=70 ? ' 内壁已染黑消光，' : (b>0?' 消光不足、仍有杂光，':' 白纸筒（未消光），'))
     + (washed ? '<b style="color:#dc2626">暗处行人被雾吃掉。</b>' : '<b style="color:#16a34a">暗处行人仍可辨。</b>');
+  drawSceneCmp('strayCmpA', {});
+  drawSceneCmp('strayCmpB', {veil: veil});
 }
 
 // ---------- 鬼像（重做：镜片间“照镜子” + 增透膜滑块）----------
@@ -4108,11 +4363,93 @@ function renderGhost(){
     '光源 <b>'+p+'%</b> × 未镀膜反射 <b>'+Math.round(refl*100)+'%</b> → 鬼像亮度约主光源的 <b>'+Math.round(p*refl*0.6*100)+'%</b>'
     + (a>=70?'。已镀增透膜，内部反射被压低，':'。')
     + (strong?'<b style="color:#dc2626">画面出现明显错位亮斑，逆光/看夕阳时最碍事。</b>':'<b style="color:#16a34a">鬼像微弱，不易察觉。</b>');
+  drawSceneCmp('ghostCmpA', {sun:true});
+  drawSceneCmp('ghostCmpB', {sun:true, ghost: ga});
+}
+
+// ---------- 偏心（装偏/装歪：像点彗差化）----------
+function renderDecenter(){
+  const d = +document.getElementById('decD').value;   // 偏心量 µm 0-20
+  const t = +document.getElementById('decT').value;   // 倾斜角 ° 0-3
+  document.getElementById('decDv').textContent = d.toFixed(1);
+  document.getElementById('decTv').textContent = t.toFixed(1);
+  const {x,w,h} = setup('decCv', 620, 260);
+  x.fillStyle='#0b1020'; x.fillRect(0,0,w,h);
+
+  // ---------- 左：镜片相对机械轴的偏移 / 倾斜 ----------
+  const cx=w*0.30, cy=h*0.5;
+  // 机械轴（灰虚线）
+  x.strokeStyle='rgba(150,170,210,0.55)'; x.setLineDash([5,4]); x.lineWidth=1.5;
+  x.beginPath(); x.moveTo(cx,36); x.lineTo(cx,h-30); x.stroke(); x.setLineDash([]);
+  x.fillStyle=C.sub; x.font='10px sans-serif'; x.textAlign='center';
+  x.fillText('机械轴', cx, 28);
+
+  // 镜片（椭圆）随偏心横移 + 随倾斜旋转
+  const lensR=46;
+  const dx=(d/20)*42;            // 偏心像素位移
+  const ang=(t/3)*0.5;           // 倾斜角（放大便于观察）
+  x.save();
+  x.translate(cx+dx, cy);
+  x.rotate(ang);
+  const lg=x.createLinearGradient(-lensR*0.5,0,lensR*0.5,0);
+  lg.addColorStop(0,'rgba(150,200,255,0.12)'); lg.addColorStop(.5,'rgba(150,200,255,0.34)'); lg.addColorStop(1,'rgba(150,200,255,0.12)');
+  x.fillStyle=lg; x.strokeStyle='rgba(150,200,255,0.85)'; x.lineWidth=2.5;
+  x.beginPath(); x.ellipse(0,0,lensR*0.42,lensR,0,0,7); x.fill(); x.stroke();
+  // 实际光轴（过镜片中心，已偏离机械轴）
+  x.strokeStyle='#fbbf24'; x.lineWidth=1.5;
+  x.beginPath(); x.moveTo(0,-lensR-14); x.lineTo(0,lensR+14); x.stroke();
+  x.restore();
+  x.fillStyle='#fbbf24'; x.font='10px sans-serif'; x.textAlign='center';
+  x.fillText('实际光轴（偏移了）', cx+dx, cy+lensR+26);
+  // 偏移量标注
+  if(d>0.1||t>0.1){
+    x.strokeStyle='rgba(251,191,36,0.5)'; x.setLineDash([3,3]); x.lineWidth=1;
+    x.beginPath(); x.moveTo(cx,cy); x.lineTo(cx+dx,cy); x.stroke(); x.setLineDash([]);
+  }
+  x.textAlign='left';
+
+  // ---------- 右：点光源（星点）被拉成彗差拖尾 ----------
+  const sx=w*0.74, sy=h*0.5;
+  const sev = d/20 + t/3;            // 0~2 严重度
+  // 参考圆点（完美）
+  x.fillStyle='rgba(220,235,255,0.9)';
+  x.beginPath(); x.arc(sx-150, sy, 4, 0, 7); x.fill();
+  x.fillStyle=C.sub; x.font='10px sans-serif'; x.textAlign='center';
+  x.fillText('理想点', sx-150, sy-12);
+
+  // 彗差状拖尾（亮头在左，向右侧拖）
+  const headX = sx - sev*22;
+  const bw = 6 + sev*30;            // 水平半长
+  const bh = 6 + sev*7;             // 垂直半长
+  const pg=x.createRadialGradient(headX,sy,1, sx+ (bw-headX), sy, bw);
+  pg.addColorStop(0,'rgba(225,238,255,0.97)');
+  pg.addColorStop(0.22,'rgba(180,210,255,0.6)');
+  pg.addColorStop(0.6,'rgba(120,160,220,0.20)');
+  pg.addColorStop(1,'rgba(120,160,220,0)');
+  x.fillStyle=pg;
+  x.beginPath(); x.ellipse(sx, sy, bw, bh, 0, 0, 7); x.fill();
+  x.fillStyle=C.sub; x.textAlign='center';
+  x.fillText('有偏心/倾斜', sx, h-18);
+
+  // ---------- 读出 ----------
+  const mtfDrop = Math.min(0.62, sev*0.32);          // MTF 下降比例
+  const shift = (d*0.6 + t*7).toFixed(1);            // 成像偏移（µm equiv）
+  const bad = sev > 0.8;
+  document.getElementById('decR').innerHTML =
+    '偏心 <b>'+d.toFixed(1)+'µm</b> + 倾斜 <b>'+t.toFixed(1)+'°</b> → 像点变<b>彗差拖尾</b>，'
+    +'MTF 下降约 <b style="color:'+(mtfDrop>0.3?'#f87171':'#34d399')+'">'+Math.round(mtfDrop*100)+'%</b>，'
+    +'成像相对机械轴偏移约 <b>'+shift+'µm</b>。'
+    + (bad ? '<br><b style="color:#dc2626">边角一侧明显糊、彗差重，ADAS 该侧易漏检。</b>'
+           : (sev>0.05 ? '<b style="color:#f59e0b">已能看出拖尾，公差需收紧。</b>'
+                       : '<b style="color:#16a34a">光轴对齐，星点为干净圆点。</b>'));
 }
 
 renderMTF();
 renderFNO();
 renderFNOLight();
+renderStray();
+renderGhost();
+renderDecenter();
 
 /* ===== 摄影/相机 · 新分类 4 面板渲染 ===== */
 const PH_AP = [1.4,2,2.8,4,5.6,8,11,16,22];
@@ -4331,7 +4668,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
   if (standalone) bar.classList.add('hidden');
   if (localStorage.getItem('ob_hidebar') === '1') bar.classList.add('hidden');
-  bar.querySelector('.x').addEventListener('click', function(){
+  var installClose = bar.querySelector('.x');
+  if (installClose) installClose.addEventListener('click', function(){
     bar.classList.add('hidden'); localStorage.setItem('ob_hidebar','1');
   });
 
@@ -4346,7 +4684,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 67;
+  var VER_TOTAL = 68;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -4419,7 +4757,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     hdr.innerHTML = '<div class="rkh-cat">'+CATNAME[pick.cat]+'</div><div class="rkh-title">'+pick.title+'</div><div class="rkh-en">'+pick.en+'</div><div class="rkh-desc">本知识点属于「'+CATNAME[pick.cat]+'」分类，涵盖车载光学领域核心概念与工程实践要点。</div>';
     randHost.insertBefore(hdr, panel);
     var f = LS.get('optics_fav',[]); var on = f.indexOf(pick.id)>=0;
-    var btn = document.getElementById('randFav'); if(btn){ btn.textContent = on?'★ 已收藏':'☆ 收藏'; btn.classList.toggle('on',on); }
+    var btn = document.getElementById('randFav'); if(btn){ var lbl=document.getElementById('randFavLbl'); if(lbl) lbl.textContent = on?'已收藏':'收藏'; btn.classList.toggle('on',on); }
     updateProg();
   }
   function stat(num,lbl){ return '<div class="stat"><div class="num">'+num+'</div><div class="lbl">'+lbl+'</div></div>'; }
@@ -4453,8 +4791,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   })();
   var THEMES = [
     { id:'space',  name:'深空蓝', desc:'经典蓝紫 · 沉稳', c1:'#5b8cff', c2:'#7c6cff' },
-    { id:'aurora', name:'极光紫', desc:'青绿 × 紫 · 灵动', c1:'#22d3ee', c2:'#a855f7' },
-    { id:'sunrise',name:'晨曦橙', desc:'暖橙 × 粉 · 活力', c1:'#fb923c', c2:'#f472b6' },
+    { id:'cyber',  name:'赛博朋克', desc:'霓虹品红 × 青', c1:'#ff2e97', c2:'#00f0ff' },
+    { id:'pixel',  name:'像素游戏', desc:'街机红青 · 8-bit', c1:'#ff5277', c2:'#41ead4' },
     { id:'forest', name:'暗夜绿', desc:'青绿 · 护眼长阅', c1:'#34d399', c2:'#10b981' },
     { id:'darkpink', name:'黑粉', desc:'纯黑×纯粉 · Blackpink', c1:'#ff0077', c2:'#ff3399' },
     { id:'light', name:'晨光白', desc:'明亮浅色 · 户外可读', c1:'#2563eb', c2:'#7c3aed' },
@@ -4463,25 +4801,14 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   ];
   function applyTheme(t){
     if(!t) t='space';
+    var valid = THEMES.some(function(x){ return x.id===t; });
+    if(!valid) t='space';
     document.documentElement.setAttribute('data-theme', t);
     try{ LS.set('optics_theme', t); }catch(e){}
     var chips = document.querySelectorAll('.theme-chip');
     chips.forEach(function(c){ c.classList.toggle('active', c.dataset.theme===t); });
   }
-  var CHANGELOG = [
-    { v:'v0.2.7', d:'2026-08-11', t:'主题与质量模块', items:['新增黑粉主题 + 3 个明亮主题（晨光白/薄荷绿/樱花粉）','新增「质量工具」模块（DFMEA / PFMEA / CP / 清洁度）','变更履历整合进设置页'] },
-    { v:'v0.2.6', d:'2026-08-11', t:'修复与扩展', items:['修复 Canvas 文字重叠（曝光三角/对焦平面/FOV/等效焦距）','版本号后添加小字更新日期','新增「项目管理」模块（VDA / APQP / PPAP）'] },
-    { v:'v0.2.5', d:'2026-08-11', t:'摄影参数速查', items:['摄影分类新增「参数速查」交付卡片','覆盖 DR / SNR / 白平衡 / 像素分辨率 与场景映射'] },
-    { v:'v0.2.4', d:'2026-08-11', t:'摄影/相机分类', items:['新增第 9 大分类「摄影/相机」','曝光三角 / 景深 / 等效焦距 / 镜头像差图鉴'] },
-    { v:'v0.2.3', d:'2026-08-11', t:'四项 UI 优化', items:['卡片内参数变动可视化提亮','移除看板入口→设置页','设置页多主题功能','底部导航悬浮毛玻璃'] },
-    { v:'v0.2.2', d:'2026-08-10', t:'基础内容体系', items:['光学基础 / 信赖性 / 工艺 / 图纸 / 设备 / 模组 / 材料 / 应用 等核心面板'] }
-  ];
   function renderSettings(){
-    var seen = LS.get('optics_seen',[]);
-    var fav = LS.get('optics_fav',[]);
-    var total = ITEMS.length; var seenN = seen.length; var pct = total?Math.round(seenN/total*100):0;
-    var cats = {};
-    ITEMS.forEach(function(it){ if(!cats[it.cat]) cats[it.cat]={name:CATNAME[it.cat],total:0,done:0}; cats[it.cat].total++; if(seen.indexOf(it.id)>=0) cats[it.cat].done++; });
     var cur = document.documentElement.getAttribute('data-theme')||'space';
     var html = '';
     /* 主题 */
@@ -4491,79 +4818,30 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
       html += '<div class="theme-chip'+(t.id===cur?' active':'')+'" data-theme="'+t.id+'"><span class="theme-swatch" style="background:linear-gradient(135deg,'+t.c1+','+t.c2+')"></span><span class="theme-meta"><span class="theme-name">'+t.name+'</span><span class="theme-desc">'+t.desc+'</span></span></div>';
     });
     html += '</div></div>';
-    /* 最近学习（可折叠） */
-    html += '<div class="set-sec"><div class="set-sec-h sec-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>最近学习<span class="sub">点击查看详情 ›</span><span class="cl-chev">⌄</span></div><div class="sec-body" style="display:none">';
-    if(seen.length===0){ html += '<div class="empty">还没有学习记录，去首页或随机知识看看吧 🚀</div>'; }
-    else {
-      html += '<div class="recent-wrap"><div class="recent">';
-      seen.slice().reverse().slice(0,3).forEach(function(id){
-        var it = null; for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id===id){ it=ITEMS[i]; break; } } if(!it) return;
-        html += '<div class="ri" data-go="'+id+'"><div><div class="rt">'+it.title+'</div><div class="re">'+CATNAME[it.cat]+' · '+it.en+'</div></div><div class="arrow">→</div></div>';
-      });
-      html += '</div></div>';
-      if(seen.length>3) html += '<div class="recent-more">滑动查看 · 共 '+seen.length+' 条 ›</div>';
-    }
-    html += '</div></div>';
     /* 数据与显示 */
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>数据与显示</div>';
     html += '<div class="set-row"><div><div class="lr">减少动效</div><div class="ld">关闭粒子背景与过渡动画</div></div><button class="switch" id="setMotion"></button></div>';
-    html += '<div class="set-row"><div><div class="lr">清除学习记录</div><div class="ld">清空已学 / 收藏进度（不可恢复）</div></div><button class="set-btn" id="setClear">清除</button></div>';
     html += '</div>';
-    /* 变更履历 */
-    html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/><path d="M3 12a9 9 0 0 1 18 0"/></svg>变更履历<span class="sub">点击条目查看详情 ›</span></div>';
-    html += '<div class="cl-list">';
-    CHANGELOG.forEach(function(c){
-      html += '<div class="cl-item"><div class="cl-head cl-toggle"><span class="cl-v">'+c.v+'</span><span class="cl-t">'+c.t+'</span><span class="cl-d">'+c.d+'</span><span class="cl-chev">⌄</span></div><ul class="cl-items">';
-      c.items.forEach(function(it){ html += '<li>'+it+'</li>'; });
-      html += '</ul></div>';
-    });
-    html += '</div></div>';
     settingsHost.innerHTML = html;
     settingsHost.querySelectorAll('.theme-chip').forEach(function(c){
       c.addEventListener('click', function(){ applyTheme(c.dataset.theme); });
     });
-    settingsHost.querySelectorAll('.ri').forEach(function(r){
-      r.addEventListener('click', function(){
-        var id=r.dataset.go; var it=null; for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id===id){ it=ITEMS[i]; break; } }
-        if(it){ showCat(it.cat); showView('home'); var t=document.getElementById('tab-'+id); if(t) t.click(); window.scrollTo({top:0,behavior:'smooth'}); }
-      });
-    });
-    settingsHost.querySelectorAll('.cl-toggle').forEach(function(h){
-      h.addEventListener('click', function(){
-        var item = h.closest('.cl-item');
-        var ver = item.querySelector('.cl-v').textContent;
-        var title = item.querySelector('.cl-t').textContent;
-        var date = item.querySelector('.cl-d').textContent;
-        var items = [];
-        item.querySelectorAll('.cl-items li').forEach(function(li){ items.push(li.textContent); });
-        openModal(title + ' (' + ver + ')', '<div style="color:var(--muted-2);font-size:12px;margin-bottom:14px">'+date+'</div><ul style="padding-left:18px;display:flex;flex-direction:column;gap:8px">'+items.map(function(it){ return '<li style="font-size:13px;color:var(--muted);line-height:1.7">'+it+'</li>'; }).join('')+'</ul>');
-      });
-    });
-    settingsHost.querySelectorAll('.sec-toggle').forEach(function(h){
-      h.addEventListener('click', function(){
-        var body = h.nextElementSibling;
-        if(!body) return;
-        openModal('最近学习记录', body.innerHTML);
-      });
-    });
     var mBtn = document.getElementById('setMotion');
     if(mBtn){ var rm = !!LS.get('optics_reduce_motion',false); mBtn.classList.toggle('on', rm);
       mBtn.addEventListener('click', function(){ var v=!mBtn.classList.contains('on'); mBtn.classList.toggle('on',v); LS.set('optics_reduce_motion',v); document.documentElement.classList.toggle('reduce-motion',v); }); }
-    var cBtn = document.getElementById('setClear');
-    if(cBtn){ cBtn.addEventListener('click', function(){ if(window.confirm('确定清空所有学习记录？')){ LS.set('optics_seen',[]); LS.set('optics_fav',[]); renderSettings(); updateProg(); } }); }
   }
   function renderFavorites(){
     var fav = LS.get('optics_fav',[]);
     var host = document.getElementById('favHost'); if(!host) return;
     var html = '';
-    html += '<div class="fav-head"><div class="fav-title">⭐ 我的收藏</div><div class="fav-sub">共 '+fav.length+' 条 · 点击可跳转对应知识点</div></div>';
+    html += '<div class="fav-head"><div class="fav-title"><svg class="fav-star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>我的收藏</div><div class="fav-sub">共 '+fav.length+' 条 · 点击可跳转对应知识点</div></div>';
     if(fav.length===0){
-      html += '<div class="empty">还没有收藏内容 🤍<br>在任意知识点面板点「☆ 收藏」即可加入这里</div>';
+      html += '<div class="empty"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--muted-2)" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg><br>还没有收藏内容<br>在任意知识点面板点「收藏」即可加入这里</div>';
     } else {
       html += '<div class="fav-list">';
       fav.forEach(function(id){
         var it=null; for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id===id){ it=ITEMS[i]; break; } } if(!it) return;
-        html += '<div class="fav-item" data-go="'+id+'"><div class="fav-ic">⭐</div><div class="fav-info"><div class="fav-name">'+it.title+'</div><div class="fav-meta">'+CATNAME[it.cat]+' · '+it.en+'</div></div><div class="fav-go">查看 ›</div></div>';
+        html += '<div class="fav-item" data-go="'+id+'"><div class="fav-ic"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></div><div class="fav-info"><div class="fav-name">'+it.title+'</div><div class="fav-meta">'+CATNAME[it.cat]+' · '+it.en+'</div></div><div class="fav-go">查看 ›</div></div>';
       });
       html += '</div>';
     }
@@ -4603,7 +4881,37 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   document.querySelectorAll('.cat-card').forEach(function(c){ c.addEventListener('click', function(){ showCat(c.dataset.cat); showView('home'); window.scrollTo({top:0,behavior:'smooth'}); }); });
   document.getElementById('randNext').addEventListener('click', nextRandom);
   document.getElementById('randBack').addEventListener('click', function(){ showView('home'); });
-  document.getElementById('randFav').addEventListener('click', function(){ if(lastRandId){ var on=toggleFav(lastRandId); var btn=document.getElementById('randFav'); btn.textContent = on?'★ 已收藏':'☆ 收藏'; btn.classList.toggle('on',on); } });
+  document.getElementById('randFav').addEventListener('click', function(){ if(lastRandId){ var on=toggleFav(lastRandId); var btn=document.getElementById('randFav'); var lbl=document.getElementById('randFavLbl'); if(lbl) lbl.textContent = on?'已收藏':'收藏'; btn.classList.toggle('on',on); } });
+  /* ---- 首页关键词搜索 ---- */
+  function goToItem(id){
+    var it=null; for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id===id){ it=ITEMS[i]; break; } }
+    if(it){ showCat(it.cat); showView('home'); var t=document.getElementById('tab-'+id); if(t) t.click(); window.scrollTo({top:0,behavior:'smooth'}); }
+  }
+  var hsInput = document.getElementById('hsInput');
+  var hsClear = document.getElementById('hsClear');
+  var hsResult = document.getElementById('hsResult');
+  var hsTimer = null;
+  function doSearch(q){
+    q = (q||'').trim().toLowerCase();
+    if(!q){ if(hsResult) hsResult.innerHTML=''; if(hsClear) hsClear.classList.remove('show'); return; }
+    if(hsClear) hsClear.classList.add('show');
+    var hits = ITEMS.filter(function(it){
+      var hay = (it.title+' '+it.en+' '+(CATNAME[it.cat]||'')).toLowerCase();
+      return hay.indexOf(q)>=0;
+    });
+    if(!hits.length){ if(hsResult) hsResult.innerHTML='<div class="hs-empty">没有匹配「'+q+'」的知识点，换个关键词试试</div>'; return; }
+    var html='';
+    hits.forEach(function(it){
+      html += '<div class="hs-item" data-go="'+it.id+'"><span class="hs-cat">'+(CATNAME[it.cat]||'')+'</span><span class="hs-name">'+it.title+'</span><span class="hs-en">'+(it.en||'')+'</span></div>';
+    });
+    if(hsResult) hsResult.innerHTML = html;
+    if(hsResult) hsResult.querySelectorAll('.hs-item').forEach(function(r){
+      r.addEventListener('click', function(){ goToItem(r.dataset.go); var inp=document.getElementById('hsInput'); if(inp) inp.value=''; if(hsResult) hsResult.innerHTML=''; if(hsClear) hsClear.classList.remove('show'); });
+    });
+  }
+  if(hsInput){ hsInput.addEventListener('input', function(){ if(hsTimer) clearTimeout(hsTimer); var v=hsInput.value; hsTimer=setTimeout(function(){ doSearch(v); }, 120); });
+    hsInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ if(hsTimer) clearTimeout(hsTimer); doSearch(hsInput.value); } }); }
+  if(hsClear){ hsClear.addEventListener('click', function(){ hsInput.value=''; doSearch(''); hsInput.focus(); }); }
   applyTheme(LS.get('optics_theme','space'));
   if(LS.get('optics_reduce_motion',false)) document.documentElement.classList.add('reduce-motion');
   updateProg();
