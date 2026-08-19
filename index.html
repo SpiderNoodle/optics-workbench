@@ -276,110 +276,217 @@
     --canvas-bg:rgba(255,255,255,.72);
   }
 
-  /* ===== 毛玻璃 · Apple Liquid Glass（浅色 · 通透磨砂 · 淡彩柔光） ===== */
-  :root[data-theme="glass"]{
-    --theme-name:'毛玻璃';
-    --bg-1:#eef1f7; --bg-2:#f3f5fb; --bg-3:#e7ecf6;
-    --glow-1:rgba(10,132,255,.12); --glow-2:rgba(94,92,230,.12);
-    --brand:#0a84ff; --brand-2:#5e5ce6;
-    --surface:rgba(255,255,255,.55); --surface-2:rgba(255,255,255,.40); --surface-3:rgba(255,255,255,.78);
-    --text:#1d1d1f; --muted:#515158; --muted-2:#86868b;
-    --line:rgba(255,255,255,.65); --line-2:rgba(0,0,0,.06); --line-3:rgba(10,132,255,.45);
-    --accent:#0a84ff; --accent-2:#0071e3; --text-bright:#ffffff; --dia-text:#3a3a3c;
-    --track:rgba(0,0,0,.14); --canvas-bg:rgba(255,255,255,.5);
-    --ink:#1d1d1f; --qing:#0a84ff; --zhu:#ff3b30;
-  }
-  /* 淡彩柔光壁纸（缓慢漂移的 pastel 光晕） */
-  :root[data-theme="glass"] body{ background:linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%); }
-  :root[data-theme="glass"] #bg{ display:none; }
-  :root[data-theme="glass"] #app{ position:relative; z-index:1; }
-  :root[data-theme="glass"] body::before{
-    content:''; position:fixed; inset:-15%; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(38% 38% at 18% 22%, rgba(10,132,255,.22), rgba(10,132,255,0) 70%),
-      radial-gradient(34% 34% at 82% 18%, rgba(255,149,0,.16), rgba(255,149,0,0) 70%),
-      radial-gradient(40% 40% at 75% 82%, rgba(175,82,222,.20), rgba(175,82,222,0) 70%),
-      radial-gradient(36% 36% at 22% 84%, rgba(48,209,176,.18), rgba(48,209,176,0) 70%);
-    filter:blur(40px) saturate(120%);
-    animation:glassFloat 26s ease-in-out infinite alternate;
-  }
-  @keyframes glassFloat{ 0%{ transform:translate3d(0,0,0) scale(1); } 100%{ transform:translate3d(2.5%,-2.5%,0) scale(1.06); } }
-  /* 磨砂玻璃卡片 */
-  :root[data-theme="glass"] .glass,
-  :root[data-theme="glass"] .panel,
-  :root[data-theme="glass"] .cat-card{
-    background:rgba(255,255,255,.55);
-    -webkit-backdrop-filter:blur(22px) saturate(180%);
-    backdrop-filter:blur(22px) saturate(180%);
-    border:1px solid rgba(255,255,255,.70);
-    box-shadow:0 8px 32px rgba(31,38,80,.10), inset 0 1px 0 rgba(255,255,255,.85);
-    border-radius:18px;
-    transition:transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s, border-color .28s;
-  }
-  :root[data-theme="glass"] .glass:hover,
-  :root[data-theme="glass"] .panel:hover,
-  :root[data-theme="glass"] .cat-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(255,255,255,.95);
-    box-shadow:0 16px 44px rgba(31,38,80,.18), inset 0 1px 0 rgba(255,255,255,.95);
-  }
-  /* Hero 大磨砂卡 */
-  :root[data-theme="glass"] .hero{
-    background:rgba(255,255,255,.50);
-    -webkit-backdrop-filter:blur(28px) saturate(180%);
-    backdrop-filter:blur(28px) saturate(180%);
-    border:1px solid rgba(255,255,255,.70);
-    box-shadow:0 18px 60px rgba(31,38,80,.14), inset 0 1px 0 rgba(255,255,255,.90);
-    border-radius:26px;
-  }
-  :root[data-theme="glass"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); text-shadow:0 1px 0 rgba(255,255,255,.6); letter-spacing:.3px; font-weight:800; }
-  :root[data-theme="glass"] .hero-badge{ color:var(--brand); border-color:rgba(10,132,255,.40); background:rgba(10,132,255,.08); }
-  :root[data-theme="glass"] .hero-sub{ color:var(--muted); }
-  :root[data-theme="glass"] .hero-chip{ color:var(--text); border-color:rgba(255,255,255,.70); background:rgba(255,255,255,.50); }
-  :root[data-theme="glass"] .hero-deco::before{ background:radial-gradient(circle at 38% 36%, rgba(255,255,255,.9), rgba(255,255,255,0) 62%); border:1px solid rgba(255,255,255,.6); }
-  :root[data-theme="glass"] .hero-deco::after{ background:var(--brand); opacity:.18; }
-  /* 顶栏 / 侧栏 磨砂 */
-  :root[data-theme="glass"] #topbar{ background:rgba(255,255,255,.55); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,.60); }
-  :root[data-theme="glass"] #sidebar{ background:rgba(255,255,255,.50); -webkit-backdrop-filter:blur(24px); backdrop-filter:blur(24px); border-right:1px solid rgba(255,255,255,.60); }
-  :root[data-theme="glass"] .nav-item{ color:var(--muted); }
-  :root[data-theme="glass"] .nav-item:hover{ background:rgba(10,132,255,.08); color:var(--brand); }
-  :root[data-theme="glass"] .nav-item.active{ background:rgba(10,132,255,.14); color:var(--brand); box-shadow:inset 0 0 0 1px rgba(10,132,255,.30); }
-  :root[data-theme="glass"] .nav-item.active::before{ background:var(--brand); }
-  :root[data-theme="glass"] .side-foot a{ color:var(--muted-2); }
-  :root[data-theme="glass"] .side-foot a:hover{ color:var(--brand); }
-  :root[data-theme="glass"] .brand .bt{ color:var(--text); }
-  :root[data-theme="glass"] .brand .bs{ color:var(--muted); }
-  :root[data-theme="glass"] .tb-title{ color:var(--text); }
-  :root[data-theme="glass"] .tb-prog{ color:var(--muted); border:1px solid rgba(255,255,255,.7); background:rgba(255,255,255,.5); }
-  /* 搜索框磨砂 */
-  :root[data-theme="glass"] .home-search .hs-box{ background:rgba(255,255,255,.60); border:1px solid rgba(255,255,255,.70); border-radius:14px; -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); }
-  :root[data-theme="glass"] .home-search .hs-box:focus-within{ border-color:var(--brand); box-shadow:0 4px 18px rgba(10,132,255,.18); }
-  :root[data-theme="glass"] .home-search .hs-ic{ color:var(--brand); }
-  :root[data-theme="glass"] .home-search .hs-clear{ background:var(--brand); color:#fff; }
-  :root[data-theme="glass"] .home-search .hs-item{ background:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.7); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); }
-  :root[data-theme="glass"] .home-search .hs-item:hover{ border-color:var(--brand); }
-  /* 主题选择器磨砂 */
-  :root[data-theme="glass"] .theme-chip{ background:rgba(255,255,255,.55); border:1px solid rgba(255,255,255,.70); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); }
-  :root[data-theme="glass"] .theme-chip.active{ border-color:var(--brand); box-shadow:0 0 0 1px var(--brand), 0 8px 22px rgba(10,132,255,.22); }
-  :root[data-theme="glass"] .theme-chip.active::after{ color:var(--brand); }
-  :root[data-theme="glass"] .theme-ic{ background:linear-gradient(135deg,var(--ic1),var(--ic2)); border:1px solid rgba(255,255,255,.5); }
-  :root[data-theme="glass"] .theme-name{ color:var(--text); }
-  :root[data-theme="glass"] .theme-desc{ color:var(--muted); }
-  /* 标题 Apple 风 */
-  :root[data-theme="glass"] .set-sec-h,
-  :root[data-theme="glass"] .cat-nav-h,
-  :root[data-theme="glass"] .rkh-title,
-  :root[data-theme="glass"] .flow-title,
-  :root[data-theme="glass"] .cat-name{ font-weight:700; letter-spacing:.3px; }
-  :root[data-theme="glass"] .note,
-  :root[data-theme="glass"] .define{ color:var(--text); }
-  :root[data-theme="glass"] .nav-item .ni-ic{ color:var(--brand); }
-  /* 按钮 */
-  :root[data-theme="glass"] .rand-hero-btn{ background:var(--brand); color:#fff; border:none; box-shadow:0 8px 22px rgba(10,132,255,.32); }
-  :root[data-theme="glass"] .rand-hero-btn:hover{ background:var(--accent-2); transform:translateY(-2px); }
-
-
   html,body{ height:100%; }
+
+  /* ===== 黏土软3D · Claymorphism（暖奶油 · 超圆角 · 充气双阴影） ===== */
+  :root[data-theme="clay"]{
+    --theme-name:'黏土软3D';
+    --bg-1:#fbf3e7; --bg-2:#fdf6ec; --bg-3:#f6ebd9;
+    --glow-1:rgba(255,154,118,.20); --glow-2:rgba(120,200,180,.18);
+    --brand:#ff8a5b; --brand-2:#ffb088;
+    --surface:rgba(255,255,255,.72); --surface-2:rgba(255,255,255,.50); --surface-3:rgba(255,255,255,.92);
+    --text:#4a3b2e; --muted:#8a7560; --muted-2:#a89080;
+    --line:rgba(120,90,60,.18); --line-2:rgba(120,90,60,.10); --line-3:rgba(255,138,91,.5);
+    --accent:#ff8a5b; --accent-2:#ff7043; --text-bright:#fff; --dia-text:#5a4636;
+    --track:rgba(120,90,60,.20); --canvas-bg:rgba(255,255,255,.80);
+    --ink:#4a3b2e; --qing:#ff8a5b; --zhu:#ff5e62;
+  }
+  :root[data-theme="clay"] body{ background:linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%); }
+  :root[data-theme="clay"] #bg{ display:none; }
+  :root[data-theme="clay"] #app{ position:relative; z-index:1; }
+  :root[data-theme="clay"] .glass,
+  :root[data-theme="clay"] .panel,
+  :root[data-theme="clay"] .cat-card{
+    background:rgba(255,255,255,.74);
+    border:1px solid rgba(255,255,255,.65);
+    border-radius:30px;
+    box-shadow:10px 10px 26px rgba(190,150,115,.22), -8px -8px 22px rgba(255,255,255,.85);
+    transition:transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s;
+  }
+  :root[data-theme="clay"] .glass:hover,
+  :root[data-theme="clay"] .panel:hover,
+  :root[data-theme="clay"] .cat-card:hover{ transform:translateY(-3px); box-shadow:14px 14px 34px rgba(190,150,115,.28), -10px -10px 26px rgba(255,255,255,.9); }
+  :root[data-theme="clay"] .hero{ background:rgba(255,255,255,.66); border:1px solid rgba(255,255,255,.70); border-radius:34px; box-shadow:18px 18px 50px rgba(190,150,115,.20), -10px -10px 30px rgba(255,255,255,.8); }
+  :root[data-theme="clay"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); font-weight:800; }
+  :root[data-theme="clay"] .hero-badge{ color:var(--brand); border-color:rgba(255,138,91,.40); background:rgba(255,138,91,.12); }
+  :root[data-theme="clay"] .hero-sub{ color:var(--muted); }
+  :root[data-theme="clay"] .hero-chip{ color:var(--text); border-color:rgba(255,255,255,.70); background:rgba(255,255,255,.60); }
+  :root[data-theme="clay"] .hero-deco::before{ background:radial-gradient(circle at 38% 36%, rgba(255,255,255,.95), rgba(255,255,255,0) 62%); border:1px solid rgba(255,255,255,.6); }
+  :root[data-theme="clay"] .hero-deco::after{ background:var(--brand); opacity:.16; }
+  :root[data-theme="clay"] #topbar{ background:rgba(255,255,255,.70); border-bottom:1px solid rgba(255,255,255,.70); }
+  :root[data-theme="clay"] #sidebar{ background:rgba(255,255,255,.66); border-right:1px solid rgba(255,255,255,.70); }
+  :root[data-theme="clay"] .nav-item{ color:var(--muted); }
+  :root[data-theme="clay"] .nav-item:hover{ background:rgba(255,138,91,.10); color:var(--brand); }
+  :root[data-theme="clay"] .nav-item.active{ background:rgba(255,138,91,.16); color:var(--brand); box-shadow:inset 0 0 0 1px rgba(255,138,91,.35); }
+  :root[data-theme="clay"] .nav-item.active::before{ background:var(--brand); }
+  :root[data-theme="clay"] .side-foot a{ color:var(--muted-2); }
+  :root[data-theme="clay"] .side-foot a:hover{ color:var(--brand); }
+  :root[data-theme="clay"] .brand .bt{ color:var(--text); }
+  :root[data-theme="clay"] .brand .bs{ color:var(--muted); }
+  :root[data-theme="clay"] .tb-title{ color:var(--text); }
+  :root[data-theme="clay"] .tb-prog{ color:var(--muted); border:1px solid rgba(255,255,255,.70); background:rgba(255,255,255,.60); }
+  :root[data-theme="clay"] .home-search .hs-box{ background:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.75); border-radius:16px; }
+  :root[data-theme="clay"] .home-search .hs-box:focus-within{ border-color:var(--brand); box-shadow:0 4px 18px rgba(255,138,91,.18); }
+  :root[data-theme="clay"] .home-search .hs-ic{ color:var(--brand); }
+  :root[data-theme="clay"] .home-search .hs-clear{ background:var(--brand); color:#fff; }
+  :root[data-theme="clay"] .home-search .hs-item{ background:rgba(255,255,255,.74); border:1px solid rgba(255,255,255,.75); }
+  :root[data-theme="clay"] .home-search .hs-item:hover{ border-color:var(--brand); }
+  :root[data-theme="clay"] .theme-chip{ background:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.75); }
+  :root[data-theme="clay"] .theme-chip.active{ border-color:var(--brand); box-shadow:0 0 0 1px var(--brand), 8px 8px 22px rgba(255,138,91,.22); }
+  :root[data-theme="clay"] .theme-chip.active::after{ color:var(--brand); }
+  :root[data-theme="clay"] .theme-ic{ background:linear-gradient(135deg,var(--ic1),var(--ic2)); border:1px solid rgba(255,255,255,.6); }
+  :root[data-theme="clay"] .theme-name{ color:var(--text); }
+  :root[data-theme="clay"] .theme-desc{ color:var(--muted); }
+  :root[data-theme="clay"] .set-sec-h,
+  :root[data-theme="clay"] .cat-nav-h,
+  :root[data-theme="clay"] .rkh-title,
+  :root[data-theme="clay"] .flow-title,
+  :root[data-theme="clay"] .cat-name{ font-weight:800; }
+  :root[data-theme="clay"] .note,
+  :root[data-theme="clay"] .define{ color:var(--text); }
+  :root[data-theme="clay"] .nav-item .ni-ic{ color:var(--brand); }
+  :root[data-theme="clay"] .rand-hero-btn{ background:var(--brand); color:#fff; border:none; border-radius:999px; box-shadow:6px 6px 16px rgba(255,138,91,.30); }
+  :root[data-theme="clay"] .rand-hero-btn:hover{ background:var(--accent-2); transform:translateY(-2px); }
+
+  /* ===== 千禧复古 · Y2K（铬金属 · 冰蓝品红 · 高光玻璃） ===== */
+  :root[data-theme="y2k"]{
+    --theme-name:'千禧复古';
+    --bg-1:#eaf6ff; --bg-2:#f4ecff; --bg-3:#eafff6;
+    --glow-1:rgba(0,229,255,.22); --glow-2:rgba(255,45,149,.18);
+    --brand:#00cfe6; --brand-2:#ff2d95;
+    --surface:rgba(255,255,255,.66); --surface-2:rgba(255,255,255,.45); --surface-3:rgba(255,255,255,.92);
+    --text:#0c1a2e; --muted:#3a4a63; --muted-2:#6a7a93;
+    --line:rgba(0,180,220,.25); --line-2:rgba(0,180,220,.12); --line-3:rgba(0,229,255,.5);
+    --accent:#ff2d95; --accent-2:#7a5cff; --text-bright:#fff; --dia-text:#0c2a3a;
+    --track:rgba(0,150,200,.20); --canvas-bg:rgba(255,255,255,.82);
+    --ink:#0c1a2e; --qing:#00e5ff; --zhu:#ff2d95;
+  }
+  :root[data-theme="y2k"] body{ background:linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%); }
+  :root[data-theme="y2k"] #bg{ display:none; }
+  :root[data-theme="y2k"] #app{ position:relative; z-index:1; }
+  :root[data-theme="y2k"] .glass,
+  :root[data-theme="y2k"] .panel,
+  :root[data-theme="y2k"] .cat-card{
+    background:linear-gradient(135deg, rgba(255,255,255,.84), rgba(225,245,255,.62));
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:22px;
+    box-shadow:0 12px 30px rgba(0,150,220,.18), inset 0 1px 0 rgba(255,255,255,.90);
+    transition:transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s;
+  }
+  :root[data-theme="y2k"] .glass:hover,
+  :root[data-theme="y2k"] .panel:hover,
+  :root[data-theme="y2k"] .cat-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,150,220,.26), inset 0 1px 0 rgba(255,255,255,.95); }
+  :root[data-theme="y2k"] .hero{ background:linear-gradient(135deg, rgba(255,255,255,.82), rgba(220,245,255,.60)); border:1px solid rgba(255,255,255,.80); border-radius:26px; box-shadow:0 18px 50px rgba(0,150,220,.20), inset 0 1px 0 rgba(255,255,255,.90); }
+  :root[data-theme="y2k"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); font-weight:800; text-shadow:0 1px 0 rgba(255,255,255,.8); }
+  :root[data-theme="y2k"] .hero-badge{ color:var(--brand); border-color:rgba(0,229,255,.45); background:rgba(0,229,255,.12); }
+  :root[data-theme="y2k"] .hero-sub{ color:var(--muted); }
+  :root[data-theme="y2k"] .hero-chip{ color:var(--text); border-color:rgba(0,229,255,.40); background:rgba(255,255,255,.60); }
+  :root[data-theme="y2k"] .hero-deco::before{ background:radial-gradient(circle at 38% 36%, rgba(255,255,255,.95), rgba(255,255,255,0) 62%); border:1px solid rgba(0,229,255,.5); }
+  :root[data-theme="y2k"] .hero-deco::after{ background:var(--accent); opacity:.18; }
+  :root[data-theme="y2k"] #topbar{ background:rgba(255,255,255,.70); border-bottom:1px solid rgba(0,229,255,.35); }
+  :root[data-theme="y2k"] #sidebar{ background:rgba(255,255,255,.66); border-right:1px solid rgba(0,229,255,.30); }
+  :root[data-theme="y2k"] .nav-item{ color:var(--muted); }
+  :root[data-theme="y2k"] .nav-item:hover{ background:rgba(0,229,255,.10); color:var(--brand); }
+  :root[data-theme="y2k"] .nav-item.active{ background:rgba(0,229,255,.16); color:var(--brand); box-shadow:inset 0 0 0 1px rgba(0,229,255,.40); }
+  :root[data-theme="y2k"] .nav-item.active::before{ background:var(--brand); }
+  :root[data-theme="y2k"] .side-foot a{ color:var(--muted-2); }
+  :root[data-theme="y2k"] .side-foot a:hover{ color:var(--brand); }
+  :root[data-theme="y2k"] .brand .bt{ color:var(--text); }
+  :root[data-theme="y2k"] .brand .bs{ color:var(--muted); }
+  :root[data-theme="y2k"] .tb-title{ color:var(--text); }
+  :root[data-theme="y2k"] .tb-prog{ color:var(--muted); border:1px solid rgba(0,229,255,.40); background:rgba(255,255,255,.60); }
+  :root[data-theme="y2k"] .home-search .hs-box{ background:rgba(255,255,255,.72); border:1px solid rgba(0,229,255,.45); border-radius:16px; }
+  :root[data-theme="y2k"] .home-search .hs-box:focus-within{ border-color:var(--brand); box-shadow:0 4px 18px rgba(0,229,255,.22); }
+  :root[data-theme="y2k"] .home-search .hs-ic{ color:var(--brand); }
+  :root[data-theme="y2k"] .home-search .hs-clear{ background:var(--brand); color:#063; }
+  :root[data-theme="y2k"] .home-search .hs-item{ background:rgba(255,255,255,.74); border:1px solid rgba(0,229,255,.40); }
+  :root[data-theme="y2k"] .home-search .hs-item:hover{ border-color:var(--brand); }
+  :root[data-theme="y2k"] .theme-chip{ background:rgba(255,255,255,.72); border:1px solid rgba(0,229,255,.45); }
+  :root[data-theme="y2k"] .theme-chip.active{ border-color:var(--brand); box-shadow:0 0 0 1px var(--brand), 0 10px 26px rgba(0,229,255,.25); }
+  :root[data-theme="y2k"] .theme-chip.active::after{ color:var(--brand); }
+  :root[data-theme="y2k"] .theme-ic{ background:linear-gradient(135deg,var(--ic1),var(--ic2)); border:1px solid rgba(255,255,255,.6); }
+  :root[data-theme="y2k"] .theme-name{ color:var(--text); }
+  :root[data-theme="y2k"] .theme-desc{ color:var(--muted); }
+  :root[data-theme="y2k"] .set-sec-h,
+  :root[data-theme="y2k"] .cat-nav-h,
+  :root[data-theme="y2k"] .rkh-title,
+  :root[data-theme="y2k"] .flow-title,
+  :root[data-theme="y2k"] .cat-name{ font-weight:800; }
+  :root[data-theme="y2k"] .note,
+  :root[data-theme="y2k"] .define{ color:var(--text); }
+  :root[data-theme="y2k"] .nav-item .ni-ic{ color:var(--brand); }
+  :root[data-theme="y2k"] .rand-hero-btn{ background:linear-gradient(180deg,#5cf0ff,#00cfe6); color:#063; border:none; border-radius:14px; box-shadow:0 8px 22px rgba(0,229,255,.35); }
+  :root[data-theme="y2k"] .rand-hero-btn:hover{ filter:brightness(1.06); transform:translateY(-2px); }
+
+  /* ===== 新野兽派 · Neo-Brutalism（粗黑描边 · 硬偏移阴影 · 高饱和撞色） ===== */
+  :root[data-theme="brutalism"]{
+    --theme-name:'新野兽派';
+    --bg-1:#f5f1e8; --bg-2:#ffffff; --bg-3:#f0ecff;
+    --glow-1:rgba(255,230,0,.14); --glow-2:rgba(0,229,255,.14);
+    --brand:#ffe600; --brand-2:#ff4d00;
+    --surface:#ffffff; --surface-2:#fffbe6; --surface-3:#ffe600;
+    --text:#111111; --muted:#333333; --muted-2:#555555;
+    --line:#111111; --line-2:#111111; --line-3:#ff3df0;
+    --accent:#ff3df0; --accent-2:#00e5ff; --text-bright:#111111; --dia-text:#111111;
+    --track:#111111; --canvas-bg:#ffffff;
+    --ink:#111111; --qing:#00e5ff; --zhu:#ff3df0;
+  }
+  :root[data-theme="brutalism"] body{ background:var(--bg-1); }
+  :root[data-theme="brutalism"] #bg{ display:none; }
+  :root[data-theme="brutalism"] #app{ position:relative; z-index:1; }
+  :root[data-theme="brutalism"] .glass,
+  :root[data-theme="brutalism"] .panel,
+  :root[data-theme="brutalism"] .cat-card{
+    background:#fff;
+    border:2.5px solid #111;
+    border-radius:6px;
+    box-shadow:6px 6px 0 #111;
+    transition:transform .12s, box-shadow .12s;
+  }
+  :root[data-theme="brutalism"] .glass:hover,
+  :root[data-theme="brutalism"] .panel:hover,
+  :root[data-theme="brutalism"] .cat-card:hover{ transform:translate(2px,2px); box-shadow:3px 3px 0 #111; }
+  :root[data-theme="brutalism"] .hero{ background:#fff; border:3px solid #111; border-radius:10px; box-shadow:8px 8px 0 #111; }
+  :root[data-theme="brutalism"] .hero-title{ color:#111; -webkit-text-fill-color:#111; font-weight:900; letter-spacing:-.5px; }
+  :root[data-theme="brutalism"] .hero-badge{ color:#111; border:2px solid #111; background:var(--brand); }
+  :root[data-theme="brutalism"] .hero-sub{ color:#333; }
+  :root[data-theme="brutalism"] .hero-chip{ color:#111; border:2px solid #111; background:#fff; }
+  :root[data-theme="brutalism"] .hero-deco::before{ background:var(--brand); border:2px solid #111; }
+  :root[data-theme="brutalism"] .hero-deco::after{ background:var(--accent); border:2px solid #111; }
+  :root[data-theme="brutalism"] #topbar{ background:#fff; border-bottom:3px solid #111; }
+  :root[data-theme="brutalism"] #sidebar{ background:#fff; border-right:3px solid #111; }
+  :root[data-theme="brutalism"] .nav-item{ color:#111; border:2px solid transparent; }
+  :root[data-theme="brutalism"] .nav-item:hover{ background:var(--brand); border-color:#111; }
+  :root[data-theme="brutalism"] .nav-item.active{ background:var(--brand); border:2px solid #111; box-shadow:3px 3px 0 #111; }
+  :root[data-theme="brutalism"] .nav-item.active::before{ background:#111; }
+  :root[data-theme="brutalism"] .side-foot a{ color:#333; }
+  :root[data-theme="brutalism"] .side-foot a:hover{ color:#111; }
+  :root[data-theme="brutalism"] .brand .bt{ color:#111; }
+  :root[data-theme="brutalism"] .brand .bs{ color:#555; }
+  :root[data-theme="brutalism"] .tb-title{ color:#111; }
+  :root[data-theme="brutalism"] .tb-prog{ color:#111; border:2px solid #111; background:#fff; }
+  :root[data-theme="brutalism"] .home-search .hs-box{ background:#fff; border:2.5px solid #111; border-radius:8px; }
+  :root[data-theme="brutalism"] .home-search .hs-box:focus-within{ border-color:var(--accent); box-shadow:4px 4px 0 var(--accent); }
+  :root[data-theme="brutalism"] .home-search .hs-ic{ color:#111; }
+  :root[data-theme="brutalism"] .home-search .hs-clear{ background:#111; color:#fff; }
+  :root[data-theme="brutalism"] .home-search .hs-item{ background:#fff; border:2px solid #111; border-radius:6px; }
+  :root[data-theme="brutalism"] .home-search .hs-item:hover{ background:var(--accent); transform:translate(1px,1px); }
+  :root[data-theme="brutalism"] .theme-chip{ background:#fff; border:2.5px solid #111; border-radius:8px; }
+  :root[data-theme="brutalism"] .theme-chip.active{ border-color:var(--accent); box-shadow:5px 5px 0 var(--accent); }
+  :root[data-theme="brutalism"] .theme-chip.active::after{ color:var(--accent); }
+  :root[data-theme="brutalism"] .theme-ic{ background:linear-gradient(135deg,var(--ic1),var(--ic2)); border:2px solid #111; }
+  :root[data-theme="brutalism"] .theme-name{ color:#111; }
+  :root[data-theme="brutalism"] .theme-desc{ color:#555; }
+  :root[data-theme="brutalism"] .set-sec-h,
+  :root[data-theme="brutalism"] .cat-nav-h,
+  :root[data-theme="brutalism"] .rkh-title,
+  :root[data-theme="brutalism"] .flow-title,
+  :root[data-theme="brutalism"] .cat-name{ font-weight:900; letter-spacing:-.3px; }
+  :root[data-theme="brutalism"] .note,
+  :root[data-theme="brutalism"] .define{ color:#111; }
+  :root[data-theme="brutalism"] .nav-item .ni-ic{ color:#111; }
+  :root[data-theme="brutalism"] .rand-hero-btn{ background:var(--brand); color:#111; border:2.5px solid #111; border-radius:8px; box-shadow:5px 5px 0 #111; }
+  :root[data-theme="brutalism"] .rand-hero-btn:hover{ transform:translate(2px,2px); box-shadow:2px 2px 0 #111; }
   body {
     margin:0; padding:0;
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
@@ -1079,7 +1186,7 @@
   }
   .modal-close:hover{ background:var(--err); color:#fff; border-color:var(--err); }
 
-  /* ---- 移动端底部悬浮导航（毛玻璃 · 华为沉浸式光感） ---- */
+  /* ---- 移动端底部悬浮导航（悬浮玻璃卡片 · 沉浸式光感） ---- */
   #bottomtab{
     display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:14px; z-index:60;
     width:auto; max-width:calc(100% - 28px);
@@ -1204,12 +1311,12 @@
       <button class="nav-item" data-page="favorites"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></span><span class="ni-lb">收藏</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0zM14.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0z"/><path d="M9.5 12h5"/></svg></span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.4.2 · 2026-08-19<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.5.0 · 2026-08-19<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">87 个知识点</span>
+      <span class="tb-prog" id="tbProg">98 个知识点</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -1230,16 +1337,16 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.4.2 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.5.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 17</span>
         <span class="hero-chip">信赖性·车规 · 10</span>
         <span class="hero-chip">设备与仪器 · 5</span>
         <span class="hero-chip">工艺制造 · 3</span>
-        <span class="hero-chip">工程图纸 · 2</span>
+        <span class="hero-chip">工程图纸 · 6</span>
         <span class="hero-chip">模组与系统 · 11</span>
-        <span class="hero-chip">材料与镜片 · 7</span>
+        <span class="hero-chip">材料与镜片 · 8</span>
         <span class="hero-chip">应用场景 · 10</span>
       </div>
     </div>
@@ -1251,20 +1358,46 @@
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
-          <div class="rand-hero-desc">从 87 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
+          <div class="rand-hero-desc">从 98 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
         </div>
       </div>
       <div class="rand-hero-btn">探索 →</div>
     </div>
   </div>
 
-                      <div class="home-search" id="homeSearch">
-                        <div class="hs-box">
-                          <svg class="hs-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>
-                          <input class="hs-input" id="hsInput" type="search" placeholder="搜索知识点，如 MTF、偏心、鬼像、镀膜…" autocomplete="off" enterkeyhint="search">
-                          <button class="hs-clear" id="hsClear" type="button" aria-label="清空">✕</button>
+                      <style>
+                        .cata-wrap{ margin:16px 0 8px; }
+                        .cata-pills{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+                        .cata-pill{ font-size:12.5px; font-weight:600; padding:7px 14px; border-radius:999px; background:var(--glass); border:1px solid var(--line); color:var(--muted); cursor:pointer; transition:all .18s; }
+                        .cata-pill:hover{ color:var(--brand); border-color:var(--brand); }
+                        .cata-pill.active{ background:var(--brand); color:#fff; border-color:var(--brand); box-shadow:0 6px 16px rgba(51,112,255,.25); }
+                        .cata-search{ position:relative; margin:0 0 16px; }
+                        .cata-search input{ width:100%; box-sizing:border-box; padding:12px 42px; font-size:13px; border-radius:14px; background:var(--glass); border:1px solid var(--line); color:var(--text); outline:none; }
+                        .cata-search input:focus{ border-color:var(--brand); }
+                        .cata-search .cs-ic{ position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--muted); }
+                        .cata-search .cs-clear{ position:absolute; right:12px; top:50%; transform:translateY(-50%); width:24px; height:24px; border-radius:50%; border:none; background:var(--brand); color:#fff; cursor:pointer; font-size:12px; line-height:1; display:none; }
+                        .cata-search .cs-clear.show{ display:block; }
+                        .cata-wall{ display:flex; flex-direction:column; gap:22px; }
+                        .cata-group-h{ display:flex; align-items:center; gap:8px; font-size:13px; font-weight:800; color:var(--text); margin-bottom:10px; }
+                        .cata-group-h .badge{ font-size:10px; font-weight:600; color:var(--brand); background:rgba(91,140,255,.12); padding:2px 8px; border-radius:8px; }
+                        .cata-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+                        .cata-card{ display:flex; flex-direction:column; gap:2px; padding:13px 14px; border-radius:14px; background:var(--glass); border:1px solid var(--line); cursor:pointer; transition:all .18s; min-height:62px; }
+                        .cata-card:hover{ transform:translateY(-3px); border-color:var(--brand); box-shadow:0 10px 22px rgba(0,0,0,.12); }
+                        .cata-card .cc-t{ font-size:13px; font-weight:700; color:var(--text); }
+                        .cata-card .cc-e{ font-size:10.5px; color:var(--muted); }
+                        .cata-empty{ color:var(--muted); font-size:13px; padding:24px; text-align:center; }
+                        :root[data-theme="brutalism"] .cata-pill, :root[data-theme="brutalism"] .cata-card, :root[data-theme="brutalism"] .cata-search input{ border-radius:8px; }
+                        :root[data-theme="clay"] .cata-pill, :root[data-theme="clay"] .cata-card, :root[data-theme="clay"] .cata-search input{ border-radius:18px; }
+                      </style>
+
+                      <div class="cata-wrap">
+                        <div class="cata-pills" id="cataPills"></div>
+                        <div class="cata-search">
+                          <svg class="cs-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>
+                          <input id="cataSearch" type="search" placeholder="搜索全部知识点，如 MTF、偏心、鬼像、镀膜、CMM…" autocomplete="off">
+                          <button class="cs-clear" id="cataClear" type="button" aria-label="清空">✕</button>
                         </div>
-                        <div class="hs-result" id="hsResult"></div>
+                        <div class="cata-wall" id="cataWall"></div>
                       </div>
 
                       <div class="home-split">
@@ -1293,7 +1426,7 @@
       <div class="cat-nav-item" id="cat-drawing" onclick="showCat('drawing')">
         <span class="cn-ic">📐</span>
         <span class="cn-lb">工程图纸<span class="cn-en">Engineering Drawing</span></span>
-        <span class="cn-count">2</span>
+        <span class="cn-count">6</span>
       </div>
       <div class="cat-nav-item" id="cat-module" onclick="showCat('module')">
         <span class="cn-ic">🔧</span>
@@ -1303,7 +1436,7 @@
       <div class="cat-nav-item" id="cat-material" onclick="showCat('material')">
         <span class="cn-ic">💎</span>
         <span class="cn-lb">材料与镜片<span class="cn-en">Materials & Lens</span></span>
-        <span class="cn-count">7</span>
+        <span class="cn-count">8</span>
       </div>
       <div class="cat-nav-item" id="cat-application" onclick="showCat('application')">
         <span class="cn-ic">🚗</span>
@@ -1323,7 +1456,7 @@
       <div class="cat-nav-item" id="cat-quality" onclick="showCat('quality')">
         <span class="cn-ic">🛡️</span>
         <span class="cn-lb">质量工具<span class="en">Quality Tools</span></span>
-        <span class="cn-count">10</span>
+        <span class="cn-count">16</span>
       </div>
         </aside>
       <div id="browse">
@@ -1439,6 +1572,10 @@
   <div class="tabs" id="subtabs-drawing" style="display:none;">
     <div class="tab active" id="tab-draw-overview" onclick="showTab('draw-overview')">图纸总览<span class="en">DRW020906004</span></div>
     <div class="tab" id="tab-drawsym" onclick="showTab('drawsym')">标注符号<span class="en">视图/基准/公差</span></div>
+    <div class="tab" id="tab-symview" onclick="showTab('symview')">视图与剖面符号<span class="en">View/Section</span></div>
+    <div class="tab" id="tab-symdatum" onclick="showTab('symdatum')">基准与坐标系<span class="en">Datum</span></div>
+    <div class="tab" id="tab-symdim" onclick="showTab('symdim')">尺寸与公差标注<span class="en">Dim/Tol</span></div>
+    <div class="tab" id="tab-symgeo" onclick="showTab('symgeo')">形位公差符号<span class="en">GD&amp;T</span></div>
   </div>
   <div class="tabs" id="subtabs-equipment" style="display:none;">
     <div class="tab active" id="tab-eq-inspect" onclick="showTab('eq-inspect')">检验检测<span class="en">MTF/VGI/偏心</span></div>
@@ -1468,6 +1605,7 @@
     <div class="tab" id="tab-plasticlens" onclick="showTab('plasticlens')">塑料镜片<span class="en">Plastic</span></div>
     <div class="tab" id="tab-moldedlens" onclick="showTab('moldedlens')">模造镜片<span class="en">PGM/WGM</span></div>
     <div class="tab" id="tab-lenscompare" onclick="showTab('lenscompare')">镜片选型对比<span class="en">Compare</span></div>
+    <div class="tab" id="tab-ots" onclick="showTab('ots')">OTS 光学件<span class="en">Off-The-Shelf</span></div>
   </div>
   <div class="tabs" id="subtabs-application" style="display:none;">
     <div class="tab active" id="tab-layout" onclick="showTab('layout')">整车摄像头布局<span class="en">眼睛矩阵</span></div>
@@ -1840,6 +1978,12 @@
     <div class="tab" id="tab-dims" onclick="showTab('dims')">全尺寸<span class="en">Full Dims</span></div>
     <div class="tab" id="tab-safelaunch" onclick="showTab('safelaunch')">Safe Launch<span class="en">安全投产</span></div>
     <div class="tab" id="tab-8d" onclick="showTab('8d')">8D<span class="en">问题解决</span></div>
+    <div class="tab" id="tab-iqc" onclick="showTab('iqc')">IQC 来料检验<span class="en">Incoming</span></div>
+    <div class="tab" id="tab-iqc-cmm" onclick="showTab('iqc-cmm')">三坐标 CMM<span class="en">Coordinate</span></div>
+    <div class="tab" id="tab-iqc-air" onclick="showTab('iqc-air')">气规/气动量仪<span class="en">Air Gauge</span></div>
+    <div class="tab" id="tab-iqc-plug" onclick="showTab('iqc-plug')">塞规/卡规<span class="en">Go-NoGo</span></div>
+    <div class="tab" id="tab-iqc-image" onclick="showTab('iqc-image')">影像/投影仪<span class="en">VMM</span></div>
+    <div class="tab" id="tab-iqc-other" onclick="showTab('iqc-other')">其他量具<span class="en">Gauges</span></div>
   </div>
 
   <style>
@@ -2712,178 +2856,7 @@
 
   <!-- 工艺 · 子模块 2：镜筒加工工艺（舜宇车载光学 14 道工序） -->
   <div class="panel" id="panel-process-barrel">
-    <div class="define"><b>释义：</b>镜筒加工工艺是把<b>铝锭（ADC12 压铸铝）</b>变成一只<b>几何精度达 ±0.002mm、亚光发黑、镜面级洁净</b>的镜头壳体的全部机加工与表面处理流程。它是镜头总装的上游——镜筒的<b>同轴度 / 圆度 / 端面平面度 / 镜面孔径</b>直接决定了后道组装的<b>偏心、MTF、杂光</b>，是「总装工艺能达标」的前提。共 <b>14 道工序</b>，其中 <b>7 道为关键控制工序</b>（★ 标记），由舜宇车载光学总结。</div>
-
-    <div class="flow-title">镜筒加工流程总览（舜宇车载光学 · 14 道工序 · 7 道关键控制 ★）</div>
-    <svg class="flow-svg" viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="镜筒加工流程 14 道工序">
-      <defs>
-        <marker id="ahB" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#61759d"></path></marker>
-        <marker id="ahBkey" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#fcd34d"></path></marker>
-      </defs>
-      <!-- 14 个工序排成两行，每行 7 个 -->
-      <!-- 第一行：工序1-7 -->
-      <g>
-        <rect x="10" y="20" width="96" height="58" rx="8" fill="#141d33" stroke="#43537b"></rect>
-        <text x="20" y="36" font-size="10" fill="#61759d">工序1</text>
-        <text x="58" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">来料检测</text>
-        <text x="58" y="66" text-anchor="middle" font-size="9" fill="#8093b6">材质 ADC12</text>
-      </g>
-      <line x1="106" y1="49" x2="118" y2="49" stroke="#fcd34d" stroke-width="2" marker-end="url(#ahBkey)"></line>
-      <g>
-        <rect x="118" y="20" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="128" y="36" font-size="10" fill="#fcd34d" font-weight="700">工序2 ★</text>
-        <text x="166" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">压铸</text>
-        <text x="166" y="66" text-anchor="middle" font-size="9" fill="#8093b6">伊之密 T160</text>
-      </g>
-      <line x1="214" y1="49" x2="226" y2="49" stroke="#61759d" stroke-width="1.5" marker-end="url(#ahB)"></line>
-      <g>
-        <rect x="226" y="20" width="96" height="58" rx="8" fill="#141d33" stroke="#43537b"></rect>
-        <text x="236" y="36" font-size="10" fill="#61759d">工序3</text>
-        <text x="274" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">脱硅</text>
-        <text x="274" y="66" text-anchor="middle" font-size="9" fill="#8093b6">手动线</text>
-      </g>
-      <line x1="322" y1="49" x2="334" y2="49" stroke="#fcd34d" stroke-width="2" marker-end="url(#ahBkey)"></line>
-      <g>
-        <rect x="334" y="20" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="344" y="36" font-size="10" fill="#fcd34d" font-weight="700">工序4 ★</text>
-        <text x="382" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">CNC铣</text>
-        <text x="382" y="66" text-anchor="middle" font-size="9" fill="#8093b6">兄弟 S500x1</text>
-      </g>
-      <line x1="430" y1="49" x2="442" y2="49" stroke="#fcd34d" stroke-width="2" marker-end="url(#ahBkey)"></line>
-      <g>
-        <rect x="442" y="20" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="452" y="36" font-size="10" fill="#fcd34d" font-weight="700">工序5 ★</text>
-        <text x="490" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">CNC车1</text>
-        <text x="490" y="66" text-anchor="middle" font-size="9" fill="#8093b6">北村 XKNC-204</text>
-      </g>
-      <line x1="538" y1="49" x2="550" y2="49" stroke="#fcd34d" stroke-width="2" marker-end="url(#ahBkey)"></line>
-      <g>
-        <rect x="550" y="20" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="560" y="36" font-size="10" fill="#fcd34d" font-weight="700">工序6 ★</text>
-        <text x="598" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">CNC车2</text>
-        <text x="598" y="66" text-anchor="middle" font-size="9" fill="#8093b6">北村 XKNC-204</text>
-      </g>
-      <line x1="646" y1="49" x2="656" y2="49" stroke="#61759d" stroke-width="1.5" marker-end="url(#ahB)"></line>
-      <g>
-        <rect x="656" y="20" width="56" height="58" rx="8" fill="#141d33" stroke="#43537b"></rect>
-        <text x="666" y="36" font-size="10" fill="#61759d">工序7</text>
-        <text x="684" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">喷砂</text>
-        <text x="684" y="68" text-anchor="middle" font-size="9" fill="#8093b6">黔丰</text>
-      </g>
-
-      <!-- 第二行：工序8-14 -->
-      <path d="M 684 78 Q 684 100 600 100 L 100 100 Q 16 100 16 122" fill="none" stroke="#61759d" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ahB)"></path>
-
-      <g>
-        <rect x="10" y="120" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="20" y="136" font-size="10" fill="#fcd34d" font-weight="700">工序8 ★</text>
-        <text x="58" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">阳极氧化</text>
-        <text x="58" y="166" text-anchor="middle" font-size="9" fill="#8093b6">手动线</text>
-      </g>
-      <line x1="106" y1="149" x2="118" y2="149" stroke="#fcd34d" stroke-width="2" marker-end="url(#ahBkey)"></line>
-      <g>
-        <rect x="118" y="120" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="128" y="136" font-size="10" fill="#fcd34d" font-weight="700">工序9 ★</text>
-        <text x="166" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">去氧化层</text>
-        <text x="166" y="166" text-anchor="middle" font-size="9" fill="#8093b6">兄弟 S500x1</text>
-      </g>
-      <line x1="214" y1="149" x2="226" y2="149" stroke="#61759d" stroke-width="1.5" marker-end="url(#ahB)"></line>
-      <g>
-        <rect x="226" y="120" width="96" height="58" rx="8" fill="#141d33" stroke="#43537b"></rect>
-        <text x="236" y="136" font-size="10" fill="#61759d">工序10</text>
-        <text x="274" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">清洗</text>
-        <text x="274" y="166" text-anchor="middle" font-size="9" fill="#8093b6">手动线</text>
-      </g>
-      <line x1="322" y1="149" x2="334" y2="149" stroke="#fcd34d" stroke-width="2" marker-end="url(#ahBkey)"></line>
-      <g>
-        <rect x="334" y="120" width="96" height="58" rx="8" fill="#2a1e0c" stroke="#fcd34d" stroke-width="1.5"></rect>
-        <text x="344" y="136" font-size="10" fill="#fcd34d" font-weight="700">工序11 ★</text>
-        <text x="382" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">镭雕</text>
-        <text x="382" y="166" text-anchor="middle" font-size="9" fill="#8093b6">大鹏</text>
-      </g>
-      <line x1="430" y1="149" x2="442" y2="149" stroke="#61759d" stroke-width="1.5" marker-end="url(#ahB)"></line>
-      <g>
-        <rect x="442" y="120" width="96" height="58" rx="8" fill="#141d33" stroke="#43537b"></rect>
-        <text x="452" y="136" font-size="10" fill="#61759d">工序12</text>
-        <text x="490" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">钝化</text>
-        <text x="490" y="166" text-anchor="middle" font-size="9" fill="#8093b6">手动线</text>
-      </g>
-      <line x1="538" y1="149" x2="550" y2="149" stroke="#61759d" stroke-width="1.5" marker-end="url(#ahB)"></line>
-      <g>
-        <rect x="550" y="120" width="96" height="58" rx="8" fill="#141d33" stroke="#43537b"></rect>
-        <text x="560" y="136" font-size="10" fill="#61759d">工序13</text>
-        <text x="598" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#e9efff">检验入库</text>
-        <text x="598" y="166" text-anchor="middle" font-size="9" fill="#8093b6">——</text>
-      </g>
-      <rect x="650" y="120" width="62" height="58" rx="8" fill="#0f2419" stroke="#34d399"></rect>
-      <text x="681" y="150" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399">完成</text>
-      <text x="681" y="166" text-anchor="middle" font-size="9" fill="#34d399">入组装</text>
-
-      </svg>
-    
-    <div class="flow-title" style="margin-top:18px;">关键工序图示（★ 重点）</div>
-    <div class="illus-grid">
-      <div class="illus">
-        <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
-          <defs><marker id="arr1" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#fcd34d"></path></marker></defs>
-          <path d="M30 38 L70 38 L60 96 L20 96 Z" fill="#43537b" stroke="#94a6c7" stroke-width="1.5"></path>
-          <path d="M130 38 L90 38 L100 96 L140 96 Z" fill="#43537b" stroke="#94a6c7" stroke-width="1.5"></path>
-          <rect x="64" y="54" width="32" height="38" rx="6" fill="#fdba74"></rect>
-          <line x1="80" y1="6" x2="80" y2="50" stroke="#fcd34d" stroke-width="3" marker-end="url(#arr1)"></line>
-          <text x="80" y="20" text-anchor="middle" font-size="9" fill="#fcd34d" font-weight="700">铝液</text>
-        </svg>
-        <div class="illus-cap"><b>压铸</b>（伊之密 T160）<br>铝液高速注入模具，成型镜筒毛坯（★ 关键）</div>
-      </div>
-      <div class="illus">
-        <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
-          <defs><marker id="arr2" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="var(--brand)"></path></marker></defs>
-          <rect x="8" y="46" width="18" height="18" fill="#94a6c7"></rect>
-          <rect x="26" y="40" width="78" height="30" rx="15" fill="#2b3654" stroke="#aabdd9" stroke-width="1.5"></rect>
-          <path d="M60 26 a16 16 0 0 1 16 8" fill="none" stroke="var(--brand)" stroke-width="2" marker-end="url(#arr2)"></path>
-          <path d="M132 36 L116 54 L132 54 Z" fill="#f87171" stroke="#fca5a5" stroke-width="1"></path>
-          <text x="124" y="70" text-anchor="middle" font-size="9" fill="#f87171">刀具</text>
-        </svg>
-        <div class="illus-cap"><b>CNC 车削</b>（北村 XKNC-204）<br>0.002mm 镜面级内孔，镜片定位基准（★ 关键）</div>
-      </div>
-      <div class="illus">
-        <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
-          <rect x="40" y="36" width="80" height="36" rx="6" fill="#43537b" stroke="#94a6c7" stroke-width="1.5"></rect>
-          <rect x="34" y="30" width="92" height="48" rx="8" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="3,3"></rect>
-          <circle cx="58" cy="46" r="2" fill="#34d399"></circle>
-          <circle cx="80" cy="44" r="2" fill="#34d399"></circle>
-          <circle cx="102" cy="46" r="2" fill="#34d399"></circle>
-          <circle cx="68" cy="60" r="2" fill="#34d399"></circle>
-          <circle cx="94" cy="60" r="2" fill="#34d399"></circle>
-          <text x="80" y="92" text-anchor="middle" font-size="9" fill="#34d399" font-weight="700">Al2O3 硬膜 5-15um</text>
-        </svg>
-        <div class="illus-cap"><b>阳极氧化</b>（硫酸阳极）<br>铝面生成硬膜，亚光发黑、耐候防蚀（★ 关键）</div>
-      </div>
-      <div class="illus">
-        <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
-          <defs><marker id="arr4" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#f87171"></path></marker></defs>
-          <rect x="28" y="64" width="104" height="26" rx="4" fill="#43537b" stroke="#94a6c7" stroke-width="1.5"></rect>
-          <line x1="122" y1="6" x2="82" y2="64" stroke="#f87171" stroke-width="2.5" marker-end="url(#arr4)"></line>
-          <text x="120" y="16" text-anchor="middle" font-size="9" fill="#f87171" font-weight="700">激光</text>
-          <rect x="42" y="72" width="7" height="7" fill="#e9efff"></rect>
-          <rect x="51" y="72" width="7" height="7" fill="#e9efff"></rect>
-          <rect x="60" y="80" width="7" height="7" fill="#e9efff"></rect>
-          <rect x="42" y="80" width="7" height="7" fill="#e9efff"></rect>
-          <rect x="69" y="72" width="7" height="7" fill="#e9efff"></rect>
-        </svg>
-        <div class="illus-cap"><b>镭雕</b>（大鹏激光）<br>刻追溯码，全生命周期可追、客诉可定位（★ 关键）</div>
-      </div>
-    </div>
-
-    <div class="flow-title" style="margin-top:18px;">7 道关键控制工序速览</div>
-    <div class="kc-grid">
-      <div class="kc"><span class="kc-no">2</span><div><div class="kc-name">压铸 <span class="star">★</span></div><div class="kc-eq">伊之密 T160 · 0.05mm · 良率 90%</div><div class="kc-pt">控模温 / 铝温 / 保压；气孔冷隔→整批报废</div></div></div>
-      <div class="kc"><span class="kc-no">4</span><div><div class="kc-name">CNC 铣 <span class="star">★</span></div><div class="kc-eq">兄弟 S500x1 · ±0.01mm · 良率 99%</div><div class="kc-pt">装夹 / 刀具补偿 / 切削参数；外形基准错→系统性偏心</div></div></div>
-      <div class="kc"><span class="kc-no">5</span><div><div class="kc-name">CNC 车 1 <span class="star">★</span></div><div class="kc-eq">北村 XKNC-204 · 0.002mm · 良率 95%</div><div class="kc-pt">主轴跳动 / 刀具磨损 / 冷却液；镜面孔→偏心≤0.3°与 MTF</div></div></div>
-      <div class="kc"><span class="kc-no">6</span><div><div class="kc-name">CNC 车 2 <span class="star">★</span></div><div class="kc-eq">北村 XKNC-204 · 0.002mm · 良率 95%</div><div class="kc-pt">一次装夹内 / 外 / 端面；卡口 / 密封 / 防护基准</div></div></div>
-      <div class="kc"><span class="kc-no">8</span><div><div class="kc-name">阳极氧化 <span class="star">★</span></div><div class="kc-eq">手动线 · 膜厚均匀 0.002mm · 98%</div><div class="kc-pt">槽温 / 电流 / 封孔；内壁光洁→杂光 VGI&lt;2.0%</div></div></div>
-      <div class="kc"><span class="kc-no">9</span><div><div class="kc-name">去氧化层 <span class="star">★</span></div><div class="kc-eq">兄弟 S500x1 · ±0.01mm · 良率 95%</div><div class="kc-pt">刀路 / 深度补偿 / 电阻 100% 测；电阻≤5Ω→EMC</div></div></div>
-      <div class="kc"><span class="kc-no">11</span><div><div class="kc-name">镭雕 <span class="star">★</span></div><div class="kc-eq">大鹏 · ±0.05mm · 良率 99%</div><div class="kc-pt">功率 / 焦距 / 码唯一；PPAP 追溯，召回可定位</div></div></div>
-    </div>
+    <div class="define"><b>释义：</b>镜筒加工工艺是把<b>铝锭（ADC12 压铸铝）</b>变成一只<b>几何精度达 ±0.002mm、亚光发黑、镜面级洁净</b>的镜头壳体的全部机加工与表面处理流程。它是镜头总装的上游——镜筒的<b>同轴度 / 圆度 / 端面平面度 / 镜面孔径</b>直接决定了后道组装的<b>偏心、MTF、杂光</b>，是「总装工艺能达标」的前提。下面按工序顺序逐一说明。</div>
 
     <div class="flow-title" style="margin-top:18px;">逐道工序详解（关键控制 ★ 已标）</div>
     <div class="step-toggle-row"><button class="step-toggle-btn" onclick="expandPanel(this, true)">▾ 全部展开</button><button class="step-toggle-btn" onclick="expandPanel(this, false)">▴ 全部收起</button><span style="font-size:11px;color:#8093b6;align-self:center;">点击单卡标题可单独展开</span></div>
@@ -3055,7 +3028,7 @@
 
     <div class="gate">
       <div style="font-weight:700;color:#fcd34d;margin-bottom:6px;">镜筒加工 vs 镜头总装：上游决定下游</div>
-      <div>镜筒是总装的上游，镜筒的 7 道关键控制工序决定了总装能不能达标：</div>
+      <div>镜筒是总装的上游，关键工序决定了总装能不能达标：</div>
       <div style="margin-top:6px;">
         <span class="k">工序 2 压铸 / 工序 5/6 CNC 车</span> → 决定 <b>镜筒同轴度 / 圆度</b> → 总装<b>偏心 ≤0.3°</b>
       </div>
@@ -3071,7 +3044,7 @@
       <div style="margin-top:8px;color:var(--dia-text);">镜筒加工做好了，<b>总装才有底气说 MTF / 场曲 / 畸变 / 杂光 / 偏心 / VGI 一次过</b>。</div>
     </div>
 
-    <div class="src">参考：<b>舜宇车载光学 · 镜筒加工流程图及关键控制要点</b>（一四、加工流程图及关键控制要点）。共 14 道工序，<b>7 道关键控制工序</b>（压铸 / CNC铣 / CNC车1 / CNC车2 / 阳极氧化 / 去除氧化层 / 镭雕），良率 90~100%，精度 0.002~0.05mm。数据以原图为准，规格随客户 / 产品线调整。</div>
+    <div class="src">参考：<b>舜宇车载光学 · 镜筒加工流程图及关键控制要点</b>。共 14 道工序，关键控制点在各步骤中以 ★ 标出（如压铸 / CNC车 / 阳极氧化 / 去氧化层 / 镭雕），良率 90~100%，精度 0.002~0.05mm。数据以原图为准，规格随客户 / 产品线调整。</div>
   </div>
 
   <!-- 工艺 · 子模块 3：A2A10J-701 镜筒工艺流程图 -->
@@ -3851,6 +3824,168 @@
     </div>
     <div class="note"><b>选型决策树：</b>① 温漂/耐候要求高 → 玻璃系（纯玻璃或 G+P）；② 成本/重量敏感、温区温和 → 塑料（首选 COP）；③ 既要非球面小型化又要温稳 → 模造玻璃；④ 量产降本 + 可靠 → G+P（玻璃压阵 + 塑料非球面）。镜片材料（见"镜片材料"）与面型（见"非球面/自由曲面"）是选型的两个正交维度。</div>
 
+  </div>
+
+  <!-- 工程图纸 · 标注符号子模块：视图与剖面 -->
+  <div class="panel" id="panel-symview">
+    <div class="define"><b>释义：</b>工程图用 <b>视图（View）</b> 表达"从哪个方向看"、用 <b>剖面（Section）</b> 表达"沿哪里切开看内部"。车载镜头图纸通常含主视图、若干局部放大视图（SCALE N:1）和若干剖视图（SECTION VIEW A-A），用来把镜筒内孔、隔圈、压圈、IR 槽这些 <b>内部特征</b> 表达清楚——只看外轮廓是看不出这些的。</div>
+    <p class="tagline">一句话：视图=从外看外形，剖面=切开看内部，放大=看清细节</p>
+    <div class="sym-group">
+      <div class="sym-gh">① 常用视图 / 剖面符号</div>
+      <div class="sym-grid">
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">VIEW ②</span></div><div class="sym-name">视图标签</div><div class="sym-desc">从一个固定方向投影得到的图；编号对应投影方向。</div><div class="sym-ex">VIEW No.2 / No.200–206</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="50" height="18" viewBox="0 0 50 18"><line x1="6" y1="9" x2="44" y2="9" stroke="var(--brand-700)" stroke-width="1.4"/><polygon points="6,9 1,5.5 1,12.5" fill="var(--brand-700)"/><polygon points="44,9 49,5.5 49,12.5" fill="var(--brand-700)"/><text x="11" y="7" font-size="8" fill="var(--brand-700)">A</text><text x="38" y="7" font-size="8" fill="var(--brand-700)">A</text></svg></div><div class="sym-name">剖切位置线</div><div class="sym-desc">假想剖切位置，两端带箭头与字母，与剖视图同名对应。</div><div class="sym-ex">A──►◄──A</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">SECTION</span></div><div class="sym-name">剖视图</div><div class="sym-desc">沿剖切线切开后看内部的图，名称与剖切位置线字母一致。</div><div class="sym-ex">SECTION VIEW AF-AF</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">10:1</span></div><div class="sym-name">局部放大</div><div class="sym-desc">该处放大 N 倍细看（螺纹、R角、倒角常用）。</div><div class="sym-ex">SCALE 10:1</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">ISO 2:1</span></div><div class="sym-name">轴测图</div><div class="sym-desc">立体总图，看整体形状与装配关系。</div><div class="sym-ex">ISOMETRIC 2:1</div></div>
+      </div>
+    </div>
+    <div class="note"><b>读图顺序：</b>先看标题栏与视图标签弄清"哪面正对"，再看剖切位置线 A—A 找到对应的 SECTION VIEW A-A，最后用 SCALE 放大视图核对局部尺寸。车载镜头最容易错的是把"剖视图里的壁厚"当成"外轮廓"——其实那是切开后的内部料厚。</div>
+  </div>
+
+  <!-- 工程图纸 · 标注符号子模块：基准与坐标系 -->
+  <div class="panel" id="panel-symdatum">
+    <div class="define"><b>释义：</b><b>基准（Datum）</b>是图纸上用来 <b>定位、测量、检验</b> 的参考面 / 轴 / 点。车载镜头靠一组基准把"镜片光轴、镜筒端面、螺纹基准"统一到同一个坐标系（RPS：参考点系统），装夹和全尺寸检验都以此找正。基准错了，所有尺寸都跟着偏。</div>
+    <p class="tagline">一句话：基准=测量的"坐标原点"，装夹和检验都先找它</p>
+    <div class="sym-group">
+      <div class="sym-gh">① 基准符号</div>
+      <div class="sym-grid">
+        <div class="sym-card"><div class="sym-glyph"><svg width="42" height="22" viewBox="0 0 42 22"><rect x="2" y="3" width="18" height="16" rx="2" fill="none" stroke="var(--brand-700)" stroke-width="1.4"/><text x="11" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="var(--brand-700)">A</text><line x1="20" y1="11" x2="39" y2="11" stroke="var(--brand-700)" stroke-width="1.4"/><polygon points="39,11 34,8 34,14" fill="var(--brand-700)"/></svg></div><div class="sym-name">基准特征符号</div><div class="sym-desc">带字母的方框 = 基准；引线指到实际面/轴。</div><div class="sym-ex">DATUM A[PL]</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">[PL]/[SL]</span></div><div class="sym-name">基准类型</div><div class="sym-desc">框后括号：PL=平面，SL=直线，CA=圆柱。</div><div class="sym-ex">B[SL] 光机轴 / F[PL]</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">RPS</span></div><div class="sym-name">参考点系统</div><div class="sym-desc">X/Y/Z 三轴定位基准，装夹/检测找正用。</div><div class="sym-ex">RPS X/Y/Z-AXIS</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">⌖ 轴</span></div><div class="sym-name">光机轴</div><div class="sym-desc">镜片光轴（基准 B），过全局坐标原点。</div><div class="sym-ex">OPTOMECHANICAL AXIS</div></div>
+      </div>
+    </div>
+    <div class="note"><b>为什么重要：</b>形位公差框格里的字母（如 ⊥ 0.02 A）都指向基准 A。基准 A 通常取镜筒大端面 + 内孔，基准 B 取光机轴。三坐标测量、AA 主动对准、全尺寸检验全部以这套基准为参考——它是"图纸语言"里最不能含糊的部分。</div>
+  </div>
+
+  <!-- 工程图纸 · 标注符号子模块：尺寸与公差 -->
+  <div class="panel" id="panel-symdim">
+    <div class="define"><b>释义：</b>尺寸标注给出"该做多大"，公差给出"允许偏差多少"。车载镜头对尺寸极敏感——<b>镜片间隔 ±5µm 就让 MTF 掉 5~10%</b>，所以图纸上几乎每个关键尺寸都带公差。常见标注：线性尺寸 ±公差、直径 ⌀、半径 R、参考尺寸 ( )、特征标注号 No.xxx。</div>
+    <p class="tagline">一句话：尺寸=目标值，公差=容差带，超差就废</p>
+    <div class="sym-group">
+      <div class="sym-gh">① 常用尺寸 / 公差符号</div>
+      <div class="sym-grid">
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">No.200</span></div><div class="sym-name">特征标注号</div><div class="sym-desc">指向一个具体特征，旁附尺寸/公差。</div><div class="sym-ex">No.200–No.206</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">2.35±0.1</span></div><div class="sym-name">尺寸±公差</div><div class="sym-desc">线性尺寸允许的上下偏差。</div><div class="sym-ex">2.35±0.1</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="22" height="14" viewBox="0 0 22 14"><circle cx="8" cy="7" r="5.5" fill="none" stroke="var(--brand-700)" stroke-width="1.4"/><line x1="14" y1="3" x2="20" y2="11" stroke="var(--brand-700)" stroke-width="1.4"/></svg></div><div class="sym-name">直径 ⌀</div><div class="sym-desc">圆特征的直径。</div><div class="sym-ex">⌀ / 13.546</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">4×R1.15</span></div><div class="sym-name">半径 / 数量</div><div class="sym-desc">R=圆角；数字×=相同特征几处。</div><div class="sym-ex">4× R 1.15</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="sm">(7.4)</span></div><div class="sym-name">参考尺寸</div><div class="sym-desc">括号包住 = 仅供参考，不检验。</div><div class="sym-ex">(7.4)</div></div>
+        <div class="sym-card"><div class="sym-glyph"><svg width="26" height="20" viewBox="0 0 26 20"><path d="M4 17 L13 5 L22 17" fill="none" stroke="var(--brand-700)" stroke-width="1.6"/><text x="6" y="16" font-size="8" fill="var(--brand-700)">Ra</text></svg></div><div class="sym-name">表面粗糙度</div><div class="sym-desc">表面微观不平度，Ra 越小越光。</div><div class="sym-ex">Ra 1.6</div></div>
+      </div>
+    </div>
+    <div class="note"><b>读尺寸的三条铁律：</b>① 先看基本尺寸再读公差，<b>公差带才是真正的"合格区间"</b>；② 带 ( ) 的是参考尺寸，不检验只核对；③ ⌀ 后面跟的是直径不是半径。车载镜头镜面孔径公差常到 ±0.002mm，必须用三坐标而非卡尺。</div>
+  </div>
+
+  <!-- 工程图纸 · 标注符号子模块：形位公差几何特性 -->
+  <div class="panel" id="panel-symgeo">
+    <div class="define"><b>释义：</b><b>形位公差（GD&amp;T）</b>控制"形状与位置"的偏差，比单纯尺寸更能保证装配与成像。框格读作 <b>"几何特性符号 + 公差值 + 基准字母"</b>。例如 <b>⊥ 0.02 A</b> = 垂直度误差 ≤0.02，相对基准 A。车载镜头最常用：同轴度（◎，决定偏心）、平面度（▱，决定镜片面贴合）、位置度（⌖，决定孔位）。</div>
+    <p class="tagline">一句话：框格 = 几何特性 + 公差 + 基准，管的是"形状位置"</p>
+    <div class="sym-group">
+      <div class="sym-gh">① 几何特性符号（框格里第一个图形）</div>
+      <div class="sym-grid">
+        <div class="sym-card"><div class="sym-glyph"><svg width="22" height="12" viewBox="0 0 22 12"><polygon points="2,9 11,3 20,3 11,9" fill="none" stroke="var(--brand-700)" stroke-width="1.5"/></svg></div><div class="sym-name">平面度</div><div class="sym-desc">表面有多平。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">⊥</span></div><div class="sym-name">垂直度</div><div class="sym-desc">与基准面/轴成 90° 的偏差。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">∥</span></div><div class="sym-name">平行度</div><div class="sym-desc">与基准面/轴平行的偏差。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">∠</span></div><div class="sym-name">倾斜度</div><div class="sym-desc">与基准成规定角度的偏差。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">⌖</span></div><div class="sym-name">位置度</div><div class="sym-desc">实际位置相对理论位置的偏移。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">◎</span></div><div class="sym-name">同轴/同心度</div><div class="sym-desc">轴线/圆心对基准的同轴偏差。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">⌓</span></div><div class="sym-name">圆柱度</div><div class="sym-desc">整圆柱面形状的偏差。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">○</span></div><div class="sym-name">圆度</div><div class="sym-desc">单个截圆的圆整程度。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">⌰</span></div><div class="sym-name">全跳动</div><div class="sym-desc">绕基准整周表面的综合跳动。</div></div>
+        <div class="sym-card"><div class="sym-glyph"><span class="gd">⌯</span></div><div class="sym-name">圆跳动</div><div class="sym-desc">单截面的径向/端面跳动。</div></div>
+      </div>
+    </div>
+    <div class="note"><b>怎么读一个形位公差框格：</b>从左到右——① 第一个图形是几何特性（如 ⊥ 垂直度）；② 紧跟的数字是公差值（0.02）；③ 后面的字母是被控基准（A）。多基准按优先级排 G/D/C。车载镜头里 <b>◎ 同轴度 ≤0.3°</b> 直接等于"偏心"指标，是 MTF 的命脉；<b>▱ 平面度</b> 不好会让镜片贴合不严、引入杂光。</div>
+  </div>
+
+  <!-- 材料与镜片 · OTS 光学件 -->
+  <div class="panel" id="panel-ots">
+    <div class="define"><b>释义：</b><b>OTS（Off-The-Shelf，货架光学件）</b>指 <b>不按你的镜头规格定制、直接从供应商标准品目录里选的现成光学元件</b>——标准焦距镜头、通用滤光片、标准 MP 镜头、CCTV 镜头、现成棱镜/反射镜等。与之相对的是 <b>定制件（Custom / 按图加工）</b>：专为某项目设计、开模、调参。</div>
+    <p class="tagline">一句话：OTS=现成货架货，定制=按你规格专门做</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">什么时候用 OTS</div><div class="enc-b"><b>① 研发样机 / PoC：</b>快速搭验证平台，不等 8~12 周开模。<br><b>② 非核心工位：</b>舱内监控、电子后视镜流媒体等对像质要求宽松处。<br><b>③ 低成本项目：</b>避开 NRE（开模费）与最小起订量。</div></div>
+      <div class="enc-card"><div class="enc-h">什么时候必须定制</div><div class="enc-b"><b>车载前视/环视/ADAS：</b>要满足特定 FOV、FNO、MTF、耐温、EMC——标准品几乎不可能全覆盖。<br><b>尺寸受限：</b>镜头必须塞进保险杠/后视镜壳体，形状要按空间定制。</div></div>
+      <div class="enc-card"><div class="enc-h">OTS 的代价</div><div class="enc-b"><b>性能折中：</b>规格是供应商定的，你的光学指标只能"将就"。<br><b>升级风险：</b>供应商停产/改版你就被动；车载长生命周期（10+ 年）难保证持续供货。<br><b>车规：</b>多数标准品不过 AEC-Q102 / 不做 PPAP。</div></div>
+    </div>
+    <div class="note"><b>工程判断：</b>OTS 不是"低档"，而是"时间/成本/性能"的权衡工具。车载项目里常见用法是 <b>样机阶段用 OTS 快速验证算法，SOP 阶段切换到定制件</b> 以保证车规与指标。若要在量产里用 OTS，必须把它当成"供应商零件"走完整的 PPAP + 变更管控，而不是当乐高随便换。</div>
+  </div>
+
+  <!-- 质量工具 · IQC 来料检验概述 -->
+  <div class="panel" id="panel-iqc">
+    <div class="define"><b>释义：</b><b>IQC（Incoming Quality Control，来料质量控制）</b>是物料 <b>进厂后、上线前</b> 的一道把关：按抽样方案检验镜片、镜筒、隔圈、IR 滤片、sensor 等来料，合格才放行上线，不合格退货/特采。它是"制造→测量→反馈"闭环的地基——<b>来料尺寸/镀膜不达标，后续组装再好也救不回 MTF</b>。</div>
+    <p class="tagline">一句话：IQC=上线前的来料守门员，挡住不良毛坯</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">流程</div><div class="enc-b">到货 → 核对采购单/材质书 → <b>抽样（AQL）</b> → 检验（尺寸/外观/性能）→ 判定合格/退货/特采 → 录入追溯。</div></div>
+      <div class="enc-card"><div class="enc-h">抽样方案 AQL</div><div class="enc-b">Acceptable Quality Limit：按批量大小抽 n 件，允许 c 件不良。车载关键件常取 AQL 0.65~1.0（严）；非关键件 1.5~2.5（松）。</div></div>
+      <div class="enc-card"><div class="enc-h">与 IPQC/OQC 区别</div><div class="enc-b"><b>IQC</b> 管来料、<b>IPQC</b> 管过程（产线巡检）、<b>OQC</b> 管成品出货。三者首尾呼应，IQC 是源头。</div></div>
+    </div>
+    <div class="kv">
+      <dt>常用检具</dt><dd>三坐标 CMM（形位/尺寸）、气规（内径/外径）、塞规/卡规（通止）、影像仪 VMM（轮廓/半径）、粗糙度仪、膜厚仪、分光光度计（镀膜反射/透过）。</dd>
+      <dt>判定原则</dt><dd>关键尺寸 100% 或加严抽检；外观按限度样板；性能按规格下限。退货要开 NCR + 8D 反馈供应商。</dd>
+    </div>
+    <div class="note"><b>为什么 IQC 在车载特别重：</b>车规要求可追溯 + 零缺陷导向，来料一旦带隐患（如镜片微裂纹、镀膜脱层），到终检才发现就整批报废。所以车载 IQC 往往配 <b>来料全检线 + 自动化量仪</b>，并把数据进 SPC，异常触发供应商停供。</div>
+  </div>
+
+  <!-- 质量工具 · IQC 三坐标 -->
+  <div class="panel" id="panel-iqc-cmm">
+    <div class="define"><b>释义：</b><b>三坐标测量机（CMM，Coordinate Measuring Machine）</b>用 <b>探针在 X/Y/Z 三轴空间触碰或扫描工件表面</b>，把"位置"转成坐标，算出尺寸、形状、位置公差（平面度、圆度、同轴度、位置度等）。是 IQC 里量 <b>复杂三维几何</b> 的"金标准"。</div>
+    <p class="tagline">一句话：探针走三维，把"形状位置"量成数字</p>
+    <div class="kv">
+      <dt>原理</dt><dd>工件不动，探针按程序在 X/Y/Z 移动，触测点云 → 拟合要素（平面/圆/圆柱/曲面）→ 与数模比对得偏差。</dd>
+      <dt>精度</dt><dd>桥式 CMM 可达 ±1~2µm；车载镜筒/镜片的形位公差（同轴 ≤0.005mm）靠它把控。</dd>
+      <dt>测什么</dt><dd>镜筒内孔圆度/圆柱度、端面平面度、各特征位置度、镜片外径/中心厚、隔圈高度。</dd>
+    </div>
+    <div class="note"><b>注意：</b>CMM 测的是 <b>静态几何</b>，不测光学性能（MTF 要上逆光路设备）。温度要稳（20±1℃），工件要恒温去应力，否则铝件温漂直接吃掉精度。车载来料多 <b>抽检 5%</b> 而非全检——全检太慢，关键特征才上 CMM。</div>
+  </div>
+
+  <!-- 质量工具 · IQC 气规 -->
+  <div class="panel" id="panel-iqc-air">
+    <div class="define"><b>释义：</b><b>气规 / 气动量仪（Air Gauge）</b>利用 <b>压缩空气在测头与工件间隙的流量/压力变化</b> 来测尺寸，特别擅长 <b>内径、外径、槽宽</b> 这类"孔轴类"高精度测量，分辨率可达 0.1µm 级，且 <b>非接触、不伤工件</b>。</div>
+    <p class="tagline">一句话：靠气隙变化量内径外径，快又准还不碰工件</p>
+    <div class="kv">
+      <dt>原理</dt><dd>恒压气源从测头小孔喷出，工件靠近→气隙变小→背压升高；背压与间隙呈确定关系，标定后即读尺寸。</dd>
+      <dt>强项</dt><dd>镜筒 <b>内孔直径</b>、镜片外径、隔圈高度、薄壁件——这些卡尺测不准或会压变形的，气规最稳。</dd>
+      <dt>特点</dt><dd>测头不接触工件 → 无划伤、可高速 100% 全检；但对气源洁净度/温度敏感，需定期标定。</dd>
+    </div>
+    <div class="note"><b>和塞规的区别：</b>塞规只告诉你"通/止"（合格与否），气规能告诉你 <b>"具体差多少 µm"</b>，更适合 SPC 趋势分析。车载镜筒内孔（镜面级、±0.002mm）常 <b>气规 100% 全检</b>，数据直接进控制图监控刀具磨损趋势。</div>
+  </div>
+
+  <!-- 质量工具 · IQC 塞规卡规 -->
+  <div class="panel" id="panel-iqc-plug">
+    <div class="define"><b>释义：</b><b>塞规（Plug Gauge）/ 卡规（Snap Gauge）</b>是 <b>通止规（Go-NoGo）</b>：塞规量孔（通端能进、止端不能进才算合格），卡规量轴/厚度（通端能卡过、止端卡不过）。它不读数，只判 <b>"在公差带内 / 不在"</b>，是产线最快的合格判定工具。</div>
+    <p class="tagline">一句话：通得过+止不住=合格，只判合格不报数值</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">塞规（量孔/内径）</div><div class="enc-b">GO 端 = 孔最小极限，应能通过；NOGO 端 = 孔最大极限，应不能通过。用于镜筒内孔、螺纹底孔。</div></div>
+      <div class="enc-card"><div class="enc-h">卡规（量轴/外径/厚度）</div><div class="enc-b">GO 端 = 轴最大极限，应能通过；NOGO 端 = 轴最小极限，应不能通过。用于镜片外径、隔圈高度、压圈厚度。</div></div>
+      <div class="enc-card"><div class="enc-h">为什么还在用</div><div class="enc-b">便宜、快、不依赖操作员读数、适合 <b>100% 全检</b> 与工位随手测。但只给"合格/不合格"，无趋势数据。</div></div>
+    </div>
+    <div class="note"><b>使用铁律：</b>① 通止规有 <b>磨损极限</b>，超期必须校准/报废；② "通端通、止端止"才算合格，任一项反了都判废；③ 不能替代 CMM/气规做 SPC——它不产出数值，趋势分析要靠能读数的量仪。车载产线常是"塞规/卡规 100% 快筛 + CMM/气规 抽检监控"。</div>
+  </div>
+
+  <!-- 质量工具 · IQC 影像投影仪 -->
+  <div class="panel" id="panel-iqc-image">
+    <div class="define"><b>释义：</b><b>影像测量仪（VMM，Vision Measuring Machine）/ 轮廓投影仪</b>用 <b>光学放大 + CCD 成像</b> 非接触测量二维轮廓、半径、角度、距离，特别适合 <b>镜片轮廓、R角、倒角、螺牙、小特征</b>——这些是接触式探针难测或会压变形的。</div>
+    <p class="tagline">一句话：镜头放大成像，非接触量二维轮廓与半径</p>
+    <div class="kv">
+      <dt>影像测量仪 VMM</dt><dd>CCD 拍工件 + 软件边缘提取，量 2D 尺寸/角度/R 角；可加激光测高做 2.5D。适合镜片外轮廓、非球面面型比对、小螺纹。</dd>
+      <dt>轮廓投影仪</dt><dd>工件放大投影到屏幕，与标准放大图比对（"二次元"）。适合快速看轮廓形状、倒角、齿形。</dd>
+      <dt>优势</dt><dd>非接触 → 不伤镜片镀膜；快；对小特征友好。分辨率微米级。</dd>
+    </div>
+    <div class="note"><b>局限：</b>只能量 <b>表面可见的 2D 特征</b>，测不了内部形位（那是 CMM 的活）；透明镜片要打背光/加轮廓光才能看清边缘。车载镜片来料常 <b>VMM 抽检轮廓 + 投影仪比对样板</b>，配合 CMM 做完整 IQC。</div>
+  </div>
+
+  <!-- 质量工具 · IQC 其他量具 -->
+  <div class="panel" id="panel-iqc-other">
+    <div class="define"><b>释义：</b>除了 CMM/气规/塞卡规/影像仪，IQC 还配一组 <b>专项量具</b> 来覆盖"那些主流量仪不擅长"的尺寸：螺纹、表面粗糙度、镀膜厚度、镀膜光谱。它们互补构成完整的来料检验能力。</div>
+    <p class="tagline">一句话：螺纹/粗糙度/膜厚/光谱，各用各的专项量具</p>
+    <div class="enc-grid">
+      <div class="enc-card"><div class="enc-h">螺纹量规</div><div class="enc-b">螺纹塞规/环规（通止）检验镜筒螺牙中径/节距；三针法量精密螺距。卡口螺纹靠它把关防水/装配。</div></div>
+      <div class="enc-card"><div class="enc-h">粗糙度仪</div><div class="enc-b">触针扫描表面得 Ra/Rz。镜筒内壁 Ra、镜片边缘光洁度靠它；粗糙度过大会生杂光/密封不良。</div></div>
+      <div class="enc-card"><div class="enc-h">膜厚仪</div><div class="enc-b">XRF/涡流测阳极氧化膜厚（5~15µm）、镀膜层厚。膜厚不均→色差/防护差，是车载耐候关键。</div></div>
+      <div class="enc-card"><div class="enc-h">分光光度计</div><div class="enc-b">测镜片/IR 滤片 <b>反射率/透过率曲线</b>，验证 AR 镀膜与 IR-Cut 截止波长是否达标。</div></div>
+    </div>
+    <div class="note"><b>量具组合逻辑：</b>CMM（三维形位）+ 气规（孔轴快全检）+ 塞卡规（通止快筛）+ VMM/投影（二维轮廓）+ 专项（螺纹/粗糙度/膜厚/光谱）= 来料 <b>"尺寸 + 形位 + 表面 + 镀膜"</b> 全覆盖。任何单一种量仪都有盲区，组合才能兜底车载"零缺陷"诉求。</div>
   </div>
 
         </div><!-- /#browse -->
@@ -5269,7 +5404,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 87;
+  var VER_TOTAL = 98;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -5382,7 +5517,9 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     { id:'forest', name:'暗夜绿', desc:'青绿 · 护眼长阅', c1:'#34d399', c2:'#10b981', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19C9 13 14 9 19 7"/></svg>' },
     { id:'darkpink', name:'黑粉', desc:'纯黑×纯粉 · Blackpink', c1:'#ff0077', c2:'#ff3399', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C5 15 3 11 3 8.2A4.3 4.3 0 0 1 12 6.6 4.3 4.3 0 0 1 21 8.2C21 11 19 15 12 21z"/></svg>' },
     { id:'mint', name:'薄荷绿', desc:'明亮薄荷 · 清爽护眼', c1:'#059669', c2:'#0d9488', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18C6 10 12 5 20 5c0 8-6 13-14 13z"/><path d="M6 18 18 6"/></svg>' },
-    { id:'glass', name:'毛玻璃', desc:'Apple 风 · 通透磨砂', c1:'#0a84ff', c2:'#5e5ce6', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M9 9.6c1.7-1 3.6-1.2 4.8-.3" stroke-width="1.4"/><circle cx="9.4" cy="9.4" r=".9" fill="currentColor" stroke="none"/></svg>' },
+    { id:'clay', name:'黏土软3D', desc:'暖奶油 · 充气软糖', c1:'#ff8a5b', c2:'#ffb088', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="7"/><path d="M9 9.5c1.4-1 3-.8 3.8.2" stroke-width="1.5"/></svg>' },
+    { id:'y2k', name:'千禧复古', desc:'铬金属 · 冰蓝品红', c1:'#00cfe6', c2:'#ff2d95', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><circle cx="18" cy="18" r="1.6"/></svg>' },
+    { id:'brutalism', name:'新野兽派', desc:'粗黑描边 · 硬阴影', c1:'#ffe600', c2:'#ff3df0', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16"/><rect x="7" y="7" width="11" height="11" fill="currentColor" stroke="none"/></svg>' },
   ];
   /* ===== 音效引擎（Web Audio 振荡器合成，离线零外部文件） ===== */
   var Sound = (function(){
@@ -5429,9 +5566,18 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
           tone(60, n, 0.14, 'sine', 0.19, 40);
           tone(330, n+0.02, 0.10, 'triangle', 0.07);
           break;
-        case 'glass': // Apple 风柔和"叮"——清亮铃音
-          tone(1318.5, n, 0.5, 'sine', 0.06);
-          tone(1976, n+0.02, 0.42, 'sine', 0.03);
+        case 'clay': // 软糖弹跳：柔和双音
+          tone(523, n, 0.10, 'sine', 0.08);
+          tone(784, n+0.08, 0.14, 'sine', 0.07);
+          break;
+        case 'y2k': // 千禧：银色扫频 + 高音叮
+          tone(659, n, 0.08, 'triangle', 0.07, 1318);
+          tone(988, n+0.06, 0.10, 'sine', 0.06);
+          tone(1568, n+0.12, 0.08, 'sine', 0.05);
+          break;
+        case 'brutalism': // 野兽派：方波敲击
+          tone(140, n, 0.06, 'square', 0.12);
+          tone(220, n+0.05, 0.08, 'square', 0.10);
           break;
         default: // 深空 正弦琶音
           tone(392, n, 0.12, 'sine', 0.09);
@@ -5553,7 +5699,52 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   /* ---- 首页关键词搜索 ---- */
   function goToItem(id){
     var it=null; for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id===id){ it=ITEMS[i]; break; } }
-    if(it){ showCat(it.cat); showView('home'); var t=document.getElementById('tab-'+id); if(t) t.click(); window.scrollTo({top:0,behavior:'smooth'}); }
+    if(it){ showCat(it.cat); showView('home'); var t=document.getElementById('tab-'+id); if(t) t.click(); var p=document.getElementById('panel-'+id); if(p){ setTimeout(function(){ p.scrollIntoView({behavior:'smooth', block:'start'}); }, 80); } }
+  }
+
+  /* ===== 总目录卡片墙（默认视图导航） ===== */
+  function getCataQ(){ var i=document.getElementById('cataSearch'); return i?i.value:''; }
+  function renderCatalog(cat, q){
+    var wall=document.getElementById('cataWall'); if(!wall) return;
+    q=(q||'').trim().toLowerCase();
+    var groups={};
+    ITEMS.forEach(function(it){
+      if(cat!=='all' && it.cat!==cat) return;
+      var hay=(it.title+' '+(it.en||'')+' '+(CATNAME[it.cat]||'')).toLowerCase();
+      if(q && hay.indexOf(q)<0) return;
+      (groups[it.cat]=groups[it.cat]||[]).push(it);
+    });
+    var order = cat==='all' ? Object.keys(CATNAME) : [cat];
+    var html=''; var any=false;
+    order.forEach(function(c){
+      var arr=groups[c]; if(!arr||!arr.length) return; any=true;
+      html += '<div class="cata-group"><div class="cata-group-h">'+CATNAME[c]+'<span class="badge">'+arr.length+'</span></div><div class="cata-grid">';
+      arr.forEach(function(it){
+        html += '<div class="cata-card" data-go="'+it.id+'"><div class="cc-t">'+it.title+'</div>'+(it.en?'<div class="cc-e">'+it.en+'</div>':'')+'</div>';
+      });
+      html += '</div></div>';
+    });
+    if(!any) html='<div class="cata-empty">没有匹配「'+q+'」的知识点，换个关键词试试</div>';
+    wall.innerHTML=html;
+    wall.querySelectorAll('.cata-card').forEach(function(card){
+      card.addEventListener('click', function(){ goToItem(card.dataset.go); });
+    });
+  }
+  var currentCat='all';
+  function buildCatalog(){
+    var pills=document.getElementById('cataPills'); if(!pills) return;
+    var ph='<button class="cata-pill active" data-cat="all">全部</button>';
+    Object.keys(CATNAME).forEach(function(c){ ph+='<button class="cata-pill" data-cat="'+c+'">'+CATNAME[c]+'</button>'; });
+    pills.innerHTML=ph;
+    pills.querySelectorAll('.cata-pill').forEach(function(b){
+      b.addEventListener('click', function(){
+        pills.querySelectorAll('.cata-pill').forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+        currentCat=b.dataset.cat;
+        renderCatalog(currentCat, getCataQ());
+      });
+    });
+    renderCatalog('all','');
   }
   var hsInput = document.getElementById('hsInput');
   var hsClear = document.getElementById('hsClear');
@@ -5580,11 +5771,16 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   if(hsInput){ hsInput.addEventListener('input', function(){ if(hsTimer) clearTimeout(hsTimer); var v=hsInput.value; hsTimer=setTimeout(function(){ doSearch(v); }, 120); });
     hsInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ if(hsTimer) clearTimeout(hsTimer); doSearch(hsInput.value); } }); }
   if(hsClear){ hsClear.addEventListener('click', function(){ hsInput.value=''; doSearch(''); hsInput.focus(); }); }
-  applyTheme(LS.get('optics_theme','space'));
-  if(LS.get('optics_reduce_motion',false)) document.documentElement.classList.add('reduce-motion');
-  updateProg();
-  initParticles();
-  showView('home');
+    applyTheme(LS.get('optics_theme','space'));
+    if(LS.get('optics_reduce_motion',false)) document.documentElement.classList.add('reduce-motion');
+    updateProg();
+    initParticles();
+    buildCatalog();
+    var cataInput=document.getElementById('cataSearch');
+    var cataClear=document.getElementById('cataClear');
+    if(cataInput) cataInput.addEventListener('input', function(){ renderCatalog(currentCat, cataInput.value); });
+    if(cataClear) cataClear.addEventListener('click', function(){ if(cataInput) cataInput.value=''; renderCatalog(currentCat, ''); });
+    showView('home');
 })();
 </script>
 
