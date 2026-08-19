@@ -1204,12 +1204,12 @@
       <button class="nav-item" data-page="favorites"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></span><span class="ni-lb">收藏</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0zM14.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0z"/><path d="M9.5 12h5"/></svg></span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.4.1 · 2026-08-19<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.4.2 · 2026-08-19<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">83 个知识点</span>
+      <span class="tb-prog" id="tbProg">87 个知识点</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -1230,7 +1230,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.4.1 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.4.2 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 17</span>
@@ -1239,7 +1239,7 @@
         <span class="hero-chip">工艺制造 · 3</span>
         <span class="hero-chip">工程图纸 · 2</span>
         <span class="hero-chip">模组与系统 · 11</span>
-        <span class="hero-chip">材料与镜片 · 3</span>
+        <span class="hero-chip">材料与镜片 · 7</span>
         <span class="hero-chip">应用场景 · 10</span>
       </div>
     </div>
@@ -1251,7 +1251,7 @@
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
-          <div class="rand-hero-desc">从 83 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
+          <div class="rand-hero-desc">从 87 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
         </div>
       </div>
       <div class="rand-hero-btn">探索 →</div>
@@ -1303,7 +1303,7 @@
       <div class="cat-nav-item" id="cat-material" onclick="showCat('material')">
         <span class="cn-ic">💎</span>
         <span class="cn-lb">材料与镜片<span class="cn-en">Materials & Lens</span></span>
-        <span class="cn-count">3</span>
+        <span class="cn-count">7</span>
       </div>
       <div class="cat-nav-item" id="cat-application" onclick="showCat('application')">
         <span class="cn-ic">🚗</span>
@@ -1464,6 +1464,10 @@
     <div class="tab active" id="tab-lensmat" onclick="showTab('lensmat')">镜片材料<span class="en">玻璃/塑料</span></div>
     <div class="tab" id="tab-coating" onclick="showTab('coating')">镀膜工艺<span class="en">AR/IR</span></div>
     <div class="tab" id="tab-asphere" onclick="showTab('asphere')">非球面/自由曲面<span class="en">面型</span></div>
+    <div class="tab" id="tab-glasslens" onclick="showTab('glasslens')">玻璃镜片<span class="en">Glass</span></div>
+    <div class="tab" id="tab-plasticlens" onclick="showTab('plasticlens')">塑料镜片<span class="en">Plastic</span></div>
+    <div class="tab" id="tab-moldedlens" onclick="showTab('moldedlens')">模造镜片<span class="en">PGM/WGM</span></div>
+    <div class="tab" id="tab-lenscompare" onclick="showTab('lenscompare')">镜片选型对比<span class="en">Compare</span></div>
   </div>
   <div class="tabs" id="subtabs-application" style="display:none;">
     <div class="tab active" id="tab-layout" onclick="showTab('layout')">整车摄像头布局<span class="en">眼睛矩阵</span></div>
@@ -3790,6 +3794,65 @@
 
   </div>
 
+  <div class="panel" id="panel-glasslens">
+
+    <div class="define"><b>释义：</b><b>玻璃镜片（Glass Lens）</b>是用光学玻璃（冕牌 Crown / 火石 Flint）经<b>研磨 + 抛光</b>制成的透镜。特点是高折射率、低/可选色散、热膨胀系数小、耐刮耐磨、化学稳定，但重、贵，复杂非球面靠精密模造而非研磨。</div>
+    <p class="tagline">一句话：玻璃是温漂的"定海神针"，G+P 里压阵的那一片</p>
+    <div class="enc-list">
+      <li><b>材料牌号：</b>冕牌（如 BK7，nd≈1.517、νd≈64，低色散）校正球差；火石（SF 系列，nd 1.6~1.9、νd 低）校正色差；车规趋势用<b>无铅无砷环保牌号</b>（肖特/OHARA 绿色系列）。</li>
+      <li><b>核心特性：</b>CTE≈7~9 ppm/℃（塑料的 1/10）、莫氏硬度 5~6 耐刮、可见光透过 &gt;90%、密度 2.5~4.5 g/cm³（重）、−40~105℃ 不变形。</li>
+      <li><b>制造工艺：</b>① 玻璃熔炼/压型坯 → ② 粗磨定心 → ③ 精磨研削 → ④ 抛光（沥青/聚氨酯，达 λ/10~λ/4 面精度）→ ⑤ 定心磨边（光轴⊥机械轴）→ ⑥ 镀 AR+硬膜 → ⑦ 检验（曲率、中心厚、偏心、光圈 N/ΔN）。</li>
+      <li><b>非球面瓶颈：</b>传统研磨做非球面要靠数控补偿、极慢极贵；量产非球面玻璃转向<b>精密模造</b>（见"模造镜片"）。</li>
+    </div>
+    <div class="note"><b>为什么车载离不开玻璃——根因是温漂。</b>−40~105℃ 下塑料镜片焦距漂移可达数十微米，玻璃仅几微米；ADAS/前视/HUD/LiDAR 对视场与聚焦一致性要求高，必须用玻璃或 G+P 混合"压阵"。玻璃重 → 片数要少 → 倒逼高折射率与（模造）非球面设计来校正像差。</div>
+
+  </div>
+
+  <div class="panel" id="panel-plasticlens">
+
+    <div class="define"><b>释义：</b><b>塑料镜片（Plastic / Resin Lens）</b>是用光学树脂（PC / PMMA / COP）经<b>注塑成型（Injection Molding）</b>一次成型的透镜，可低成本量产复杂非球面、阵列透镜。特点是轻、便宜、能自由做非球面，但热膨胀大、吸湿、表面软。</div>
+    <p class="tagline">一句话：塑料轻、便宜、能注塑非球面，但怕热、怕潮、怕刮</p>
+    <div class="enc-list">
+      <li><b>材料选型：</b>PMMA（透光好、便宜，但吸水/双折射大、耐温低）；PC（韧性强、耐冲击，但双折射大需退火）；<b>COP/COC（环烯烃）</b>吸水极低、双折射小、尺寸稳，是车载非球面塑料首选。</li>
+      <li><b>核心特性：</b>密度 1.0~1.2 g/cm³（玻璃的 1/3~1/2）轻；一模多腔/阵列；非球面一次成形零额外工序；但 CTE≈60~70 ppm/℃（玻璃 10 倍）、吸水致焦距湿漂、表面软（需硬膜）、持续耐温 ≤90~105℃。</li>
+      <li><b>制造工艺：</b>① 镜面模具（硬质合金/钢，纳米级放电加工）→ ② 注塑（控温/保压/冷却）→ ③ 脱模（防顶白变形）→ ④ <b>退火</b>（消内应力、降双折射）→ ⑤ 镀硬膜+AR → ⑥ 检验（面型、翘曲、双折射、尺寸）。</li>
+      <li><b>工艺难点：</b>收缩率补偿（模流分析）、冷却翘曲、分子取向双折射（引入偏振像差）、模仁磨损寿命。</li>
+    </div>
+    <div class="note"><b>塑料最大的敌人是温漂和湿漂。</b>纯塑料前视主摄，夏天暴晒后焦距漂移会让边缘 MTF 崩掉——所以高端车载几乎都是 G+P（玻璃压阵 + 塑料非球面省片数）。塑料的真正优势在"非球面自由做"：这是降片数、减重、降本的关键杠杆，舱内/DMS/环视大量用 COP 塑料非球面。</div>
+
+  </div>
+
+  <div class="panel" id="panel-moldedlens">
+
+    <div class="define"><b>释义：</b><b>模造镜片（精密玻璃模造 PGM / Precision Glass Molding，也称 WGM）</b>是把玻璃预型件（blank）在高于玻璃化转变温度 Tg 的模具中<b>一次性压成非球面/自由曲面</b>，免去研磨抛光。兼得玻璃性能与非球面一次成形。</div>
+    <p class="tagline">一句话：模造 = 玻璃的性能 + 非球面一次成形，介于研磨与注塑之间</p>
+    <div class="enc-list">
+      <li><b>原理：</b>玻璃加热到 Tg+（约 500~700℃，依牌号）软化但不流动，用硬质模具（碳化钨 WC / 碳化硅 SiC / 镍基）高压压制成型 → 缓慢退火定形 → 脱模。</li>
+      <li><b>核心特性：</b>兼得玻璃优点（低 CTE、耐温、耐刮、高透过）与非球面（一次成形、面精度 λ/4~λ/2、可复杂面型）；尺寸一致性好、适合量产；但设备/模具贵、节拍慢于注塑、模具寿命受玻璃侵蚀限制（需脱模剂/特殊涂层）。</li>
+      <li><b>工艺链：</b>玻璃选型（低 Tg、低软化点、析晶倾向小，如 L-BAL/L-PH 系列）→ 预型件制备（冲压/切割小球）→ 模压（真空/惰性气氛防氧化、精密温控）→ 退火 → 精密定心 → 镀膜 → AOI。</li>
+      <li><b>对比赛道：</b>vs 研磨玻璃——省抛光、快、成本低；vs 注塑塑料——耐温耐刮但重、贵、慢。常见于手机潜望、车载 HUD 自由曲面、LiDAR 准直/聚焦、WLO 前道。</li>
+    </div>
+    <div class="note"><b>模造是"玻璃非球面平民化"的关键工艺。</b>车载里 HUD 自由曲面、LiDAR 准直/聚焦、DMS 小镜头大量用模造玻璃——既要玻璃的温稳，又要非球面的像差校正与小型化。它与注塑塑料是"同目标不同赛道"：温度/寿命要求高的选模造，成本/重量敏感的选注塑+硬膜。</div>
+
+  </div>
+
+  <div class="panel" id="panel-lenscompare">
+
+    <div class="define"><b>释义：</b><b>镜片选型对比</b>——玻璃、注塑塑料、模造玻璃三者按<b>折射率/温漂/重量/成本/耐候/非球面能力</b>权衡。没有绝对最好，只有最合适。</div>
+    <p class="tagline">一句话：温漂选玻璃，成本重量选塑料，既要又要选模造</p>
+    <div class="enc-list">
+      <li><b>折射率 nd：</b>玻璃 1.5~1.9（火石高）≈ 模造玻璃 1.5~1.8 ＞ 塑料 1.49~1.66（COP 偏低）。高 nd 可降曲率/片数。</li>
+      <li><b>温漂 CTE：</b>玻璃 ≈7~9 ≈ 模造玻璃 ≈7~9 ≪ 塑料 ≈60~70 ppm/℃。温漂敏感场景（前视/HUD/LiDAR）必须用玻璃系。</li>
+      <li><b>重量：</b>塑料 1.0~1.2 ≪ 玻璃/模造 2.5~4.5 g/cm³。减重优先选塑料。</li>
+      <li><b>耐刮/耐候：</b>玻璃 ≈ 模造玻璃（硬、耐刮、耐温）＞ 塑料（软、需硬膜、耐温有限）。</li>
+      <li><b>非球面能力：</b>模造玻璃（一次成形、复杂面型）≈ 塑料注塑（一次成形、阵列）＞ 传统研磨玻璃（难、贵）。</li>
+      <li><b>成本/节拍：</b>塑料注塑（最低、最快）＜ 模造玻璃（模具贵、慢）＜ 研磨玻璃（最高、最慢）。</li>
+      <li><b>典型车载用途：</b>玻璃/模造——前视长焦、HUD、LiDAR、高端主摄压阵片；塑料——舱内 DMS、环视、CMS；<b>G+P 混合</b>——兼顾温稳与减重降本的主流方案。</li>
+    </div>
+    <div class="note"><b>选型决策树：</b>① 温漂/耐候要求高 → 玻璃系（纯玻璃或 G+P）；② 成本/重量敏感、温区温和 → 塑料（首选 COP）；③ 既要非球面小型化又要温稳 → 模造玻璃；④ 量产降本 + 可靠 → G+P（玻璃压阵 + 塑料非球面）。镜片材料（见"镜片材料"）与面型（见"非球面/自由曲面"）是选型的两个正交维度。</div>
+
+  </div>
+
         </div><!-- /#browse -->
           </div><!-- /home-split -->
     </section><!-- /#view-home -->
@@ -5206,7 +5269,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 83;
+  var VER_TOTAL = 87;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
