@@ -1005,9 +1005,13 @@
   .tw-ic{ font-size:14px; width:18px; text-align:center; flex-shrink:0; }
   .tw-lb{ flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .tw-count{ font-size:10px; font-weight:700; color:var(--brand); background:rgba(91,140,255,.12); padding:1px 7px; border-radius:99px; flex-shrink:0; }
-  .tree-leafs{ display:flex; flex-direction:column; gap:1px; padding:1px 0 5px 21px; }
+  .tree-leafs{ position:relative; display:flex; flex-direction:column; gap:1px; padding:1px 0 6px 26px; }
+  .tree-leafs::before{ content:''; position:absolute; left:10px; top:2px; bottom:8px; width:1.5px; background:var(--line); border-radius:2px; }
   .tree-cat.collapsed .tree-leafs{ display:none; }
-  .tree-leaf{ display:block; width:100%; text-align:left; padding:5px 10px; border-radius:8px; border:none; background:transparent; color:#9fb0d0; font-size:12px; cursor:pointer; font-family:inherit; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:background .14s,color .14s; }
+  .tree-leaf{ position:relative; display:block; width:100%; text-align:left; padding:5px 8px 5px 0; border-radius:8px; border:none; background:transparent; color:#9fb0d0; font-size:12px; cursor:pointer; font-family:inherit; transition:background .14s,color .14s; }
+  .tree-leaf::before{ content:''; position:absolute; left:-16px; top:50%; width:15px; height:1.5px; background:var(--line); border-radius:2px; }
+  .tree-leaf::after{ content:''; position:absolute; left:-18.5px; top:50%; width:6px; height:6px; border-radius:50%; background:var(--brand); transform:translateY(-50%); box-shadow:0 0 0 2px rgba(91,140,255,.15); }
+  .tree-leaf .tl-t{ display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .tree-leaf:hover{ background:rgba(255,255,255,.06); color:#eaf1ff; }
   .tree-leaf.active{ background:linear-gradient(135deg,rgba(91,140,255,.22),rgba(124,108,255,.12)); color:#fff; }
   #homeCatNav{ display:none; }
@@ -1269,8 +1273,9 @@
   @media (max-width:860px){
     #sidebar{ display:flex; transform:translateX(-102%); width:80vw; max-width:330px; transition:transform .28s cubic-bezier(.4,0,.2,1); }
     #sidebar.open{ transform:none; box-shadow:0 0 44px rgba(0,0,0,.55); }
-    .tb-menu{ display:flex; }
-    #homeCatNav{ display:none !important; }
+    .tb-menu{ display:flex; order:3; }
+    #tbProg{ order:-1; }
+    #homeCatNav{ display:flex; }
     #main{ margin-left:0; }
     #bottomtab{ display:flex; }
     #topbar{ padding:12px 16px; }
@@ -1355,7 +1360,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.5.3 · 2026-08-19<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.5.4 · 2026-08-19<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1383,7 +1388,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.5.3 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.5.4 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 16</span>
@@ -5788,8 +5793,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     var html='';
     Object.keys(CATNAME).forEach(function(c){
       var arr=groups[c]||[]; if(!arr.length) return;
-      html+='<div class="tree-cat" data-cat="'+c+'"><button class="tree-cat-h" type="button"><span class="tw-arrow">▾</span><span class="tw-ic">'+CAT_ICON[c]+'</span><span class="tw-lb">'+CATNAME[c]+'</span><span class="tw-count">'+arr.length+'</span></button><div class="tree-leafs">';
-      arr.forEach(function(it){ html+='<button class="tree-leaf" type="button" data-go="'+it.id+'" data-title="'+((it.title+' '+(it.en||'')).toLowerCase().replace(/"/g,'').replace(/'/g,''))+'">'+it.title+'</button>'; });
+      html+='<div class="tree-cat collapsed" data-cat="'+c+'"><button class="tree-cat-h" type="button"><span class="tw-arrow">▾</span><span class="tw-ic">'+CAT_ICON[c]+'</span><span class="tw-lb">'+CATNAME[c]+'</span><span class="tw-count">'+arr.length+'</span></button><div class="tree-leafs">';
+      arr.forEach(function(it){ html+='<button class="tree-leaf" type="button" data-go="'+it.id+'" data-title="'+((it.title+' '+(it.en||'')).toLowerCase().replace(/"/g,'').replace(/'/g,''))+'"><span class="tl-t">'+it.title+'</span></button>'; });
       html+='</div></div>';
     });
     nav.innerHTML=html;
