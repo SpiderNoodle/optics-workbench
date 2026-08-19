@@ -1204,12 +1204,12 @@
       <button class="nav-item" data-page="favorites"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></span><span class="ni-lb">收藏</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0zM14.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0z"/><path d="M9.5 12h5"/></svg></span><span class="ni-lb">设置</span></button>
     </nav>
-    <div class="side-foot">v0.4.0 · 2026-08-19<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.4.1 · 2026-08-19<br>离线可用 · 单文件</div>
   </aside>
   <main id="main">
     <header id="topbar">
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">75 个知识点</span>
+      <span class="tb-prog" id="tbProg">83 个知识点</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -1230,17 +1230,17 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.4.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.4.1 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-19</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
-        <span class="hero-chip">光学基础 · 14</span>
+        <span class="hero-chip">光学基础 · 17</span>
         <span class="hero-chip">信赖性·车规 · 10</span>
         <span class="hero-chip">设备与仪器 · 5</span>
         <span class="hero-chip">工艺制造 · 3</span>
         <span class="hero-chip">工程图纸 · 2</span>
-        <span class="hero-chip">模组与系统 · 8</span>
+        <span class="hero-chip">模组与系统 · 11</span>
         <span class="hero-chip">材料与镜片 · 3</span>
-        <span class="hero-chip">应用场景 · 8</span>
+        <span class="hero-chip">应用场景 · 10</span>
       </div>
     </div>
     <!-- 随机知识入口 -->
@@ -1251,7 +1251,7 @@
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
-          <div class="rand-hero-desc">从 75 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
+          <div class="rand-hero-desc">从 83 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
         </div>
       </div>
       <div class="rand-hero-btn">探索 →</div>
@@ -1273,7 +1273,7 @@
       <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
         <span class="cn-ic">🔬</span>
         <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
-        <span class="cn-count">14</span>
+        <span class="cn-count">17</span>
       </div>
       <div class="cat-nav-item" id="cat-reliability" onclick="showCat('reliability')">
         <span class="cn-ic">🌡️</span>
@@ -1298,7 +1298,7 @@
       <div class="cat-nav-item" id="cat-module" onclick="showCat('module')">
         <span class="cn-ic">🔧</span>
         <span class="cn-lb">模组与系统<span class="cn-en">Module & System</span></span>
-        <span class="cn-count">8</span>
+        <span class="cn-count">11</span>
       </div>
       <div class="cat-nav-item" id="cat-material" onclick="showCat('material')">
         <span class="cn-ic">💎</span>
@@ -1308,7 +1308,7 @@
       <div class="cat-nav-item" id="cat-application" onclick="showCat('application')">
         <span class="cn-ic">🚗</span>
         <span class="cn-lb">应用场景<span class="cn-en">Applications</span></span>
-        <span class="cn-count">8</span>
+        <span class="cn-count">10</span>
       </div>
       <div class="cat-nav-item" id="cat-photography" onclick="showCat('photography')">
         <span class="cn-ic">📷</span>
@@ -1412,6 +1412,9 @@
     <div class="tab" id="tab-ca" onclick="showTab('ca')">色差<span class="en">彩色镶边</span></div>
     <div class="tab" id="tab-vig" onclick="showTab('vig')">渐晕<span class="en">边角发暗</span></div>
     <div class="tab" id="tab-decenter" onclick="showTab('decenter')">偏心<span class="en">装偏/装歪</span></div>
+    <div class="tab" id="tab-diffraction" onclick="showTab('diffraction')">衍射极限<span class="en">Airy 斑</span></div>
+    <div class="tab" id="tab-snr" onclick="showTab('snr')">信噪比<span class="en">SNR</span></div>
+    <div class="tab" id="tab-pol" onclick="showTab('pol')">偏振光学<span class="en">Polarization</span></div>
   </div>
   <div class="tabs" id="subtabs-reliability" style="display:none;">
     <div class="tab" id="tab-thcomp" onclick="showTab('thcomp')">热补偿<span class="en">温度补偿</span></div>
@@ -1453,6 +1456,9 @@
     <div class="tab" id="tab-gp" onclick="showTab('gp')">玻塑混合 G+P<span class="en">材料</span></div>
     <div class="tab" id="tab-washer" onclick="showTab('washer')">清洗加热<span class="en">Washer/Heat</span></div>
     <div class="tab" id="tab-ccm" onclick="showTab('ccm')">CCM 结构<span class="en">Module</span></div>
+    <div class="tab" id="tab-cis" onclick="showTab('cis')">CMOS 传感器<span class="en">CIS</span></div>
+    <div class="tab" id="tab-isp" onclick="showTab('isp')">ISP 信号处理<span class="en">Pipeline</span></div>
+    <div class="tab" id="tab-serdes" onclick="showTab('serdes')">SerDes 传输<span class="en">GMSL</span></div>
   </div>
   <div class="tabs" id="subtabs-material" style="display:none;">
     <div class="tab active" id="tab-lensmat" onclick="showTab('lensmat')">镜片材料<span class="en">玻璃/塑料</span></div>
@@ -1468,6 +1474,8 @@
     <div class="tab" id="tab-tof" onclick="showTab('tof')">ToF/结构光<span class="en">Depth</span></div>
     <div class="tab" id="tab-irnight" onclick="showTab('irnight')">红外夜视<span class="en">IR/Thermal</span></div>
     <div class="tab" id="tab-surround" onclick="showTab('surround')">环视拼接<span class="en">AVM</span></div>
+    <div class="tab" id="tab-dlp" onclick="showTab('dlp')">数字大灯<span class="en">DLP</span></div>
+    <div class="tab" id="tab-stereo" onclick="showTab('stereo')">双目视觉<span class="en">Stereo</span></div>
   </div>
 
 
@@ -3650,6 +3658,138 @@
     <div class="note"><b>车载特殊点：</b>CCM 不是消费级"拍清楚"就行，而是要在 -40~105℃、振动、盐雾、阳光下稳定输出"算法可信"的图像。所以结构设计、散热、密封、连接可靠性都是光学性能的一部分。</div>
 
   </div>
+  <div class="panel" id="panel-diffraction">
+
+    <div class="define"><b>释义：</b><b>衍射极限（Diffraction Limit）</b>是任何光学系统分辨率的理论天花板，由光的<b>波动性</b>决定。点光源经过有限孔径的镜头后，不再汇聚成一个点，而是扩散成中央亮斑 + 外围明暗环的<b>艾里斑（Airy Pattern）</b>。瑞利判据给出角分辨率极限 θ ≈ 1.22 λ / D（λ 波长，D 入瞳直径），意味着<b>即使镜片零像差，分辨率也存在一个由衍射封死的上限</b>。</div>
+    <p class="tagline">一句话：衍射极限 = 光"绕弯"带来的天生模糊，再好的镜片也越不过这道墙</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 96" width="320" height="96" xmlns="http://www.w3.org/2000/9"><circle cx="90" cy="46" r="30" fill="none" stroke="#5b8cff" stroke-width="2"/><circle cx="90" cy="46" r="6" fill="#5b8cff"/><circle cx="90" cy="46" r="14" fill="none" stroke="#5b8cff" stroke-width="1" opacity=".5"/><circle cx="90" cy="46" r="22" fill="none" stroke="#5b8cff" stroke-width="1" opacity=".3"/><text x="90" y="90" fill="#e9efff" font-size="9" text-anchor="middle">小孔径 → 艾里斑大 → 模糊</text><circle cx="230" cy="46" r="30" fill="none" stroke="#34d399" stroke-width="2"/><circle cx="230" cy="46" r="4" fill="#34d399"/><circle cx="230" cy="46" r="9" fill="none" stroke="#34d399" stroke-width="1" opacity=".5"/><text x="230" y="90" fill="#e9efff" font-size="9" text-anchor="middle">大孔径 → 艾里斑小 → 锐利</text></svg>
+      <div class="svgcap">孔径 D 越大，艾里斑越小，分辨率越高（θ = 1.22λ/D）</div>
+    </div>
+    <div class="enc-list">
+      <li><b>艾里斑：</b>第一暗环角半径 θ = 1.22λ/D；车载可见光 λ≈550nm，D 为有效入瞳直径。</li>
+      <li><b>截止频率：</b>f₀ = 1/(λ·F#)，例如 F/1.8、λ=0.55µm → f₀≈1010 lp/mm（镜头理论天花板）。</li>
+      <li><b>与像素匹配：</b>传感器奈奎斯特 f_N = 1/(2·pitch)；f₀≫f_N 时分辨率受像素限制，f₀&lt;f_N 时镜头成瓶颈。</li>
+      <li><b>车载取舍：</b>前视需小 F#（大孔径→高进光+高 f₀）配 3µm 级像素；只缩像素不提镜头，MTF 不升反降（串扰↑）。</li>
+    </div>
+    <div class="note"><b>为什么"堆像素"不等于"看得清"：</b>衍射极限封死了镜头能传递的最高空间频率。当像素 pitch 已小于 1/(2f₀) 时，继续缩小像素只会增加串扰、降低 SNR，分辨率不再提升。所以车载镜头设计是"镜头 f₀ × 像素 pitch × 算法"的联合优化，而不是单点军备竞赛。</div>
+
+  </div>
+
+  <div class="panel" id="panel-snr">
+
+    <div class="define"><b>释义：</b><b>信噪比（SNR，Signal-to-Noise Ratio）</b>= 有效信号 / 噪声，单位 dB，衡量图像"干净程度"。车载最怕低光照（夜晚 / 隧道出口），此时光子本身稀少，<b>散粒噪声（shot noise ∝ √信号）</b>占主导，SNR 骤降，ISP 再强也救不回细节。常用 <b>SNR10</b>（达到 10:1 所需照度 lux）和 <b>SNR20</b> 标定 sensor 低光能力。</div>
+    <p class="tagline">一句话：SNR 决定"黑夜里能不能看清"，往往比分辨率更影响夜间 ADAS 安全</p>
+    <div class="enc-list">
+      <li><b>噪声来源：</b>散粒噪声（光子随机，∝√N，物理不可消除）、读出噪声（传感器电路，随工艺降低）、固定图案噪声 FPN、热噪声（长曝光升温）。</li>
+      <li><b>照度—SNR 曲线：</b>lux 高时由读出噪声主导（平台期），lux 低时由散粒噪声主导（线性下降）。典型车载 sensor 的 SNR1（1:1）约 0.5~数 lux。</li>
+      <li><b>SNR10 / SNR20：</b>SNR=10 约"可见可用图像"，SNR=20 约"舒适观感"。车载前视常要求 ≤5 lux 仍 SNR≥20。</li>
+      <li><b>光学如何抬 SNR：</b>大光圈（F#↓→进光量↑∝F#⁻²）、大像素（满阱容量↑、低光 SNR↑）、低反射镀膜（减少杂光抬升本底）。</li>
+    </div>
+    <div class="note"><b>分辨率是"看得细"，SNR 是"看得清"。</b>夜间场景中，一颗 F/1.6、3µm 像素、SNR20@3lux 的相机，比一颗 F/2.8、1.4µm 但标称 800 万像素的相机更可靠——前者在隧道口能稳定识别车牌，后者已淹没在噪声里。所以车载选型常把"低光 SNR + LFM + HDR"排在"纯像素数"之前。</div>
+
+  </div>
+
+  <div class="panel" id="panel-pol">
+
+    <div class="define"><b>释义：</b><b>偏振光学（Polarization Optics）</b>利用光波振动方向的偏好来提取信息。自然光各方向均匀，但经反射 / 散射（路面反光、天空、水体、玻璃）后会产生偏振。偏振相机 / 偏振滤片能分离这些信号，是车载感知的"隐藏通道"——普通 RGB 相机看不见的差异，偏振能看到。</div>
+    <p class="tagline">一句话：偏振 = 给摄像头加"偏光眼镜"，让玻璃、积水、天空的伪装现原形</p>
+    <div class="enc-list">
+      <li><b>偏振参量：</b>偏振度 DoP / 偏振角 AoP；片上式四向偏振微栅把每像素光分成 0°/45°/90°/135° 采样，反演得到 DoP 与 AoP。</li>
+      <li><b>典型应用：</b>① 透过挡风玻璃 / 橱窗（去反射，识别玻璃后物体）；② 积水 / 油膜检测（路面偏振特征）；③ 天空分割（区分天空与地面）；④ 材料分类（金属 / 塑料 / 漆面回波不同）。</li>
+      <li><b>偏振 LiDAR：</b>发射线偏振光，接收同偏振 + 正交偏振双通道，利用退偏差异抑制多路径假目标（玻璃后虚像），提升雨雾天可靠性。</li>
+      <li><b>实现方式：</b>片上式四向偏振微栅（Sony IMX250MZR 类）或外置旋转偏振轮（成本高、帧率低）。</li>
+    </div>
+    <div class="note"><b>偏振不是替代 RGB / LiDAR，而是"补盲"</b>——它擅长解决"透明 / 反光 / 低对比"这类传统相机最头疼的场景。代价是算力（四向需 4× 数据或分时）和标定（偏振片角度误差直接污染 AoP）。在 L2+ 向 L3 演进中，偏振正从实验室走向前视多光谱融合的前哨。</div>
+
+  </div>
+
+  <div class="panel" id="panel-cis">
+
+    <div class="define"><b>释义：</b><b>CIS（CMOS Image Sensor，互补金属氧化物半导体图像传感器）</b>是把光信号转为电信号的核心芯片，位于 CCM 像面。车载对 CIS 的要求远超消费级：高动态范围（HDR）、高信噪比（SNR）、LED 闪烁抑制（LFM）、宽温稳定、功能安全（ISO 26262）。主流为<b>背照式 BSI + 堆栈式 Stacked</b> 结构。</div>
+    <p class="tagline">一句话：CIS = 模组的"视网膜"，车载要的是暗处看得见、亮处不溢出、LED 不闪</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 90" width="320" height="90" xmlns="http://www.w3.org/2000/svg"><rect x="60" y="20" width="80" height="50" rx="3" fill="rgba(91,140,255,.18)" stroke="#5b8cff"/><text x="100" y="46" fill="#e9efff" font-size="9" text-anchor="middle">像素层</text><text x="100" y="60" fill="#e9efff" font-size="8" text-anchor="middle">Photo-diode</text><rect x="150" y="32" width="110" height="26" rx="3" fill="rgba(52,211,153,.18)" stroke="#34d399"/><text x="205" y="49" fill="#e9efff" font-size="9" text-anchor="middle">逻辑 / 读出层 (Stacked)</text><path d="M140 45 L150 45" stroke="#fff" stroke-width="1.5"/><text x="100" y="84" fill="#e9efff" font-size="9" text-anchor="middle">BSI：光从背面入射，量子效率↑</text></svg>
+      <div class="svgcap">Stacked CIS：像素层与逻辑层分离，读出更快、噪声更低</div>
+    </div>
+    <div class="enc-list">
+      <li><b>结构演进：</b>FSI（前照式）→ BSI（背照式，量子效率↑）→ Stacked（堆栈式，逻辑层与像素层分离，读出快、噪声低）。</li>
+      <li><b>关键参数：</b>光学尺寸（1/2.7"~1/1.2"）、像素 pitch（2.1~3.0µm）、满阱容量、转换增益（高低增益双转换，兼顾暗光与高光）、快门（全局快门利于运动无畸变）。</li>
+      <li><b>HDR 技术：</b>行交叠曝光、双转换增益 DCG、分割像素 split-pixel、片上多帧合成；车载常用 split-pixel + LFM 组合。</li>
+      <li><b>LFM：</b>长曝光覆盖 LED PWM 整周期（≥数 ms），避免把交通灯 / 尾灯误判为"灭"；需与帧率权衡。</li>
+    </div>
+    <div class="note"><b>选 CIS 不是看"几百万像素"，而是看"暗光 SNR + HDR + LFM 是否同时达标"。</b>一颗 2MP、SNR20@3lux、120dB HDR、带 LFM 的全局快门 sensor，往往比 8MP 但 HDR 仅 80dB、无 LFM 的 sensor 更适合前视 ADAS。CIS 与镜头（CRA 匹配）、ISP（降噪 / 合成）必须联合设计。</div>
+
+  </div>
+
+  <div class="panel" id="panel-isp">
+
+    <div class="define"><b>释义：</b><b>ISP（Image Signal Processor，图像信号处理器）</b>是 CIS 之后、感知算法之前的图像处理流水线，把原始拜耳（RAW）数据变成"算法可信"的 YUV / RGB。车载 ISP 要在实时性约束下完成 HDR 合成、降噪、去畸变、色彩校正、坏点修复，并开放足够接口给感知算法。</div>
+    <p class="tagline">一句话：ISP = 模组的"大脑前处理"，把 RAW 变成干净、正确、不变形的图像</p>
+    <div class="enc-list">
+      <li><b>基本流水线：</b>黑电平校正 → 镜头阴影校正 LSC（去渐晕）→ 坏点修复 → 去马赛克 Demosaic → 降噪（空域 + 时域）→ 白平衡 → 色彩矩阵 → Gamma / 色调映射 → 边缘增强 → 输出 YUV。</li>
+      <li><b>车载特殊项：</b>① HDR 融合（多曝光合成，处理运动鬼影）；② LFM 重建（恢复 LED 真实亮度）；③ 几何校正（配合镜头畸变参数去畸变，供 BEV / 感知直接用）；④ 宽动态与本地对比度提升。</li>
+      <li><b>处理位置：</b>传统在独立 ISP 芯片 / SoC；趋势是 in-sensor ISP 或感知 SoC 内 ISP，减少传输带宽。</li>
+      <li><b>与光学耦合：</b>LSC 必须匹配镜头渐晕曲线；Demosaic 边缘伪彩依赖镜头 MTF；降噪强度受 SNR 与 CRA 影响，需针对每颗镜头标定。</li>
+    </div>
+    <div class="note"><b>ISP 是"光学质量的放大器也是遮羞布"</b>——好的 ISP 能部分弥补镜头缺陷（降噪补 SNR、校正补渐晕），但无法创造分辨率（衍射极限之上无能为力），也会引入新伪影（HDR 运动鬼影、Demosaic 彩色边缘）。ISP 调参与镜头量产一致性必须绑定：同一 ISP 参数，镜头 CRA 漂 1° 就可能让色彩 / 暗角超标。</div>
+
+  </div>
+
+  <div class="panel" id="panel-serdes">
+
+    <div class="define"><b>释义：</b><b>SerDes（Serializer / Deserializer，串行器 / 解串器）</b>负责把 CCM 输出的高速并行图像数据，通过一根同轴 / 屏蔽双绞线长距离（最长 15~30m）传送到域控制器，同时反向传输控制 / I²C。车载主流为 <b>GMSL（ADI）</b>与 <b>FPD-Link（TI）</b>，基于 MIPI CSI-2 协议封装。</div>
+    <p class="tagline">一句话：SerDes = 模组的"高速公路"，让图像从车头跑到算力中心不丢帧</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 90" width="320" height="90" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="30" width="56" height="30" rx="4" fill="rgba(91,140,255,.18)" stroke="#5b8cff"/><text x="48" y="49" fill="#e9efff" font-size="9" text-anchor="middle">CCM</text><rect x="96" y="34" width="40" height="22" fill="rgba(251,191,36,.18)" stroke="#fbbf24"/><text x="116" y="49" fill="#e9efff" font-size="8" text-anchor="middle">Ser</text><line x1="136" y1="45" x2="184" y2="45" stroke="#fff" stroke-width="2" stroke-dasharray="4 3"/><text x="160" y="38" fill="#e9efff" font-size="8" text-anchor="middle">同轴/PoC</text><rect x="184" y="34" width="40" height="22" fill="rgba(251,191,36,.18)" stroke="#fbbf24"/><text x="204" y="49" fill="#e9efff" font-size="8" text-anchor="middle">De</text><rect x="240" y="30" width="60" height="30" rx="4" fill="rgba(124,108,255,.18)" stroke="#7c6cff"/><text x="270" y="49" fill="#e9efff" font-size="8" text-anchor="middle">域控制器</text></svg>
+      <div class="svgcap">CCM → Ser → 同轴(PoC) → De → 域控，单线传数据 + 供电</div>
+    </div>
+    <div class="enc-list">
+      <li><b>主流标准：</b>GMSL2（≤6Gbps，传 2×2MP@30fps 或 1×8MP@30fps）、GMSL3（12Gbps，支持 8MP@60fps）、FPD-Link III/IV（类似速率，同轴供电 PoC）。</li>
+      <li><b>协议栈：</b>CIS MIPI CSI-2 → SerDes 加扰 / 编码 / 均衡 → 同轴 / STP 传输 → 解串 → 域控解封装；常带前向纠错 FEC 抗电磁干扰。</li>
+      <li><b>PoC（Power over Coax）：</b>同一根线同时传数据 + 供电，省线束重量（电动车关键）。</li>
+      <li><b>车规要求：</b>EMC（常严于 CISPR 25）、-40~105℃、AEC-Q100、功能安全（链路丢失检测→安全降级）。</li>
+    </div>
+    <div class="note"><b>SerDes 是"被忽视的瓶颈"：</b>摄像头模组再强，SerDes 带宽 / 稳定性不够，图像到域控就丢帧、延时、闪屏，感知直接崩。布线也讲究——同轴弯曲半径、连接器（Fakra / Mini-Fakra / H-MTD）阻抗匹配、与高压线束隔离距离，都影响 EMC。EE 与光学团队必须 early 协同：镜头分辨率定了，SerDes 带宽和线束方案就要同步锁定。</div>
+
+  </div>
+
+  <div class="panel" id="panel-dlp">
+
+    <div class="define"><b>释义：</b><b>数字大灯（Digital Light / Smart Headlamp）</b>把"整片照亮"升级为"可编程像素光"——用 DMD（数字微镜器件）、µLED 或 LCD 作空间光调制器，把道路、对向车、行人分区控制：该亮处亮、该暗处暗，还能在路面投影符号。是车载光学"出射"端的技术高峰。</div>
+    <p class="tagline">一句话：数字大灯 = 给车灯装"投影仪"，会避让对向车、还能在地面写字</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 96" width="320" height="96" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="36" width="34" height="24" rx="3" fill="rgba(251,191,36,.18)" stroke="#fbbf24"/><text x="37" y="52" fill="#e9efff" font-size="8" text-anchor="middle">光源</text><rect x="78" y="30" width="40" height="36" rx="3" fill="rgba(91,140,255,.18)" stroke="#5b8cff"/><text x="98" y="50" fill="#e9efff" font-size="8" text-anchor="middle">DMD</text><rect x="150" y="34" width="40" height="28" rx="4" fill="rgba(52,211,153,.18)" stroke="#34d399"/><text x="170" y="52" fill="#e9efff" font-size="8" text-anchor="middle">投影镜</text><path d="M190 48 L270 30 M190 48 L270 66" stroke="#fff" stroke-width="1.5" fill="none"/><text x="280" y="22" fill="#e9efff" font-size="8">路面</text><text x="250" y="84" fill="#e9efff" font-size="8">分区避眩 + 投影</text></svg>
+      <div class="svgcap">光源 → 空间调制(DMD) → 投影镜头 → 路面，百万级像素可控</div>
+    </div>
+    <div class="enc-list">
+      <li><b>技术路线：</b>① DLP（DMD 百万级微镜，德州仪器，像素光 ADB）；② µLED 阵列（自发光、对比度极高、无机械）；③ LCD / LCoS 透射式（成本低、亮度受限）。</li>
+      <li><b>核心能力：</b>ADB（自适应远光，分区防眩，对向车位置留暗区）、GLC（地面投影，车道线 / 符号 / 警示）、迎宾动画、车道保持光毯。</li>
+      <li><b>光学架构：</b>LED / 激光光源 → 准直 → 空间光调制器（DMD 需 TIR 棱镜）→ 投影镜头组（车规非球面 / 自由曲面）→ 出射，分辨率常 10⁵~10⁶ 像素。</li>
+      <li><b>车规难点：</b>-40~105℃ 下 DMD 微镜可靠翻转（百万次 / 秒级）、阳光倒灌烧损（需遮阳 / 散热）、杂散光控制（避免炫到本车驾驶员）、EMC。</li>
+    </div>
+    <div class="note"><b>数字大灯是"光学 + 照明 + 算法 + 安全"的交叉：</b>投影分辨率越高，越能精细避让对向车而不牺牲自己视距；但也要防"本车驾驶员被自己投影炫目"（杂散光设计）、防阳光倒灌（敏感 DMD 怕聚光烧点）。它与前视摄像头是"闭环"——摄像头识别对向车→大灯实时挖暗区，是 V2X 之前最现实的"车车光通信"。</div>
+
+  </div>
+
+  <div class="panel" id="panel-stereo">
+
+    <div class="define"><b>释义：</b><b>双目立体视觉（Stereo Vision）</b>用两颗水平间隔的摄像头模拟人眼视差，通过匹配左右图像对应点算出每个像素的深度（视差 d = f·B / Z，B 基线、f 焦距、Z 距离），得到稠密深度图，无需 LiDAR 也能测距。</div>
+    <p class="tagline">一句话：双目 = 给车装"两只眼睛"，靠视差直接算距离，省掉激光雷达</p>
+    <div class="svgbox">
+      <svg viewBox="0 0 320 96" width="320" height="96" xmlns="http://www.w3.org/2000/svg"><rect x="40" y="20" width="26" height="18" rx="3" fill="rgba(91,140,255,.18)" stroke="#5b8cff"/><text x="53" y="33" fill="#e9efff" font-size="8" text-anchor="middle">L</text><rect x="120" y="20" width="26" height="18" rx="3" fill="rgba(91,140,255,.18)" stroke="#5b8cff"/><text x="133" y="33" fill="#e9efff" font-size="8" text-anchor="middle">R</text><text x="80" y="14" fill="#e9efff" font-size="8" text-anchor="middle">基线 B</text><line x1="53" y1="38" x2="200" y2="78" stroke="#fff" stroke-width="1.5"/><line x1="133" y1="38" x2="200" y2="78" stroke="#fff" stroke-width="1.5"/><circle cx="200" cy="78" r="4" fill="#34d399"/><text x="210" y="82" fill="#e9efff" font-size="8">目标 Z</text></svg>
+      <div class="svgcap">视差 d = f·B/Z：Z 越远 d 越小，远距深度精度急剧下降</div>
+    </div>
+    <div class="enc-list">
+      <li><b>核心公式：</b>视差 d = f·B / Z（Z 越远 d 越小，远距离深度精度急剧下降）；基线 B 越大→远距精度高，但占空间、两车图像重叠区变小。</li>
+      <li><b>流程：</b>双目标定（内外参 + 基线）→ 极线校正 Epipolar Rectification（对应点约束到同一行）→ 立体匹配（SGBM / 深度学习）→ 视差→深度。</li>
+      <li><b>车载挑战：</b>① 温度导致两镜头焦距 / 光轴漂移→需在线自标定（温补）；② 弱纹理 / 重复纹理（天空、白墙）匹配失败→深度空洞；③ 强光 / 夜间低 SNR→匹配噪声大。</li>
+      <li><b>优势 vs 短板：</b>成本低、可测速（帧间）、稠密深度；短板是远距精度差、算力高、对光学一致性（两镜头 MTF / CRA 对称）要求苛刻。</li>
+    </div>
+    <div class="note"><b>双目成败"七分在标定，三分在匹配"：</b>两镜头哪怕 0.1° 装偏或 1% 焦距差，都会在远距产生巨大深度误差。所以双目模组对 AA 对准、温漂补偿、两镜头光学对称性的要求，比单目高一个量级。这也是很多车企在 L2 用单目 + 毫米波，把双目留给对成本敏感或更看重稠密深度的小车 / 商用车。</div>
+
+  </div>
+
         </div><!-- /#browse -->
           </div><!-- /home-split -->
     </section><!-- /#view-home -->
@@ -5066,7 +5206,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 75;
+  var VER_TOTAL = 83;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
