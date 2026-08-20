@@ -279,224 +279,6 @@
   html,body{ height:100%; }
 
 
-  /* ===== GitHub · 极简代码风（白底 · 蓝描边 · 系统灰） ===== */
-  :root[data-theme="github"]{
-    --theme-name:'GitHub';
-    --bg-1:#f6f8fa; --bg-2:#eaeef2; --bg-3:#ffffff;
-    --glow-1:rgba(9,105,218,.08); --glow-2:rgba(33,139,255,.06);
-    --brand:#0969da; --brand-2:#218bff;
-    --surface:#ffffff; --surface-2:#f6f8fa; --surface-3:#eaeef2;
-    --text:#1f2328; --muted:#656d76; --muted-2:#8c959f;
-    --line:#d0d7de; --line-2:#d8dee4; --line-3:#0969da;
-    --accent:#1a7f37; --accent-2:#cf222e; --text-bright:#fff; --dia-text:#1f2328;
-    --track:#d0d7de; --canvas-bg:#f6f8fa;
-    --ink:#1f2328; --qing:#0969da; --zhu:#cf222e;
-  }
-  :root[data-theme="github"] body{ background:var(--bg-1); }
-  :root[data-theme="github"] #bg{ display:none; }
-  :root[data-theme="github"] #app{ position:relative; z-index:1; }
-  :root[data-theme="github"] .glass,
-  :root[data-theme="github"] .panel,
-  :root[data-theme="github"] .cat-card,
-  :root[data-theme="github"] .enc-card,
-  :root[data-theme="github"] .pm-card,
-  :root[data-theme="github"] .dc-card,
-  :root[data-theme="github"] .aberr-card,
-  :root[data-theme="github"] .hs-box,
-  :root[data-theme="github"] .theme-chip,
-  :root[data-theme="github"] .reader{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:6px;
-    box-shadow:0 1px 0 rgba(27,31,36,.04);
-  }
-  :root[data-theme="github"] .glass:hover,
-  :root[data-theme="github"] .panel:hover,
-  :root[data-theme="github"] .cat-card:hover{ border-color:var(--brand); box-shadow:0 1px 0 rgba(27,31,36,.04), 0 0 0 3px rgba(9,105,218,.12); }
-  :root[data-theme="github"] .hero{ background:var(--surface); border:1px solid var(--line); border-radius:8px; }
-  :root[data-theme="github"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); font-weight:800; }
-  :root[data-theme="github"] .hero-badge{ color:var(--brand); border-color:rgba(9,105,218,.4); background:rgba(9,105,218,.08); }
-  :root[data-theme="github"] .hero-sub{ color:var(--muted); }
-  :root[data-theme="github"] .hero-chip{ color:var(--text); border-color:var(--line); background:var(--surface-2); }
-  :root[data-theme="github"] .tab{ border-radius:6px; }
-  :root[data-theme="github"] .tab.active{ background:var(--brand); color:#fff; }
-  :root[data-theme="github"] .tab.active .en{ color:rgba(255,255,255,.82); }
-  :root[data-theme="github"] .tree-cat-h{ color:var(--text); }
-  :root[data-theme="github"] .tree-leaf{ color:var(--muted); }
-  :root[data-theme="github"] .tree-leaf:hover{ color:var(--brand); background:rgba(9,105,218,.06); }
-  :root[data-theme="github"] .nav-item:hover{ color:var(--brand); background:rgba(9,105,218,.06); }
-  :root[data-theme="github"] .nav-item.active{ color:var(--brand); background:rgba(9,105,218,.10); }
-  :root[data-theme="github"] .nav-item.active::before{ background:var(--brand); }
-  :root[data-theme="github"] .note,
-  :root[data-theme="github"] .define{ color:var(--text); }
-  :root[data-theme="github"] .note{ background:rgba(9,105,218,.05); border-left:3px solid var(--brand); }
-  :root[data-theme="github"] .rand-hero-btn{ background:var(--brand); color:#fff; border:none; border-radius:6px; }
-  :root[data-theme="github"] .rand-hero-btn:hover{ background:var(--brand-2); }
-  :root[data-theme="github"] .cmp canvas,
-  :root[data-theme="github"] .realfig img{ background:#fff; }
-
-  /* ===== 便当盒 · Bento（暖奶油 · 大圆角 · 柔阴影分区） ===== */
-  :root[data-theme="bento"]{
-    --theme-name:'便当盒';
-    --bg-1:#fff7f0; --bg-2:#fffdf9; --bg-3:#fdeee4;
-    --glow-1:rgba(255,122,89,.16); --glow-2:rgba(43,182,163,.14);
-    --brand:#ff7a59; --brand-2:#ffa06b;
-    --surface:#ffffff; --surface-2:#fff3ec; --surface-3:#ffe9dd;
-    --text:#3a2e28; --muted:#7a6a60; --muted-2:#a89388;
-    --line:rgba(255,122,89,.20); --line-2:rgba(255,122,89,.10); --line-3:#ff7a59;
-    --accent:#2bb6a3; --accent-2:#ffb020; --text-bright:#fff; --dia-text:#3a2e28;
-    --track:rgba(255,122,89,.20); --canvas-bg:#fff8f2;
-    --ink:#3a2e28; --qing:#ff7a59; --zhu:#ff5470;
-  }
-  :root[data-theme="bento"] body{ background:radial-gradient(1200px 700px at 12% -10%, var(--glow-1), transparent 60%), radial-gradient(1000px 620px at 100% 110%, var(--glow-2), transparent 60%), linear-gradient(165deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3)); }
-  :root[data-theme="bento"] #bg{ display:none; }
-  :root[data-theme="bento"] #app{ position:relative; z-index:1; }
-  :root[data-theme="bento"] .glass,
-  :root[data-theme="bento"] .panel,
-  :root[data-theme="bento"] .cat-card,
-  :root[data-theme="bento"] .enc-card,
-  :root[data-theme="bento"] .pm-card,
-  :root[data-theme="bento"] .dc-card,
-  :root[data-theme="bento"] .aberr-card,
-  :root[data-theme="bento"] .hs-box,
-  :root[data-theme="bento"] .theme-chip,
-  :root[data-theme="bento"] .reader{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:22px;
-    box-shadow:0 10px 26px rgba(255,122,89,.12);
-  }
-  :root[data-theme="bento"] .glass:hover,
-  :root[data-theme="bento"] .panel:hover,
-  :root[data-theme="bento"] .cat-card:hover{ transform:translateY(-3px); box-shadow:0 16px 34px rgba(255,122,89,.18); }
-  :root[data-theme="bento"] .hero{ background:var(--surface); border:1px solid var(--line); border-radius:28px; box-shadow:0 16px 40px rgba(255,122,89,.14); }
-  :root[data-theme="bento"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); font-weight:800; }
-  :root[data-theme="bento"] .hero-badge{ color:#fff; border:none; background:linear-gradient(135deg,var(--brand),var(--accent)); }
-  :root[data-theme="bento"] .hero-sub{ color:var(--muted); }
-  :root[data-theme="bento"] .hero-chip{ color:var(--text); border-color:var(--line); background:var(--surface-2); }
-  :root[data-theme="bento"] .tab.active{ background:linear-gradient(135deg,var(--brand),var(--accent)); color:#fff; }
-  :root[data-theme="bento"] .tab.active .en{ color:rgba(255,255,255,.85); }
-  :root[data-theme="bento"] .tree-cat-h{ color:var(--text); }
-  :root[data-theme="bento"] .tree-leaf{ color:var(--muted); }
-  :root[data-theme="bento"] .tree-leaf:hover{ color:var(--brand); background:var(--surface-2); }
-  :root[data-theme="bento"] .nav-item:hover{ color:var(--brand); background:var(--surface-2); }
-  :root[data-theme="bento"] .nav-item.active{ color:#fff; background:linear-gradient(135deg,var(--brand),var(--accent)); }
-  :root[data-theme="bento"] .nav-item.active::before{ background:#fff; }
-  :root[data-theme="bento"] .note,
-  :root[data-theme="bento"] .define{ color:var(--text); }
-  :root[data-theme="bento"] .rand-hero-btn{ background:linear-gradient(135deg,var(--brand),var(--accent)); color:#fff; border:none; border-radius:999px; }
-  :root[data-theme="bento"] .rand-hero-btn:hover{ filter:brightness(1.05); transform:translateY(-2px); }
-
-  /* ===== 手绘插画风 · Hand-drawn（纸感 · 马克笔 · 不规则描边） ===== */
-  :root[data-theme="hand"]{
-    --theme-name:'手绘插画';
-    --bg-1:#fdfbf4; --bg-2:#fefcf7; --bg-3:#f6f1e3;
-    --glow-1:rgba(43,89,255,.06); --glow-2:rgba(255,107,107,.06);
-    --brand:#2b59ff; --brand-2:#ff6b6b;
-    --surface:#fffdf7; --surface-2:#fbf6e9; --surface-3:#fff8ec;
-    --text:#2b2b2b; --muted:#6b6b5e; --muted-2:#9a9a86;
-    --line:#3a3a3a; --line-2:rgba(58,58,58,.45); --line-3:#2b59ff;
-    --accent:#ff6b6b; --accent-2:#2bb6a3; --text-bright:#fff; --dia-text:#2b2b2b;
-    --track:#ddd5c2; --canvas-bg:#fdfbf4;
-    --ink:#2b2b2b; --qing:#2b59ff; --zhu:#ff6b6b;
-  }
-  :root[data-theme="hand"] body{ background:repeating-linear-gradient(0deg, transparent 0 27px, rgba(58,58,58,.05) 27px 28px), var(--bg-1); }
-  :root[data-theme="hand"] #bg{ display:none; }
-  :root[data-theme="hand"] #app{ position:relative; z-index:1; }
-  :root[data-theme="hand"] .glass,
-  :root[data-theme="hand"] .panel,
-  :root[data-theme="hand"] .cat-card,
-  :root[data-theme="hand"] .enc-card,
-  :root[data-theme="hand"] .pm-card,
-  :root[data-theme="hand"] .dc-card,
-  :root[data-theme="hand"] .aberr-card,
-  :root[data-theme="hand"] .hs-box,
-  :root[data-theme="hand"] .theme-chip,
-  :root[data-theme="hand"] .reader{
-    background:var(--surface);
-    border:2px solid var(--line);
-    border-radius:14px 16px 12px 18px / 16px 12px 18px 14px;
-    box-shadow:3px 3px 0 rgba(58,58,58,.16);
-  }
-  :root[data-theme="hand"] .glass:hover,
-  :root[data-theme="hand"] .panel:hover,
-  :root[data-theme="hand"] .cat-card:hover{ transform:rotate(-.5deg) translateY(-2px); box-shadow:4px 5px 0 var(--brand); }
-  :root[data-theme="hand"] .hero{ background:var(--surface); border:2.5px solid var(--line); border-radius:18px 22px 16px 20px / 20px 16px 22px 18px; box-shadow:5px 5px 0 rgba(43,89,255,.22); }
-  :root[data-theme="hand"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); font-weight:800; }
-  :root[data-theme="hand"] .hero-badge{ color:var(--brand); border:2px solid var(--brand); background:rgba(43,89,255,.08); }
-  :root[data-theme="hand"] .hero-sub{ color:var(--muted); }
-  :root[data-theme="hand"] .hero-chip{ color:var(--text); border:2px solid var(--line); background:var(--surface-2); }
-  :root[data-theme="hand"] .tab{ border:2px solid transparent; border-radius:12px; }
-  :root[data-theme="hand"] .tab.active{ border-color:var(--line); background:var(--brand); color:#fff; box-shadow:3px 3px 0 rgba(58,58,58,.2); }
-  :root[data-theme="hand"] .tab.active .en{ color:rgba(255,255,255,.85); }
-  :root[data-theme="hand"] .tree-cat-h{ color:var(--text); }
-  :root[data-theme="hand"] .tree-leaf{ color:var(--muted); }
-  :root[data-theme="hand"] .tree-leaf:hover{ color:var(--brand); transform:translateX(3px); }
-  :root[data-theme="hand"] .nav-item{ border-radius:10px; }
-  :root[data-theme="hand"] .nav-item:hover{ color:var(--brand); background:var(--surface-2); border:2px dashed var(--line-2); }
-  :root[data-theme="hand"] .nav-item.active{ color:var(--brand); background:var(--surface-2); border:2px solid var(--brand); }
-  :root[data-theme="hand"] .nav-item.active::before{ background:var(--brand); }
-  :root[data-theme="hand"] .note,
-  :root[data-theme="hand"] .define{ color:var(--text); }
-  :root[data-theme="hand"] .note{ border-left:4px solid var(--accent); background:var(--surface-2); }
-  :root[data-theme="hand"] .rand-hero-btn{ background:var(--brand); color:#fff; border:2px solid var(--line); border-radius:14px 16px 12px 16px; box-shadow:3px 3px 0 rgba(58,58,58,.22); }
-  :root[data-theme="hand"] .rand-hero-btn:hover{ background:var(--accent); transform:rotate(1deg) translateY(-2px); }
-
-  /* ===== 多巴胺设计 · Dopamine（高饱和 · 撞色 · 彩色偏移阴影） ===== */
-  :root[data-theme="dopamine"]{
-    --theme-name:'多巴胺';
-    --bg-1:#fdf2ff; --bg-2:#eafff4; --bg-3:#fff4e6;
-    --glow-1:rgba(255,46,147,.18); --glow-2:rgba(43,107,255,.16);
-    --brand:#ff2e93; --brand-2:#9b5cff;
-    --surface:#ffffff; --surface-2:#fff0f8; --surface-3:#ffe6f6;
-    --text:#1a1430; --muted:#5b5470; --muted-2:#8a82a0;
-    --line:#ff2e93; --line-2:rgba(155,92,255,.4); --line-3:#ff2e93;
-    --accent:#00d9c0; --accent-2:#ff8a00; --text-bright:#fff; --dia-text:#1a1430;
-    --track:#ffd6ec; --canvas-bg:#fff6fc;
-    --ink:#1a1430; --qing:#ff2e93; --zhu:#9b5cff;
-  }
-  :root[data-theme="dopamine"] body{ background:radial-gradient(1100px 640px at 80% -12%, var(--glow-1), transparent 62%), radial-gradient(900px 560px at 4% 112%, var(--glow-2), transparent 58%), linear-gradient(165deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%); }
-  :root[data-theme="dopamine"] #bg{ display:none; }
-  :root[data-theme="dopamine"] #app{ position:relative; z-index:1; }
-  :root[data-theme="dopamine"] .glass,
-  :root[data-theme="dopamine"] .panel,
-  :root[data-theme="dopamine"] .cat-card,
-  :root[data-theme="dopamine"] .enc-card,
-  :root[data-theme="dopamine"] .pm-card,
-  :root[data-theme="dopamine"] .dc-card,
-  :root[data-theme="dopamine"] .aberr-card,
-  :root[data-theme="dopamine"] .hs-box,
-  :root[data-theme="dopamine"] .theme-chip,
-  :root[data-theme="dopamine"] .reader{
-    background:var(--surface);
-    border:2.5px solid #1a1430;
-    border-radius:20px;
-    box-shadow:6px 6px 0 var(--brand), 0 14px 30px rgba(255,46,147,.20);
-  }
-  :root[data-theme="dopamine"] .glass:hover,
-  :root[data-theme="dopamine"] .panel:hover,
-  :root[data-theme="dopamine"] .cat-card:hover{ transform:translate(-2px,-2px); box-shadow:9px 9px 0 var(--accent), 0 18px 36px rgba(255,46,147,.26); }
-  :root[data-theme="dopamine"] .hero{ background:var(--surface); border:3px solid #1a1430; border-radius:26px; box-shadow:8px 8px 0 var(--brand), 0 18px 44px rgba(155,92,255,.22); }
-  :root[data-theme="dopamine"] .hero-title{ color:var(--text); -webkit-text-fill-color:var(--text); font-weight:900; }
-  :root[data-theme="dopamine"] .hero-badge{ color:#fff; border:none; background:linear-gradient(135deg,var(--brand),var(--accent)); }
-  :root[data-theme="dopamine"] .hero-sub{ color:var(--muted); }
-  :root[data-theme="dopamine"] .hero-chip{ color:var(--text); border:2px solid #1a1430; background:var(--surface-2); }
-  :root[data-theme="dopamine"] .tab{ border:2px solid transparent; }
-  :root[data-theme="dopamine"] .tab.active{ background:linear-gradient(135deg,var(--brand),var(--accent)); color:#fff; border-color:#1a1430; box-shadow:3px 3px 0 #1a1430; }
-  :root[data-theme="dopamine"] .tab.active .en{ color:rgba(255,255,255,.85); }
-  :root[data-theme="dopamine"] .tree-cat-h{ color:var(--text); }
-  :root[data-theme="dopamine"] .tree-leaf{ color:var(--muted); }
-  :root[data-theme="dopamine"] .tree-leaf:hover{ color:var(--brand); transform:translateX(3px); }
-  :root[data-theme="dopamine"] .nav-item{ border:2px solid transparent; }
-  :root[data-theme="dopamine"] .nav-item:hover{ color:var(--brand); background:var(--surface-2); border-color:var(--brand); }
-  :root[data-theme="dopamine"] .nav-item.active{ color:#fff; background:linear-gradient(135deg,var(--brand),var(--accent)); border-color:#1a1430; box-shadow:3px 3px 0 #1a1430; }
-  :root[data-theme="dopamine"] .nav-item.active::before{ background:#fff; }
-  :root[data-theme="dopamine"] .note,
-  :root[data-theme="dopamine"] .define{ color:var(--text); }
-  :root[data-theme="dopamine"] .note{ border-left:5px solid var(--accent); background:var(--surface-2); }
-  :root[data-theme="dopamine"] .rand-hero-btn{ background:linear-gradient(135deg,var(--brand),var(--accent)); color:#fff; border:2.5px solid #1a1430; border-radius:999px; box-shadow:4px 4px 0 #1a1430; }
-  :root[data-theme="dopamine"] .rand-hero-btn:hover{ transform:translate(-2px,-2px); box-shadow:7px 7px 0 #1a1430; }
-
   /* ===== 新野兽派 · Neo-Brutalism（粗黑描边 · 硬偏移阴影 · 高饱和撞色） ===== */
   :root[data-theme="brutalism"]{
     --theme-name:'新野兽派';
@@ -1457,14 +1239,14 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.6.0 · 2026-08-20<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.7.0 · 2026-08-20<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
     <header id="topbar">
       <button class="tb-menu" id="tbMenu" type="button" aria-label="打开目录"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">101 个知识点</span>
+      <span class="tb-prog" id="tbProg">102 个知识点</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -1485,7 +1267,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.6.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-20</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.7.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-20</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 16</span>
@@ -1506,7 +1288,7 @@
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
-          <div class="rand-hero-desc">从 101 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
+          <div class="rand-hero-desc">从 102 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
         </div>
       </div>
       <div class="rand-hero-btn">探索 →</div>
@@ -1550,7 +1332,7 @@
       <div class="cat-nav-item" id="cat-material" onclick="showCat('material')">
         <span class="cn-ic">💎</span>
         <span class="cn-lb">材料与镜片<span class="cn-en">Materials & Lens</span></span>
-        <span class="cn-count">8</span>
+        <span class="cn-count">9</span>
       </div>
       <div class="cat-nav-item" id="cat-application" onclick="showCat('application')">
         <span class="cn-ic">🚗</span>
@@ -1717,6 +1499,7 @@
     <div class="tab" id="tab-asphere" onclick="showTab('asphere')">非球面/自由曲面<span class="en">面型</span></div>
     <div class="tab" id="tab-glasslens" onclick="showTab('glasslens')">玻璃镜片<span class="en">Glass</span></div>
     <div class="tab" id="tab-plasticlens" onclick="showTab('plasticlens')">塑料镜片<span class="en">Plastic</span></div>
+    <div class="tab" id="tab-injmold" onclick="showTab('injmold')">注塑模具<span class="en">三板模</span></div>
     <div class="tab" id="tab-moldedlens" onclick="showTab('moldedlens')">模造镜片<span class="en">PGM/WGM</span></div>
     <div class="tab" id="tab-lenscompare" onclick="showTab('lenscompare')">镜片选型对比<span class="en">Compare</span></div>
     <div class="tab" id="tab-ots" onclick="showTab('ots')">OTS 光学件<span class="en">Off-The-Shelf</span></div>
@@ -4073,6 +3856,22 @@
 
   </div>
 
+  <div class="panel" id="panel-injmold">
+
+    <div class="define"><b>释义：</b><b>注塑模具（Injection Mold）</b>是把熔融塑料在高压下射入型腔、冷却定形得到塑料件的金属模具。按模板数量分<b>二板模（Two-plate）</b>与<b>三板模（Three-plate）</b>——"三板模"指模具由<b>三块主要模板</b>组成（定模板 A 板 + 中间<b>剥料板/水口板</b> + 动模板 B 板），主流道凝料（水口）在 A 板与剥料板之间被自动拉断脱离，制品从 B 板顶出，从而做到<b>点浇口自动断水口、无需人工剪浇口</b>。</div>
+    <p class="tagline">一句话：三板模 = 多一块剥料板，换来点浇口自动断水口、外观无大水口痕迹</p>
+    <div class="enc-list">
+      <li><b>二板模 vs 三板模（结构）：</b>二板模只有 A 板（定模）+ B 板（动模）两块，主流道水口从浇口套直接连到制品，开模后制品与水口一起顶出，需人工/后段剪水口；三板模多一块剥料板（水口板），第一次分型在 A 板↔剥料板间拉开、把主流道水口从浇口套拉出并拉断，第二次分型在剥料板↔B 板间、制品被顶出，水口自动掉落分离。</li>
+      <li><b>开模顺序（三板模）：</b>① 合模 → 注塑 → 保压 → 冷却；② <b>第一次分型</b>：A 板与剥料板分离，拉料针带出主流道凝料并在冷料井/浇口处拉断；③ <b>第二次分型</b>：剥料板与 B 板分离，推板/顶针顶出制品；④ 水口与制品分别掉落（可全自动、无人剪浇口）。</li>
+      <li><b>为什么用三板模：</b>① <b>点浇口进胶（Pin-point gate）</b>——浇口痕极小、可放在制品内侧/非外观面，外观好、适合精密外观件；② <b>自动断水口</b>、省去人工修剪；③ 适合<b>多腔、侧浇口、隧道浇口、潜伏式浇口</b>等复杂布局；④ 浇口可落在筋位而非外表面，避免缩水/熔接痕露在外观面。</li>
+      <li><b>代价 / 缺点：</b>结构更复杂（多一块板 + 开闭器/拉杆 + 定距分型机构）、模具更贵、闭合高度更高、成型周期略长、模板定位与复位精度要求高；冷流道三板模仍有主流道废料（只是自动分离，除非上热流道）。</li>
+      <li><b>车载光学里的应用：</b>塑料镜片、镜筒、支架、滤光片 holder、连接器外壳等多为注塑件。三板模的<b>点浇口</b>可避免大水口痕迹压在镜片非球面面、镜筒密封面上，保证外观与尺寸；但塑料镜片对<b>模仁面型（λ/4~λ/2）、排气、翘曲、顶白</b>极敏感——需配精密镜面模仁（NAK80/S136 抛光）、合理偏心/边缘进胶减小翘曲、足够排气槽防困气烧焦。</li>
+      <li><b>拓展 · 热流道 vs 冷流道：</b>冷流道三板模每次都有主流道凝料；<b>热流道（Hot Runner）</b>让熔体始终保持熔融、无主流道废料、省料省周期，但模具更贵且要温控——高端光学件常采用"热流道 + 点浇口"。另有<b>潜伏式浇口（Submarine gate）</b>可在分模线处完全自动切断、几乎无痕，是外观件常用方案。</li>
+    </div>
+    <div class="note"><b>三板模选不上是"外观/自动化"与"成本/周期"的权衡。</b>车载塑料镜片、镜筒量大、外观与尺寸要求高，点浇口三板模或热流道是主流；但纯结构件、量大且外观不敏感时，二板模大水口更便宜更快。判断口诀：<b>要无痕 + 自动断水口 → 三板模 / 热流道；只要便宜快 → 二板模</b>。它与"塑料镜片"的温漂/翘曲、"模造镜片"的非球面一次成形，同属车载光学件制造的工艺链不同环节。</div>
+
+  </div>
+
   <div class="panel" id="panel-moldedlens">
 
     <div class="define"><b>释义：</b><b>模造镜片（精密玻璃模造 PGM / Precision Glass Molding，也称 WGM）</b>是把玻璃预型件（blank）在高于玻璃化转变温度 Tg 的模具中<b>一次性压成非球面/自由曲面</b>，免去研磨抛光。兼得玻璃性能与非球面一次成形。</div>
@@ -5682,7 +5481,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 101;
+  var VER_TOTAL = 102;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -5797,10 +5596,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     { id:'forest', name:'暗夜绿', desc:'青绿 · 护眼长阅', c1:'#34d399', c2:'#10b981', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19C9 13 14 9 19 7"/></svg>' },
     { id:'darkpink', name:'黑粉', desc:'纯黑×纯粉 · Blackpink', c1:'#ff0077', c2:'#ff3399', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C5 15 3 11 3 8.2A4.3 4.3 0 0 1 12 6.6 4.3 4.3 0 0 1 21 8.2C21 11 19 15 12 21z"/></svg>' },
     { id:'mint', name:'薄荷绿', desc:'明亮薄荷 · 清爽护眼', c1:'#059669', c2:'#0d9488', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18C6 10 12 5 20 5c0 8-6 13-14 13z"/><path d="M6 18 18 6"/></svg>' },
-    { id:'github', name:'GitHub', desc:'极简代码 · 蓝白', c1:'#0969da', c2:'#218bff', ic:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.48v-1.7c-2.78.62-3.37-1.2-3.37-1.2-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.56 2.34 1.1 2.91.85.09-.66.35-1.1.63-1.36-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.59.69.48A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>' },
-    { id:'bento', name:'便当盒', desc:'暖色分区 · 圆润', c1:'#ff7a59', c2:'#2bb6a3', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2.4"/><rect x="13" y="3" width="8" height="5" rx="2.4"/><rect x="13" y="10" width="8" height="11" rx="2.4"/><rect x="3" y="13" width="8" height="8" rx="2.4"/></svg>' },
-    { id:'hand', name:'手绘插画', desc:'纸感涂鸦 · 马克笔', c1:'#2b59ff', c2:'#ff6b6b', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l3.5-1 11-11a2 2 0 0 0-2.8-2.8l-11 11z"/><path d="M14 6l4 4"/><path d="M3 21l1.5-4"/></svg>' },
-    { id:'dopamine', name:'多巴胺', desc:'高饱和 · 撞色', c1:'#ff2e93', c2:'#9b5cff', ic:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6z"/><circle cx="18.5" cy="17.5" r="1.8"/><circle cx="5.5" cy="16" r="1.3"/></svg>' },
     { id:'brutalism', name:'新野兽派', desc:'粗黑描边 · 硬阴影', c1:'#ffe600', c2:'#ff3df0', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16"/><rect x="7" y="7" width="11" height="11" fill="currentColor" stroke="none"/></svg>' },
   ];
   /* ===== 音效引擎（Web Audio 振荡器合成，离线零外部文件） ===== */
@@ -5847,24 +5642,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
         case 'darkpink': // 底鼓 + 拍
           tone(60, n, 0.14, 'sine', 0.19, 40);
           tone(330, n+0.02, 0.10, 'triangle', 0.07);
-          break;
-        case 'github': // 代码键击：两声方波短嘀
-          tone(740, n, 0.04, 'square', 0.09);
-          tone(988, n+0.06, 0.05, 'square', 0.09);
-          break;
-        case 'bento': // 暖色和弦：三角柔音
-          tone(523, n, 0.12, 'triangle', 0.08);
-          tone(659, n+0.05, 0.14, 'triangle', 0.07);
-          break;
-        case 'hand': // 手绘涂鸦：轻快正弦琶音
-          tone(587, n, 0.08, 'sine', 0.07);
-          tone(784, n+0.07, 0.08, 'sine', 0.07);
-          tone(988, n+0.14, 0.12, 'sine', 0.06);
-          break;
-        case 'dopamine': // 多巴胺：上行亮色琶音
-          tone(659, n, 0.08, 'sine', 0.08);
-          tone(880, n+0.07, 0.08, 'sine', 0.08);
-          tone(1175, n+0.14, 0.12, 'sine', 0.07);
           break;
         case 'brutalism': // 野兽派：方波敲击
           tone(140, n, 0.06, 'square', 0.12);
