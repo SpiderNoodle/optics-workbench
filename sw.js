@@ -1,5 +1,5 @@
 // 车载光学知识工作台 · Service Worker（离线缓存，装到桌面后可离线使用）
-const CACHE = 'optics-workbench-v0.5.4';
+const CACHE = 'optics-workbench-v0.6.0';
 const ASSETS = [
   './',
   './index.html',
