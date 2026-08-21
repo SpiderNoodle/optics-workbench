@@ -1092,6 +1092,15 @@
   .reduce-motion #bg{ display:none; }
   .reduce-motion *, .reduce-motion *::before, .reduce-motion *::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
   /* ---- 变更履历（设置页内） ---- */
+  .ver-hist{ display:flex; flex-direction:column; }
+  .ver-item{ display:flex; gap:13px; padding:13px 0; border-top:1px solid var(--line-2); }
+  .ver-item:first-child{ border-top:none; padding-top:4px; }
+  .ver-badge{ flex:none; width:86px; display:flex; flex-direction:column; align-items:flex-start; gap:3px; }
+  .ver-v{ font-size:11.5px; font-weight:800; color:var(--brand); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; letter-spacing:.2px; }
+  .ver-v.cur{ color:#fff; background:linear-gradient(135deg,var(--brand),var(--brand-2)); padding:1px 8px; border-radius:99px; }
+  .ver-date{ font-size:10px; color:var(--muted-2); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  .ver-desc{ flex:1; min-width:0; font-size:12px; line-height:1.55; color:var(--text); }
+  @media (max-width:520px){ .ver-badge{ width:74px; } .ver-desc{ font-size:11.5px; } }
   .cl-list{ display:flex; flex-direction:column; gap:10px; }
   .cl-item{ border:1px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); padding:12px 14px; }
   .cl-head{ display:flex; align-items:baseline; gap:9px; margin-bottom:6px; }
@@ -1278,7 +1287,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.4 · 2026-08-21<br>离线可用 · 单文件<br><a href="versions.html">版本履历 →</a></div>
+    <div class="side-foot">v0.8.4 · 2026-08-21<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -6113,6 +6122,22 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     el.style.background = 'linear-gradient(120deg, '+c1+', '+c2+')';
     el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
   }
+  /* 版本履历（设置页内摘要式，移动端可用） */
+  var VER_HISTORY = [
+    { v:'v0.8.4', date:'2026-08-21', cur:true, desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠' },
+    { v:'v0.8.1', date:'2026-08-21', desc:'设备排序修正 + 8 个可量化知识点（含数值·单位速查 SOP）+ 版本规则改为补丁优先' },
+    { v:'v0.8.0', date:'2026-08-20', desc:'动效开关反转为「开启动效」+ 4 主题独立入场动效 + 设备新增 VGI/自动杂光测试模块' },
+    { v:'v0.7.0', date:'2026-08-20', desc:'撤销 4 主题 + 新增「注塑模具·三板模」知识点' },
+    { v:'v0.6.0', date:'2026-08-20', desc:'新主题 ×4 + 感光元件独立知识点 + 鬼像轮播 + 光圈重写 + 粗糙度/膜厚拓展' },
+    { v:'v0.5.4', date:'2026-08-19', desc:'目录树美化（节点线条）+ 移动端恢复滑动分类 + 顶栏布局调整' },
+    { v:'v0.5.3', date:'2026-08-19', desc:'移动端改为抽屉式目录树（汉堡菜单）' },
+    { v:'v0.5.2', date:'2026-08-19', desc:'导航重构：移除卡片墙，改左侧栏树状目录' },
+    { v:'v0.5.1', date:'2026-08-19', desc:'项目管理新增「APQP 小组（CFT）」模块' },
+    { v:'v0.5.0', date:'2026-08-19', desc:'主题重构 + 图纸/质量扩充 + 总目录卡片墙' },
+    { v:'v0.4.2', date:'2026-08-19', desc:'新增「镜片类型」专题 4 模块（玻璃/塑料/模造/选型对比）' },
+    { v:'v0.4.1', date:'2026-08-19', desc:'新增 8 个车载光学知识点（衍射极限/SNR/偏振/CMOS/ISP/SerDes/数字大灯/双目）' },
+    { v:'v0.4.0', date:'2026-08-18', desc:'删除仙侠水墨主题 + 新增毛玻璃 Apple 风主题 + 7 个新知识点' }
+  ];
   function renderSettings(){
     var cur = document.documentElement.getAttribute('data-theme')||'space';
     var html = '';
@@ -6128,6 +6153,13 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-row"><div><div class="lr">开启动效</div><div class="ld">开启粒子背景与界面动效（默认关闭）</div></div><button class="switch" id="setMotion"></button></div>';
     html += '<div class="set-row"><div><div class="lr">音效</div><div class="ld">切换主题与交互时的合成音效</div></div><button class="switch" id="setSound"></button></div>';
     html += '</div>';
+    /* 版本履历（摘要式，移动端可用） */
+    html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>版本履历<span class="sub">'+VER_HISTORY.length+' 个版本</span></div>';
+    html += '<div class="ver-hist">';
+    VER_HISTORY.forEach(function(r){
+      html += '<div class="ver-item"><div class="ver-badge"><div class="ver-v'+(r.cur?' cur':'')+'">'+r.v+'</div><div class="ver-date">'+r.date+'</div></div><div class="ver-desc">'+r.desc+'</div></div>';
+    });
+    html += '</div></div>';
     html += '<div class="set-foot">车载光学百科 v0.8.4<br>更新 2026-08-21 · 离线可用 · 单文件 PWA</div>';
     settingsHost.innerHTML = html;
     settingsHost.querySelectorAll('.theme-chip').forEach(function(c){
