@@ -751,56 +751,6 @@
   ::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.13); border-radius:99px; border:2px solid transparent; background-clip:padding-box; }
   ::-webkit-scrollbar-thumb:hover{ background:rgba(255,255,255,.22); background-clip:padding-box; }
   ::selection{ background:rgba(91,140,255,.35); color:#fff; }
-  /* ============ v0.8.2 笔记标注模块 ============ */
-  mark.hl{ border-radius:3px; padding:0 1px; cursor:pointer; color:inherit; }
-  mark.hl-y{ background:rgba(255,214,102,.38); box-shadow:inset 0 -2px 0 rgba(255,214,102,.9); }
-  mark.hl-c{ background:rgba(94,234,212,.34); box-shadow:inset 0 -2px 0 rgba(94,234,212,.9); }
-  mark.hl-p{ background:rgba(249,168,212,.38); box-shadow:inset 0 -2px 0 rgba(249,168,212,.9); }
-  mark.hl-wave{ background:transparent; text-decoration:underline wavy var(--brand); text-decoration-thickness:2px; text-underline-offset:2px; }
-  mark.hl.flash{ animation:hlFlash .9s ease 2; }
-  @keyframes hlFlash{ 0%,100%{ filter:none; } 50%{ filter:brightness(1.7); } }
-  .nav-list .nav-item{ position:relative; }
-  .nav-item .ni-badge{ position:absolute; top:1px; right:calc(50% - 20px); min-width:16px; height:16px; padding:0 4px; border-radius:9px; background:var(--brand); color:#06101f; font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; pointer-events:none; }
-  .hlbar{ position:fixed; z-index:9000; display:none; align-items:center; gap:6px; padding:7px 9px; border-radius:14px;
-    background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.05));
-    -webkit-backdrop-filter:blur(18px) saturate(180%); backdrop-filter:blur(18px) saturate(180%);
-    border:1px solid rgba(255,255,255,.22);
-    box-shadow:0 12px 34px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(0,0,0,.2);
-    color:var(--text); font-size:12px; transform:translate(-50%,-100%) scale(.96); opacity:0; transition:opacity .15s ease, transform .15s ease; }
-  .hlbar.show{ display:flex; opacity:1; transform:translate(-50%,-100%) scale(1); }
-  .reduce-motion .hlbar{ transition:none; }
-  .hlbar .hld{ width:20px; height:20px; border-radius:50%; border:2px solid rgba(255,255,255,.5); cursor:pointer; padding:0; box-shadow:0 1px 4px rgba(0,0,0,.4); transition:transform .12s ease; }
-  .hlbar .hld:hover{ transform:scale(1.18); }
-  .hlbar .hld.y{ background:#ffd666; } .hlbar .hld.c{ background:#5eead4; } .hlbar .hld.p{ background:#f9a8d4; }
-  .hlbar .hsep{ width:1px; height:18px; background:rgba(255,255,255,.25); margin:0 1px; }
-  .hlbar .hib{ display:inline-flex; align-items:center; gap:4px; font:inherit; font-weight:700; color:var(--text); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:9px; padding:4px 8px; cursor:pointer; transition:background .12s ease; }
-  .hlbar .hib:hover{ background:rgba(255,255,255,.24); }
-  .hlbar .hib.wave{ color:var(--brand); } .hlbar .hib.note{ color:#ffd479; } .hlbar .hib.del{ color:#ff9a9a; }
-  .notes-head{ padding:18px 18px 4px; }
-  .notes-head h2{ font-size:18px; margin:0 0 4px; color:var(--text); }
-  .notes-head .sub{ font-size:12px; color:var(--muted); }
-  .notes-group{ margin:14px 16px; }
-  .notes-gcap{ font-size:12px; font-weight:800; color:var(--brand); letter-spacing:.3px; margin:0 0 9px; }
-  .notes-gcap .en{ font-size:10px; color:var(--muted-2); font-weight:500; margin-left:4px; }
-  .ncard{ background:var(--surface,#10192b); border:1px solid var(--line); border-radius:12px; padding:11px 13px; margin-bottom:9px; cursor:pointer; transition:border-color .15s ease, transform .15s ease; }
-  .ncard:hover{ border-color:var(--brand); transform:translateX(3px); }
-  .ncard .nq{ font-size:13px; color:var(--text); border-left:3px solid var(--brand); padding-left:8px; margin-bottom:5px; line-height:1.5; }
-  .ncard .nt{ font-size:12.5px; color:var(--muted); margin-bottom:6px; line-height:1.5; }
-  .ncard .nm{ font-size:10.5px; color:var(--muted-2); display:flex; align-items:center; gap:8px; }
-  .ncard .nm .tag{ padding:1px 7px; border-radius:99px; font-weight:700; }
-  .ncard .nm .tag.y{ background:rgba(255,214,102,.2); color:#ffd666; }
-  .ncard .nm .tag.c{ background:rgba(94,234,212,.2); color:#5eead4; }
-  .ncard .nm .tag.p{ background:rgba(249,168,212,.2); color:#f9a8d4; }
-  .ncard .nm .tag.wave{ background:rgba(91,140,255,.22); color:var(--brand); }
-  .ncard .nm .del{ margin-left:auto; color:var(--muted-2); cursor:pointer; }
-  .ncard .nm .del:hover{ color:#ff9a9a; }
-  .notes-empty{ text-align:center; color:var(--muted-2); padding:54px 20px; font-size:13px; line-height:1.8; }
-  .btn-danger{ background:linear-gradient(135deg,#ef4444,#dc2626); color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:9px; padding:5px 12px; font-size:12px; font-weight:700; cursor:pointer; }
-  .btn-danger:hover{ filter:brightness(1.1); }
-  :root[data-theme="brutalism"] .hlbar{ background:#111; border:2px solid #111; box-shadow:3px 3px 0 #000; -webkit-backdrop-filter:none; backdrop-filter:none; }
-  :root[data-theme="brutalism"] .hlbar .hib{ background:#fff; color:#111; border:2px solid #111; }
-  :root[data-theme="brutalism"] .hlbar .hib.wave, :root[data-theme="brutalism"] .hlbar .hib.note, :root[data-theme="brutalism"] .hlbar .hib.del{ color:#111; }
-  :root[data-theme="brutalism"] .hlbar .hld{ border-color:#111; }
 </style>
 <!-- 启动页样式已移除 v0.2.0 -->
 
@@ -1306,7 +1256,6 @@
       <button class="nav-item" data-page="random"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1.5"/><rect x="14" y="2" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><circle cx="18" cy="18" r="4"/></svg></span><span class="ni-lb">随机知识</span></button>
       <button class="nav-item" data-page="favorites"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></span><span class="ni-lb">收藏</span></button>
       <button class="nav-item" data-page="settings"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0zM14.5 8.5a2.5 2.5 0 0 1 5 0v7a2.5 2.5 0 0 1-5 0z"/><path d="M9.5 12h5"/></svg></span><span class="ni-lb">设置</span></button>
-      <button class="nav-item" data-page="notes"><span class="ni-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11l2.5 2.5H18A1.5 1.5 0 0 1 19.5 18 1.5 1.5 0 0 1 18 19.5H5.5A1.5 1.5 0 0 1 4 18z"/><path d="M8 10h8M8 13.5h5"/></svg></span><span class="ni-lb">笔记</span><span class="ni-badge" id="notesBadge" hidden>0</span></button>
     </nav>
     <div class="tree-search">
       <svg class="ts-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>
@@ -1315,7 +1264,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.2 · 2026-08-21<br>离线可用 · 单文件<br><a href="versions.html">版本履历 →</a></div>
+    <div class="side-foot">v0.8.1 · 2026-08-21<br>离线可用 · 单文件<br><a href="versions.html">版本履历 →</a></div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1343,7 +1292,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.2 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-21</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.8.1 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-21</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 21</span>
@@ -5821,7 +5770,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   var lastRandId = null;
   var randHost = document.getElementById('randHost');
   var settingsHost = document.getElementById('settingsHost');
-  var TITLES = { home:'首页', random:'随机知识', settings:'设置', favorites:'收藏', notes:'笔记' };
+  var TITLES = { home:'首页', random:'随机知识', settings:'设置', favorites:'收藏' };
 
   function updateProg(){ var p=document.getElementById('tbProg'); if(p) p.textContent=VER_TOTAL+' 个知识点'; }
 
@@ -5837,7 +5786,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     var tt = document.getElementById('tbTitle'); if(tt) tt.textContent = TITLES[page]||'';
     if(page==='settings') renderSettings();
     if(page==='favorites') renderFavorites();
-    if(page==='notes') renderNotes();
     if(page==='random' && !randPanelEl) nextRandom();
   }
 
@@ -6002,7 +5950,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>数据与显示</div>';
     html += '<div class="set-row"><div><div class="lr">开启动效</div><div class="ld">开启粒子背景与界面动效（默认关闭）</div></div><button class="switch" id="setMotion"></button></div>';
     html += '<div class="set-row"><div><div class="lr">音效</div><div class="ld">切换主题与交互时的合成音效</div></div><button class="switch" id="setSound"></button></div>';
-    html += '<div class="set-row"><div><div class="lr">清除全部笔记</div><div class="ld">删除所有高亮标注与笔记（不可恢复）</div></div><button class="btn-danger" id="setClearNotes">清除</button></div>';
     html += '</div>';
     settingsHost.innerHTML = html;
     settingsHost.querySelectorAll('.theme-chip').forEach(function(c){
@@ -6014,8 +5961,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     var sBtn = document.getElementById('setSound');
     if(sBtn){ var so = !!LS.get('optics_sound', true); sBtn.classList.toggle('on', so);
       sBtn.addEventListener('click', function(){ var v=!sBtn.classList.contains('on'); sBtn.classList.toggle('on',v); Sound.setOn(v); if(v) Sound.tick(); }); }
-    var cnBtn = document.getElementById('setClearNotes');
-    if(cnBtn){ cnBtn.addEventListener('click', function(){ var n=loadNotes().length; if(n===0) return; if(window.confirm('确定清除全部 '+n+' 条笔记与高亮？此操作不可恢复。')){ clearAllNotes(); } }); }
   }
   function renderFavorites(){
     var fav = LS.get('optics_fav',[]);
@@ -6039,154 +5984,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
         if(it){ showCat(it.cat); showView('home'); var t=document.getElementById('tab-'+id); if(t) t.click(); window.scrollTo({top:0,behavior:'smooth'}); }
       });
     });
-  }
-  /* ============ v0.8.2 笔记标注模块 ============ */
-  var NOTES_KEY = 'ob_notes';
-  function loadNotes(){ return LS.get(NOTES_KEY, []); }
-  function saveNotes(a){ LS.set(NOTES_KEY, a||[]); updateNotesBadge(); }
-  function findNote(id){ var a=loadNotes(); for(var i=0;i<a.length;i++){ if(a[i].id===id) return a[i]; } return null; }
-  function updateNotesBadge(){
-    var b=document.getElementById('notesBadge'); if(!b) return;
-    var n=loadNotes().length; b.textContent = n>99?'99+':(''+n); b.hidden = n===0;
-  }
-  function panelOf(node){ var p=node; while(p && p!==document.body){ if(p.classList && p.classList.contains('panel')) return p; p=p.parentNode; } return null; }
-  function rangeOffsets(panel, range){
-    var pre=document.createRange(); pre.selectNodeContents(panel); pre.setEnd(range.startContainer, range.startOffset);
-    var s=pre.toString().length; return { start:s, end:s+range.toString().length };
-  }
-  function locateRange(panel, start, end){
-    var w=document.createTreeWalker(panel, NodeFilter.SHOW_TEXT, null, false);
-    var pos=0, sN=null, sO=0, eN=null, eO=0, n;
-    while(n=w.nextNode()){ var len=n.nodeValue.length;
-      if(sN===null && pos<=start && start<=pos+len){ sN=n; sO=start-pos; }
-      if(sN!==null && pos<=end && end<=pos+len){ eN=n; eO=end-pos; break; }
-      pos+=len; }
-    if(sN && eN){ var r=document.createRange(); r.setStart(sN,sO); r.setEnd(eN,eO); return r; }
-    return null;
-  }
-  function wrapRange(range, cls, nid){
-    var m=document.createElement('mark'); m.className='hl '+cls; m.dataset.nid=nid;
-    try{ range.surroundContents(m); }
-    catch(e){ var f=range.extractContents(); m.appendChild(f); range.insertNode(m); }
-    return m;
-  }
-  function unwrapMark(mark){ var p=mark.parentNode; while(mark.firstChild) p.insertBefore(mark.firstChild, mark); p.removeChild(mark); if(p.normalize) p.normalize(); }
-  function anchorText(panel, start, end){
-    var t=panel.textContent; return t.slice(Math.max(0,start-12), start)+'⟂'+t.slice(end, end+12);
-  }
-  function itemMeta(panelId){
-    var id=(''+panelId).replace(/^panel-/,''); var it=null;
-    for(var i=0;i<ITEMS.length;i++){ if(ITEMS[i].id===id){ it=ITEMS[i]; break; } }
-    return it||{id:id, cat:'', title:id, en:''};
-  }
-  function makeNote(panel, range, kind, noteText){
-    var off=rangeOffsets(panel, range); var meta=itemMeta(panel.id);
-    return { id:'n'+Date.now()+'-'+Math.floor(Math.random()*1000), panelId:panel.id, cat:meta.cat, item:meta.id, title:meta.title, en:meta.en,
-      text:range.toString(), kind:kind, note:noteText||'', start:off.start, end:off.end, anchor:anchorText(panel, off.start, off.end), ts:Date.now() };
-  }
-  var hlbar=null, cur={range:null,mark:null,panel:null,note:null};
-  function ensureHlbar(){
-    if(hlbar) return hlbar;
-    hlbar=document.createElement('div'); hlbar.className='hlbar';
-    hlbar.innerHTML='<button class="hld y" data-k="hl-y" title="黄高亮"></button><button class="hld c" data-k="hl-c" title="青高亮"></button><button class="hld p" data-k="hl-p" title="粉高亮"></button><span class="hsep"></span><button class="hib wave" data-k="wave" title="波浪线">〰 波浪线</button><button class="hib note" data-k="note" title="笔记">📝 笔记</button><button class="hib del" data-k="del" title="删除">✕</button>';
-    document.body.appendChild(hlbar);
-    hlbar.addEventListener('click', function(e){ var b=e.target.closest('.hld,.hib'); if(!b) return; e.stopPropagation(); act(b.dataset.k); });
-    return hlbar;
-  }
-  function showBar(rect){ var b=ensureHlbar(); b.style.left=(rect.left+rect.width/2)+'px'; b.style.top=(rect.top-10)+'px'; b.classList.add('show'); }
-  function hideBar(){ if(hlbar) hlbar.classList.remove('show'); cur={range:null,mark:null,panel:null,note:null}; }
-  function reclass(mark, kind){ mark.className='hl '+kind; }
-  function onSelection(){ setTimeout(function(){
-    var sel=window.getSelection(); if(!sel || sel.isCollapsed || !sel.toString().trim()) return;
-    var r=sel.getRangeAt(0); var p=panelOf(r.commonAncestorContainer); if(!p) return;
-    cur={range:r, mark:null, panel:p, note:null}; showBar(r.getBoundingClientRect());
-  }, 10); }
-  function onDocClick(e){
-    var m = e.target.closest ? e.target.closest('mark.hl') : null;
-    if(m){ var p=panelOf(m); var n=findNote(m.dataset.nid); var r=document.createRange(); r.selectNodeContents(m);
-      cur={range:null, mark:m, panel:p, note:n}; showBar(r.getBoundingClientRect()); e.stopPropagation(); return; }
-    if(!e.target.closest('.hlbar')) hideBar();
-  }
-  function act(kind){
-    if(kind==='del'){
-      if(cur.mark){ unwrapMark(cur.mark); if(cur.note) deleteNote(cur.note.id); }
-      hideBar(); return;
-    }
-    if(cur.mark){ /* 编辑已有高亮 */
-      var m=cur.mark, n=cur.note;
-      if(kind==='note'){ var t=window.prompt('编辑笔记：', n?n.note:''); if(t===null){ hideBar(); return; } n.note=t; reclass(m, n.kind); }
-      else { n.kind=kind; reclass(m, kind); }
-      saveNotes(loadNotes()); hideBar(); return;
-    }
-    if(!cur.range) return;
-    var panel=cur.panel, range=cur.range;
-    var k = (kind==='note') ? 'hl-y' : kind;
-    var noteText='';
-    if(kind==='note'){ noteText=window.prompt('为这段标注添加笔记：','')||''; }
-    var note=makeNote(panel, range, k, noteText);
-    wrapRange(range, k, note.id);
-    var arr=loadNotes(); arr.push(note); saveNotes(arr);
-    try{ window.getSelection().removeAllRanges(); }catch(e){}
-    hideBar();
-  }
-  function deleteNote(id){ var arr=loadNotes().filter(function(n){ return n.id!==id; }); saveNotes(arr);
-    var m=document.querySelector('mark.hl[data-nid="'+id+'"]'); if(m) unwrapMark(m); }
-  function clearAllNotes(){
-    document.querySelectorAll('mark.hl').forEach(function(m){ unwrapMark(m); });
-    saveNotes([]);
-    var host=document.getElementById('view-notes'); if(host && host.classList.contains('active')) renderNotes();
-  }
-  function restoreNotes(){
-    loadNotes().forEach(function(n){
-      var panel=document.getElementById(n.panelId); if(!panel) return;
-      var r=locateRange(panel, n.start, n.end); if(!r) return;
-      wrapRange(r, n.kind, n.id);
-    });
-  }
-  function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function fmtDate(ts){ try{ var d=new Date(ts); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }catch(e){ return ''; } }
-  function renderNotes(){
-    var host=document.getElementById('view-notes'); if(!host) return;
-    var notes=loadNotes();
-    var html='<div class="notes-head"><h2>我的笔记</h2><div class="sub">共 '+notes.length+' 条标注 · 按知识点分组 · 点击跳回原文高亮处</div></div>';
-    if(!notes.length){ html+='<div class="notes-empty">还没有笔记 📝<br>在任意知识点面板中选中文字，<br>即可弹出高亮 / 波浪线 / 笔记工具栏</div>'; host.innerHTML=html; return; }
-    var groups={};
-    notes.forEach(function(n){ var key=n.cat+'/'+n.item; if(!groups[key]) groups[key]={cat:n.cat,title:n.title,en:n.en,items:[]}; groups[key].items.push(n); });
-    Object.keys(groups).forEach(function(key){
-      var g=groups[key];
-      html+='<div class="notes-group"><div class="notes-gcap">'+CATNAME[g.cat]+' · '+esc(g.title)+'<span class="en">'+(g.en||'')+'</span></div>';
-      g.items.forEach(function(n){
-        var cls = n.kind==='wave' ? 'wave' : '';
-        var tagmap={ 'hl-y':'y','hl-c':'c','hl-p':'p','wave':'wave' };
-        var tagtxt={ 'hl-y':'黄高亮','hl-c':'青高亮','hl-p':'粉高亮','wave':'波浪线' }[n.kind]||n.kind;
-        html+='<div class="ncard" data-go="'+n.id+'"><div class="nq '+cls+'">「'+esc(n.text)+'」</div>'+
-          (n.note?'<div class="nt">'+esc(n.note)+'</div>':'')+
-          '<div class="nm"><span class="tag '+tagmap[n.kind]+'">'+tagtxt+'</span><span>'+fmtDate(n.ts)+'</span><span class="del" data-del="'+n.id+'">删除</span></div></div>';
-      });
-      html+='</div>';
-    });
-    host.innerHTML=html;
-    host.querySelectorAll('.ncard').forEach(function(c){
-      c.addEventListener('click', function(e){
-        if(e.target.closest('.del')){ deleteNote(e.target.closest('.del').dataset.del); renderNotes(); return; }
-        gotoNote(c.dataset.go);
-      });
-    });
-  }
-  function gotoNote(id){
-    var n=findNote(id); if(!n) return;
-    showCat(n.cat); showView('home');
-    var tab=document.getElementById('tab-'+n.item); if(tab) tab.click();
-    setTimeout(function(){
-      var m=document.querySelector('mark.hl[data-nid="'+id+'"]');
-      if(m){ m.scrollIntoView({block:'center', behavior:'smooth'}); m.classList.remove('flash'); void m.offsetWidth; m.classList.add('flash'); }
-    }, 260);
-  }
-  function initNotes(){
-    restoreNotes();
-    updateNotesBadge();
-    document.addEventListener('mouseup', onSelection);
-    document.addEventListener('click', onDocClick);
   }
   function initParticles(){
     var cv=document.getElementById('bg'); if(!cv) return;
@@ -6293,7 +6090,6 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     updateProg();
     initParticles();
     buildTree();
-    initNotes();
     /* 鬼像图集轮播：左右滑动 + 按钮 + 圆点指示 */
     document.querySelectorAll('.ghost-carousel').forEach(function(car){
       var track=car.querySelector('.gc-track'); if(!track) return;
@@ -6335,6 +6131,5 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 })();
 </script>
 
-  <section id="view-notes" class="view"></section>
 </body>
 </html>
