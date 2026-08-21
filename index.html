@@ -1264,14 +1264,14 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.0 · 2026-08-20<br>离线可用 · 单文件<br><a href="versions.html">版本履历 →</a></div>
+    <div class="side-foot">v0.8.1 · 2026-08-21<br>离线可用 · 单文件<br><a href="versions.html">版本履历 →</a></div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
     <header id="topbar">
       <button class="tb-menu" id="tbMenu" type="button" aria-label="打开目录"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">104 个知识点</span>
+      <span class="tb-prog" id="tbProg">112 个知识点</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -1292,16 +1292,16 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-20</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.8.1 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-21</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
-        <span class="hero-chip">光学基础 · 16</span>
+        <span class="hero-chip">光学基础 · 21</span>
         <span class="hero-chip">信赖性·车规 · 11</span>
         <span class="hero-chip">设备与仪器 · 7</span>
         <span class="hero-chip">工艺制造 · 4</span>
         <span class="hero-chip">工程图纸 · 6</span>
         <span class="hero-chip">模组与系统 · 11</span>
-        <span class="hero-chip">材料与镜片 · 8</span>
+        <span class="hero-chip">材料与镜片 · 12</span>
         <span class="hero-chip">应用场景 · 10</span>
       </div>
     </div>
@@ -1313,7 +1313,7 @@
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
-          <div class="rand-hero-desc">从 104 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
+          <div class="rand-hero-desc">从 112 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
         </div>
       </div>
       <div class="rand-hero-btn">探索 →</div>
@@ -1327,7 +1327,7 @@
       <div class="cat-nav-item active" id="cat-optics" onclick="showCat('optics')">
         <span class="cn-ic">🔬</span>
         <span class="cn-lb">光学基础<span class="cn-en">Optics Fundamentals</span></span>
-        <span class="cn-count">16</span>
+        <span class="cn-count">21</span>
       </div>
       <div class="cat-nav-item" id="cat-reliability" onclick="showCat('reliability')">
         <span class="cn-ic">🌡️</span>
@@ -1357,7 +1357,7 @@
       <div class="cat-nav-item" id="cat-material" onclick="showCat('material')">
         <span class="cn-ic">💎</span>
         <span class="cn-lb">材料与镜片<span class="cn-en">Materials & Lens</span></span>
-        <span class="cn-count">9</span>
+        <span class="cn-count">12</span>
       </div>
       <div class="cat-nav-item" id="cat-application" onclick="showCat('application')">
         <span class="cn-ic">🚗</span>
@@ -1531,6 +1531,11 @@
     <div class="tab" id="tab-diffraction" onclick="showTab('diffraction')">衍射极限<span class="en">Airy 斑</span></div>
     <div class="tab" id="tab-snr" onclick="showTab('snr')">信噪比<span class="en">SNR</span></div>
     <div class="tab" id="tab-pol" onclick="showTab('pol')">偏振光学<span class="en">Polarization</span></div>
+    <div class="tab" id="tab-relillum" onclick="showTab('relillum')">相对照度<span class="en">Rel. Illumination</span></div>
+    <div class="tab" id="tab-mtfaxis" onclick="showTab('mtfaxis')">轴上 MTF<span class="en">MTF Axis</span></div>
+    <div class="tab" id="tab-latcolor" onclick="showTab('latcolor')">横向色差<span class="en">Lateral Color</span></div>
+    <div class="tab" id="tab-imgtilt" onclick="showTab('imgtilt')">像面倾斜<span class="en">Image Plane Tilt</span></div>
+    <div class="tab" id="tab-bandpass" onclick="showTab('bandpass')">带通滤光片<span class="en">Band Pass</span></div>
   </div>
   <div class="tabs" id="subtabs-reliability" style="display:none;">
     <div class="tab" id="tab-thcomp" onclick="showTab('thcomp')">热补偿<span class="en">温度补偿</span></div>
@@ -1560,15 +1565,15 @@
     <div class="tab" id="tab-symdim" onclick="showTab('symdim')">尺寸与公差标注<span class="en">Dim/Tol</span></div>
     <div class="tab" id="tab-symgeo" onclick="showTab('symgeo')">形位公差符号<span class="en">GD&amp;T</span></div>
   </div>
-  <div class="tabs" id="subtabs-equipment" style="display:none;">
-    <div class="tab active" id="tab-eq-inspect" onclick="showTab('eq-inspect')">检验检测<span class="en">MTF/VGI/偏心</span></div>
-    <div class="tab" id="tab-eq-assembly" onclick="showTab('eq-assembly')">组装设备<span class="en">AA/点胶/锁付</span></div>
-    <div class="tab" id="tab-eq-machine" onclick="showTab('eq-machine')">加工设备<span class="en">CNC/打标</span></div>
-    <div class="tab" id="tab-eq-envtest" onclick="showTab('eq-envtest')">环境试验<span class="en">老化/温循</span></div>
-    <div class="tab" id="tab-eq-cleanpack" onclick="showTab('eq-cleanpack')">清洗包装<span class="en">干冰/真空</span></div>
-    <div class="tab" id="tab-eq-vgi" onclick="showTab('eq-vgi')">VGI 测试设备<span class="en">Veiling Glare</span></div>
-    <div class="tab" id="tab-eq-stray" onclick="showTab('eq-stray')">自动杂光测试<span class="en">Flare/Stray</span></div>
-  </div>
+    <div class="tabs" id="subtabs-equipment" style="display:none;">
+      <div class="tab active" id="tab-eq-inspect" onclick="showTab('eq-inspect')">检验检测<span class="en">MTF/VGI/偏心</span></div>
+      <div class="tab" id="tab-eq-vgi" onclick="showTab('eq-vgi')">VGI 测试设备<span class="en">Veiling Glare</span></div>
+      <div class="tab" id="tab-eq-stray" onclick="showTab('eq-stray')">自动杂光测试<span class="en">Flare/Stray</span></div>
+      <div class="tab" id="tab-eq-assembly" onclick="showTab('eq-assembly')">组装设备<span class="en">AA/点胶/锁付</span></div>
+      <div class="tab" id="tab-eq-machine" onclick="showTab('eq-machine')">加工设备<span class="en">CNC/打标</span></div>
+      <div class="tab" id="tab-eq-envtest" onclick="showTab('eq-envtest')">环境试验<span class="en">老化/温循</span></div>
+      <div class="tab" id="tab-eq-cleanpack" onclick="showTab('eq-cleanpack')">清洗包装<span class="en">干冰/真空</span></div>
+    </div>
   <div class="tabs" id="subtabs-module" style="display:none;">
     <div class="tab active" id="tab-aa" onclick="showTab('aa')">AA 主动对准<span class="en">6DOF</span></div>
     <div class="tab" id="tab-dispensing" onclick="showTab('dispensing')">点胶与固化<span class="en">定焦</span></div>
@@ -1592,6 +1597,9 @@
     <div class="tab" id="tab-moldedlens" onclick="showTab('moldedlens')">模造镜片<span class="en">PGM/WGM</span></div>
     <div class="tab" id="tab-lenscompare" onclick="showTab('lenscompare')">镜片选型对比<span class="en">Compare</span></div>
     <div class="tab" id="tab-ots" onclick="showTab('ots')">OTS 光学件<span class="en">Off-The-Shelf</span></div>
+    <div class="tab" id="tab-arcoat" onclick="showTab('arcoat')">增透膜<span class="en">AR Coating</span></div>
+    <div class="tab" id="tab-anodeth" onclick="showTab('anodeth')">阳极氧化膜厚<span class="en">Anodic Oxide</span></div>
+    <div class="tab" id="tab-porosity" onclick="showTab('porosity')">孔隙率<span class="en">Porosities</span></div>
   </div>
   <div class="tabs" id="subtabs-application" style="display:none;">
     <div class="tab active" id="tab-layout" onclick="showTab('layout')">整车摄像头布局<span class="en">眼睛矩阵</span></div>
@@ -1641,6 +1649,19 @@
   .dc-tbl td{ padding:5px 4px; border-top:1px solid var(--line); vertical-align:top; }
   .dc-tbl td:first-child{ color:#46d3c4; font-weight:600; width:44%; }
   .dc-tbl td:last-child{ color:var(--muted); }
+
+  /* SOP · 数值·单位速查（置于知识点顶部） */
+  .spec{ margin:14px 0 6px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:rgba(255,255,255,.035); }
+  .spec-h{ font-size:12px; font-weight:800; letter-spacing:.4px; color:var(--text); background:rgba(255,255,255,.06); border-bottom:2px solid var(--brand); padding:9px 14px; display:flex; align-items:center; gap:8px; }
+  .spec-h::before{ content:""; width:8px; height:8px; border-radius:2px; background:var(--brand); flex:0 0 auto; }
+  .spec-h .en{ font-size:10px; font-weight:500; color:var(--muted-2); margin-left:auto; }
+  .spec-row{ display:grid; grid-template-columns:112px 56px 1fr; gap:8px 12px; padding:9px 14px; border-top:1px solid var(--line); align-items:start; font-size:12.5px; line-height:1.55; }
+  .spec-row:first-of-type{ border-top:none; }
+  .spec-k{ font-weight:700; color:var(--text); }
+  .spec-u{ font-weight:800; color:var(--brand); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:nowrap; }
+  .spec-v{ color:var(--muted); }
+  .spec-v b{ color:var(--text); }
+  @media (max-width:540px){ .spec-row{ grid-template-columns:90px 46px 1fr; font-size:11.5px; gap:6px 8px; } }
   </style>
 
   <!-- 摄影/相机 · 相机成像原理 -->
@@ -3831,6 +3852,97 @@
 
   </div>
 
+  <!-- 光学基础 · 相对照度 Relative Illumination -->
+  <div class="panel" id="panel-relillum">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">相对照度 RI</span><span class="spec-u">%</span><span class="spec-v">某视场点亮度 ÷ 中心亮度 ×100；中心=100%，<b>越大画面越均匀</b>。车载常要求边角 ≥ 50~70%</span></div>
+      <div class="spec-row"><span class="spec-k">视场角 θ</span><span class="spec-u">°</span><span class="spec-v">离轴角度；越大（越靠边角）RI 越低、暗化越明显</span></div>
+      <div class="spec-row"><span class="spec-k">渐晕系数</span><span class="spec-u">×</span><span class="spec-v">有时用 1/RI 表示暗化倍率（如 RI=50% → 暗 2×）</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>相对照度（Relative Illumination, RI）</b>描述画面从中心到边角的亮度衰减——中心最亮（定义为 100%），越靠边角越暗。它主要由<b>机械渐晕</b>与<b>余弦四次方定律（cos⁴θ）</b>造成，是镜头"边角发暗"的量化指标，直接影响 ADAS 边角区域的识别置信度。</div>
+    <p class="tagline">一句话：RI = 边角比中心暗多少；100% 最均匀，越低边角越"糊黑"</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">📉</span>成因<span class="en">为何边角暗</span></div><div class="dc-t">① <b>机械渐晕</b>：光阑/镜筒挡住斜射的边缘光束；② <b>余弦四次方定律</b>：斜射到像面的光强按 cos⁴θ 下降；③ <b>主光线角 CRA</b> 与 sensor 微透镜不匹配会雪上加霜。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🎯</span>验收参考<span class="en">车规</span></div><div class="dc-t">车载常见：<b>边角（全视场）RI ≥ 50~70%</b>，前视/环视依规格书。RI 过低→边角信噪比崩、车道线/桩桶识别变弱。与 MTF、鬼影共同决定边角"可用成像质量"。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🔧</span>改善手段<span class="en">提 RI</span></div><div class="dc-t">增大入瞳/优化光阑位置、控制 CRA 匹配 sensor、用<b>非球面/自由曲面</b>校正、适当放宽 F 数。但 RI 与体积/视场是权衡——广角大 RI 难做。</div></div>
+    </div>
+    <div class="note"><b>RI 与渐晕（Vignetting）是同一现象的两面：</b>RI 是"亮度的百分比描述"，渐晕是"为什么暗"的几何解释。看规格书认准 <b>RI@全视场 ≥ X%</b> 这一条即可；它与 MTF（清晰度）、鬼影（杂光）一起构成边角成像质量的三道关。</div>
+  </div>
+
+  <!-- 光学基础 · 轴上 MTF MTF Axis -->
+  <div class="panel" id="panel-mtfaxis">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">空间频率</span><span class="spec-u">lp/mm</span><span class="spec-v">每毫米可分辨的"黑白线对"数；<b>越大=越细的线纹</b>，越难成像</span></div>
+      <div class="spec-row"><span class="spec-k">MTF 值</span><span class="spec-u">%</span><span class="spec-v">该频率下对比度保留比例，0~100%；<b>越高越清晰</b>。轴上为基准最高点</span></div>
+      <div class="spec-row"><span class="spec-k">评价视场</span><span class="spec-u">θ</span><span class="spec-v">中心(0°)/0.7视场/全视场；<b>轴上(0°)=MTF 最高</b>，离轴下降</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>轴上 MTF（MTF Axis / On-axis MTF）</b>指沿<b>光学轴心（视场中心，θ=0°）</b>测得的调制传递函数，是镜头清晰度的"基准最高点"。同一镜头，离轴（边角）MTF 必然低于轴上——轴上 MTF 高只代表中心清楚，不代表全画面都清楚。</div>
+    <p class="tagline">一句话：轴上 MTF = 画面正中心的清晰度上限；边角会掉，看全视场才算数</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">📐</span>怎么读<span class="en">MTF 曲线</span></div><div class="dc-t">横轴=空间频率(lp/mm)，纵轴=MTF(%)。曲线越靠左上、越平缓=越清晰。车载常看 <b>特定频率（如 100 lp/mm）下的 MTF 值</b>与<b>全视场最低 MTF</b>。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🔍</span>轴上 vs 离轴<span class="en">Axis vs Off-axis</span></div><div class="dc-t"><b>轴上</b>受像差影响最小、MTF 最高；<b>离轴</b>叠加场曲/畸变/色差，MTF 下降。验收不只看轴上，更看<b>全视场最小值</b>与"子午/弧矢"两方向。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🚗</span>车载关注<span class="en">全视场</span></div><div class="dc-t">ADAS 识别常发生在边角，故车规更看重<b>全视场 MTF 下限</b>（如中心 0.6 以上、边角不低于某值）。轴上 MTF 只是"天花板"，边角才是"地板"。</div></div>
+    </div>
+    <div class="note"><b>MTF 与分辨率的换算：</b>能分辨的线对 ≈ MTF 降到约 10~20% 时对应的频率。像素尺寸也限制：奈奎斯特频率 = 1/(2×像素尺寸)。镜头 MTF 再高，sensor 像素不够也白搭——两者要匹配。</div>
+  </div>
+
+  <!-- 光学基础 · 横向色差 Lateral Color -->
+  <div class="panel" id="panel-latcolor">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">横向色差</span><span class="spec-u">μm</span><span class="spec-v">不同波长（如红 R / 蓝 B）像点在焦平面上的<b>横向偏移量</b>；<b>越小越好</b></span></div>
+      <div class="spec-row"><span class="spec-k">换算像素</span><span class="spec-u">px</span><span class="spec-v">÷ 像素尺寸得像素数；车载常要求 <b>≤ 1~2 像素 / 几 μm</b></span></div>
+      <div class="spec-row"><span class="spec-k">vs 轴向色差</span><span class="spec-u">区分</span><span class="spec-v">横向=同焦面左右错开；轴向=前后焦点差（色彩模糊）</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>横向色差（Lateral Color / Transverse Chromatic Aberration）</b>指不同波长的光在<b>同一焦平面上成像位置横向错开</b>——红、蓝像点不在同一点，画面边缘出现彩色镶边（紫边/彩边）。它与"轴向色差"（焦点前后差）是色差的两类表现。</div>
+    <p class="tagline">一句话：横向色差 = 红蓝像点在画面里左右"打架"，边缘冒彩边</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">🌈</span>成因<span class="en">为何错位</span></div><div class="dc-t">玻璃的<b>色散（阿贝数不同）</b>使 R/G/B 折射角不同；视场越大（边角）横向错位越明显。高折射/低阿贝材料会加剧。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">📏</span>怎么测<span class="en">量化</span></div><div class="dc-t">拍 chart，测边角处 R 与 B 特征点的位移差（μm 或像素）。验收给出<b>最大允许位移</b>（如全视场 ≤ 几 μm）。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🛠️</span>抑制<span class="en">校正</span></div><div class="dc-t">光学上用<b>低色散材料 + 反常色散组合</b>平衡；制程上靠 <b>AA 主动对准</b>微调；算法上 ISP 可做<b>色差校正（CAC）</b>事后补偿边缘彩边。</div></div>
+    </div>
+    <div class="note"><b>轴上也有、边角最狠：</b>横向色差随视场增大而增大，中心几乎为 0、边角最大。所以规格书只卡"全视场最大值"。它和"色差（Chromatic Aberration, CA）"常被混用，但 CA 更泛指、Lateral Color 特指"横向偏移量"这一可量化指标。</div>
+  </div>
+
+  <!-- 光学基础 · 像面倾斜 Image Plane Tilt -->
+  <div class="panel" id="panel-imgtilt">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">倾斜量</span><span class="spec-u">°</span><span class="spec-v">像面相对 sensor 的倾斜角；<b>越小越好</b>（像面越平/越平行）</span></div>
+      <div class="spec-row"><span class="spec-k">视场离焦差</span><span class="spec-u">μm</span><span class="spec-v">全视场内最大离焦差；车规常要求 <b>≤ 数 μm ~ 十几 μm</b>（依 F 数/像素）</span></div>
+      <div class="spec-row"><span class="spec-k">判定</span><span class="spec-u">通过/超差</span><span class="spec-v">超差→边角离焦模糊、MTF 崩；需返修调平</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>像面倾斜（Image Plane Tilt）</b>指镜头成像的"最佳焦面"与 sensor 平面不平行、存在夹角，导致画面一边清楚、一边模糊（或通过调焦一边清楚另一边糊）。它是装调/结构变形的典型产物，直接拉低边角 MTF。</div>
+    <p class="tagline">一句话：像面倾斜 = 焦面"歪了"，一边清一边糊，全画面无法同时合焦</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">🔧</span>成因<span class="en">为何歪</span></div><div class="dc-t">① <b>AA 主动对准</b>偏差；② 镜筒/支架<b>装配应力</b>；③ 温度循环后<b>结构变形/热漂移</b>；④ 螺纹压圈受力不均。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🔬</span>检测<span class="en">量化</span></div><div class="dc-t">多视场点拍摄调焦曲线、拟合焦面斜率；或用<b>干涉/准直</b>测像面倾角。给出全视场最大离焦差作为判据。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🎯</span>容差逻辑<span class="en">多严</span></div><div class="dc-t">容差由<b>像素尺寸 / F 数 / 景深</b>决定：像素越小、F 数越大（景深越浅），对倾斜越敏感、容差越紧。</div></div>
+    </div>
+    <div class="note"><b>倾斜 vs 场曲：</b>场曲是焦面本身"弯"（理想曲面），倾斜是焦面"歪"（相对 sensor 不平行）。两者都让全画面难同时合焦，但成因与修正不同——倾斜靠装调/AA 修正，场曲靠光学设计平衡。验收时通常两者一起看。</div>
+  </div>
+
+  <!-- 光学基础 · 带通滤光片 Band Pass Filter -->
+  <div class="panel" id="panel-bandpass">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">中心波长 CWL</span><span class="spec-u">nm</span><span class="spec-v">滤光片<b>透过率峰值</b>对应波长；如 550 / 850 / 940nm</span></div>
+      <div class="spec-row"><span class="spec-k">带宽 FWHM</span><span class="spec-u">nm</span><span class="spec-v">透过率 ≥ 50% 峰值处的谱宽；<b>越小=波段越窄越纯</b></span></div>
+      <div class="spec-row"><span class="spec-k">峰值透过率</span><span class="spec-u">%</span><span class="spec-v">通带内最大透过率；<b>越高越好</b>（常 >90%）</span></div>
+      <div class="spec-row"><span class="spec-k">截止深度 OD</span><span class="spec-u">OD</span><span class="spec-v">带外抑制能力；OD 越大=越挡得住杂光（如 OD4 挡 10⁴×）</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>带通滤光片（Band Pass Filter）</b>只让<b>某一狭窄波长范围</b>透过、其余波段阻挡，用来"提纯"进入 sensor 的光。车载里它常用于<b>分隔可见光与激光雷达（905/1550nm）、或红外补光（850/940nm）</b>，避免串扰；与只切 UV/IR 的 IR-CUT 不同，带通是"只放一段"。</div>
+    <p class="tagline">一句话：带通滤光片 = 只放行某一段波长，像给光加了一道"频段闸门"</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">🎛️</span>核心参数<span class="en">怎么选</span></div><div class="dc-t"><b>CWL</b>对齐目标波长；<b>FWHM</b>越窄越纯但通光少、成本升；<b>Tpk</b>要高；<b>OD</b>要够挡带外。窄带常用于激光分离，宽带用于通用可见光。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🚗</span>车载应用<span class="en">串扰隔离</span></div><div class="dc-t">前视/周视相机常叠 <b>可见光带通 + IR-CUT</b> 确保只收可见；激光雷达旁的路侧 camera 用窄带滤光片挡 905/1550nm 回波防饱和。多光谱融合也靠它分工。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🔍</span>vs IR-CUT<span class="en">区别</span></div><div class="dc-t"><b>IR-CUT</b>：切掉红外、放行可见（双截止）；<b>带通</b>：只放行一段（可见或某红外），其余全挡。场景不同、参数体系一致（CWL/FWHM/Tpk/OD）。</div></div>
+    </div>
+    <div class="note"><b>与镀膜的关系：</b>带通功能通常由<b>多层介质膜（薄膜干涉）</b>实现，原理和 AR 增透膜同源——都是靠膜厚控制干涉。区别在目标：AR 要"全波段低反射"，带通要"某段高透、其余高反"。选型时把 CWL/FWHM/OD 三项写进规格书即可。</div>
+  </div>
+
   <div class="panel" id="panel-cis">
 
     <div class="define"><b>释义：</b><b>CIS（CMOS Image Sensor，互补金属氧化物半导体图像传感器）</b>是把光信号转为电信号的核心芯片，位于 CCM 像面。车载对 CIS 的要求远超消费级：高动态范围（HDR）、高信噪比（SNR）、LED 闪烁抑制（LFM）、宽温稳定、功能安全（ISO 26262）。主流为<b>背照式 BSI + 堆栈式 Stacked</b> 结构。</div>
@@ -4078,6 +4190,60 @@
   </div>
 
   <!-- 质量工具 · IQC 来料检验概述 -->
+  <!-- 材料与镜片 · 增透膜 AR Coating -->
+  <div class="panel" id="panel-arcoat">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">反射率 R</span><span class="spec-u">%</span><span class="spec-v">入射光被膜系反射的比例；<b>越小越好</b>：未镀膜玻璃≈4%、单层 MgF₂≈1~2%、多层宽带 AR &lt;0.5%</span></div>
+      <div class="spec-row"><span class="spec-k">透光率 T</span><span class="spec-u">%</span><span class="spec-v">透过的比例；T ≈ 100% − R（忽略吸收）；AR 目标即把 T 拉满</span></div>
+      <div class="spec-row"><span class="spec-k">设计波长 λ</span><span class="spec-u">nm</span><span class="spec-v">AR 中心波长：可见常用 550nm；近红外用 850/940nm</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>增透膜（AR Coating, Anti-Reflection）</b>是在镜片表面镀的<b>多层薄膜</b>，利用<b>薄膜干涉相消</b>把原本 4% 左右的表面反射压到 0.5% 以下，让更多光进镜头、减少鬼影与杂光。车载镜头（尤其多片塑料/玻璃堆叠）几乎必镀，否则片数越多反射叠加越严重。</div>
+    <p class="tagline">一句话：AR 膜 = 用"让反射光自己抵消"的薄膜，把镜片反光压到几乎看不见</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">🌊</span>原理<span class="en">干涉相消</span></div><div class="dc-t">膜厚取<b>目标波长 1/4 的光学厚度</b>，使膜上下两界面的反射光相位差 180° 相消。单层只能压一个波长，<b>多层</b>可覆盖宽波段（可见+近红外）。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🎨</span>单层 vs 多层<span class="en">宽带</span></div><div class="dc-t">单层 MgF₂：便宜、仅压单点（R≈1~2%）；<b>多层宽带 AR</b>：可见到 NIR 都低反（R&lt;0.5%），但膜多、贵、需控应力。车载常要"可见+近红外双宽波段"。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🚗</span>车载要点<span class="en">为何必镀</span></div><div class="dc-t">多片堆叠 + 强逆光/夜驾场景，不镀 AR 会鬼影泛滥、VGI 崩。还需与 <b>Hard Coat（硬膜耐磨）</b>、<b>IR 截止膜</b> 协调——常做成"复合膜系"一次镀成。</div></div>
+    </div>
+    <div class="note"><b>AR 与"硬度/颜色"的取舍：</b>AR 膜本身软，常外覆 Hard Coat 防刮；膜系厚度偏差会让反射曲线偏移，出现<b>轻微色偏（绿/紫反光）</b>——这是 AR 膜的"签名"，不是缺陷。验收看 <b>R 曲线在目标波段是否够低、够平</b>。</div>
+  </div>
+
+  <!-- 材料与镜片 · 阳极氧化膜厚 Thickness of the anodic oxide -->
+  <div class="panel" id="panel-anodeth">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">膜厚</span><span class="spec-u">μm</span><span class="spec-v">常规硫酸阳极氧化 <b>5~15μm</b>（常用 8~12μm）；硬质阳极氧化可达 <b>25~150μm</b></span></div>
+      <div class="spec-row"><span class="spec-k">越厚意味</span><span class="spec-u">→</span><span class="spec-v">越<b>耐磨、耐蚀、绝缘</b>；但过厚易脆、偏色、占用尺寸公差</span></div>
+      <div class="spec-row"><span class="spec-k">检测</span><span class="spec-u">方法</span><span class="spec-v">涡流测厚 / 金相切片法（最准）</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>阳极氧化膜厚（Thickness of the anodic oxide）</b>是铝镜筒/支架经阳极氧化后表面生成的 <b>Al₂O₃ 氧化膜</b>厚度。它决定零件的<b>耐蚀性、耐磨性、绝缘性与外观色</b>——车规铝件几乎都靠它扛盐雾、汗蚀与装配磨损。</div>
+    <p class="tagline">一句话：阳极氧化膜厚 = 铝件表面那层"铠甲"的厚度，厚薄直接决定耐不耐造</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">⚡</span>原理<span class="en">电化学</span></div><div class="dc-t">铝件通电 + 电解液（硫酸/草酸），表面氧化成致密 <b>多孔 Al₂O₃</b>；再<b>封孔</b>堵住微孔锁性能。膜厚由<b>电压/时间/电解液</b>控制。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🛡️</span>性能对应<span class="en">厚→强</span></div><div class="dc-t"><b>耐蚀</b>：盐雾时长随膜厚升；<b>耐磨</b>：硬膜更抗装配刮擦；<b>绝缘</b>：阻断铝基体与异种金属接触腐蚀。车载镜筒常用 8~12μm 平衡三者。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🎨</span>颜色与尺寸<span class="en">副作用</span></div><div class="dc-t">染色/电解着色靠膜厚吸色；过厚会<b>偏色、发脆、尺寸涨</b>（膜会"长"在表面）。精密镜筒要控膜厚保配合公差。</div></div>
+    </div>
+    <div class="note"><b>膜厚不均的后果：</b>局部偏薄→该处先锈蚀/磨损；偏厚→尺寸超差、卡滞。所以阳极氧化常配 <b>膜厚仪（涡流）</b> 抽检。与"粗糙度 Ra"一样，是铝件 IQC 的必检项。</div>
+  </div>
+
+  <!-- 材料与镜片 · 孔隙率 Porosities -->
+  <div class="panel" id="panel-porosity">
+    <div class="spec">
+      <div class="spec-h">数值 · 单位速查 <span class="en">Spec at a glance</span></div>
+      <div class="spec-row"><span class="spec-k">孔隙率</span><span class="spec-u">%</span><span class="spec-v">氧化膜中空体积占比；<b>越小越好</b>：膜越致密→耐蚀/硬度/封孔质量越高</span></div>
+      <div class="spec-row"><span class="spec-k">也可用</span><span class="spec-u">个/cm²</span><span class="spec-v">孔隙数 / 单位面积表示；数量/孔径越大越差</span></div>
+      <div class="spec-row"><span class="spec-k">影响因素</span><span class="spec-u">→</span><span class="spec-v">电解液浓度/温度/电压/封孔工艺；封孔不良→孔隙 reopen</span></div>
+    </div>
+    <div class="define"><b>释义：</b><b>孔隙率（Porosities）</b>指阳极氧化膜中<b>微孔体积占总体积的比例</b>。氧化膜天然是"多孔蜂窝"结构（这层孔正是封孔与染色的通道），但<b>孔隙率过高=膜不致密</b>，耐蚀性、硬度与封孔质量都会下降。</div>
+    <p class="tagline">一句话：孔隙率 = 氧化膜里"空洞"的比例，越低膜越瓷实、越扛造</p>
+    <div class="dc-grid">
+      <div class="dc-card"><div class="dc-h"><span class="em">🧱</span>结构<span class="en">蜂窝孔</span></div><div class="dc-t">阳极氧化膜是<b>垂直于表面的圆柱微孔阵列</b>（孔径 tens nm）。适度孔隙利于封孔填充；<b>过度疏松</b>则像"海绵"，强度与屏障下降。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🚫</span>过高后果<span class="en">为何怕</span></div><div class="dc-t">孔隙率高→<b>封孔填不满</b>→腐蚀介质直渗基体；<b>硬度降</b>→易刮伤；<b>染色不均</b>。车载盐雾/高湿下易早起锈蚀。</div></div>
+      <div class="dc-card"><div class="dc-h"><span class="em">🔬</span>检测<span class="en">量化</span></div><div class="dc-t">金相切片看孔形/密度；<b>染料吸附试验</b>间接评孔隙；封孔质量用 <b>磷铬酸失重</b> 法。配合膜厚一起控。</div></div>
+    </div>
+    <div class="note"><b>孔隙率与膜厚要一起看：</b>厚但疏松（高孔隙）≠ 好；薄但致密可能更耐蚀。车规铝件验收通常同时卡 <b>膜厚（够铠甲）+ 孔隙率/封孔质量（铠甲瓷实）</b> 两项，缺一不可。</div>
+  </div>
+
   <div class="panel" id="panel-iqc">
     <div class="define"><b>释义：</b><b>IQC（Incoming Quality Control，来料质量控制）</b>是物料 <b>进厂后、上线前</b> 的一道把关：按抽样方案检验镜片、镜筒、隔圈、IR 滤片、sensor 等来料，合格才放行上线，不合格退货/特采。它是"制造→测量→反馈"闭环的地基——<b>来料尺寸/镀膜不达标，后续组装再好也救不回 MTF</b>。</div>
     <p class="tagline">一句话：IQC=上线前的来料守门员，挡住不良毛坯</p>
@@ -5570,7 +5736,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 104;
+  var VER_TOTAL = 112;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
