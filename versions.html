@@ -7,18 +7,37 @@
     font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;}
   .wrap{max-width:680px;margin:0 auto;}
   h1{font-size:22px;margin:0 0 4px;}
-  .sub{color:#8fb4ee;font-size:13px;margin:0 0 20px;}
+  .sub{color:#8fb4ee;font-size:13px;margin:0 0 18px;line-height:1.6;}
+  .sec{font-size:13px;font-weight:700;color:#7dd3fc;letter-spacing:.5px;
+    margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid rgba(125,211,252,.25);}
   .vrow{display:flex;align-items:center;gap:12px;text-decoration:none;color:#e8f0ff;
     background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
-    border-radius:12px;padding:14px 16px;margin-bottom:10px;}
-  .vn{font-weight:700;font-size:15px;min-width:120px;}
-  .vf{flex:1;font-size:12px;color:#9fb6e0;word-break:break-all;}
+    border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .15s;}
+  .vrow:hover{background:rgba(125,211,252,.16);}
+  .vn{font-weight:700;font-size:15px;min-width:132px;}
+  .vf{flex:1;font-size:12px;color:#9fb6e0;line-height:1.5;}
   .go{font-size:13px;color:#7dd3fc;white-space:nowrap;}
-  .back{display:inline-block;margin-top:18px;color:#bcd4ff;font-size:13px;text-decoration:none;}
+  .cur{display:inline-block;font-size:10px;font-weight:700;color:#0b1f4d;background:#7dd3fc;
+    border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle;}
+  .back{display:inline-block;margin-top:8px;color:#bcd4ff;font-size:13px;text-decoration:none;}
+  .top{display:block;text-align:center;background:rgba(125,211,252,.14);
+    border:1px solid rgba(125,211,252,.4);border-radius:12px;padding:12px;
+    color:#e8f0ff;text-decoration:none;font-size:14px;font-weight:700;margin-bottom:6px;}
+  .top:hover{background:rgba(125,211,252,.24);}
 </style></head>
 <body><div class="wrap">
   <h1>版本履历</h1>
-  <p class="sub">主站点始终为最新版 · 以下为历史归档</p>
+  <p class="sub">主站点（GitHub Pages）始终指向最新版 · 以下为历史归档<br>工作台与概念专题页均按版本独立保存，旧版本保留不删。</p>
+
+  <a class="top" href="index.html">← 打开最新版工作台（v0.8.0）</a>
+
+  <div class="sec">工作台 Workbench（单文件 PWA）</div>
+    <a class="vrow" href="versions/workbench_v0.8.0_2026-08-20.html"><span class="vn">v0.8.0<span class="cur">最新</span></span><span class="vf">动效开关反转为「开启动效」；新野兽派/蓝图/像素/赛博朋克 4 主题独立入场动效；解析 SF806 PPTX，设备新增 VGI 测试与自动杂光测试 2 模块（102→104）</span><span class="go">打开 →</span></a>
+    <a class="vrow" href="versions/workbench_v0.7.0_2026-08-20.html"><span class="vn">v0.7.0</span><span class="vf">撤销 GitHub/便当盒/手绘/多巴胺 4 主题（恢复 8 主题）；新增「注塑模具（三板模）」知识点（101→102）</span><span class="go">打开 →</span></a>
+    <a class="vrow" href="versions/workbench_v0.6.0_2026-08-20.html"><span class="vn">v0.6.0</span><span class="vf">新增 GitHub/便当盒/手绘/多巴胺 4 主题；新增「感光元件」知识点；鬼像改左右滑动轮播；光圈重写；粗糙度/膜厚概念拓展（100→101）</span><span class="go">打开 →</span></a>
+    <a class="vrow" href="versions/workbench_v0.5.4_2026-08-19.html"><span class="vn">v0.5.4</span><span class="vf">目录树加线条节点、默认收起；移动端恢复滑动分类；顶栏计数与汉堡按钮互换</span><span class="go">打开 →</span></a>
+
+  <div class="sec">概念专题页 Concept Pages</div>
     <a class="vrow" href="versions/optics_concepts_v0.0.1_2026-07-23.html"><span class="vn">v0.0.1 · 2026-07-23</span><span class="vf">optics_concepts_v0.0.1_2026-07-23.html</span><span class="go">打开 →</span></a>
     <a class="vrow" href="versions/optics_concepts_v0.0.2_2026-07-23.html"><span class="vn">v0.0.2 · 2026-07-23</span><span class="vf">optics_concepts_v0.0.2_2026-07-23.html</span><span class="go">打开 →</span></a>
     <a class="vrow" href="versions/optics_concepts_v0.0.3_2026-07-23.html"><span class="vn">v0.0.3 · 2026-07-23</span><span class="vf">optics_concepts_v0.0.3_2026-07-23.html</span><span class="go">打开 →</span></a>
@@ -27,5 +46,6 @@
     <a class="vrow" href="versions/optics_concepts_v0.0.6_2026-07-23.html"><span class="vn">v0.0.6 · 2026-07-23</span><span class="vf">optics_concepts_v0.0.6_2026-07-23.html</span><span class="go">打开 →</span></a>
     <a class="vrow" href="versions/optics_concepts_v0.0.7_2026-07-23.html"><span class="vn">v0.0.7 · 2026-07-23</span><span class="vf">optics_concepts_v0.0.7_2026-07-23.html</span><span class="go">打开 →</span></a>
     <a class="vrow" href="versions/optics_concepts_v0.1.3_2026-07-24.html"><span class="vn">v0.1.3 · 2026-07-24</span><span class="vf">optics_concepts_v0.1.3_2026-07-24.html</span><span class="go">打开 →</span></a>
+
   <a class="back" href="index.html">← 返回最新版工作台</a>
 </div></body></html>

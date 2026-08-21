@@ -240,31 +240,6 @@
   #themeFx.flash{ animation:themeFlash .55s ease both; }
   @keyframes themeFlash{ 0%{ opacity:0; } 28%{ opacity:.65; } 100%{ opacity:0; } }
 
-  /* ===== 主题独立入场动效（开启动效时生效，受 reduce-motion 约束） ===== */
-  /* 新野兽派：硬切弹入 + 偏移硬阴影（无平滑缓动，强调粗黑描边） */
-  :root[data-theme="brutalism"] .fx-in .panel,
-  :root[data-theme="brutalism"] .fx-in .cat-card,
-  :root[data-theme="brutalism"] .fx-in .glass{ animation:brutIn .40s cubic-bezier(.18,1.5,.4,1) both; }
-  @keyframes brutIn{ 0%{ opacity:0; transform:translate(12px,12px) scale(.97); } 55%{ opacity:1; } 100%{ opacity:1; transform:none; } }
-
-  /* 蓝图：工程制图式自左向右描绘（clip-path 揭开 + 轻微去模糊） */
-  :root[data-theme="blueprint"] .fx-in .panel,
-  :root[data-theme="blueprint"] .fx-in .cat-card,
-  :root[data-theme="blueprint"] .fx-in .glass{ animation:blueIn .55s cubic-bezier(.45,0,.2,1) both; }
-  @keyframes blueIn{ 0%{ opacity:0; clip-path:inset(0 100% 0 0); } 100%{ opacity:1; clip-path:inset(0 0 0 0); } }
-
-  /* 像素游戏：8-bit 块状逐格弹入（steps 制造跳帧卡顿感） */
-  :root[data-theme="pixel"] .fx-in .panel,
-  :root[data-theme="pixel"] .fx-in .cat-card,
-  :root[data-theme="pixel"] .fx-in .glass{ animation:pixelIn .42s steps(4,end) both; }
-  @keyframes pixelIn{ 0%{ opacity:0; transform:translateY(14px) scale(.985); } 100%{ opacity:1; transform:none; } }
-
-  /* 赛博朋克：RGB 撕裂故障弹入（保留既有扫描线/霓虹流光/悬停故障） */
-  :root[data-theme="cyber"] .fx-in .panel,
-  :root[data-theme="cyber"] .fx-in .cat-card,
-  :root[data-theme="cyber"] .fx-in .glass{ animation:cyberIn .50s steps(3,end) both; }
-  @keyframes cyberIn{ 0%{ opacity:0; transform:translateX(-7px); filter:hue-rotate(35deg); } 45%{ opacity:1; transform:translateX(4px); } 75%{ transform:translateX(-2px); } 100%{ opacity:1; transform:none; filter:none; } }
-
   /* 暗夜绿 */
   :root[data-theme="forest"]{
     --theme-name:'暗夜绿';
@@ -1264,14 +1239,14 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.0 · 2026-08-20<br>离线可用 · 单文件<br><a href="versions.html">版本履历 →</a></div>
+    <div class="side-foot">v0.7.0 · 2026-08-20<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
     <header id="topbar">
       <button class="tb-menu" id="tbMenu" type="button" aria-label="打开目录"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
       <span class="tb-title" id="tbTitle">首页</span>
-      <span class="tb-prog" id="tbProg">104 个知识点</span>
+      <span class="tb-prog" id="tbProg">102 个知识点</span>
     </header>
     <section id="view-home" class="view active">
 
@@ -1292,12 +1267,12 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-20</small></h1>
+      <h1 class="hero-title">车载光学百科 v0.7.0 <small style="font-size:11px;font-weight:400;color:var(--muted);margin-left:6px">更新 2026-08-20</small></h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 16</span>
         <span class="hero-chip">信赖性·车规 · 11</span>
-        <span class="hero-chip">设备与仪器 · 7</span>
+        <span class="hero-chip">设备与仪器 · 5</span>
         <span class="hero-chip">工艺制造 · 4</span>
         <span class="hero-chip">工程图纸 · 6</span>
         <span class="hero-chip">模组与系统 · 11</span>
@@ -1313,7 +1288,7 @@
         </div>
         <div class="rand-hero-body">
           <div class="rand-hero-title">随机知识探索</div>
-          <div class="rand-hero-desc">从 104 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
+          <div class="rand-hero-desc">从 102 个知识点中随机抽取，快速了解车载光学各领域核心概念</div>
         </div>
       </div>
       <div class="rand-hero-btn">探索 →</div>
@@ -1337,7 +1312,7 @@
       <div class="cat-nav-item" id="cat-equipment" onclick="showCat('equipment')">
         <span class="cn-ic">⚙️</span>
         <span class="cn-lb">设备与仪器<span class="cn-en">Equipment & Tools</span></span>
-        <span class="cn-count">7</span>
+        <span class="cn-count">5</span>
       </div>
       <div class="cat-nav-item" id="cat-process" onclick="showCat('process')">
         <span class="cn-ic">🏭</span>
@@ -1452,68 +1427,6 @@
     </div>
     <div class="note"><b>清洗包装质量链条：</b>超声波中间清洗（去切削液/铝屑）→ 离子风机除静电（防灰尘再附着）→ 干冰终洗（去指纹/有机残留）→ 真空包装+干燥剂（防运输受潮）。任何一环疏忽都会在客户端 IQC 或实车上暴露：脏污→ADAS 误检；受潮→镜筒内部起雾；静电吸附→VGI 超标退货。"清洗包装是最便宜的工序，但也是最容易被忽视的质量杀手。"</div>
   </div>
-
-  <!-- 设备：VGI 测试设备（源自 Sunny SF806 VGI & Stray Light Test.pptx） -->
-  <div class="panel" id="panel-eq-vgi">
-    <div class="define"><b>释义：</b><b>VGI 测试设备</b>用于产线（EOL）定量测量镜头的<b>渐晕眩光指数 VGI（Veiling Glare Index）</b>——即镜头内部多次反射、散射在像面形成的"灰雾"式杂光占总信号的百分比。标准方法依据 <b>ISO 9358</b>（硬件/测试布置）与 <b>ISO 18844</b>（算法/ROI 取样），是车载镜头在强逆光、夜间路灯等场景下仍保对比度的关键验收项。舜宇（Sunny）自动 VGI 测试设备已部署在产线终检。</div>
-    <p class="tagline">一句话：VGI 设备 = 用"黑图里本该黑的地方有多亮"给镜头的杂光灰雾打分</p>
-    <div class="dc-grid">
-      <div class="dc-card"><div class="dc-h"><span class="em">🛠️</span>设备构成<span class="en">EOL 在线</span></div><div class="dc-t">舜宇自动 VGI 测试台：<b>光源 Osram Golden Dragon 6500K</b>（标准白场）→ <b>被测镜头</b> → <b>图像传感器 Samsung S5K1H1SBAH（RCCG）</b> → <b>升降平台</b>精密对位。整台封闭避光，保证"黑背景"纯净、只测镜头自身杂光。</div></div>
-      <div class="dc-card"><div class="dc-h"><span class="em">📐</span>测试原理<span class="en">ISO 9358/18844</span></div><div class="dc-t">按 <b>ISO 9358</b> 布置硬件（点光源 + 黑腔），按 <b>ISO 18844</b> 算法取样计算。VGI 结果中<b>暗信号 0.02 会参与计算</b>（暗电流/本底需先校准扣除）。输出一个百分比值，越小越好。</div></div>
-      <div class="dc-card"><div class="dc-h"><span class="em">🎯</span>ROI 取样法<span class="en">ISO 18844</span></div><div class="dc-t"><b>ROI 1–4</b> 为白色采样区，直径 = <b>D/50</b>（D 为传感器对角线尺寸）；<b>ROI 5</b> 为黑色采样区，直径按图像尺寸计算。白区均值代表"漏进来的杂光"，黑区均值代表"本底"，二者比值即 VGI。</div></div>
-      <div class="dc-card"><div class="dc-h"><span class="em">✅</span>验收阈值<span class="en">车规</span></div><div class="dc-t">车载常见：<b>前视 VGI ≤ 2.0%</b>，<b>环视 VGI ≤ 3.0%</b>。光源需覆盖可见 + 近红外（夜间红外补光也会激发杂光）。设计验证阶段把阈值标准输入设备软件。</div></div>
-    </div>
-    <div class="cap">ISO 18844 取样示意：图像上 4 个白 ROI（直径 D/50）环绕 1 个中心黑 ROI；白区漏光均值 / 黑区本底 = VGI</div>
-    <div style="background:rgba(0,0,0,.26); border-radius:14px; padding:14px; margin:6px 0 12px; display:flex; align-items:center; justify-content:center;">
-      <svg viewBox="0 0 560 260" width="100%" style="max-width:560px;height:auto;">
-        <rect x="40" y="30" width="480" height="200" rx="8" fill="rgba(255,255,255,.03)" stroke="var(--line-3)" stroke-width="2"/>
-        <circle cx="120" cy="80" r="20" fill="rgba(255,255,255,.88)" stroke="#8fe" stroke-width="2"/>
-        <circle cx="440" cy="80" r="20" fill="rgba(255,255,255,.88)" stroke="#8fe" stroke-width="2"/>
-        <circle cx="120" cy="180" r="20" fill="rgba(255,255,255,.88)" stroke="#8fe" stroke-width="2"/>
-        <circle cx="440" cy="180" r="20" fill="rgba(255,255,255,.88)" stroke="#8fe" stroke-width="2"/>
-        <circle cx="280" cy="130" r="32" fill="#0a0a12" stroke="var(--brand)" stroke-width="2"/>
-        <text x="120" y="118" text-anchor="middle" font-size="11" fill="#cfe">ROI1</text>
-        <text x="440" y="118" text-anchor="middle" font-size="11" fill="#cfe">ROI2</text>
-        <text x="120" y="218" text-anchor="middle" font-size="11" fill="#cfe">ROI3</text>
-        <text x="440" y="218" text-anchor="middle" font-size="11" fill="#cfe">ROI4</text>
-        <text x="280" y="135" text-anchor="middle" font-size="11" fill="#cfe">ROI5</text>
-        <text x="280" y="240" text-anchor="middle" font-size="11" fill="var(--muted-2)">白区直径 = D/50 · 黑区居中 · D = 传感器对角</text>
-      </svg>
-    </div>
-    <div class="note"><b>为什么车载看重 VGI：</b>ADAS 在逆光进出隧道、对向车灯时，VGI 偏高的镜头会让画面整体"起雾"、对比度崩塌，导致车道线/行人识别失败。VGI 与鬼影（flare）同源——都来自镜头内部非期望反射；区别在 VGI 是"弥散灰雾"、鬼影是"点状亮斑"。两者都在 <b>⑦ 最终检验</b> 由专业设备量化把关。</div>
-  </div>
-
-  <!-- 设备：自动杂光（鬼影/Flare）测试设备（源自 Sunny SF806 VGI & Stray Light Test.pptx） -->
-  <div class="panel" id="panel-eq-stray">
-    <div class="define"><b>释义：</b><b>自动杂光（鬼影 / Flare）测试设备</b>用多角度光源阵列 + CCD 成像，把镜头在强点光源下产生的<b>鬼影（ghosting）与光晕（flare）</b>数字化、定量地测出来——类似人眼目视检查，但由机器 + 软件完成，可重复、可追溯。舜宇（Sunny）自动杂光设备已用于 EOL 产线。</div>
-    <p class="tagline">一句话：杂光设备 = 把"逆光时画面里那团不该有的亮斑"变成可量化的数字</p>
-    <div class="dc-grid">
-      <div class="dc-card"><div class="dc-h"><span class="em">🛠️</span>设备构成<span class="en">多角度阵列</span></div><div class="dc-t">多角度光源阵列（模拟阳光 / 路灯 / 对向来车的不同入射角）+ <b>CCD 成像分析</b> + 自动生成<b>鬼影热力图</b>。软件按图像处理流程逐帧判定杂光的位置、面积、亮度。</div></div>
-      <div class="dc-card"><div class="dc-h"><span class="em">🔍</span>判定原理<span class="en">图像流程</span></div><div class="dc-t">对采集图像跑图像处理流程，量化<b>不需要的光束与光晕</b>。在镜头设计验证阶段，把杂光<b>失败标准</b>输入系统：直径、面积、长、宽、亮度阈值。系统据此自动判良 / 判废。</div></div>
-      <div class="dc-card"><div class="dc-h"><span class="em">💡</span>关键技巧<span class="en">去光源</span></div><div class="dc-t"><b>移除光源这一步不影响判定结果</b>——系统判定的是"光源撤掉后画面里残留的亮斑"，那才是真正由镜头内部反射产生的杂光，而非外部直射光。这是定量化的核心。</div></div>
-      <div class="dc-card"><div class="dc-h"><span class="em">🚫</span>失效判据<span class="en">ADAS ROI</span></div><div class="dc-t">致命判据：<b>任何鬼影 / 亮斑不得落入 ADAS 识别 ROI 区域</b>（车道线、车辆、行人所在区）。特定角度鬼影亮度 ≤ 阈值；落入 ROI = 直接判废。</div></div>
-    </div>
-    <div class="cap">杂光测试流程：多角度光源照射 → CCD 采集 → 图像处理（去光源残留）→ 量化 直径 / 面积 / 亮度 → 比对输入标准 → 自动判良</div>
-    <div style="background:rgba(0,0,0,.26); border-radius:14px; padding:14px; margin:6px 0 12px; display:flex; align-items:center; justify-content:center;">
-      <svg viewBox="0 0 620 190" width="100%" style="max-width:620px;height:auto;">
-        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--brand)"/></marker></defs>
-        <rect x="14" y="70" width="96" height="50" rx="8" fill="rgba(255,255,255,.05)" stroke="var(--line-3)" stroke-width="2"/>
-        <text x="62" y="100" text-anchor="middle" font-size="11" fill="#cfe">多角度光源</text>
-        <rect x="150" y="70" width="96" height="50" rx="8" fill="rgba(255,255,255,.05)" stroke="var(--line-3)" stroke-width="2"/>
-        <text x="198" y="100" text-anchor="middle" font-size="11" fill="#cfe">CCD 采集</text>
-        <rect x="286" y="70" width="110" height="50" rx="8" fill="rgba(255,255,255,.05)" stroke="var(--line-3)" stroke-width="2"/>
-        <text x="341" y="95" text-anchor="middle" font-size="11" fill="#cfe">图像处理</text>
-        <text x="341" y="111" text-anchor="middle" font-size="10" fill="var(--muted-2)">去光源残留</text>
-        <rect x="426" y="70" width="96" height="50" rx="8" fill="rgba(255,255,255,.05)" stroke="var(--line-3)" stroke-width="2"/>
-        <text x="474" y="100" text-anchor="middle" font-size="11" fill="#cfe">量化判废</text>
-        <line x1="110" y1="95" x2="146" y2="95" stroke="var(--brand)" stroke-width="2" marker-end="url(#ar)"/>
-        <line x1="246" y1="95" x2="282" y2="95" stroke="var(--brand)" stroke-width="2" marker-end="url(#ar)"/>
-        <line x1="396" y1="95" x2="422" y2="95" stroke="var(--brand)" stroke-width="2" marker-end="url(#ar)"/>
-        <text x="341" y="155" text-anchor="middle" font-size="11" fill="var(--muted-2)">直径 / 面积 / 长 / 宽 / 亮度 → 比对设计输入标准</text>
-      </svg>
-    </div>
-    <div class="note"><b>杂光 vs VGI：</b>两者都源于镜头内部非期望反射。<b>鬼影 / flare</b> 是点 / 片状亮斑（有清晰位置、可能落入 ROI），用本设备查；<b>VGI</b> 是弥散灰雾（整体对比度下降），用 VGI 设备查。一个看"点"、一个看"面"，共同构成 <b>⑦ 最终检验</b> 的杂光把关，确保交付镜头在逆光 / 夜驾场景可信。</div>
-  </div>
 <div class="tabs" id="subtabs-optics">
     <div class="tab active" id="tab-mtf" onclick="showTab('mtf')">MTF<span class="en">调制传递</span></div>
     <div class="tab" id="tab-dof" onclick="showTab('dof')">DOF<span class="en">景深</span></div>
@@ -1566,8 +1479,6 @@
     <div class="tab" id="tab-eq-machine" onclick="showTab('eq-machine')">加工设备<span class="en">CNC/打标</span></div>
     <div class="tab" id="tab-eq-envtest" onclick="showTab('eq-envtest')">环境试验<span class="en">老化/温循</span></div>
     <div class="tab" id="tab-eq-cleanpack" onclick="showTab('eq-cleanpack')">清洗包装<span class="en">干冰/真空</span></div>
-    <div class="tab" id="tab-eq-vgi" onclick="showTab('eq-vgi')">VGI 测试设备<span class="en">Veiling Glare</span></div>
-    <div class="tab" id="tab-eq-stray" onclick="showTab('eq-stray')">自动杂光测试<span class="en">Flare/Stray</span></div>
   </div>
   <div class="tabs" id="subtabs-module" style="display:none;">
     <div class="tab active" id="tab-aa" onclick="showTab('aa')">AA 主动对准<span class="en">6DOF</span></div>
@@ -5570,7 +5481,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
 <script>
 (function(){
   "use strict";
-  var VER_TOTAL = 104;
+  var VER_TOTAL = 102;
   var LS = {
     get:function(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } },
     set:function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -5782,7 +5693,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '</div></div>';
     /* 数据与显示 */
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>数据与显示</div>';
-    html += '<div class="set-row"><div><div class="lr">开启动效</div><div class="ld">开启粒子背景与界面动效（默认关闭）</div></div><button class="switch" id="setMotion"></button></div>';
+    html += '<div class="set-row"><div><div class="lr">减少动效</div><div class="ld">关闭粒子背景与过渡动画</div></div><button class="switch" id="setMotion"></button></div>';
     html += '<div class="set-row"><div><div class="lr">音效</div><div class="ld">切换主题与交互时的合成音效</div></div><button class="switch" id="setSound"></button></div>';
     html += '</div>';
     settingsHost.innerHTML = html;
@@ -5790,8 +5701,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
       c.addEventListener('click', function(){ applyTheme(c.dataset.theme); });
     });
     var mBtn = document.getElementById('setMotion');
-    if(mBtn){ var mo = !!LS.get('optics_motion',false); mBtn.classList.toggle('on', mo);
-      mBtn.addEventListener('click', function(){ var v=!mBtn.classList.contains('on'); mBtn.classList.toggle('on',v); LS.set('optics_motion',v); document.documentElement.classList.toggle('reduce-motion',!v); }); }
+    if(mBtn){ var rm = !!LS.get('optics_reduce_motion',false); mBtn.classList.toggle('on', rm);
+      mBtn.addEventListener('click', function(){ var v=!mBtn.classList.contains('on'); mBtn.classList.toggle('on',v); LS.set('optics_reduce_motion',v); document.documentElement.classList.toggle('reduce-motion',v); }); }
     var sBtn = document.getElementById('setSound');
     if(sBtn){ var so = !!LS.get('optics_sound', true); sBtn.classList.toggle('on', so);
       sBtn.addEventListener('click', function(){ var v=!sBtn.classList.contains('on'); sBtn.classList.toggle('on',v); Sound.setOn(v); if(v) Sound.tick(); }); }
@@ -5838,7 +5749,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
       raf=requestAnimationFrame(frame);
     }
     resize(); window.addEventListener('resize', resize);
-    raf=requestAnimationFrame(frame); /* 动效由 reduce-motion 类控制：开启动效时 #bg 可见并播放，关闭时隐藏 */
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){ frame(); cancelAnimationFrame(raf); }
+    else raf=requestAnimationFrame(frame);
   }
   document.querySelectorAll('.nav-item,.bt-item').forEach(function(b){ b.addEventListener('click', function(){ showView(b.dataset.page); }); });
   /* 交互音效：关键控件点击播短 tick（主题切换由 applyTheme 单独播 motif） */
@@ -5915,12 +5827,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     hsInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ if(hsTimer) clearTimeout(hsTimer); doSearch(hsInput.value); } }); }
   if(hsClear){ hsClear.addEventListener('click', function(){ hsInput.value=''; doSearch(''); hsInput.focus(); }); }
     applyTheme(LS.get('optics_theme','space'));
-    /* 动效设置：旧键 optics_reduce_motion(false=开动效) 迁移到新键 optics_motion(true=开动效)，默认关闭 */
-    var _motion = LS.get('optics_motion', null);
-    if(_motion === null){ var _old = LS.get('optics_reduce_motion', null); _motion = (_old === null) ? false : !_old; LS.set('optics_motion', _motion); }
-    var motionOn = !!_motion;
-    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) motionOn = false;
-    document.documentElement.classList.toggle('reduce-motion', !motionOn);
+    if(LS.get('optics_reduce_motion',false)) document.documentElement.classList.add('reduce-motion');
     updateProg();
     initParticles();
     buildTree();
