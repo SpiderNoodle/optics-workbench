@@ -1100,6 +1100,10 @@
   .ver-v.cur{ color:#fff; background:linear-gradient(135deg,var(--brand),var(--brand-2)); padding:1px 8px; border-radius:99px; }
   .ver-date{ font-size:10px; color:var(--muted-2); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
   .ver-desc{ flex:1; min-width:0; font-size:12px; line-height:1.55; color:var(--text); }
+  .ver-item.ver-hidden{ display:none; }
+  .ver-hist.ver-all .ver-item.ver-hidden{ display:flex; }
+  .ver-toggle{ display:block; width:100%; margin-top:10px; padding:9px 14px; font-size:12px; font-weight:600; color:var(--brand); background:var(--surface-2); border:1px solid var(--line); border-radius:10px; cursor:pointer; transition:background .15s,border-color .15s; text-align:center; }
+  .ver-toggle:hover{ background:var(--surface-3); border-color:var(--brand); }
   @media (max-width:520px){ .ver-badge{ width:74px; } .ver-desc{ font-size:11.5px; } }
   .cl-list{ display:flex; flex-direction:column; gap:10px; }
   .cl-item{ border:1px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); padding:12px 14px; }
@@ -6124,11 +6128,11 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   }
   /* 版本履历（设置页内摘要式，移动端可用） */
   var VER_HISTORY = [
-    { v:'v0.8.4', date:'2026-08-21', cur:true, desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠' },
+    { v:'v0.8.4', date:'2026-08-21', cur:true, desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠 + 版本履历移入设置页' },
     { v:'v0.8.1', date:'2026-08-21', desc:'设备排序修正 + 8 个可量化知识点（含数值·单位速查 SOP）+ 版本规则改为补丁优先' },
     { v:'v0.8.0', date:'2026-08-20', desc:'动效开关反转为「开启动效」+ 4 主题独立入场动效 + 设备新增 VGI/自动杂光测试模块' },
     { v:'v0.7.0', date:'2026-08-20', desc:'撤销 4 主题 + 新增「注塑模具·三板模」知识点' },
-    { v:'v0.6.0', date:'2026-08-20', desc:'新主题 ×4 + 感光元件独立知识点 + 鬼像轮播 + 光圈重写 + 粗糙度/膜厚拓展' },
+    { v:'v0.6.0', date:'2026-08-20', desc:'新主题×4 + 感光元件独立知识点 + 鬼像轮播 + 光圈重写 + 粗糙度/膜厚拓展' },
     { v:'v0.5.4', date:'2026-08-19', desc:'目录树美化（节点线条）+ 移动端恢复滑动分类 + 顶栏布局调整' },
     { v:'v0.5.3', date:'2026-08-19', desc:'移动端改为抽屉式目录树（汉堡菜单）' },
     { v:'v0.5.2', date:'2026-08-19', desc:'导航重构：移除卡片墙，改左侧栏树状目录' },
@@ -6136,7 +6140,45 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     { v:'v0.5.0', date:'2026-08-19', desc:'主题重构 + 图纸/质量扩充 + 总目录卡片墙' },
     { v:'v0.4.2', date:'2026-08-19', desc:'新增「镜片类型」专题 4 模块（玻璃/塑料/模造/选型对比）' },
     { v:'v0.4.1', date:'2026-08-19', desc:'新增 8 个车载光学知识点（衍射极限/SNR/偏振/CMOS/ISP/SerDes/数字大灯/双目）' },
-    { v:'v0.4.0', date:'2026-08-18', desc:'删除仙侠水墨主题 + 新增毛玻璃 Apple 风主题 + 7 个新知识点' }
+    { v:'v0.4.0', date:'2026-08-18', desc:'删除仙侠水墨主题 + 新增毛玻璃 Apple 风主题 + 7 个新知识点' },
+    { v:'v0.3.12', date:'2026-08-18', desc:'仙侠水墨动效补强（泼墨开场·飞白扫过·仙山视差）' },
+    { v:'v0.3.11', date:'2026-08-18', desc:'仙侠水墨主题全面重制（仙山长卷·装裱画框·印章按钮·纯黑白）' },
+    { v:'v0.3.9', date:'2026-08-18', desc:'仙侠水墨主题深度重制（真·水墨配色·墨韵粒子·毛笔字·音效）' },
+    { v:'v0.3.8', date:'2026-08-17', desc:'工艺模块新增 A2A10J-701 镜筒工艺流程图（13 道工序 base64 内联）' },
+    { v:'v0.3.7', date:'2026-08-16', desc:'新增「仙侠水墨」主题 + 删除杂志/报纸主题，主题收敛为 8 套' },
+    { v:'v0.3.6', date:'2026-08-16', desc:'主题可读性与新意优化（赛博朋克修复·杂志/报纸重做·主题专属 icon）' },
+    { v:'v0.3.5', date:'2026-08-16', desc:'主题大换血 + 主题专属动效与音效引擎（Web Audio 离线合成）' },
+    { v:'v0.3.4', date:'2026-08-15', desc:'设置页瘦身 + 主题换血（赛博朋克/像素）+ MTF曲线解读 + 首页搜索' },
+    { v:'v0.3.3', date:'2026-08-15', desc:'亮色主题可读化 + MTF/杂光/鬼像/偏心优化（自行车轮比喻·对比缩略图）' },
+    { v:'v0.3.2', date:'2026-08-12', desc:'摄影模块扩展：相机成像原理 + 光圈/快门/ISO 独立子模块（四段式+互动）' },
+    { v:'v0.3.1', date:'2026-08-12', desc:'顶部进度改知识点总数 + 返回首页置顶 + 随机入口图标增强' },
+    { v:'v0.3.0', date:'2026-08-12', desc:'弹窗卡片交互 + 纯黑纯粉极致配色 + 导航全SVG + 随机入口UI重做 + 关闭安装提示' },
+    { v:'v0.2.9', date:'2026-08-11', desc:'折叠交互优化 + 黑粉Blackpink风 + 导航统一emoji + 随机知识入口提升 + 删除学习统计' },
+    { v:'v0.2.8', date:'2026-08-11', desc:'黑粉/樱花粉调色 + 变更履历折叠 + 减少动效可见 + 收藏页 + 底栏平滑 + 质量模块扩展(SPC/CPK/MSA)' },
+    { v:'v0.2.7', date:'2026-08-11', desc:'新增黑粉+明亮主题 + 质量工具模块(DFMEA/PFMEA/CP/清洁度) + 变更履历整合设置页' },
+    { v:'v0.2.6', date:'2026-08-11', desc:'修复Canvas文字重叠 + 版本日期 + 项目管理模块(VDA/APQP/PPAP)' },
+    { v:'v0.2.5', date:'2026-08-11', desc:'摄影分类补参数速查交付卡片（DR/SNR/白平衡/像素分辨率）' },
+    { v:'v0.2.4', date:'2026-08-11', desc:'新增「摄影/相机」分类（曝光三角/景深/等效焦距/镜头像差图鉴）' },
+    { v:'v0.2.3', date:'2026-08-10', desc:'四项 UI 优化：卡片提亮/看板改设置页+整合统计/多主题切换/底部悬浮毛玻璃导航' },
+    { v:'v0.2.2', date:'2026-08-10', desc:'首页重构为 Notion 风格左右分栏 + 修复 v0.2.1 孤立节点' },
+    { v:'v0.2.1', date:'2026-08-10', desc:'UI仪表盘重构 + 新增「设备与仪器」分类（5面板·26台设备）' },
+    { v:'v0.2.0', date:'2026-08-10', desc:'定位升级为「车载光学百科」：7大类 + 21新知识点（信赖性/模组/材料/应用）' },
+    { v:'v0.1.6', date:'2026-08-10', desc:'深空玻璃(B)主题重构 + 删除启动页（一进即工作台）+ 外壳与面板统一 Token' },
+    { v:'v0.1.5', date:'2026-08-09', desc:'E版Logo「智驾之眼」+ 三页SPA重构（首页/随机/看板）+ Apple玻璃质感UI + localStorage持久化' },
+    { v:'v0.1.4', date:'2026-08-05', desc:'UI 整体风格刷新 + 猫头鹰 logo v3 + CSS 变量体系统一飞书蓝' },
+    { v:'v0.1.3', date:'2026-07-24', desc:'镜头总装工艺：工序↔设备一览表常驻可见（8行对照），删除折叠卡内冗余设备行' },
+    { v:'v0.1.2', date:'2026-07-24', desc:'镜头总装工艺：按 FCT-PFD 补真实工序设备 + 配图"有取有舍"（缩略图/内嵌大图/纯文字）' },
+    { v:'v0.1.1', date:'2026-07-24', desc:'镜头总装工艺修正：恢复点击折叠手风琴 + 精简文字 + 每步加 SVG 图示 + 关键验收数据保留' },
+    { v:'v0.1.0', date:'2026-07-24', desc:'标题 Banner 重设计（深蓝渐变+光圈SVG）+ 删除冗长释义 + 镜头总装工艺改紧凑卡片网格 + 关口速览卡' },
+    { v:'v0.0.9', date:'2026-07-24', desc:'图纸提升为一级大类 + 标注符号图解重做（视图剖面/基准坐标系/几何标注号，符号卡片网格）' },
+    { v:'v0.0.8', date:'2026-07-24', desc:'标题设计感 + 概述精简 + 杂光/鬼像通俗化（纸筒比喻/照镜子机制）+ 交互重做（消光率/增透膜滑块）+ 图纸标注模块' },
+    { v:'v0.0.7', date:'2026-07-23', desc:'工艺 21 张卡片改可折叠手风琴 + FNO 重做（左右对比剖面·进光量条形图·Airy斑vs像素）' },
+    { v:'v0.0.6', date:'2026-07-23', desc:'MTF 模块大幅拓展（lp/mm含义·T/S子午弧矢·四视场曲线·衍射极限虚线·119lp/mm标线）+ FOV/CRA 互动卡片重做' },
+    { v:'v0.0.5', date:'2026-07-23', desc:'镜筒加工流程总览 SVG 空白修复 + 逐道工序详解新增 13 张简化工艺示意图' },
+    { v:'v0.0.4', date:'2026-07-23', desc:'工艺板块拆分为两条独立产线：镜头总装工艺（FCT-PFD）+ 镜筒加工工艺（舜宇14道工序·7道关键控制）' },
+    { v:'v0.0.3', date:'2026-07-23', desc:'光学补齐 4 个新模块（FNO/FOV/CRA/UV-IR CUT）+ 渐晕增补 RE-ILL 规格 + 热补偿重做（5维参数·双画布·4温区合规判定）' },
+    { v:'v0.0.2', date:'2026-07-23', desc:'新增「信赖性」大类（热补偿/杂光/鬼像 3 交互模块）+ 导航重构为光学/信赖性/工艺三类' },
+    { v:'v0.0.1', date:'2026-07-23', desc:'初版：光学 8 模块（MTF/DOF/EFL/FFL/场曲/畸变/色差/渐晕）+ 工艺模块（FCT-PFD 流程图+8道工序）' }
   ];
   function renderSettings(){
     var cur = document.documentElement.getAttribute('data-theme')||'space';
@@ -6153,15 +6195,28 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-row"><div><div class="lr">开启动效</div><div class="ld">开启粒子背景与界面动效（默认关闭）</div></div><button class="switch" id="setMotion"></button></div>';
     html += '<div class="set-row"><div><div class="lr">音效</div><div class="ld">切换主题与交互时的合成音效</div></div><button class="switch" id="setSound"></button></div>';
     html += '</div>';
-    /* 版本履历（摘要式，移动端可用） */
+    /* 版本履历（摘要式，默认显示最近 10 条，可展开全部） */
+    var VH_SHOW = 10;
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>版本履历<span class="sub">'+VER_HISTORY.length+' 个版本</span></div>';
-    html += '<div class="ver-hist">';
-    VER_HISTORY.forEach(function(r){
-      html += '<div class="ver-item"><div class="ver-badge"><div class="ver-v'+(r.cur?' cur':'')+'">'+r.v+'</div><div class="ver-date">'+r.date+'</div></div><div class="ver-desc">'+r.desc+'</div></div>';
+    html += '<div class="ver-hist" id="verHist">';
+    VER_HISTORY.forEach(function(r,i){
+      html += '<div class="ver-item'+(i>=VH_SHOW?' ver-hidden':'')+'"><div class="ver-badge"><div class="ver-v'+(r.cur?' cur':'')+'">'+r.v+'</div><div class="ver-date">'+r.date+'</div></div><div class="ver-desc">'+r.desc+'</div></div>';
     });
-    html += '</div></div>';
+    html += '</div>';
+    if(VER_HISTORY.length > VH_SHOW){
+      html += '<button class="ver-toggle" id="verToggle" type="button">展开全部 '+VER_HISTORY.length+' 个版本 ▾</button>';
+    }
+    html += '</div>';
     html += '<div class="set-foot">车载光学百科 v0.8.4<br>更新 2026-08-21 · 离线可用 · 单文件 PWA</div>';
     settingsHost.innerHTML = html;
+    var verTog = document.getElementById('verToggle');
+    if(verTog){
+      verTog.addEventListener('click', function(){
+        var hist = document.getElementById('verHist');
+        var expanded = hist.classList.toggle('ver-all');
+        verTog.textContent = expanded ? '收起 ▴' : '展开全部 '+VER_HISTORY.length+' 个版本 ▾';
+      });
+    }
     settingsHost.querySelectorAll('.theme-chip').forEach(function(c){
       c.addEventListener('click', function(){ applyTheme(c.dataset.theme); });
     });
