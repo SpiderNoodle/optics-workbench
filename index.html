@@ -1100,8 +1100,8 @@
   .ver-v.cur{ color:#fff; background:linear-gradient(135deg,var(--brand),var(--brand-2)); padding:1px 8px; border-radius:99px; }
   .ver-date{ font-size:10px; color:var(--muted-2); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
   .ver-desc{ flex:1; min-width:0; font-size:12px; line-height:1.55; color:var(--text); }
-  .ver-item.ver-hidden{ display:none; }
-  .ver-hist.ver-all .ver-item.ver-hidden{ display:flex; }
+  .ver-hist{ display:none; flex-direction:column; }
+  .ver-hist.show{ display:flex; }
   .ver-toggle{ display:block; width:100%; margin-top:10px; padding:9px 14px; font-size:12px; font-weight:600; color:var(--brand); background:var(--surface-2); border:1px solid var(--line); border-radius:10px; cursor:pointer; transition:background .15s,border-color .15s; text-align:center; }
   .ver-toggle:hover{ background:var(--surface-3); border-color:var(--brand); }
   @media (max-width:520px){ .ver-badge{ width:74px; } .ver-desc{ font-size:11.5px; } }
@@ -1291,7 +1291,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.4 · 2026-08-21<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.8.5 · 2026-08-27<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1319,7 +1319,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.4</h1>
+      <h1 class="hero-title">车载光学百科 v0.8.5</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 21</span>
@@ -6128,7 +6128,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   }
   /* 版本履历（设置页内摘要式，移动端可用） */
   var VER_HISTORY = [
-    { v:'v0.8.4', date:'2026-08-21', cur:true, desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠 + 版本履历移入设置页' },
+    { v:'v0.8.5', date:'2026-08-27', cur:true, desc:'版本履历默认隐藏（点按钮展开）+ 版本号升补丁 + README 精简' },
+    { v:'v0.8.4', date:'2026-08-21', desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠 + 版本履历移入设置页' },
     { v:'v0.8.1', date:'2026-08-21', desc:'设备排序修正 + 8 个可量化知识点（含数值·单位速查 SOP）+ 版本规则改为补丁优先' },
     { v:'v0.8.0', date:'2026-08-20', desc:'动效开关反转为「开启动效」+ 4 主题独立入场动效 + 设备新增 VGI/自动杂光测试模块' },
     { v:'v0.7.0', date:'2026-08-20', desc:'撤销 4 主题 + 新增「注塑模具·三板模」知识点' },
@@ -6195,26 +6196,23 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-row"><div><div class="lr">开启动效</div><div class="ld">开启粒子背景与界面动效（默认关闭）</div></div><button class="switch" id="setMotion"></button></div>';
     html += '<div class="set-row"><div><div class="lr">音效</div><div class="ld">切换主题与交互时的合成音效</div></div><button class="switch" id="setSound"></button></div>';
     html += '</div>';
-    /* 版本履历（摘要式，默认显示最近 10 条，可展开全部） */
-    var VH_SHOW = 10;
+    /* 版本履历（默认隐藏，点按钮展开） */
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>版本履历<span class="sub">'+VER_HISTORY.length+' 个版本</span></div>';
     html += '<div class="ver-hist" id="verHist">';
-    VER_HISTORY.forEach(function(r,i){
-      html += '<div class="ver-item'+(i>=VH_SHOW?' ver-hidden':'')+'"><div class="ver-badge"><div class="ver-v'+(r.cur?' cur':'')+'">'+r.v+'</div><div class="ver-date">'+r.date+'</div></div><div class="ver-desc">'+r.desc+'</div></div>';
+    VER_HISTORY.forEach(function(r){
+      html += '<div class="ver-item"><div class="ver-badge"><div class="ver-v'+(r.cur?' cur':'')+'">'+r.v+'</div><div class="ver-date">'+r.date+'</div></div><div class="ver-desc">'+r.desc+'</div></div>';
     });
     html += '</div>';
-    if(VER_HISTORY.length > VH_SHOW){
-      html += '<button class="ver-toggle" id="verToggle" type="button">展开全部 '+VER_HISTORY.length+' 个版本 ▾</button>';
-    }
+    html += '<button class="ver-toggle" id="verToggle" type="button">查看版本履历 ▾</button>';
     html += '</div>';
-    html += '<div class="set-foot">车载光学百科 v0.8.4<br>更新 2026-08-21 · 离线可用 · 单文件 PWA</div>';
+    html += '<div class="set-foot">车载光学百科 v0.8.5<br>更新 2026-08-27 · 离线可用 · 单文件 PWA</div>';
     settingsHost.innerHTML = html;
     var verTog = document.getElementById('verToggle');
     if(verTog){
       verTog.addEventListener('click', function(){
         var hist = document.getElementById('verHist');
-        var expanded = hist.classList.toggle('ver-all');
-        verTog.textContent = expanded ? '收起 ▴' : '展开全部 '+VER_HISTORY.length+' 个版本 ▾';
+        var show = hist.classList.toggle('show');
+        verTog.textContent = show ? '收起 ▴' : '查看版本履历 ▾';
       });
     }
     settingsHost.querySelectorAll('.theme-chip').forEach(function(c){
