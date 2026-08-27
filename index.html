@@ -291,127 +291,134 @@
   html,body{ height:100%; }
 
 
-  /* ===== Kindle 水墨屏（纸感白底·黑字·无渐变无阴影·护眼长阅） ===== */
+  /* ===== Kindle 水墨屏（纸张纹理·纯黑白·印刷感·零圆角·无动效） ===== */
   :root[data-theme="kindle"]{
     --theme-name:'Kindle水墨';
-    --bg-1:#e9e4d8; --bg-2:#e9e4d8; --bg-3:#ddd7c9;
+    --bg-1:#f2ede3; --bg-2:#f2ede3; --bg-3:#e8e2d5;
     --glow-1:transparent; --glow-2:transparent;
-    --brand:#1a1a1a; --brand-2:#3d3428;
-    --surface:#f5f1e8; --surface-2:#e2dccc; --surface-3:#faf7f0;
-    --text:#1a1a1a; --muted:#5a5040; --muted-2:#7a7060;
-    --line:#a89e88; --line-2:#c4baa6; --line-3:#8a8070;
-    --accent:#3d3428; --accent-2:#5a4d3a; --text-bright:#1a1a1a;
-    --dia-text:#3d3428; --track:rgba(26,26,26,.20);
-    --canvas-bg:#f5f1e8;
+    --brand:#000; --brand-2:#333;
+    --surface:#f7f4ec; --surface-2:#ede8dc; --surface-3:#fbf9f4;
+    --text:#000; --muted:#444; --muted-2:#666;
+    --line:#000; --line-2:#999; --line-3:#000;
+    --accent:#000; --accent-2:#333; --text-bright:#000;
+    --dia-text:#000; --track:#ccc;
+    --canvas-bg:#f7f4ec;
     --glass-blur:none;
   }
+  /* 纸张纹理：SVG 分形噪点（极淡，模拟纸纤维） */
   :root[data-theme="kindle"] body{
-    background:#e9e4d8;
+    background-color:#f2ede3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
     font-family:Georgia,"Noto Serif SC","Songti SC","SimSun",serif;
   }
   :root[data-theme="kindle"] #bg{ display:none; }
-  :root[data-theme="kindle"] .hero{
-    background:#f5f1e8; border:1px solid #a89e88; border-radius:6px;
-    box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none;
-  }
-  :root[data-theme="kindle"] .hero-title{
-    background:none; -webkit-text-fill-color:#1a1a1a; color:#1a1a1a;
-    text-shadow:none; font-family:Georgia,"Noto Serif SC",serif;
-  }
-  :root[data-theme="kindle"] .hero-badge{
-    color:#1a1a1a; border:1px solid #a89e88; background:#f5f1e8; backdrop-filter:none;
-  }
-  :root[data-theme="kindle"] .hero-sub{ color:#5a5040; }
-  :root[data-theme="kindle"] .hero-chip{
-    color:#1a1a1a; border:1px solid #c4baa6; background:#f5f1e8; backdrop-filter:none;
-  }
-  :root[data-theme="kindle"] .hero-deco{ opacity:.35; }
+  /* 全局零圆角（水墨屏不做圆角） */
+  :root[data-theme="kindle"] *{ border-radius:0 !important; }
+  /* 无入场动效（水墨屏刷新是瞬时的） */
+  :root[data-theme="kindle"] .fx-in *{ animation:none !important; }
+  /* 所有卡片/面板：纸白底 + 纸纹理 + 1px 黑边框 + 无阴影无模糊 */
   :root[data-theme="kindle"] .glass,
   :root[data-theme="kindle"] .panel,
   :root[data-theme="kindle"] .cat-card,
   :root[data-theme="kindle"] .cat,
-  :root[data-theme="kindle"] .tab{
-    background:#f5f1e8 !important; border:1px solid #a89e88 !important;
-    border-radius:4px !important; box-shadow:none !important;
-    backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
-  }
-  :root[data-theme="kindle"] .cat.active,
-  :root[data-theme="kindle"] .tab.active{
-    background:#1a1a1a !important; color:#f5f1e8 !important; border-color:#1a1a1a !important;
-    box-shadow:none !important;
-  }
-  :root[data-theme="kindle"] .rand-hero-inner{
-    background:#f5f1e8; border:1px solid #a89e88; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .rand-hero:hover .rand-hero-inner{
-    border-color:#1a1a1a; box-shadow:none;
-  }
-  :root[data-theme="kindle"] .rand-hero-icon-wrap{
-    background:#1a1a1a; box-shadow:none; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .rand-hero-btn{
-    background:#1a1a1a; color:#f5f1e8; border:1px solid #1a1a1a; border-radius:4px;
-    box-shadow:none;
-  }
-  :root[data-theme="kindle"] .rand-hero-btn:hover{ filter:none; background:#3d3428; }
-  :root[data-theme="kindle"] .home-search .hs-box{
-    background:#f5f1e8; border:1px solid #a89e88; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .home-search .hs-box:focus-within{ border-color:#1a1a1a; box-shadow:none; }
-  :root[data-theme="kindle"] .home-search .hs-item{
-    background:#f5f1e8; border:1px solid #c4baa6; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .home-search .hs-item:hover{ border-color:#1a1a1a; background:#efe9db; transform:none; }
-  :root[data-theme="kindle"] .home-search .hs-cat{ background:#e2dccc; color:#1a1a1a; }
-  :root[data-theme="kindle"] #topbar{
-    background:#f5f1e8; border-bottom:1px solid #a89e88; backdrop-filter:none;
-  }
-  :root[data-theme="kindle"] #sidebar{
-    background:#f5f1e8; border-right:1px solid #a89e88; backdrop-filter:none;
-  }
-  :root[data-theme="kindle"] .nav-item{ color:#5a5040; border:1px solid transparent; border-radius:4px; }
-  :root[data-theme="kindle"] .nav-item:hover{ background:#e2dccc; }
-  :root[data-theme="kindle"] .nav-item.active{ background:#1a1a1a; color:#f5f1e8; border-color:#1a1a1a; }
-  :root[data-theme="kindle"] .nav-item.active::before{ background:#f5f1e8; }
-  :root[data-theme="kindle"] .tb-prog{ color:#1a1a1a; border:1px solid #a89e88; background:#f5f1e8; }
-  :root[data-theme="kindle"] .theme-chip{
-    background:#f5f1e8; border:1px solid #a89e88; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .theme-chip.active{ border-color:#1a1a1a; box-shadow:none; }
-  :root[data-theme="kindle"] .theme-chip.active::after{ color:#1a1a1a; }
-  :root[data-theme="kindle"] .theme-ic{ border:1px solid #a89e88; }
-  :root[data-theme="kindle"] .set-sec{ border:1px solid #c4baa6; border-radius:4px; background:#f5f1e8; }
-  :root[data-theme="kindle"] .switch{ background:#c4baa6; }
-  :root[data-theme="kindle"] .switch.on{ background:#1a1a1a; }
-  :root[data-theme="kindle"] .ver-v.cur{ background:#1a1a1a; }
-  :root[data-theme="kindle"] .ver-toggle{
-    background:#f5f1e8; border:1px solid #a89e88; border-radius:4px; color:#1a1a1a;
-  }
-  :root[data-theme="kindle"] .ver-toggle:hover{ background:#e2dccc; border-color:#1a1a1a; }
+  :root[data-theme="kindle"] .tab,
+  :root[data-theme="kindle"] .hero,
+  :root[data-theme="kindle"] #topbar,
+  :root[data-theme="kindle"] #sidebar,
+  :root[data-theme="kindle"] .set-sec,
+  :root[data-theme="kindle"] .theme-chip,
+  :root[data-theme="kindle"] .rand-hero-inner,
+  :root[data-theme="kindle"] .home-search .hs-box,
+  :root[data-theme="kindle"] .home-search .hs-item,
   :root[data-theme="kindle"] .step,
-  :root[data-theme="kindle"] .cl-item{
-    background:#f5f1e8; border:1px solid #c4baa6; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .fav-item{
-    background:#f5f1e8; border:1px solid #c4baa6; border-radius:4px;
-  }
-  :root[data-theme="kindle"] .fav-item:hover{ border-color:#1a1a1a; }
-  :root[data-theme="kindle"] .empty{ color:#7a7060; }
-  :root[data-theme="kindle"] .brand .bt{ color:#1a1a1a; }
-  :root[data-theme="kindle"] .brand .bs{ color:#7a7060; }
-  :root[data-theme="kindle"] .side-foot{ color:#7a7060; }
-  :root[data-theme="kindle"] ::selection{ background:#1a1a1a; color:#f5f1e8; }
-  :root[data-theme="kindle"] .btn,
-  :root[data-theme="kindle"] button{ border-radius:4px; }
+  :root[data-theme="kindle"] .cl-item,
+  :root[data-theme="kindle"] .fav-item,
   :root[data-theme="kindle"] .spec,
   :root[data-theme="kindle"] .gate-card,
-  :root[data-theme="kindle"] .pm-card{
-    background:#f5f1e8; border:1px solid #c4baa6; border-radius:4px;
+  :root[data-theme="kindle"] .pm-card,
+  :root[data-theme="kindle"] .tb-prog{
+    background-color:#f7f4ec;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    border:1px solid #000;
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
   }
-  /* Kindle 主题：无入场动效（水墨屏刷新感） */
-  :root[data-theme="kindle"] .fx-in .glass,
-  :root[data-theme="kindle"] .fx-in .panel,
-  :root[data-theme="kindle"] .fx-in .cat-card{ animation:none; }
+  /* 选中/激活：反色印刷（黑底白字，像水墨屏高亮选中） */
+  :root[data-theme="kindle"] .cat.active,
+  :root[data-theme="kindle"] .tab.active,
+  :root[data-theme="kindle"] .nav-item.active,
+  :root[data-theme="kindle"] .theme-chip.active,
+  :root[data-theme="kindle"] .rand-hero-btn,
+  :root[data-theme="kindle"] .ver-v.cur,
+  :root[data-theme="kindle"] .switch.on,
+  :root[data-theme="kindle"] .rand-hero-icon-wrap{
+    background:#000 !important;
+    color:#f7f4ec !important;
+    border-color:#000 !important;
+    box-shadow:none !important;
+    background-image:none !important;
+  }
+  :root[data-theme="kindle"] .rand-hero-btn:hover{ background:#333 !important; }
+  :root[data-theme="kindle"] .nav-item:hover{ background:#ede8dc; }
+  :root[data-theme="kindle"] .cat:hover{ color:#000; border-color:#000; }
+  :root[data-theme="kindle"] .home-search .hs-item:hover{ border-color:#000; background:#ede8dc; transform:none; }
+  :root[data-theme="kindle"] .fav-item:hover{ border-color:#000; }
+  :root[data-theme="kindle"] .theme-chip:hover{ border-color:#000; }
+  /* 标题：纯黑实色，无渐变文字 */
+  :root[data-theme="kindle"] .hero-title{
+    background:none; -webkit-text-fill-color:#000; color:#000;
+    text-shadow:none; font-family:Georgia,"Noto Serif SC",serif;
+  }
+  :root[data-theme="kindle"] .hero-badge{
+    color:#000; border:1px dashed #000; background:transparent; backdrop-filter:none;
+  }
+  :root[data-theme="kindle"] .hero-sub{ color:#444; }
+  :root[data-theme="kindle"] .hero-chip{
+    color:#000; border:1px solid #000; background:transparent; backdrop-filter:none;
+  }
+  :root[data-theme="kindle"] .hero-deco{ opacity:.2; }
+  /* 图标：纯黑底白图标，去阴影 */
+  :root[data-theme="kindle"] .rand-hero-icon-wrap svg{ filter:none; }
+  /* 搜索框 */
+  :root[data-theme="kindle"] .home-search .hs-box:focus-within{ border-color:#000; box-shadow:none; }
+  :root[data-theme="kindle"] .home-search .hs-cat{ background:#ede8dc; color:#000; border:1px solid #999; }
+  :root[data-theme="kindle"] .home-search .hs-clear{ background:#000; color:#f7f4ec; }
+  :root[data-theme="kindle"] .home-search .hs-empty{ color:#666; }
+  /* 顶栏/侧栏 */
+  :root[data-theme="kindle"] #topbar{ border-bottom:1px solid #000; }
+  :root[data-theme="kindle"] #sidebar{ border-right:1px solid #000; }
+  :root[data-theme="kindle"] .nav-item{ color:#444; border:1px solid transparent; }
+  :root[data-theme="kindle"] .nav-item.active::before{ background:#f7f4ec; }
+  :root[data-theme="kindle"] .brand .bt{ color:#000; }
+  :root[data-theme="kindle"] .brand .bs{ color:#666; }
+  :root[data-theme="kindle"] .side-foot{ color:#666; }
+  :root[data-theme="kindle"] .tb-title{ color:#000; }
+  /* 设置页 */
+  :root[data-theme="kindle"] .set-sec-h{ color:#000; }
+  :root[data-theme="kindle"] .switch{ background:#ccc; border:1px solid #000; }
+  :root[data-theme="kindle"] .switch::after{ background:#f7f4ec; }
+  :root[data-theme="kindle"] .ver-toggle{
+    background:#f7f4ec; border:1px solid #000; color:#000;
+  }
+  :root[data-theme="kindle"] .ver-toggle:hover{ background:#ede8dc; }
+  :root[data-theme="kindle"] .ver-v{ border-bottom:1px dashed #999; }
+  :root[data-theme="kindle"] .theme-ic{ border:1px solid #000; }
+  :root[data-theme="kindle"] .theme-name{ color:#000; }
+  :root[data-theme="kindle"] .theme-desc{ color:#666; }
+  :root[data-theme="kindle"] .theme-chip.active::after{ color:#f7f4ec; }
+  /* 其他 */
+  :root[data-theme="kindle"] .empty{ color:#666; }
+  :root[data-theme="kindle"] ::selection{ background:#000; color:#f7f4ec; }
+  :root[data-theme="kindle"] input,
+  :root[data-theme="kindle"] textarea{
+    background:#f7f4ec; color:#000; border:1px solid #000;
+  }
+  :root[data-theme="kindle"] input::placeholder{ color:#999; }
+  /* 滚动条：极简黑白 */
+  :root[data-theme="kindle"] ::-webkit-scrollbar{ width:8px; height:8px; }
+  :root[data-theme="kindle"] ::-webkit-scrollbar-track{ background:#f2ede3; }
+  :root[data-theme="kindle"] ::-webkit-scrollbar-thumb{ background:#000; }
 
   /* ===== 新野兽派 · Neo-Brutalism（粗黑描边 · 硬偏移阴影 · 高饱和撞色） ===== */
   :root[data-theme="brutalism"]{
@@ -1392,7 +1399,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.6 · 2026-08-27<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.8.7 · 2026-08-27<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1420,7 +1427,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.6</h1>
+      <h1 class="hero-title">车载光学百科 v0.8.7</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 21</span>
@@ -1438,7 +1445,7 @@
       <div class="rand-hero" id="randHero">
         <div class="rand-hero-inner">
           <div class="rand-hero-icon-wrap">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.2" fill="#fff" stroke="none"/><circle cx="16" cy="8" r="1.2" fill="#fff" stroke="none"/><circle cx="8" cy="16" r="1.2" fill="#fff" stroke="none"/><path d="M13 13.5 16.5 17"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 12.5 11.5 8.5 15.5 11.5 12.5Z" fill="#fff" stroke="none"/></svg>
           </div>
           <div class="rand-hero-body">
             <div class="rand-hero-title">知识探索</div>
@@ -6243,7 +6250,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   }
   /* 版本履历（设置页内摘要式，移动端可用） */
   var VER_HISTORY = [
-    { v:'v0.8.6', date:'2026-08-27', cur:true, desc:'首页拆分知识探索+知识搜索双卡片 + 删除薄荷绿主题 + 新增 Kindle 水墨屏主题' },
+    { v:'v0.8.7', date:'2026-08-27', cur:true, desc:'知识探索图标换指南针（更整体）+ Kindle 水墨屏主题重做（纸张纹理/纯黑白/零圆角/反色选中）' },
+    { v:'v0.8.6', date:'2026-08-27', desc:'首页拆分知识探索+知识搜索双卡片 + 删除薄荷绿主题 + 新增 Kindle 水墨屏主题' },
     { v:'v0.8.5', date:'2026-08-27', desc:'版本履历默认隐藏（点按钮展开）+ 版本号升补丁 + README 精简' },
     { v:'v0.8.4', date:'2026-08-21', desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠 + 版本履历移入设置页' },
     { v:'v0.8.1', date:'2026-08-21', desc:'设备排序修正 + 8 个可量化知识点（含数值·单位速查 SOP）+ 版本规则改为补丁优先' },
@@ -6321,7 +6329,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '</div>';
     html += '<button class="ver-toggle" id="verToggle" type="button">查看版本履历 ▾</button>';
     html += '</div>';
-    html += '<div class="set-foot">车载光学百科 v0.8.6<br>更新 2026-08-27 · 离线可用 · 单文件 PWA</div>';
+    html += '<div class="set-foot">车载光学百科 v0.8.7<br>更新 2026-08-27 · 离线可用 · 单文件 PWA</div>';
     settingsHost.innerHTML = html;
     var verTog = document.getElementById('verToggle');
     if(verTog){
