@@ -592,6 +592,83 @@
   :root[data-theme="kindle"] .theme-chip.active *{
     color:#d0d0d0 !important;
   }
+  /* ===== v0.8.9 修复：6项优化 ===== */
+  /* 1. 分类/tab hover和active边框纯黑，去除淡蓝 */
+  :root[data-theme="kindle"] .cat:hover,
+  :root[data-theme="kindle"] .tab:hover{
+    color:#1a1a1a !important; border-color:#1a1a1a !important; background:#b8b8b8 !important;
+  }
+  :root[data-theme="kindle"] .cat.active,
+  :root[data-theme="kindle"] .tab.active{
+    background:#1a1a1a !important; color:#d0d0d0 !important; border-color:#1a1a1a !important;
+    box-shadow:none !important; background-image:none !important;
+  }
+  /* 2. 搜索框重新设计：纯黑边框+灰底，去下划线 */
+  :root[data-theme="kindle"] .home-search .hs-box{
+    background:#b8b8b8 !important; border:2px solid #1a1a1a !important; border-radius:0 !important;
+    box-shadow:none !important; min-height:52px;
+  }
+  :root[data-theme="kindle"] .home-search .hs-box:focus-within{
+    border:3px solid #1a1a1a !important; box-shadow:none !important;
+  }
+  :root[data-theme="kindle"] .home-search .hs-input{
+    color:#1a1a1a !important; font-weight:600;
+  }
+  :root[data-theme="kindle"] .home-search .hs-ic{ color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .home-search .hs-clear{ background:#1a1a1a !important; color:#d0d0d0 !important; }
+  /* 3. 右上角topbar icon和文字深色 */
+  :root[data-theme="kindle"] .tb-menu{ color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tb-menu svg{ stroke:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tb-prog{ color:#1a1a1a !important; border-color:#1a1a1a !important; background:#c4c4c4 !important; }
+  /* 4. 侧边栏目录树全部深色（修复白字） */
+  :root[data-theme="kindle"] .tree-h{ color:#444 !important; }
+  :root[data-theme="kindle"] .tree-cat-h{ color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tree-cat-h:hover{ background:#b8b8b8 !important; color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tree-cat-h.active{ background:#1a1a1a !important; color:#d0d0d0 !important; background-image:none !important; }
+  :root[data-theme="kindle"] .tree-cat-h.active *{ color:#d0d0d0 !important; }
+  :root[data-theme="kindle"] .tw-arrow{ color:#666 !important; }
+  :root[data-theme="kindle"] .tw-count{ color:#1a1a1a !important; background:#b8b8b8 !important; }
+  :root[data-theme="kindle"] .tree-leaf{ color:#444 !important; }
+  :root[data-theme="kindle"] .tree-leaf:hover{ background:#b8b8b8 !important; color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tree-leaf.active{ background:#1a1a1a !important; color:#d0d0d0 !important; background-image:none !important; }
+  :root[data-theme="kindle"] .tree-leaf::after{ background:#1a1a1a !important; box-shadow:none !important; }
+  :root[data-theme="kindle"] .tree-search input{ background:#b8b8b8 !important; border-color:#1a1a1a !important; color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tree-search .ts-ic{ color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .tree-search .ts-clear{ background:#1a1a1a !important; color:#d0d0d0 !important; }
+  :root[data-theme="kindle"] .side-foot{ color:#444 !important; }
+  /* 5. Kindle墨水屏点击反馈动画（瞬时反色刷新） */
+  @keyframes kindleRefresh {
+    0% { filter:none; }
+    30% { filter:invert(1); }
+    60% { filter:invert(0.6); }
+    100% { filter:none; }
+  }
+  :root[data-theme="kindle"] .cat:active,
+  :root[data-theme="kindle"] .tab:active,
+  :root[data-theme="kindle"] .nav-item:active,
+  :root[data-theme="kindle"] .tree-leaf:active,
+  :root[data-theme="kindle"] .tree-cat-h:active,
+  :root[data-theme="kindle"] .bt-item:active,
+  :root[data-theme="kindle"] .rand-hero:active,
+  :root[data-theme="kindle"] .hs-item:active,
+  :root[data-theme="kindle"] .fav-item:active,
+  :root[data-theme="kindle"] .theme-chip:active,
+  :root[data-theme="kindle"] .btn:active{
+    animation:kindleRefresh 0.18s steps(3) !important;
+  }
+  /* 6. 底部导航栏液态玻璃质感（更高透明度+更强模糊） */
+  :root[data-theme="kindle"] #bottomtab{
+    background:rgba(180,180,180,0.45) !important;
+    backdrop-filter:blur(40px) saturate(200%) !important;
+    -webkit-backdrop-filter:blur(40px) saturate(200%) !important;
+    border:1px solid rgba(26,26,26,0.3) !important;
+    box-shadow:0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.4) !important;
+  }
+  :root[data-theme="kindle"] #bottomtab::before{ display:none !important; }
+  :root[data-theme="kindle"] .bt-item{ color:#444 !important; }
+  :root[data-theme="kindle"] .bt-item.active{ color:#1a1a1a !important; }
+  :root[data-theme="kindle"] .bt-item.active .bt-ic{ filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3)) !important; }
+  :root[data-theme="kindle"] .bt-item.active::after{ background:#1a1a1a !important; box-shadow:none !important; }
 
   /* ===== 新野兽派 · Neo-Brutalism（粗黑描边 · 硬偏移阴影 · 高饱和撞色） ===== */
   :root[data-theme="brutalism"]{
@@ -1571,7 +1648,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.7 · 2026-08-27<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.8.9 · 2026-08-28<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1599,7 +1676,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.7</h1>
+      <h1 class="hero-title">车载光学百科 v0.8.9</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 21</span>
@@ -6420,7 +6497,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   }
   /* 版本履历（设置页内摘要式，移动端可用） */
   var VER_HISTORY = [
-    { v:'v0.8.8', date:'2026-08-28', cur:true, desc:'Kindle水墨屏主题深度修复：去首页渐变+深灰底+加粗字体+强制深色文字消除白字' },
+    { v:'v0.8.9', date:'2026-08-28', cur:true, desc:'6项优化：版本号修正+分类边框去淡蓝+搜索框重设计+topbar/目录树深色+墨水屏点击动画+底部导航液态玻璃' },
+    { v:'v0.8.8', date:'2026-08-28', desc:'Kindle水墨屏主题深度修复：去首页渐变+深灰底+加粗字体+强制深色文字消除白字' },
     { v:'v0.8.7', date:'2026-08-27', desc:'知识探索图标换指南针（更整体）+ Kindle 水墨屏主题重做（纸张纹理/纯黑白/零圆角/反色选中）' },
     { v:'v0.8.6', date:'2026-08-27', desc:'首页拆分知识探索+知识搜索双卡片 + 删除薄荷绿主题 + 新增 Kindle 水墨屏主题' },
     { v:'v0.8.5', date:'2026-08-27', desc:'版本履历默认隐藏（点按钮展开）+ 版本号升补丁 + README 精简' },
@@ -6500,7 +6578,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '</div>';
     html += '<button class="ver-toggle" id="verToggle" type="button">查看版本履历 ▾</button>';
     html += '</div>';
-    html += '<div class="set-foot">车载光学百科 v0.8.8<br>更新 2026-08-28 · 离线可用 · 单文件 PWA</div>';
+    html += '<div class="set-foot">车载光学百科 v0.8.9<br>更新 2026-08-28 · 离线可用 · 单文件 PWA</div>';
     settingsHost.innerHTML = html;
     var verTog = document.getElementById('verToggle');
     if(verTog){
