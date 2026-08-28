@@ -519,6 +519,79 @@
   :root[data-theme="kindle"] ::-webkit-scrollbar{ width:6px; height:6px; }
   :root[data-theme="kindle"] ::-webkit-scrollbar-track{ background:#c8c8c8; }
   :root[data-theme="kindle"] ::-webkit-scrollbar-thumb{ background:#1a1a1a; }
+  /* ===== v0.8.8 修复：纯水墨屏 · 去渐变 · 深灰底 · 粗字 · 无白字 ===== */
+  /* 1. 彻底消除首页hero渐变（伪元素+背景渐变） */
+  :root[data-theme="kindle"] .hero::before,
+  :root[data-theme="kindle"] .hero::after{ display:none !important; }
+  :root[data-theme="kindle"] .hero{
+    background:#c4c4c4 !important;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E") !important;
+  }
+  /* 2. 底色更深更灰（body #b8b8b8，卡片 #c4c4c4） */
+  :root[data-theme="kindle"] body{ background-color:#b8b8b8 !important; }
+  :root[data-theme="kindle"] .glass,
+  :root[data-theme="kindle"] .panel,
+  :root[data-theme="kindle"] .cat-card,
+  :root[data-theme="kindle"] .cat,
+  :root[data-theme="kindle"] .tab,
+  :root[data-theme="kindle"] #topbar,
+  :root[data-theme="kindle"] #sidebar,
+  :root[data-theme="kindle"] .set-sec,
+  :root[data-theme="kindle"] .theme-chip,
+  :root[data-theme="kindle"] .rand-hero,
+  :root[data-theme="kindle"] .step,
+  :root[data-theme="kindle"] .cl-item,
+  :root[data-theme="kindle"] .fav-item,
+  :root[data-theme="kindle"] .spec,
+  :root[data-theme="kindle"] .gate-card,
+  :root[data-theme="kindle"] .pm-card,
+  :root[data-theme="kindle"] .tb-prog,
+  :root[data-theme="kindle"] .home-search .hs-item{
+    background-color:#c4c4c4 !important;
+  }
+  /* 3. 字体加粗（修复字体太细看不清） */
+  :root[data-theme="kindle"] body{ font-weight:500; }
+  :root[data-theme="kindle"] .define,
+  :root[data-theme="kindle"] .note,
+  :root[data-theme="kindle"] .tagline,
+  :root[data-theme="kindle"] .pm-body,
+  :root[data-theme="kindle"] .panel p,
+  :root[data-theme="kindle"] .panel li,
+  :root[data-theme="kindle"] .panel td,
+  :root[data-theme="kindle"] .panel th{ font-weight:500; }
+  /* 4. 知识点内容区域强制深色文字（修复白字bug） */
+  :root[data-theme="kindle"] .define,
+  :root[data-theme="kindle"] .note,
+  :root[data-theme="kindle"] .tagline,
+  :root[data-theme="kindle"] .pm-body,
+  :root[data-theme="kindle"] .pm-h,
+  :root[data-theme="kindle"] .panel h1,
+  :root[data-theme="kindle"] .panel h2,
+  :root[data-theme="kindle"] .panel h3,
+  :root[data-theme="kindle"] .panel h4,
+  :root[data-theme="kindle"] .panel p,
+  :root[data-theme="kindle"] .panel li,
+  :root[data-theme="kindle"] .panel td,
+  :root[data-theme="kindle"] .panel th,
+  :root[data-theme="kindle"] .panel span,
+  :root[data-theme="kindle"] .panel div{
+    color:#1a1a1a !important;
+  }
+  /* 选中状态保持反色（黑底灰字） */
+  :root[data-theme="kindle"] .cat.active,
+  :root[data-theme="kindle"] .tab.active,
+  :root[data-theme="kindle"] .nav-item.active,
+  :root[data-theme="kindle"] .theme-chip.active,
+  :root[data-theme="kindle"] .ver-v.cur,
+  :root[data-theme="kindle"] .switch.on{
+    color:#d0d0d0 !important;
+  }
+  :root[data-theme="kindle"] .cat.active *,
+  :root[data-theme="kindle"] .tab.active *,
+  :root[data-theme="kindle"] .nav-item.active *,
+  :root[data-theme="kindle"] .theme-chip.active *{
+    color:#d0d0d0 !important;
+  }
 
   /* ===== 新野兽派 · Neo-Brutalism（粗黑描边 · 硬偏移阴影 · 高饱和撞色） ===== */
   :root[data-theme="brutalism"]{
@@ -6347,7 +6420,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
   }
   /* 版本履历（设置页内摘要式，移动端可用） */
   var VER_HISTORY = [
-    { v:'v0.8.7', date:'2026-08-27', cur:true, desc:'知识探索图标换指南针（更整体）+ Kindle 水墨屏主题重做（纸张纹理/纯黑白/零圆角/反色选中）' },
+    { v:'v0.8.8', date:'2026-08-28', cur:true, desc:'Kindle水墨屏主题深度修复：去首页渐变+深灰底+加粗字体+强制深色文字消除白字' },
+    { v:'v0.8.7', date:'2026-08-27', desc:'知识探索图标换指南针（更整体）+ Kindle 水墨屏主题重做（纸张纹理/纯黑白/零圆角/反色选中）' },
     { v:'v0.8.6', date:'2026-08-27', desc:'首页拆分知识探索+知识搜索双卡片 + 删除薄荷绿主题 + 新增 Kindle 水墨屏主题' },
     { v:'v0.8.5', date:'2026-08-27', desc:'版本履历默认隐藏（点按钮展开）+ 版本号升补丁 + README 精简' },
     { v:'v0.8.4', date:'2026-08-21', desc:'SOP 数值·单位速查补齐（29 个知识点）+ 首页去日期 + 知识探索二合一 + 分类 tab 折叠 + 长释义折叠 + 版本履历移入设置页' },
@@ -6426,7 +6500,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '</div>';
     html += '<button class="ver-toggle" id="verToggle" type="button">查看版本履历 ▾</button>';
     html += '</div>';
-    html += '<div class="set-foot">车载光学百科 v0.8.7<br>更新 2026-08-27 · 离线可用 · 单文件 PWA</div>';
+    html += '<div class="set-foot">车载光学百科 v0.8.8<br>更新 2026-08-28 · 离线可用 · 单文件 PWA</div>';
     settingsHost.innerHTML = html;
     var verTog = document.getElementById('verToggle');
     if(verTog){
