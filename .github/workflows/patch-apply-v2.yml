@@ -1,0 +1,24 @@
+name: Apply v0.9.0 Patch v2
+on:
+  push:
+    branches: [ main ]
+jobs:
+  apply:
+    if: "contains(github.event.head_commit.message, 'apply-v090-v2')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure trailing newline then apply patch
+        run: |
+          # 补末尾换行（git apply 需要以 LF 结尾）
+          printf '\n' >> patch_index.patch
+          git apply --verbose patch_index.patch && echo "GIT APPLY OK" || (echo "GIT APPLY FAILED"; exit 1)
+      - name: Commit and push
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "v0.9.0: Kindle降亮+Office主题+单位速查表格化+随机动画 (v2)"
+          git push
