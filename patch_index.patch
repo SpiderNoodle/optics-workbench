@@ -1,0 +1,20 @@
+diff --git a/index.html b/index.html
+index b406b95..46a8c0a 100644
+--- a/index.html
++++ b/index.html
+@@ -669,6 +669,13 @@
+   :root[data-theme="kindle"] .bt-item.active{ color:#1a1a1a !important; }
+   :root[data-theme="kindle"] .bt-item.active .bt-ic{ filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3)) !important; }
+   :root[data-theme="kindle"] .bt-item.active::after{ background:#1a1a1a !important; box-shadow:none !important; }
++  /* v0.9.0: Kindle 释义文字降亮（修复 .define 内 <b> 亮蓝色难辨识） */
++  :root[data-theme="kindle"] .define,
++  :root[data-theme="kindle"] .define b,
++  :root[data-theme="kindle"] .define strong{
++    color:#1a1a1a !important;
++  }
++  :root[data-theme="kindle"] .define .define-expand{ color:#333 !important; }
+ 
+   /* ===== 新野兽派 · Neo-Brutalism（粗黑描边 · 硬偏移阴影 · 高饱和撞色） ===== */
+   :root[data-theme="brutalism"]{
+@@ -739,6 +746,186 @@
+   :root[data-theme="brutalism"] .nav-item .ni-ic{ color:#111; }
