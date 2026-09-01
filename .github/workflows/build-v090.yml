@@ -1,0 +1,21 @@
+name: Build v0.9.0
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    if: "contains(github.event.head_commit.message, 'trigger-build-v090')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run build script
+        run: python build_v090.py
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "v0.9.0: Kindle主题降亮+Office主题+单位速查表格+简洁随机动画"
+          git push
