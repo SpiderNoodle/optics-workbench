@@ -306,6 +306,19 @@
     --glass-blur:none;
     --amber:#1a1a1a; --ok:#1a1a1a; --warn:#1a1a1a; --err:#1a1a1a; --sky:#1a1a1a;
   }
+  /* Kindle 主题：释义文字降亮，提升可读性 */
+  [data-theme="kindle"] .define,
+  [data-theme="kindle"] .define p,
+  [data-theme="kindle"] .panel-desc,
+  [data-theme="kindle"] .spec-text,
+  [data-theme="kindle"] .knowledge-desc {
+    color: #3a3a3a !important;
+  }
+  [data-theme="kindle"] .define b,
+  [data-theme="kindle"] .define strong {
+    color: #1a1a1a !important;
+  }
+
   /* 中灰纸底 + 纸纹噪点 + 衬线印刷字体 + 锐利边缘（关抗锯齿） */
   :root[data-theme="kindle"] body{
     background-color:#c8c8c8;
@@ -1290,7 +1303,91 @@
   .tree-leaf.active{ background:linear-gradient(135deg,rgba(91,140,255,.22),rgba(124,108,255,.12)); color:#fff; }
   #homeCatNav{ display:none; }
 
-  /* ---- 随机页 ---- */
+  
+  /* ===== Office/WPS 主题（仿 Excel 办公风格）===== */
+  [data-theme="office"] {
+    --bg-1: #f3f3f3;
+    --bg-2: #e8e8e8;
+    --surface: #ffffff;
+    --surface-2: #fafafa;
+    --text: #1f1f1f;
+    --text-2: #404040;
+    --muted: #606060;
+    --muted-2: #808080;
+    --brand: #217346;
+    --brand-2: #2e9b5e;
+    --brand-light: #e6f2ec;
+    --line: #d4d4d4;
+    --line-light: #e8e8e8;
+    --acc-line: #217346;
+    --r-l: 4px;
+    --r-m: 3px;
+    --r-s: 2px;
+    --sh: 0 1px 3px rgba(0,0,0,.08);
+    --sh-lg: 0 4px 12px rgba(0,0,0,.1);
+    --canvas-bg: #ffffff;
+    --glass-blur: blur(0px);
+    --hero-grad: linear-gradient(135deg,#217346,#2e9b5e);
+    --tab-active-bg: #e6f2ec;
+    --tab-active-border: #217346;
+    --table-header-bg: #217346;
+    --table-header-text: #ffffff;
+    --table-row-alt: #f8f8f8;
+    --table-border: #d4d4d4;
+  }
+  [data-theme="office"] body {
+    font-family: "Calibri", "Segoe UI", system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f3f3f3;
+  }
+  [data-theme="office"] .panel,
+  [data-theme="office"] .card,
+  [data-theme="office"] .glass {
+    background: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  [data-theme="office"] .tab {
+    border-radius: 3px 3px 0 0;
+    border: 1px solid transparent;
+    border-bottom: none;
+  }
+  [data-theme="office"] .tab.active {
+    background: #ffffff;
+    border-color: #d4d4d4;
+    border-bottom: 2px solid #217346;
+    color: #217346;
+    font-weight: 600;
+  }
+  [data-theme="office"] .hero {
+    background: linear-gradient(135deg,#217346,#2e9b5e);
+    border-radius: 0;
+  }
+  [data-theme="office"] .btn-primary {
+    background: #217346;
+    border-radius: 3px;
+  }
+  [data-theme="office"] .btn-primary:hover {
+    background: #1a5c38;
+  }
+  [data-theme="office"] ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  [data-theme="office"] ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  [data-theme="office"] ::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 3px solid #f0f0f0;
+    border-radius: 0;
+  }
+  [data-theme="office"] ::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+  }
+
+/* ---- 随机页 ---- */
   #randHost{ min-height:180px; }
   #randHost .panel{ display:block !important; }
   .rand-topbar{
@@ -1648,7 +1745,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.9 · 2026-08-28<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.9.0 · 2026-09-01<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1676,7 +1773,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.9</h1>
+      <h1 class="hero-title">车载光学知识工作台 v0.9.0</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 21</span>
@@ -2471,7 +2568,93 @@
   .pm-warn{ background:rgba(251,191,36,0.08); border-color:#fcd34d; }
   .pm-ok{ background:rgba(52,211,153,0.06); border-color:#34d399; }
   .pm-info{ background:rgba(91,140,255,0.07); border-color:var(--brand); }
-  </style>
+  
+  /* ===== 单位速查表格样式 ===== */
+  .spec-table-wrap {
+    margin: 12px 0;
+    border: 1px solid var(--line);
+    border-radius: var(--r-m);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .spec-table-scroll {
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: auto;
+  }
+  .spec-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--table-header-bg, var(--brand));
+    color: var(--table-header-text, #fff);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .02em;
+    border-bottom: 2px solid var(--line);
+    white-space: nowrap;
+  }
+  .spec-table tbody td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--table-border, var(--line-light));
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .spec-table tbody tr:nth-child(even) {
+    background: var(--table-row-alt, var(--surface-2));
+  }
+  .spec-table tbody tr:hover {
+    background: var(--brand-light, rgba(91,140,255,.08));
+  }
+  .spec-table .spec-symbol {
+    font-weight: 700;
+    color: var(--brand);
+    font-family: "Consolas", "Monaco", monospace;
+    white-space: nowrap;
+  }
+  .spec-table .spec-unit {
+    color: var(--text-2);
+    font-family: "Consolas", "Monaco", monospace;
+    white-space: nowrap;
+  }
+  .spec-table .spec-meaning {
+    color: var(--text);
+  }
+  .spec-table .spec-en {
+    color: var(--muted);
+    font-size: 12px;
+    font-style: italic;
+  }
+  .spec-table .spec-range {
+    color: var(--text-2);
+    font-size: 12px;
+  }
+  .spec-table-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  /* ===== 随机模块换条动画（简洁淡入淡出）===== */
+  .rand-fade {
+    transition: opacity 0.2s ease;
+  }
+  .rand-fade.out {
+    opacity: 0;
+  }
+</style>
 
   <!-- 项目管理 · VDA -->
   <div class="panel" id="panel-pm-vda">
@@ -6407,6 +6590,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     { id:'darkpink', name:'黑粉', desc:'纯黑×纯粉 · Blackpink', c1:'#ff0077', c2:'#ff3399', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C5 15 3 11 3 8.2A4.3 4.3 0 0 1 12 6.6 4.3 4.3 0 0 1 21 8.2C21 11 19 15 12 21z"/></svg>' },
     { id:'brutalism', name:'新野兽派', desc:'粗黑描边 · 硬阴影', c1:'#ffe600', c2:'#ff3df0', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16"/><rect x="7" y="7" width="11" height="11" fill="currentColor" stroke="none"/></svg>' },
     { id:'kindle', name:'Kindle水墨', desc:'纸感白底 · 护眼长阅', c1:'#1a1a1a', c2:'#5a5040', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h13"/><line x1="8" y1="8" x2="14" y2="8"/></svg>' },
+  { id: 'office', name: 'Office/WPS', icon: '📊', desc: 'Excel 办公风格' },
   ];
   /* ===== 音效引擎（Web Audio 振荡器合成，离线零外部文件） ===== */
   var Sound = (function(){
@@ -6561,7 +6745,14 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5 5l1.9 1.9M17.1 17.1 19 19M19 5l-1.9 1.9M6.9 17.1 5 19"/></svg>主题外观<span class="sub">实时生效</span></div>';
     html += '<div class="theme-row">';
     THEMES.forEach(function(t){
-      html += '<div class="theme-chip'+(t.id===cur?' active':'')+'" data-theme="'+t.id+'"><span class="theme-ic" style="--ic1:'+t.c1+';--ic2:'+t.c2+'">'+t.ic+'</span><span class="theme-meta"><span class="theme-name">'+t.name+'</span><span class="theme-desc">'+t.desc+'</span></span></div>';
+      html += '<div class="theme-chip'+(t.id===cur?' active':'')+'" data-theme="'+t.id+'"
+        <div class="theme-chip" data-theme="office" onclick="setTheme('office')">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#217346,#e6f2ec);border:1px solid #d4d4d4;"></div>
+          <div class="theme-info">
+            <div class="theme-name">Office / WPS</div>
+            <div class="theme-desc">Excel 办公风格</div>
+          </div>
+        </div>><span class="theme-ic" style="--ic1:'+t.c1+';--ic2:'+t.c2+'">'+t.ic+'</span><span class="theme-meta"><span class="theme-name">'+t.name+'</span><span class="theme-desc">'+t.desc+'</span></span></div>';
     });
     html += '</div></div>';
     /* 数据与显示 */
@@ -6848,6 +7039,78 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     if(drawerMaskEl){ drawerMaskEl.addEventListener('click', function(){ setDrawer(false); }); }
     showView('home');
 })();
+
+  // ===== 单位速查模块：运行时转换为表格形式 =====
+  function convertSpecToTable() {
+    var specBlocks = document.querySelectorAll('.spec, .spec-block, .unit-spec, .quick-ref');
+    specBlocks.forEach(function(block) {
+      if (block.dataset.converted) return;
+      block.dataset.converted = 'true';
+      var items = [];
+      var lines = block.innerText.split('\n').filter(function(l) { return l.trim(); });
+      lines.forEach(function(line) {
+        var match = line.match(/^([A-Za-z%°µμm\.\/]+)\s*[（(]?([^）)]*)[）)]?\s*[：:]?\s*(.+)$/);
+        if (match) {
+          items.push({
+            symbol: match[1].trim(),
+            unit: match[2].trim(),
+            meaning: match[3].trim(),
+            en: '',
+            range: ''
+          });
+        }
+      });
+      if (items.length > 0) {
+        var tableHtml = '<div class="spec-table-wrap"><div class="spec-table-title">数值 · 单位速查</div><div class="spec-table-scroll"><table class="spec-table"><thead><tr><th>符号</th><th>单位</th><th>含义</th><th>英文全称</th><th>范围/说明</th></tr></thead><tbody>';
+        items.forEach(function(item) {
+          tableHtml += '<tr><td class="spec-symbol">' + item.symbol + '</td><td class="spec-unit">' + item.unit + '</td><td class="spec-meaning">' + item.meaning + '</td><td class="spec-en">' + item.en + '</td><td class="spec-range">' + item.range + '</td></tr>';
+        });
+        tableHtml += '</tbody></table></div></div>';
+        block.innerHTML = tableHtml;
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', convertSpecToTable);
+  } else {
+    convertSpecToTable();
+  }
+  var originalShowTab = window.showTab;
+  if (originalShowTab) {
+    window.showTab = function() {
+      originalShowTab.apply(this, arguments);
+      setTimeout(convertSpecToTable, 50);
+    };
+  }
+
+
+  // ===== 随机模块换条动画（简洁版：纯淡入淡出）=====
+  function animateShuffle(callback) {
+    var host = document.getElementById('randHost') || 
+               document.querySelector('#view-random .panel') ||
+               document.querySelector('#view-random .rand-content') ||
+               document.querySelector('.rand-host');
+    if (!host) { if (callback) callback(); return; }
+    host.classList.add('rand-fade');
+    host.classList.add('out');
+    setTimeout(function() {
+      if (callback) callback();
+      setTimeout(function() {
+        host.classList.remove('out');
+      }, 50);
+    }, 200);
+  }
+  var shuffleFunctions = ['shuffleRandom', 'randomKnowledge', 'nextRandom', 'shuffleKnowledge', 'randomItem'];
+  shuffleFunctions.forEach(function(fnName) {
+    if (typeof window[fnName] === 'function') {
+      var original = window[fnName];
+      window[fnName] = function() {
+        var args = arguments;
+        var self = this;
+        animateShuffle(function() { original.apply(self, args); });
+      };
+    }
+  });
 </script>
 
 </body>
