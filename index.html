@@ -1648,7 +1648,7 @@
     </div>
     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
-    <div class="side-foot">v0.8.9 · 2026-08-28<br>离线可用 · 单文件</div>
+    <div class="side-foot">v0.9.0 · 2026-09-01<br>离线可用 · 单文件</div>
   </aside>
   <div id="drawerMask"></div>
   <main id="main">
@@ -1676,7 +1676,7 @@
     </div>
     <div class="hero-inner">
       <span class="hero-badge">交互式图解</span>
-      <h1 class="hero-title">车载光学百科 v0.8.9</h1>
+      <h1 class="hero-title">车载光学知识工作台 v0.9.0</h1>
       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
       <div class="hero-chips">
         <span class="hero-chip">光学基础 · 21</span>
@@ -2471,7 +2471,175 @@
   .pm-warn{ background:rgba(251,191,36,0.08); border-color:#fcd34d; }
   .pm-ok{ background:rgba(52,211,153,0.06); border-color:#34d399; }
   .pm-info{ background:rgba(91,140,255,0.07); border-color:var(--brand); }
-  </style>
+  
+  /* v0.9.0: Kindle 主题释义文字降亮 */
+  [data-theme="kindle"] .define,
+  [data-theme="kindle"] .define p,
+  [data-theme="kindle"] .panel-desc,
+  [data-theme="kindle"] .spec-text,
+  [data-theme="kindle"] .knowledge-desc {
+    color: #3a3a3a !important;
+  }
+  [data-theme="kindle"] .define b,
+  [data-theme="kindle"] .define strong {
+    color: #1a1a1a !important;
+  }
+
+  /* v0.9.0: Office/WPS 主题（仿 Excel 办公风格）*/
+  [data-theme="office"] {
+    --bg-1: #f3f3f3;
+    --bg-2: #e8e8e8;
+    --surface: #ffffff;
+    --surface-2: #fafafa;
+    --text: #1f1f1f;
+    --text-2: #404040;
+    --muted: #606060;
+    --muted-2: #808080;
+    --brand: #217346;
+    --brand-2: #2e9b5e;
+    --brand-light: #e6f2ec;
+    --line: #d4d4d4;
+    --line-light: #e8e8e8;
+    --acc-line: #217346;
+    --r-l: 4px;
+    --r-m: 3px;
+    --r-s: 2px;
+    --sh: 0 1px 3px rgba(0,0,0,.08);
+    --sh-lg: 0 4px 12px rgba(0,0,0,.1);
+    --canvas-bg: #ffffff;
+    --glass-blur: blur(0px);
+    --hero-grad: linear-gradient(135deg,#217346,#2e9b5e);
+    --tab-active-bg: #e6f2ec;
+    --tab-active-border: #217346;
+    --table-header-bg: #217346;
+    --table-header-text: #ffffff;
+    --table-row-alt: #f8f8f8;
+    --table-border: #d4d4d4;
+  }
+  [data-theme="office"] body {
+    font-family: "Calibri", "Segoe UI", system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f3f3f3;
+  }
+  [data-theme="office"] .panel,
+  [data-theme="office"] .card,
+  [data-theme="office"] .glass {
+    background: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  [data-theme="office"] .tab {
+    border-radius: 3px 3px 0 0;
+    border: 1px solid transparent;
+    border-bottom: none;
+  }
+  [data-theme="office"] .tab.active {
+    background: #ffffff;
+    border-color: #d4d4d4;
+    border-bottom: 2px solid #217346;
+    color: #217346;
+    font-weight: 600;
+  }
+  [data-theme="office"] .hero {
+    background: linear-gradient(135deg,#217346,#2e9b5e);
+    border-radius: 0;
+  }
+  [data-theme="office"] .btn-primary {
+    background: #217346;
+    border-radius: 3px;
+  }
+  [data-theme="office"] .btn-primary:hover {
+    background: #1a5c38;
+  }
+  [data-theme="office"] ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  [data-theme="office"] ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  [data-theme="office"] ::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 3px solid #f0f0f0;
+    border-radius: 0;
+  }
+  [data-theme="office"] ::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+  }
+
+  /* v0.9.0: 单位速查表格样式 */
+  .spec-table-wrap {
+    margin: 12px 0;
+    border: 1px solid var(--line);
+    border-radius: var(--r-m);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .spec-table-scroll {
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .spec-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--table-header-bg, var(--brand));
+    color: var(--table-header-text, #fff);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 2px solid var(--line);
+    white-space: nowrap;
+  }
+  .spec-table tbody td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--table-border, var(--line-light));
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .spec-table tbody tr:nth-child(even) {
+    background: var(--table-row-alt, var(--surface-2));
+  }
+  .spec-table .spec-symbol {
+    font-weight: 700;
+    color: var(--brand);
+    font-family: "Consolas", "Monaco", monospace;
+    white-space: nowrap;
+  }
+  .spec-table .spec-unit {
+    color: var(--text-2);
+    font-family: "Consolas", "Monaco", monospace;
+    white-space: nowrap;
+  }
+  .spec-table .spec-en {
+    color: var(--muted);
+    font-size: 12px;
+    font-style: italic;
+  }
+  .spec-table-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* v0.9.0: 随机模块换条动画（简洁淡入淡出）*/
+  .rand-fade-target {
+    transition: opacity 0.2s ease;
+  }
+  .rand-fade-target.fading {
+    opacity: 0;
+  }
+</style>
 
   <!-- 项目管理 · VDA -->
   <div class="panel" id="panel-pm-vda">
@@ -6561,7 +6729,14 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     html += '<div class="set-sec"><div class="set-sec-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5 5l1.9 1.9M17.1 17.1 19 19M19 5l-1.9 1.9M6.9 17.1 5 19"/></svg>主题外观<span class="sub">实时生效</span></div>';
     html += '<div class="theme-row">';
     THEMES.forEach(function(t){
-      html += '<div class="theme-chip'+(t.id===cur?' active':'')+'" data-theme="'+t.id+'"><span class="theme-ic" style="--ic1:'+t.c1+';--ic2:'+t.c2+'">'+t.ic+'</span><span class="theme-meta"><span class="theme-name">'+t.name+'</span><span class="theme-desc">'+t.desc+'</span></span></div>';
+      html += '<div class="theme-chip'+(t.id===cur?' active':'')+'" data-theme="'+t.id+'"
+        <div class="theme-chip" data-theme="office" onclick="setTheme('office')">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#217346,#e6f2ec);border:1px solid #d4d4d4;"></div>
+          <div class="theme-info">
+            <div class="theme-name">Office / WPS</div>
+            <div class="theme-desc">Excel 办公风格</div>
+          </div>
+        </div>><span class="theme-ic" style="--ic1:'+t.c1+';--ic2:'+t.c2+'">'+t.ic+'</span><span class="theme-meta"><span class="theme-name">'+t.name+'</span><span class="theme-desc">'+t.desc+'</span></span></div>';
     });
     html += '</div></div>';
     /* 数据与显示 */
@@ -6848,6 +7023,77 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
     if(drawerMaskEl){ drawerMaskEl.addEventListener('click', function(){ setDrawer(false); }); }
     showView('home');
 })();
+
+  /* v0.9.0: 单位速查表格化（安全版，try-catch 包裹）*/
+  try {
+    function convertSpecToTableSafe() {
+      var blocks = document.querySelectorAll('.spec, .spec-block, .unit-spec, .quick-ref');
+      for (var i = 0; i < blocks.length; i++) {
+        var block = blocks[i];
+        if (block.getAttribute('data-spec-converted')) continue;
+        block.setAttribute('data-spec-converted', '1');
+        var text = block.innerText || block.textContent || '';
+        var lines = text.split('\n').filter(function(l) { return l.trim().length > 0; });
+        if (lines.length < 2) continue;
+        var items = [];
+        for (var j = 0; j < lines.length; j++) {
+          var line = lines[j].trim();
+          var parts = line.split(/[：:]/);
+          if (parts.length >= 2) {
+            var symbol = parts[0].trim();
+            var rest = parts.slice(1).join(':').trim();
+            items.push({symbol: symbol, meaning: rest, unit: '', en: ''});
+          }
+        }
+        if (items.length === 0) continue;
+        var tableHtml = '<div class="spec-table-wrap"><div class="spec-table-title">数值 · 单位速查</div><div class="spec-table-scroll"><table class="spec-table"><thead><tr><th>符号</th><th>含义</th><th>单位</th><th>英文全称</th></tr></thead><tbody>';
+        for (var k = 0; k < items.length; k++) {
+          var it = items[k];
+          tableHtml += '<tr><td class="spec-symbol">' + it.symbol + '</td><td>' + it.meaning + '</td><td class="spec-unit">' + it.unit + '</td><td class="spec-en">' + it.en + '</td></tr>';
+        }
+        tableHtml += '</tbody></table></div></div>';
+        block.innerHTML = tableHtml;
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { setTimeout(convertSpecToTableSafe, 100); });
+    } else {
+      setTimeout(convertSpecToTableSafe, 100);
+    }
+  } catch(e) { console.warn('spec table convert error:', e); }
+
+  /* v0.9.0: 随机模块换条动画（安全版，事件委托，不包装原有函数）*/
+  try {
+    function initShuffleAnimation() {
+      var target = document.getElementById('randHost') || 
+                   document.querySelector('#view-random .panel') ||
+                   document.querySelector('#view-random .rand-content') ||
+                   document.querySelector('.rand-host');
+      if (!target) return;
+      target.classList.add('rand-fade-target');
+      document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.shuffle-btn, [onclick*="shuffle"], [onclick*="random"], .rand-shuffle-btn, button');
+        if (!btn) return;
+        var isShuffle = btn.className && btn.className.indexOf('shuffle') >= 0;
+        var onclick = btn.getAttribute('onclick') || '';
+        if (!isShuffle && onclick.indexOf('shuffle') < 0 && onclick.indexOf('random') < 0 && onclick.indexOf('Random') < 0) return;
+        var t = document.getElementById('randHost') || 
+                document.querySelector('#view-random .panel') ||
+                document.querySelector('#view-random .rand-content') ||
+                document.querySelector('.rand-host');
+        if (!t) return;
+        t.classList.add('fading');
+        setTimeout(function() {
+          setTimeout(function() { t.classList.remove('fading'); }, 250);
+        }, 50);
+      }, true);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { setTimeout(initShuffleAnimation, 200); });
+    } else {
+      setTimeout(initShuffleAnimation, 200);
+    }
+  } catch(e) { console.warn('shuffle animation init error:', e); }
 </script>
 
 </body>
