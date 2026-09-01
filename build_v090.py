@@ -4,7 +4,7 @@ v0.9.0 构建脚本：四项修改
 1. Kindle 主题释义文字降亮（提升可读性）
 2. 新增 Office/WPS 主题（仿 Excel 办公风格）
 3. 单位速查模块改为可滑动表格形式（含字符含义+英文全称）
-4. 随机模块换条添加过渡动画
+4. 随机模块换条添加简洁淡入淡出动画
 版本：0.8.9 -> 0.9.0
 """
 import io, re, sys
@@ -374,71 +374,41 @@ if script_end > 0:
     log("[OK] 单位速查表格转换 JS 已插入")
 
 # ============================================================
-# 修改 4：随机模块换条动画
+# 修改 4：随机模块换条动画（简洁版：纯淡入淡出）
 # ============================================================
-log("\n=== 修改 4：随机模块换条动画 ===")
+log("\n=== 修改 4：随机模块换条动画（简洁版）===")
 
 shuffle_animation_css = '''
-  /* ===== 随机模块换条动画 ===== */
-  @keyframes shuffleOut {
-    0% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    100% { opacity: 0; transform: translateY(-20px) scale(0.98); filter: blur(4px); }
+  /* ===== 随机模块换条动画（简洁淡入淡出）===== */
+  .rand-fade {
+    transition: opacity 0.2s ease;
   }
-  @keyframes shuffleIn {
-    0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
-    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-  }
-  .rand-host.shuffle-out,
-  #randHost.shuffle-out,
-  #view-random .panel.shuffle-out,
-  #view-random .rand-content.shuffle-out {
-    animation: shuffleOut 0.3s ease-in forwards;
-  }
-  .rand-host.shuffle-in,
-  #randHost.shuffle-in,
-  #view-random .panel.shuffle-in,
-  #view-random .rand-content.shuffle-in {
-    animation: shuffleIn 0.4s ease-out forwards;
-  }
-  .shuffle-btn:active { transform: scale(0.95); }
-  .shuffle-btn.spinning svg,
-  .shuffle-btn.spinning .shuffle-icon {
-    animation: spin 0.5s ease-in-out;
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  .rand-fade.out {
+    opacity: 0;
   }
 '''
 
 style_end = html.rfind('</style>')
 if style_end > 0:
     html = html[:style_end] + shuffle_animation_css + html[style_end:]
-    log("[OK] 随机模块换条动画 CSS 已插入")
+    log("[OK] 随机模块换条动画 CSS 已插入（简洁版）")
 
 shuffle_js = '''
-  // ===== 随机模块换条动画增强 =====
+  // ===== 随机模块换条动画（简洁版：纯淡入淡出）=====
   function animateShuffle(callback) {
     var host = document.getElementById('randHost') || 
                document.querySelector('#view-random .panel') ||
                document.querySelector('#view-random .rand-content') ||
                document.querySelector('.rand-host');
     if (!host) { if (callback) callback(); return; }
-    var btn = document.querySelector('.shuffle-btn, [onclick*="shuffle"], [onclick*="random"], .rand-shuffle-btn');
-    if (btn) {
-      btn.classList.add('spinning');
-      setTimeout(function() { btn.classList.remove('spinning'); }, 500);
-    }
-    host.classList.remove('shuffle-in');
-    host.classList.add('shuffle-out');
+    host.classList.add('rand-fade');
+    host.classList.add('out');
     setTimeout(function() {
       if (callback) callback();
       setTimeout(function() {
-        host.classList.remove('shuffle-out');
-        host.classList.add('shuffle-in');
-        setTimeout(function() { host.classList.remove('shuffle-in'); }, 400);
+        host.classList.remove('out');
       }, 50);
-    }, 300);
+    }, 200);
   }
   var shuffleFunctions = ['shuffleRandom', 'randomKnowledge', 'nextRandom', 'shuffleKnowledge', 'randomItem'];
   shuffleFunctions.forEach(function(fnName) {
@@ -456,7 +426,7 @@ shuffle_js = '''
 script_end = html.rfind('</script>')
 if script_end > 0:
     html = html[:script_end] + shuffle_js + html[script_end:]
-    log("[OK] 随机模块换条动画 JS 已插入")
+    log("[OK] 随机模块换条动画 JS 已插入（简洁版）")
 
 # ============================================================
 # 版本号更新：0.8.9 -> 0.9.0
