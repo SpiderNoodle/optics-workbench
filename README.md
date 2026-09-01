@@ -7,3 +7,5 @@
 **在线访问**：https://spidernoodle.github.io/optics-workbench/
 
 用浏览器打开后「添加到主屏幕」即可作为独立 App 离线使用。
+
+**当前版本**：v0.9.0
