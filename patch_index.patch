@@ -18,3 +18,406 @@ index b406b95..46a8c0a 100644
    :root[data-theme="brutalism"]{
 @@ -739,6 +746,186 @@
    :root[data-theme="brutalism"] .nav-item .ni-ic{ color:#111; }
+   :root[data-theme="brutalism"] .rand-hero-cta{ background:var(--brand); color:#111; border:2.5px solid #111; border-radius:8px; box-shadow:5px 5px 0 #111; }
+   :root[data-theme="brutalism"] .rand-hero-cta:hover{ transform:translate(2px,2px); box-shadow:2px 2px 0 #111; }
++
++  /* ===== v0.9.0: Office / WPS 主题（仿 Excel 办公风格 · 白底绿标 · 细灰网格） ===== */
++  :root[data-theme="office"]{
++    --theme-name:'Office';
++    --bg-1:#f2f2f2; --bg-2:#f7f7f7; --bg-3:#ececec;
++    --glow-1:rgba(33,115,70,.06); --glow-2:rgba(33,115,70,.05);
++    --brand:#217346; --brand-2:#185c37; --brand-3:#2e9b5e;
++    --surface:#ffffff; --surface-2:#f7f7f7; --surface-3:#eef1ee;
++    --text:#1f1f1f; --muted:#5a5a5a; --muted-2:#8a8a8a;
++    --line:#d9d9d9; --line-2:#b8b8b8; --line-3:#a6a6a6;
++    --accent:#217346; --accent-2:#375623; --text-bright:#1f1f1f; --dia-text:#1f1f1f;
++    --track:#c9c9c9; --canvas-bg:#ffffff;
++    --ink:#1f1f1f; --qing:#217346; --zhu:#d4d4d4;
++    --r-l:3px; --r-m:2px; --r-s:2px;
++    --sh:0 1px 2px rgba(0,0,0,.06); --sh-l:0 2px 6px rgba(0,0,0,.07);
++    --glass-blur:none;
++  }
++  :root[data-theme="office"] body{
++    background:#f2f2f2;
++    font-family:"Segoe UI","Calibri","Microsoft YaHei","PingFang SC",system-ui,sans-serif;
++    color:#1f1f1f;
++  }
++  :root[data-theme="office"] #bg{ display:none; }
++  /* 卡片/面板：白底 + 细灰边框 + 极浅阴影（Excel 表格感） */
++  :root[data-theme="office"] .glass,
++  :root[data-theme="office"] .panel,
++  :root[data-theme="office"] .cat-card,
++  :root[data-theme="office"] .set-sec,
++  :root[data-theme="office"] .theme-chip,
++  :root[data-theme="office"] .rand-hero,
++  :root[data-theme="office"] .step,
++  :root[data-theme="office"] .cl-item,
++  :root[data-theme="office"] .fav-item,
++  :root[data-theme="office"] .spec,
++  :root[data-theme="office"] .gate-card,
++  :root[data-theme="office"] .pm-card,
++  :root[data-theme="office"] .reader{
++    background:#ffffff;
++    border:1px solid #d9d9d9;
++    border-radius:3px;
++    box-shadow:0 1px 2px rgba(0,0,0,.05);
++    backdrop-filter:none;
++    -webkit-backdrop-filter:none;
++  }
++  :root[data-theme="office"] .panel .panel{ background:#fff; }
++  /* 顶栏/侧栏：Excel 功能区灰 */
++  :root[data-theme="office"] #topbar,
++  :root[data-theme="office"] #sidebar,
++  :root[data-theme="office"] #bottomtab{
++    background:#f2f2f2;
++    border-color:#d9d9d9;
++    backdrop-filter:none;
++    -webkit-backdrop-filter:none;
++    box-shadow:none;
++  }
++  :root[data-theme="office"] #bottomtab{
++    border-top:1px solid #d9d9d9;
++    background:rgba(242,242,242,.96);
++  }
++  /* 导航项：Excel 功能区按钮风 */
++  :root[data-theme="office"] .nav-item,
++  :root[data-theme="office"] .bt-item{
++    color:#444;
++    border-radius:2px;
++  }
++  :root[data-theme="office"] .nav-item:hover,
++  :root[data-theme="office"] .bt-item:hover{ background:#e6e6e6; color:#1f1f1f; }
++  :root[data-theme="office"] .nav-item.active,
++  :root[data-theme="office"] .bt-item.active{
++    background:#e6f0e9; color:#217346; border-color:#217346;
++    box-shadow:none;
++  }
++  :root[data-theme="office"] .nav-item.active::before,
++  :root[data-theme="office"] .bt-item.active::after{ background:#217346; }
++  /* Hero：Excel 绿色标题区 */
++  :root[data-theme="office"] .hero{
++    background:linear-gradient(135deg,#217346,#2e9b5e);
++    border:1px solid #185c37;
++    border-radius:3px;
++    box-shadow:none;
++  }
++  :root[data-theme="office"] .hero-title{
++    color:#fff; -webkit-text-fill-color:#fff;
++  }
++  :root[data-theme="office"] .hero-badge{
++    color:#fff; border:1px solid rgba(255,255,255,.6); background:rgba(255,255,255,.12);
++  }
++  :root[data-theme="office"] .hero-sub{ color:#e2efe7; }
++  :root[data-theme="office"] .hero-chip{
++    color:#fff; border:1px solid rgba(255,255,255,.5); background:rgba(255,255,255,.1);
++  }
++  /* 标签页：Excel 工作表标签样式 */
++  :root[data-theme="office"] .tab{
++    background:#e8e8e8; color:#5a5a5a; border:1px solid #d0d0d0;
++    border-radius:2px 2px 0 0; margin-right:2px;
++  }
++  :root[data-theme="office"] .tab:hover{ background:#f5f5f5; color:#1f1f1f; }
++  :root[data-theme="office"] .tab.active{
++    background:#ffffff; color:#217346; border-bottom-color:#ffffff; font-weight:600;
++  }
++  /* 按钮：Excel 功能区按钮 */
++  :root[data-theme="office"] .btn,
++  :root[data-theme="office"] .rb,
++  :root[data-theme="office"] .btn-primary{
++    background:#ffffff; color:#1f1f1f; border:1px solid #b8b8b8; border-radius:2px;
++    box-shadow:none;
++  }
++  :root[data-theme="office"] .btn:hover,
++  :root[data-theme="office"] .rb:hover{ background:#e6f0e9; border-color:#217346; color:#217346; }
++  :root[data-theme="office"] .btn.on,
++  :root[data-theme="office"] .rb.on{ background:#217346; color:#fff; border-color:#185c37; }
++  /* 释义/提示条：浅绿底色 */
++  :root[data-theme="office"] .define{
++    background:#eef4ee; border:1px solid #d5e2d6; border-left:4px solid #217346;
++    color:#1f1f1f; border-radius:2px;
++  }
++  :root[data-theme="office"] .define b{ color:#185c37; }
++  :root[data-theme="office"] .note{
++    background:#fbfbfb; border:1px solid #e0e0e0; color:#444; border-radius:2px;
++  }
++  :root[data-theme="office"] .tagline{ color:#375623; }
++  /* 单位速查：Excel 表格样式（细网格线 + 绿色表头） */
++  :root[data-theme="office"] .spec{
++    background:#fff; border:1px solid #d9d9d9; border-radius:2px;
++  }
++  :root[data-theme="office"] .spec-h{
++    background:#217346; color:#fff; border-bottom:none; border-radius:2px 2px 0 0;
++  }
++  :root[data-theme="office"] .spec-h::before{ background:rgba(255,255,255,.5); }
++  :root[data-theme="office"] .spec-h .en{ color:#d9e8de; }
++  :root[data-theme="office"] .spec-row{
++    border-top:1px solid #e0e0e0;
++  }
++  :root[data-theme="office"] .spec-k{ color:#1f1f1f; }
++  :root[data-theme="office"] .spec-u{ color:#217346; }
++  :root[data-theme="office"] .spec-v{ color:#5a5a5a; }
++  :root[data-theme="office"] .spec-row:nth-child(even){ background:#fafafa; }
++  /* 其他办公化：分类/搜索/设置 */
++  :root[data-theme="office"] .cat-name{ color:#1f1f1f; }
++  :root[data-theme="office"] .cat-count{ color:#8a8a8a; }
++  :root[data-theme="office"] .cat-nav-h{ color:#1f1f1f; }
++  :root[data-theme="office"] .home-search .hs-box{ background:#fff; border:1px solid #c9c9c9; border-radius:2px; }
++  :root[data-theme="office"] .home-search .hs-box:focus-within{ border-color:#217346; box-shadow:0 0 0 1px #217346; }
++  :root[data-theme="office"] .home-search .hs-ic{ color:#5a5a5a; }
++  :root[data-theme="office"] .home-search .hs-item{ background:#fff; border:1px solid #e0e0e0; }
++  :root[data-theme="office"] .home-search .hs-item:hover{ border-color:#217346; }
++  :root[data-theme="office"] .set-sec-h{ color:#1f1f1f; }
++  :root[data-theme="office"] .lr{ color:#1f1f1f; }
++  :root[data-theme="office"] .ld{ color:#8a8a8a; }
++  :root[data-theme="office"] .switch{ background:#c9c9c9; border:1px solid #b8b8b8; }
++  :root[data-theme="office"] .switch.on{ background:#217346; border-color:#185c37; }
++  :root[data-theme="office"] .brand .bt{ color:#1f1f1f; }
++  :root[data-theme="office"] .brand .bs{ color:#8a8a8a; }
++  :root[data-theme="office"] .tb-title{ color:#1f1f1f; }
++  :root[data-theme="office"] .side-foot{ color:#8a8a8a; }
++  :root[data-theme="office"] .tree-h{ color:#5a5a5a; }
++  :root[data-theme="office"] .tree-cat-h{ color:#1f1f1f; }
++  :root[data-theme="office"] .tree-leaf{ color:#444; }
++  :root[data-theme="office"] .tree-leaf:hover,
++  :root[data-theme="office"] .tree-cat-h:hover{ background:#e6f0e9; }
++  :root[data-theme="office"] .theme-ic{ background:linear-gradient(135deg,var(--ic1),var(--ic2)); border:1px solid #d9d9d9; }
++  :root[data-theme="office"] .theme-name{ color:#1f1f1f; }
++  :root[data-theme="office"] .theme-desc{ color:#8a8a8a; }
++  :root[data-theme="office"] .theme-chip.active{ border-color:#217346; box-shadow:0 0 0 1px #217346; }
++  :root[data-theme="office"] .theme-chip.active::after{ color:#217346; }
++  :root[data-theme="office"] .rkh-title{ color:#1f1f1f; }
++  :root[data-theme="office"] .rkh-cat{ background:#e6f0e9; color:#217346; border:1px solid #cfe2d4; }
++  :root[data-theme="office"] .rkh-en{ color:#8a8a8a; }
++  :root[data-theme="office"] .fav-name{ color:#1f1f1f; }
++  :root[data-theme="office"] .fav-meta{ color:#8a8a8a; }
++  :root[data-theme="office"] .cap{ color:#8a8a8a; }
++  :root[data-theme="office"] a{ color:#217346; }
++  :root[data-theme="office"] ::selection{ background:#217346; color:#fff; }
++  :root[data-theme="office"] input,
++  :root[data-theme="office"] textarea{ background:#fff; border:1px solid #c9c9c9; color:#1f1f1f; border-radius:2px; }
++  :root[data-theme="office"] ::-webkit-scrollbar{ width:12px; height:12px; }
++  :root[data-theme="office"] ::-webkit-scrollbar-track{ background:#f2f2f2; }
++  :root[data-theme="office"] ::-webkit-scrollbar-thumb{ background:#c9c9c9; border:3px solid #f2f2f2; border-radius:6px; }
++  :root[data-theme="office"] ::-webkit-scrollbar-thumb:hover{ background:#a8a8a8; }
++
+   body {
+     margin:0; padding:0;
+     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
+@@ -1648,7 +1835,7 @@
+     </div>
+     <div class="tree-h">全部目录 · <span id="treeTotal">99</span></div>
+     <nav class="tree" id="treeNav" aria-label="知识点目录树"></nav>
+-    <div class="side-foot">v0.8.9 · 2026-08-28<br>离线可用 · 单文件</div>
++    <div class="side-foot">v0.9.0 · 2026-09-01<br>离线可用 · 单文件</div>
+   </aside>
+   <div id="drawerMask"></div>
+   <main id="main">
+@@ -1676,7 +1863,7 @@
+     </div>
+     <div class="hero-inner">
+       <span class="hero-badge">交互式图解</span>
+-      <h1 class="hero-title">车载光学百科 v0.8.9</h1>
++      <h1 class="hero-title">车载光学百科 v0.9.0</h1>
+       <div class="hero-sub">Automotive Optics · 交互式百科全书</div>
+       <div class="hero-chips">
+         <span class="hero-chip">光学基础 · 21</span>
+@@ -2043,17 +2230,28 @@
+   .dc-tbl td:last-child{ color:var(--muted); }
+ 
+   /* SOP · 数值·单位速查（置于知识点顶部） */
+-  .spec{ margin:14px 0 6px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:rgba(255,255,255,.035); }
++  /* v0.9.0: 单位速查 = 可滑动表格（符号/单位/含义 + 英文全称） */
++  .spec{ margin:14px 0 6px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:rgba(255,255,255,.035); }
+   .spec-h{ font-size:12px; font-weight:800; letter-spacing:.4px; color:var(--text); background:rgba(255,255,255,.06); border-bottom:2px solid var(--brand); padding:9px 14px; display:flex; align-items:center; gap:8px; }
+   .spec-h::before{ content:""; width:8px; height:8px; border-radius:2px; background:var(--brand); flex:0 0 auto; }
+   .spec-h .en{ font-size:10px; font-weight:500; color:var(--muted-2); margin-left:auto; }
+-  .spec-row{ display:grid; grid-template-columns:112px 56px 1fr; gap:8px 12px; padding:9px 14px; border-top:1px solid var(--line); align-items:start; font-size:12.5px; line-height:1.55; }
+-  .spec-row:first-of-type{ border-top:none; }
+-  .spec-k{ font-weight:700; color:var(--text); }
+-  .spec-u{ font-weight:800; color:var(--brand); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:nowrap; }
+-  .spec-v{ color:var(--muted); }
+-  .spec-v b{ color:var(--text); }
+-  @media (max-width:540px){ .spec-row{ grid-template-columns:90px 46px 1fr; font-size:11.5px; gap:6px 8px; } }
++  .spec-scroll{ overflow:auto; max-height:320px; -webkit-overflow-scrolling:touch; }
++  .spec-table{ width:100%; border-collapse:collapse; font-size:12.5px; line-height:1.5; }
++  .spec-table th{ position:sticky; top:0; z-index:2; text-align:left; font-size:11px; font-weight:800; letter-spacing:.3px;
++    color:var(--text); background:rgba(255,255,255,.07); border-bottom:1px solid var(--brand); padding:7px 12px; white-space:nowrap; }
++  .spec-table td{ border-bottom:1px solid var(--line); padding:8px 12px; vertical-align:top; }
++  .spec-table tr:last-child td{ border-bottom:none; }
++  .spec-table tr:hover td{ background:rgba(91,140,255,.05); }
++  .spec-table td.spec-k{ font-weight:700; color:var(--text); white-space:nowrap; min-width:96px; }
++  .spec-table td.spec-u{ font-weight:800; color:var(--brand); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:nowrap; min-width:64px; }
++  .spec-table td.spec-v{ color:var(--muted); }
++  .spec-table td.spec-v b{ color:var(--text); }
++  .spec-en-full{ display:block; font-size:10px; font-weight:500; color:var(--muted-2); font-style:italic; }
++  @media (max-width:540px){
++    .spec-table{ font-size:11.5px; }
++    .spec-table th, .spec-table td{ padding:6px 9px; }
++    .spec-table td.spec-k{ min-width:78px; }
++  }
+   </style>
+ 
+   <!-- 摄影/相机 · 相机成像原理 -->
+@@ -6407,6 +6605,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+     { id:'darkpink', name:'黑粉', desc:'纯黑×纯粉 · Blackpink', c1:'#ff0077', c2:'#ff3399', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C5 15 3 11 3 8.2A4.3 4.3 0 0 1 12 6.6 4.3 4.3 0 0 1 21 8.2C21 11 19 15 12 21z"/></svg>' },
+     { id:'brutalism', name:'新野兽派', desc:'粗黑描边 · 硬阴影', c1:'#ffe600', c2:'#ff3df0', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16"/><rect x="7" y="7" width="11" height="11" fill="currentColor" stroke="none"/></svg>' },
+     { id:'kindle', name:'Kindle水墨', desc:'纸感白底 · 护眼长阅', c1:'#1a1a1a', c2:'#5a5040', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h13"/><line x1="8" y1="8" x2="14" y2="8"/></svg>' },
++    { id:'office', name:'Office / WPS', desc:'Excel 办公风 · 白底绿标', c1:'#217346', c2:'#107c41', ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 16h16M10 4v16"/></svg>' },
+   ];
+   /* ===== 音效引擎（Web Audio 振荡器合成，离线零外部文件） ===== */
+   var Sound = (function(){
+@@ -6497,7 +6696,8 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+   }
+   /* 版本履历（设置页内摘要式，移动端可用） */
+   var VER_HISTORY = [
+-    { v:'v0.8.9', date:'2026-08-28', cur:true, desc:'6项优化：版本号修正+分类边框去淡蓝+搜索框重设计+topbar/目录树深色+墨水屏点击动画+底部导航液态玻璃' },
++    { v:'v0.9.0', date:'2026-09-01', cur:true, desc:'Kindle释义降亮+Office/WPS办公主题+单位速查表格化(英文全称·可滑动)+随机换条简洁动画' },
++    { v:'v0.8.9', date:'2026-08-28', cur:false, desc:'6项优化：版本号修正+分类边框去淡蓝+搜索框重设计+topbar/目录树深色+墨水屏点击动画+底部导航液态玻璃' },
+     { v:'v0.8.8', date:'2026-08-28', desc:'Kindle水墨屏主题深度修复：去首页渐变+深灰底+加粗字体+强制深色文字消除白字' },
+     { v:'v0.8.7', date:'2026-08-27', desc:'知识探索图标换指南针（更整体）+ Kindle 水墨屏主题重做（纸张纹理/纯黑白/零圆角/反色选中）' },
+     { v:'v0.8.6', date:'2026-08-27', desc:'首页拆分知识探索+知识搜索双卡片 + 删除薄荷绿主题 + 新增 Kindle 水墨屏主题' },
+@@ -6578,7 +6778,7 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+     html += '</div>';
+     html += '<button class="ver-toggle" id="verToggle" type="button">查看版本履历 ▾</button>';
+     html += '</div>';
+-    html += '<div class="set-foot">车载光学百科 v0.8.9<br>更新 2026-08-28 · 离线可用 · 单文件 PWA</div>';
++    html += '<div class="set-foot">车载光学百科 v0.9.0<br>更新 2026-09-01 · 离线可用 · 单文件 PWA</div>';
+     settingsHost.innerHTML = html;
+     var verTog = document.getElementById('verToggle');
+     if(verTog){
+@@ -6850,5 +7050,135 @@ function render8d(){ /* 静态交付卡片，无需 Canvas 渲染 */ }
+ })();
+ </script>
+ 
++<script>
++/* ===== v0.9.0 扩展脚本：独立 IIFE，不依赖/不修改任何原有函数 ===== */
++(function(){
++  try{
++    /* ---- 单位英文全称映射（言简意赅） ---- */
++    var UNITS = {
++      'nm':'Nanometer 纳米',
++      'µm':'Micrometer 微米',
++      'μm':'Micrometer 微米',
++      'mm':'Millimeter 毫米',
++      'm/cm':'Meter / Centimeter 米 / 厘米',
++      'cm':'Centimeter 厘米',
++      '°':'Degree 角度',
++      '℃':'Celsius 摄氏度',
++      '℃/%RH':'Celsius / Relative Humidity 温度/相对湿度',
++      '℃/min':'Celsius per Minute 摄氏度/分',
++      '%':'Percent 百分比',
++      's':'Second 秒',
++      'h':'Hour 小时',
++      'lux':'Lux 勒克斯',
++      'px':'Pixel 像素',
++      'lp/mm':'Line Pairs / mm 线对/毫米',
++      'µm/px':'Micrometer per Pixel 微米/像素',
++      'nm/%':'Nanometer per Percent 纳米/百分比',
++      'dB':'Decibel 分贝',
++      'g':'Gravity g 重力加速度',
++      'Hz/g':'Hertz per g 赫兹/克力',
++      'OD':'Optical Density 光密度',
++      'θ':'Theta 角度符号',
++      '±3σ':'±3 Sigma 三西格玛',
++      '×':'Times 倍',
++      '→':'Range 范围',
++      '—':''
++    };
++    function unitEn(u){
++      var k=(u||'').trim();
++      if(UNITS.hasOwnProperty(k)) return UNITS[k];
++      return '';
++    }
++    /* ---- 把 .spec 内 .spec-row 转换为可滑动表格 ---- */
++    function convertSpec(){
++      var specs = document.querySelectorAll('.spec');
++      for(var i=0;i<specs.length;i++){
++        var s = specs[i];
++        if(s.getAttribute('data-spec-done')) continue;
++        s.setAttribute('data-spec-done','1');
++        var rows = s.querySelectorAll(':scope > .spec-row');
++        if(!rows.length) continue;
++        /* 构建表格 */
++        var table = document.createElement('table');
++        table.className = 'spec-table';
++        var thead = document.createElement('thead');
++        thead.innerHTML = '<tr><th>符号</th><th>单位</th><th>含义 · 英文全称</th></tr>';
++        table.appendChild(thead);
++        var tbody = document.createElement('tbody');
++        for(var j=0;j<rows.length;j++){
++          var r = rows[j];
++          var k = r.querySelector('.spec-k');
++          var u = r.querySelector('.spec-u');
++          var v = r.querySelector('.spec-v');
++          var tr = document.createElement('tr');
++          var tdK = document.createElement('td'); tdK.className='spec-k'; tdK.textContent = k?k.textContent.trim():'';
++          var tdU = document.createElement('td'); tdU.className='spec-u'; tdU.textContent = u?u.textContent.trim():'';
++          var tdV = document.createElement('td'); tdV.className='spec-v';
++          if(v) tdV.innerHTML = v.innerHTML;
++          /* 单位英文全称：追加在含义列 */
++          var en = u?unitEn(u.textContent):'';
++          if(en){
++            var sp = document.createElement('span');
++            sp.className = 'spec-en-full';
++            sp.textContent = en;
++            tdV.appendChild(sp);
++          }
++          tr.appendChild(tdK); tr.appendChild(tdU); tr.appendChild(tdV);
++          tbody.appendChild(tr);
++        }
++        table.appendChild(tbody);
++        /* 包一层可滚动容器 */
++        var sc = document.createElement('div');
++        sc.className = 'spec-scroll';
++        sc.appendChild(table);
++        /* 替换原有 rows（保留标题行 .spec-h） */
++        var holder = document.createElement('div');
++        holder.appendChild(sc);
++        var head = s.querySelector(':scope > .spec-h');
++        /* 清空容器内除标题行外的内容 */
++        var children = Array.prototype.slice.call(s.children);
++        for(var c=0;c<children.length;c++){
++          if(children[c]!==head) s.removeChild(children[c]);
++        }
++        s.appendChild(sc);
++      }
++    }
++    /* ---- 随机模块换一条：简洁淡出→淡入（0.18s） ---- */
++    function setupShuffleFx(){
++      var next = document.getElementById('randNext');
++      var host = document.getElementById('randHost');
++      if(!next || !host) return;
++      next.addEventListener('click', function(){
++        if(host.__fxBusy) return;
++        host.__fxBusy = true;
++        host.style.transition = 'opacity .14s ease';
++        host.style.opacity = '0';
++        setTimeout(function(){
++          host.style.opacity = '1';
++          setTimeout(function(){ host.style.transition=''; host.__fxBusy=false; }, 160);
++        }, 150);
++      });
++    }
++    function boot(){
++      convertSpec();
++      setupShuffleFx();
++    }
++    if(document.readyState === 'loading'){
++      document.addEventListener('DOMContentLoaded', boot);
++    } else {
++      boot();
++    }
++    /* 随机面板动态加载：切换知识点后再转换新面板里的 spec */
++    var obs = new MutationObserver(function(){
++      try{ convertSpec(); }catch(e){}
++    });
++    var host = document.getElementById('randHost');
++    if(host) obs.observe(host, {childList:true, subtree:true});
++  }catch(e){
++    /* 扩展脚本出错不影响原有功能 */
++    if(window.console && console.warn) console.warn('v0.9.0 ext init:', e);
++  }
++})();
++</script>
+ </body>
+ </html>
