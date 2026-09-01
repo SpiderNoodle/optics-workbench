@@ -1,10 +1,11 @@
-name: Build v0.9.0 Safe
+# 此工作流已禁用：v0.9.0 构建脚本已被验证会破坏页面功能，现已回滚至 v0.8.9。
+# 如需重新尝试，需先重写 build 脚本并在本地验证 JS 无语法错误后再启用。
+name: Build v0.9.0 Safe (DISABLED)
 on:
   push:
-    branches: [ main ]
+    branches: [ never-used-branch ]
 jobs:
   build:
-    if: "contains(github.event.head_commit.message, 'trigger-build-safe')"
     runs-on: ubuntu-latest
     permissions:
       contents: write
